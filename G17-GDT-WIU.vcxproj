@@ -131,8 +131,10 @@
     <ClCompile Include="G17-GDT-WIU.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Key.cpp" />
     <ClCompile Include="mainRoom.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Potion.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="ShopRoom.cpp" />
     <ClCompile Include="Stage.cpp" />
@@ -147,8 +149,10 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Key.h" />
     <ClInclude Include="mainRoom.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Potion.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="ShopRoom.h" />
     <ClInclude Include="Stage.h" />

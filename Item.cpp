@@ -6,6 +6,7 @@ Item::Item()
 	defense = 0;
 	cost = 0;
 	owned = false;
+	equipped = false;
 	name = "blank";
 }
 

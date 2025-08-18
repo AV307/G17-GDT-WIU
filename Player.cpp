@@ -1,11 +1,19 @@
 #include "Player.h"
-#include "Weapon.h"
-#include "Armour.h"
+#include <iostream>
+Player::Player() {
 
-Player::Player()
-{
+}
+Player::~Player() {
+
+}
+void Player::move() {
+
 }
 
-Player::~Player()
-{
+void Player::checkCollision() {
+
+}
+
+void Player::checkConsumption() {
+
 }

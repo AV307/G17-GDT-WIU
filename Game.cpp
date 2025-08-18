@@ -4,6 +4,8 @@ Game::Game() {
     for (int i = 0; i < 5; i++) {
         stages[i] = new Stage();
     }
+
+    currentStage = 0;
 }
 
 Game::~Game() {

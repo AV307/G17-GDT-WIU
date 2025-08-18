@@ -9,3 +9,13 @@ Potion::Potion()
 Potion::~Potion()
 {
 }
+
+int Potion::getAttackBuff() const
+{
+	return attackBuff;
+}
+
+int Potion::getDefenseBuff() const
+{
+	return defenseBuff;
+}

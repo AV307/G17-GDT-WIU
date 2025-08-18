@@ -9,5 +9,8 @@ private:
 public:
 	Potion();
 	~Potion();
+
+	int getAttackBuff() const;
+	int getDefenseBuff() const;
 };
 

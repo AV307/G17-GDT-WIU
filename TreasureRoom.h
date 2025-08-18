@@ -5,5 +5,8 @@ class TreasureRoom :
 {
 private:
     char treasureRoomarray[20][20];
+public:
+    TreasureRoom();
+    ~TreasureRoom();
 };
 

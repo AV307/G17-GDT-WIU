@@ -1,4 +1,7 @@
 #include "Player.h"
+#include <iostream>
+#include <cstdlib>
+#include <random>
 Player::Player() {
 
 }
@@ -14,5 +17,9 @@ void Player::checkCollision() {
 }
 
 void Player::checkConsumption() {
+
+}
+
+void Player::calculateDamage() {
 
 }

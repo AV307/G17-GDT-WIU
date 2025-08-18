@@ -135,7 +135,6 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="ShopRoom.cpp" />
-    <ClCompile Include="Source.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="TreasureRoom.cpp" />
     <ClCompile Include="Weapon.cpp" />

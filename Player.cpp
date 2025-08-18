@@ -1,9 +1,19 @@
 #include "Player.h"
+#include <iostream>
+Player::Player() {
 
-Player::Player()
-{
+}
+Player::~Player() {
+
+}
+void Player::move() {
+
 }
 
-Player::~Player()
-{
+void Player::checkCollision() {
+
+}
+
+void Player::checkConsumption() {
+
 }

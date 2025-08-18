@@ -5,6 +5,8 @@ class Player : public Entity
 private:
 
 public:
+	Player();
+	~Player();
 };
 
 

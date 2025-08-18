@@ -25,3 +25,7 @@ Stage::Stage()
         }
     }
 }
+
+Stage::~Stage()
+{
+}

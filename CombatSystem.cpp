@@ -82,22 +82,22 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 				cout << " ";
 			}
 			cout << "Player HP: " << player.getHealth();
-			if (player.getHealth() < 10) { // when Player Health is 1 digits
+			if (player.getHealth() < 10) {                              // when Player Health is 1 digits
 				for (int i = 0; i < 35 - 7 - 12; i++) {
 					cout << " ";
 				}
 			}
-			else if (player.getHealth() > 9) { // when Player Health is 2 digits
+			else if (player.getHealth() > 9) {                          // when Player Health is 2 digits
 				for (int i = 0; i < 35 - 7 - 13; i++) {
 					cout << " ";
 				}
 			}
-			else if (player.getHealth() > 99) { // when Player Health is 3 digits
+			else if (player.getHealth() > 99) {                         // when Player Health is 3 digits
 				for (int i = 0; i < 35 - 7 - 14; i++) {
 					cout << " ";
 				}
 			}
-			else if (player.getHealth() > 999) { // when Player Health is 4 digits
+			else if (player.getHealth() > 999) {                        // when Player Health is 4 digits
 				for (int i = 0; i < 35 - 7 - 15; i++) {
 					cout << " ";
 				}
@@ -107,22 +107,22 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 				cout << " ";
 			}
 			cout << "Enemy HP: " << specifiedEnemy.getHealth();
-			if (specifiedEnemy.getHealth() < 10) { // when Enemy Health is 1 digits
+			if (specifiedEnemy.getHealth() < 10) {                      // when Enemy Health is 1 digits
 				for (int i = 0; i < 35 - 7 - 11; i++) {
 					cout << " ";
 				}
 			}
-			else if (specifiedEnemy.getHealth() > 9) { // when Enemy Health is 2 digits
+			else if (specifiedEnemy.getHealth() > 9) {                  // when Enemy Health is 2 digits
 				for (int i = 0; i < 35 - 7 - 12; i++) {
 					cout << " ";
 				}
 			}
-			else if (specifiedEnemy.getHealth() > 99) { // when Enemy Health is 3 digits
+			else if (specifiedEnemy.getHealth() > 99) {                 // when Enemy Health is 3 digits
 				for (int i = 0; i < 35 - 7 - 13; i++) {
 					cout << " ";
 				}
 			}
-			else if (specifiedEnemy.getHealth() > 999) { // when Enemy Health is 4 digits
+			else if (specifiedEnemy.getHealth() > 999) {                // when Enemy Health is 4 digits
 				for (int i = 0; i < 35 - 7 - 14; i++) {
 					cout << " ";
 				}
@@ -178,25 +178,53 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() - specifiedEnemy.getDefence()));                            // Enemy is attacked first by player
-
+			if (player.getAttack() - specifiedEnemy.getDefence() < 0) {
+				specifiedEnemy.setHealth(specifiedEnemy.getHealth());                                                                                     // If DEF > ATK, Entity Final Damage = 0 (heal from hit prevention)
+			}
+			else {
+				specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() - specifiedEnemy.getDefence()));                                // If DEF <= ATK, Entity Final Damage is given value
+			}
 			if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() - player.getDefence()));                                        // Player is then attacked by enemy
+				if (specifiedEnemy.getAttack() - player.getDefence() < 0) {
+					player.setHealth(player.getHealth());                                                                                                 // If DEF > ATK, Entity Final Damage = 0 (heal from hit prevention)
+				}
+				else {
+					player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() - player.getDefence()));                                            // If DEF <= ATK, Entity Final Damage is given value
+				}
 			}
 			else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefence()));          // Player is critical hit by enemy
+				if (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefence() < 0) {
+					player.setHealth(player.getHealth());                                                                                                 // If DEF > ATK, Entity Final Damage = 0 (heal from hit prevention)
+				}
+				else {
+					player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefence()));              // If DEF <= ATK, Entity Final Damage is given value
+				}
 			}
 		}
 	}
 	else if (critPlayerDeterminant <= player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefence()));      // Enemy is critical hit first by player
-
+			if (player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefence() < 0) {
+				specifiedEnemy.setHealth(specifiedEnemy.getHealth());                                                                                     // If DEF > ATK, Entity Final Damage = 0 (heal from hit prevention)
+			}
+			else {
+				specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefence()));          // If DEF <= ATK, Entity Final Damage is given value
+			}
 			if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() - player.getDefence()));                                        // Player is then attacked by enemy
+				if (specifiedEnemy.getAttack() - player.getDefence() < 0) {
+					player.setHealth(player.getHealth());                                                                                                 // If DEF > ATK, Entity Final Damage = 0 (heal from hit prevention)
+				}
+				else {
+					player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() - player.getDefence()));                                            // If DEF <= ATK, Entity Final Damage is given value
+				}
 			}
 			else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefence()));          // Player is critical hit by enemy
+				if (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefence() < 0) {
+					player.setHealth(player.getHealth());                                                                                                 // If DEF > ATK, Entity Final Damage = 0 (heal from hit prevention)
+				}
+				else {
+					player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefence()));              // If DEF <= ATK, Entity Final Damage is given value
+				}
 			}
 		}
 	}

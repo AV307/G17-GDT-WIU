@@ -14,7 +14,7 @@ private:
     int menuIndex;
     int inventoryIndex;
 public:
-    Player();
+    Player(string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl);
     ~Player();
     void doAction();
     void checkCollision();

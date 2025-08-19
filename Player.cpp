@@ -50,7 +50,14 @@ Player::Player(){
 }
 
 Player::~Player() {
+	for (int i = 0; i < 10; i++) {
+		delete armoury[i];
+		delete weaponry[i];
+		delete consumables[i];
+	}
 
+	delete equippedWeapon;
+	delete equippedArmour;
 }
 
 void Player::doAction() {

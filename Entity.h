@@ -9,13 +9,13 @@ protected:
 public:
 	Entity();
 
-    void setHealth();
-    void setAttack();
-    void setDamage();
-    void setDefense();
-    void setXP();
-    void setGold();
-    void setLvl();
+    void setHealth(int hp);
+    void setAttack(int atk);
+    void setDamage(int dmg);
+    void setDefense(int defence);
+    void setXP(int xp);
+    void setGold(int gold);
+    void setLvl(int lvl);
     void setCRITDMG();
     void setCRITRate();
 

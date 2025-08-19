@@ -14,7 +14,8 @@ private:
     std::mt19937 gen;
     std::uniform_int_distribution<> dis;
 public:
-    void setStageArray();
+    void setStageArray(int currentStage);
+
     Stage(Game* game);
     ~Stage();
 };

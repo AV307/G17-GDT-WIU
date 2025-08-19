@@ -39,6 +39,8 @@ Enemy::Enemy(std::string type, char status) {
 }
 Enemy::~Enemy() {
 
+Enemy::Enemy(string n, int h, int atk, int dmg, int def, int spd, int r)
+    : name(n), health(h), attack(atk), damage(dmg), defence(def), speed(spd), reward(r) {
 }
 
 void Enemy::killEnemy() {
@@ -56,4 +58,11 @@ int Enemy::getAttack() const {
 int Enemy::getDefense() const { 
     return defense; 
 }
+int Enemy::getLvl() const
+{
+    return level;
+}
 
+void Enemy::setHealth(int h) { 
+    health = h; 
+}

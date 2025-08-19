@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Enemy.h"
 class Entity
 {
 protected:

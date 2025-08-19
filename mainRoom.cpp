@@ -4,8 +4,8 @@
 mainRoom::mainRoom(int currentStage) {
     roomHeight = 60;
     roomWidth = 60;
-    roomTopLeftX = 20;
-    roomTopLeftY = 40;
+    roomTopLeftX = 40; // x is row
+    roomTopLeftY = 20; // y is col
 
     // dynamically allocate mainRoomArray
     mainRoomArray = new char* [roomHeight];

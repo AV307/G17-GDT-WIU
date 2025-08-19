@@ -42,7 +42,7 @@ Enemy::Enemy(std::string type, char status) {
 		break;
 	}
 }
-Enemy::~Enemy(){}
+Enemy::~Enemy() {}
 
 
 void Enemy::killEnemy() {

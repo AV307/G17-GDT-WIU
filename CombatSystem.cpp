@@ -78,7 +78,21 @@ void CombatSystem::printCombatScreen() {
 		}
 	}
 
-
+	
+	//if (n == 9) {
+	//	cout << "// +";
+	//	for (int i = 0; i < 7; i++) {
+	//		cout << " ";
+	//	}
+	//	cout << "Player HP: " << player.getHealth();
+	//	if (player.getHealth() > 99) { // when Player Health is 3 digits
+	//		for (int i = 0; i < 35 - 7 - 14; i++) {
+	//			cout << " ";
+	//		}
+	//	}
+	//	cout << "+ //" << endl;
+	//}
+	
 	
 
 	// Hard-Code Combat Screen Design
@@ -96,7 +110,7 @@ void CombatSystem::printCombatScreen() {
 	// cout << "// +      Fight 'F'      +  +       Item 'I'      +  +       Run 'R'       + //" << endl;
 	// cout << "// +---------------------+  +---------------------+  +---------------------+ //" << endl;
 	// cout << "// +-----------------------------------------------------------------------+ //" << endl;
-	// cout << "// +                                   +                                   + //" << endl;  }  For Player & Enemy HP
+	// cout << "// +      Player HP:                   +       Enemy HP:                   + //" << endl;  }  For Player & Enemy HP
 	// cout << "// +-----------------------------------------------------------------------+ //" << endl;
 }
 
@@ -114,7 +128,7 @@ void CombatSystem::printCombatScreen() {
 void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy, bool isEnemyAlive) {
 	//specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack()); // Enemy is attacked first by player
 	//if (isEnemyAlive) {
-	//	player.setHealth(player.getHealth() - specifiedEnemy.getAttack());         // Player is then attacked by enemy
+	//	player.setHealth(player.getHealth() - specifiedEnemy.getAttack());       // Player is then attacked by enemy
 	//}
 }
 

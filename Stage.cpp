@@ -4,12 +4,17 @@
 #include "TreasureRoom.h"
 #include "BedRoom.h"
 
+#include "Game.h"
+
 #include <random>
 
-Stage::Stage()
-	: gen(rd()), dis(1, 3)
+
+Stage::Stage(Game* game)
+	: game(game), gen(rd()), dis(1, 3)
 {
-	rooms[1] = new mainRoom;
+    int currentStage = game->getCurrentStage();
+
+	rooms[1] = new mainRoom[currentStage];
 
     for (int i{ 1 }; i <= 2; i++) {
         int randomType = dis(gen);
@@ -27,6 +32,8 @@ Stage::Stage()
     }
 }
 
-Stage::~Stage()
-{
+Stage::~Stage() {
+    for (int i = 0; i < 3; i++) {
+        delete rooms[i];
+    }
 }

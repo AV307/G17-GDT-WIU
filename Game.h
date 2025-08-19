@@ -4,10 +4,12 @@
 class Game
 {
 private:
-    Stage* stages[5];
+    Stage* stage;
     int currentStage;
 public:
     Game();
     ~Game();
+
+    int getCurrentStage();
 };
 

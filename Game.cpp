@@ -1,15 +1,15 @@
 #include "Game.h"
 
 Game::Game() {
-    for (int i = 0; i < 5; i++) {
-        stages[i] = new Stage();
-    }
-
     currentStage = 0;
+    stage = new Stage(this);
 }
 
 Game::~Game() {
-    for (int i = 0; i < 5; i++) {
-        delete stages[i];
-    }
+    delete stage;
+}
+
+int Game::getCurrentStage()
+{
+    return currentStage;
 }

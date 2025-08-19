@@ -13,6 +13,6 @@ public:
     ~Game();
 
     int getCurrentStage();
-    void updateGame();
+    void doTurn();
 };
 

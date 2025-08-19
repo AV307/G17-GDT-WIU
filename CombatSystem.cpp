@@ -112,22 +112,22 @@ void CombatSystem::printCombatScreen() {
 	//	}
 	//	cout << "Enemy HP: " << specifiedEnemy.getHealth();
 	//	if (specifiedEnemy.getHealth() < 10) { // when Enemy Health is 1 digits
-	//		for (int i = 0; i < 35 - 7 - 12; i++) {
+	//		for (int i = 0; i < 35 - 7 - 11; i++) {
 	//			cout << " ";
 	//		}
 	//	}
 	//	else if (specifiedEnemy.getHealth() > 9) { // when Enemy Health is 2 digits
-	//		for (int i = 0; i < 35 - 7 - 13; i++) {
+	//		for (int i = 0; i < 35 - 7 - 12; i++) {
 	//			cout << " ";
 	//		}
 	//	}
 	//	else if (specifiedEnemy.getHealth() > 99) { // when Enemy Health is 3 digits
-	//		for (int i = 0; i < 35 - 7 - 14; i++) {
+	//		for (int i = 0; i < 35 - 7 - 13; i++) {
 	//			cout << " ";
 	//		}
 	//	}
 	//	else if (specifiedEnemy.getHealth() > 999) { // when Enemy Health is 4 digits
-	//		for (int i = 0; i < 35 - 7 - 15; i++) {
+	//		for (int i = 0; i < 35 - 7 - 14; i++) {
 	//			cout << " ";
 	//		}
 	//	}

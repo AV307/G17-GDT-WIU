@@ -15,7 +15,7 @@ void Stage::setStageArray(int currentStage)
     // initialize stageArray to spaces
     for (int i{ 0 }; i < 100; i++) {
         for (int j{ 0 }; j < 100; j++) {
-            stageArray[i][j] = ' ';
+            stageArray[i][j] = '-';
         }
     }
 
@@ -31,14 +31,20 @@ void Stage::setStageArray(int currentStage)
         }
     }
 
-   /* if (currentStage == 3 || currentStage == 5)
+   if (currentStage == 3 || currentStage == 5)
     {
-
+       // set the bossRoom into the stage
+       char** bossRoomArray = static_cast<BossRoom*>(rooms[2])->getBossRoomArray();
+       int bossRoomTopLeftX = rooms[2]->getRoomTopLeftX();
+       int bossRoomTopLeftY = rooms[2]->getRoomTopLeftY();
+       for (int i = 0; i < rooms[2]->getRoomHeight(); i++)
+       {
+           for (int j = 0; j < rooms[2]->getRoomWidth(); j++)
+           {
+               stageArray[bossRoomTopLeftX + i][bossRoomTopLeftY + j] = bossRoomArray[i][j];
+           }
+       }
     }
-    else
-    {
-
-    }*/
 }
 
 Stage::Stage(Game* game)
@@ -47,7 +53,6 @@ Stage::Stage(Game* game)
     int currentStage = game->getCurrentStage();
 
 	rooms[0] = new mainRoom(currentStage);
-
 
     int randomRoom1 = dis(gen);
     switch (randomRoom1) 
@@ -66,18 +71,6 @@ Stage::Stage(Game* game)
     if (currentStage == 3 || currentStage == 5) 
     {
         rooms[2] = new BossRoom(currentStage);
-
-        // set the bossRoom into the stage
-        char** bossRoomArray = static_cast<BossRoom*>(rooms[0])->getBossRoomArray();
-        int bossRoomTopLeftX = rooms[0]->getRoomTopLeftX();
-        int bossRoomTopLeftY = rooms[0]->getRoomTopLeftY();
-        for (int i = 0; i < rooms[0]->getRoomHeight(); i++)
-        {
-            for (int j = 0; j < rooms[0]->getRoomWidth(); j++)
-            {
-                stageArray[bossRoomTopLeftX + i][bossRoomTopLeftY + j] = bossRoomArray[i][j];
-            }
-        }
     }
     else 
     {
@@ -85,13 +78,13 @@ Stage::Stage(Game* game)
         switch (randomRoom2) 
         {
         case 0:
-            rooms[1] = new ShopRoom;
+            rooms[2] = new ShopRoom;
             break;
         case 1:
-            rooms[1] = new TreasureRoom;
+            rooms[2] = new TreasureRoom;
             break;
         case 2:
-            rooms[1] = new BedRoom;
+            rooms[2] = new BedRoom;
             break;
         }
     }

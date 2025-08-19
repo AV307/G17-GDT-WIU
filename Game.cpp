@@ -61,7 +61,7 @@ void Game::doTurn()
                     int equipLength = 0;
                     (weapons[i]->isEquipped() == true) ? equipLength = 10 : equipLength = 0;
 
-                    int remainingSpaces = 40 - (nameLength + numLength + attackLength + equipLength + 12);
+                    int remainingSpaces = 40 - (nameLength + numLength + attackLength + equipLength + 13);
                     for (int j = 0; j < remainingSpaces; j++) {
                         std::cout << " ";
                     }
@@ -98,7 +98,7 @@ void Game::doTurn()
                     int equipLength = 0;
                     (armours[i]->isEquipped() == true) ? equipLength = 10 : equipLength = 0;
 
-                    int remainingSpaces = 39 - (nameLength + numLength + defenseLength + equipLength + 12);
+                    int remainingSpaces = 39 - (nameLength + numLength + defenseLength + equipLength + 13);
                     for (int j = 0; j < remainingSpaces; j++) {
                         std::cout << " ";
                     }
@@ -124,9 +124,6 @@ void Game::doTurn()
                     std::cout << " (";
                     std::cout << consumables[i]->getDefenseVal();
                     std::cout << " Defense)";
-                    if (consumables[i]->isEquipped() == true) {
-                        std::cout << " [Equipped]";
-                    }
                     SetConsoleTextAttribute(hConsole, 7);
                     int nameLength = consumables[i]->getName().length();
                     int numLength = std::to_string(i + 1).length();

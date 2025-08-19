@@ -5,5 +5,8 @@ class ShopRoom :
 {
 private:
     char shopRoomArray[20][20];
+
+public:
+    ShopRoom();
 };
 

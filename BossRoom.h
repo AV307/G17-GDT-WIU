@@ -4,9 +4,10 @@ class BossRoom :
     public Room
 {
 private:
-    char BossRoomArray[30][30];
-
+    char** bossRoomArray;
 public:
-    BossRoom();
+    BossRoom(int currentStage);
+    ~BossRoom();
+    char** getBossRoomArray();
 };
 

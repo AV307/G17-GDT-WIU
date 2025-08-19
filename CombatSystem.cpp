@@ -112,7 +112,7 @@ void CombatSystem::printCombatScreen() {
 // +----------------------------------------------------------------------------------+ //
 
 void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
-
+	specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack());
 }
 
 

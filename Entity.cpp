@@ -1,26 +1,10 @@
 #include "Entity.h"
-#include "Enemy.h"
-
-//Entity::Entity()
-//{
-//	health = 0;
-//	attack = 0;
-//	defense = 0;
-//}
-
-Entity::Entity() {}
 
 Entity::Entity()
 {
+
 }
 
-Entity::Entity(string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl)
-	: name(n), health(h), attack(atk), damage(dmg), defence(def), xp(xp), gold(gold), level(lvl) {};
-
-string Entity::getName() const
-{
-	return string();
-}
 
 int Entity::getHealth() const
 {
@@ -57,48 +41,8 @@ int Entity::getLvl() const
 	return getLvl();
 }
 
-void Entity::setName(string n)
-{
-}
-
-void Entity::setHealth(int h)
-{
-}
-
-void Entity::setAttack(int atk)
-{
-}
-
-void Entity::setDamage(int dmg)
-{
-}
-
-void Entity::setDefence(int defence)
-{
-}
-
-void Entity::setXP(int xp)
-{
-}
-
-void Entity::setGold(int gold)
-{
-}
-
-void Entity::setLvl(int lvl)
-{
-}
 
 
-void Entity::attackEnemy(Enemy* Enemy, int damage)
-{
-
-}
-
-void Entity::levelUp(Enemy* enemy)
-{
-
-}
 
 Entity::~Entity()
 {

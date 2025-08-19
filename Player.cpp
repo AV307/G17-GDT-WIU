@@ -6,13 +6,11 @@
 
 #include <conio.h>
 #include <iostream>
+#include <cstdlib>
+#include <random>
+#include <conio.h>
 
-Player::Player()
-{
-
-}
-
-Player::Player(string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl){
+Player::Player(){
 	for (int i = 0; i < 10; i++) {
 		weaponry[i] = new Weapon;
 		weaponry[i]->setAttackVal(1);

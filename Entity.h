@@ -1,25 +1,14 @@
 #pragma once
-#include "Enemy.h"
-
+#include <string>
+using namespace std;
 class Entity
 {
 protected:
-    string name;
-    int attack;
-    int health;
-    int damage;
-    int defence;
-    int xp;
-    int gold;
-    int level;
-
-
+    int attack ,health ,damage ,defence ,xp ,gold ,level;
 
 public:
-    Entity();
-	Entity(string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl);
+	Entity();
 
-    string getName() const;
     int getHealth() const;
     int getAttack() const;
     int getDamage() const;
@@ -28,18 +17,7 @@ public:
     int getGold() const;
     int getLvl() const;
 
-    void setName(string n);
-    void setHealth(int h);
-    void setAttack(int atk);
-    void setDamage(int dmg);
-    void setDefence(int defence);
-    void setXP(int xp);
-    void setGold(int gold);
-    void setLvl(int lvl);
 
-    void attackEnemy(Enemy* Enemy, int damage);
-
-    void levelUp(Enemy* enemy);
 	virtual ~Entity();
 
 };

@@ -30,10 +30,10 @@ Player::Player(){
 	}
 
 	for (int i = 0; i < 10; i++) {
-		armoury[i]->setOwned(false);
+		armoury[i]->setOwned(true);
 		armoury[i]->setEquipped(false);
 
-		weaponry[i]->setOwned(false);
+		weaponry[i]->setOwned(true);
 		weaponry[i]->setEquipped(false);
 
 		consumables[i]->setOwned(false);
@@ -44,10 +44,15 @@ Player::Player(){
 	inventoryIndex = 0;
 	menuIndex = 1;
 	hasKey = false;
+
+	equippedWeapon = nullptr;
+	equippedArmour = nullptr;
 }
+
 Player::~Player() {
 
 }
+
 void Player::doAction() {
 	char input = _getch();
 
@@ -116,6 +121,20 @@ void Player::handleInventory(char inputVal)
 		}
 		break;
 	case 13:
+		if (menuIndex == 1) {
+			if (equippedWeapon != nullptr) {
+				equippedWeapon->setEquipped(false);
+			}
+			equippedWeapon = weaponry[inventoryIndex];
+			equippedWeapon->setEquipped(true);
+		}
+		else if (menuIndex == 2) {
+			if (equippedWeapon != nullptr) {
+				equippedWeapon->setEquipped(false);
+			}
+			equippedArmour = armoury[inventoryIndex];
+			equippedWeapon->setEquipped(true);
+		}
 		break;
 	default:
 		break;

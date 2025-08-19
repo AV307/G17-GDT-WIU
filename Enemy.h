@@ -3,6 +3,8 @@
 class Enemy :
     public Entity
 {
+private:
+    int EXP;
 public:
     Enemy();
     Enemy(char type);

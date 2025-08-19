@@ -6,6 +6,7 @@ Entity::Entity()
 	attack = 0;
 	defense = 0;
 	identity = 'S';
+
 }
 
 Entity::~Entity()

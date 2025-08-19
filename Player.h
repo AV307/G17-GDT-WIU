@@ -13,7 +13,10 @@ private:
 
     int menuIndex;
     int inventoryIndex;
+
+    int CRITRate, CRITDMG, strength;
 public:
+
     Player();
     ~Player();
     void doAction();

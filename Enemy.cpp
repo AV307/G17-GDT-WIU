@@ -1,33 +1,59 @@
 #include "Entity.h"
 #include "Enemy.h"
+#include <cmath>
+#include <cstdlib>
+#include <random>
+#include <iostream>
+#include <string>
 Enemy::Enemy() {
 
 }
-Enemy::Enemy(char type) {
+Enemy::Enemy(std::string type, char status) {
 	EXP = 0;
-	health = 100;
-	attack = 15;
-	defense = 10;
-	identity = type;
-	switch (identity) {
+	for (int i = 0; i < MAX_ENEMY_TYPE; i++) {
+		if (type == enemyBank[i]) {
+			health = enemyHP[i];
+			attack = enemyATK[i];
+			defense = enemyDEF[i];
+		}
+	}
+	switch (status) {
 	case 'B':
 		break;
 	case 'E':
-		health *= 150 / 100;
-		attack *= 150 / 100;
-		defense *= 133 / 100;
+		health *= static_cast<int>(150 / 100);
+		attack *= static_cast<int>(150 / 100);
+		defense *= static_cast<int>(150 / 100);
+		break;
+	case 'D':
+		health *= static_cast<int>(220 / 100);
+		attack *= static_cast<int>(175 / 100);
+		defense *= static_cast<int>(175 / 100);
 		break;
 	case 'X':
-		health *= 500 / 100;
-		attack *= 200 / 100;
-		defense *= 150 / 100;
+		health *= static_cast<int>(350 / 100);
+		attack *= static_cast<int>(250 / 100);
+		defense *= static_cast<int>(200 / 100);
 		break;
 	}
 }
 Enemy::~Enemy() {
-	EXP = ((health + attack + defense) / 100) * level;
+
 }
 
-Enemy::~Enemy()
-{
+void Enemy::killEnemy() {
+	if (health <= 0) {
+		EXP = static_cast<int>((((health + attack + defense) / 100) * level) / 10);
+	}
 }
+
+int Enemy::getHealth() const { 
+    return health; 
+}
+int Enemy::getAttack() const { 
+    return attack; 
+}
+int Enemy::getDefense() const { 
+    return defense; 
+}
+

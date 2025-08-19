@@ -178,25 +178,25 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() - specifiedEnemy.getDefense()));                            // Enemy is attacked first by player
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() - specifiedEnemy.getDefence()));                            // Enemy is attacked first by player
 
 			if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() - player.getDefense()));                                        // Player is then attacked by enemy
+				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() - player.getDefence()));                                        // Player is then attacked by enemy
 			}
 			else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense()));          // Player is critical hit by enemy
+				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefence()));          // Player is critical hit by enemy
 			}
 		}
 	}
 	else if (critPlayerDeterminant <= player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense()));      // Enemy is critical hit first by player
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefence()));      // Enemy is critical hit first by player
 
 			if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() - player.getDefense()));                                        // Player is then attacked by enemy
+				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() - player.getDefence()));                                        // Player is then attacked by enemy
 			}
 			else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense()));          // Player is critical hit by enemy
+				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefence()));          // Player is critical hit by enemy
 			}
 		}
 	}

@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include <string>
 
+class Enemy : public Entity {
 enum class Enemytype {
     Basic,
     Elite,
@@ -31,6 +32,8 @@ public:
     int enemyDEF[MAX_ENEMY_TYPE] = { 10, 10, 9, 11, 12, 10, 35, 12 };
 
 
+public:
+    Enemy(string type, char status);
     void displayStatus() const;
 
     std::string getName() const;
@@ -54,4 +57,7 @@ public:
     void initialiseEnemies(Enemy* enemies, int size);
 
     ~Enemy();
+    void killEnemy();
+    char getStatus() const;
+    string getType() const;
 };

@@ -18,5 +18,8 @@ public:
 
     Stage(Game* game);
     ~Stage();
+
+    //debug
+    void printStage();
 };
 

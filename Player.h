@@ -4,13 +4,29 @@
 class Player : public Entity
 {
 private:
-	Item inventory[10];
+    Item* weaponry[10];
+    Item* armoury[10];
+    Item* consumables[10];
+
+    bool inventoryOpen;
+    bool hasKey;
+
+    int menuIndex;
+    int inventoryIndex;
 public:
     Player();
     ~Player();
-    void move();
+    void doAction();
     void checkCollision();
     void checkConsumption();
+    void handleMovement(char inputVal);
+    void handleInventory(char inputVal);
+
+    int getInventoryIndex();
+    Item** getWeapons();
+    Item** getArmours();
+    Item** getConsumables();
+
 };
 
 

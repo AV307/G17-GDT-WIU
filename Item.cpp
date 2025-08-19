@@ -45,6 +45,21 @@ void Item::setEquipped(bool equip)
 	equipped = equip;
 }
 
+void Item::setAttackVal(int val)
+{
+	attack = val;
+}
+
+void Item::setDefenseVal(int val)
+{
+	defense = val;
+}
+
+void Item::setCost(int val)
+{
+	cost = val;
+}
+
 bool Item::isOwned() const
 {
 	return owned;

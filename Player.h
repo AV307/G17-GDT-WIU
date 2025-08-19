@@ -1,12 +1,16 @@
 #pragma once
 #include "Entity.h"
+#include "Item.h"
 class Player : public Entity
 {
 private:
-  int playerHP = 100;
-  int playerATK = 15;
-  int playerDEF = 10;
+	Item inventory[10];
 public:
+    Player();
+    ~Player();
+    void move();
+    void checkCollision();
+    void checkConsumption();
 };
 
 

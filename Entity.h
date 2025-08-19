@@ -1,8 +1,13 @@
 #pragma once
 class Entity
 {
-private:
-
+protected:
+	int health;
+	int attack;
+	int defense;
 public:
+	Entity();
+	virtual ~Entity();
+
 };
 

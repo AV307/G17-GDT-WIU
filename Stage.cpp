@@ -10,6 +10,7 @@ Stage::Stage()
 	: gen(rd()), dis(1, 3)
 {
 	rooms[1] = new mainRoom;
+
     for (int i{ 1 }; i <= 2; i++) {
         int randomType = dis(gen);
         switch (randomType) {
@@ -24,4 +25,8 @@ Stage::Stage()
             break;
         }
     }
+}
+
+Stage::~Stage()
+{
 }

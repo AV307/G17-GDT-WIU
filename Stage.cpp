@@ -8,17 +8,30 @@
 #include "Game.h"
 
 #include <random>
+#include <iostream>
 
 void Stage::setStageArray(int currentStage)
 {
-    if (currentStage == 3 || currentStage == 5)
+    // set the mainRoom into the stage
+    char** mainRoomArray = static_cast<mainRoom*>(rooms[0])->getMainRoomArray();
+    int mainRoomTopLeftX = rooms[0]->getRoomTopLeftX();
+    int mainRoomTopLeftY = rooms[0]->getRoomTopLeftY();
+    for (int i = 0; i < rooms[0]->getRoomHeight(); i++) 
+    {
+        for (int j = 0; j < rooms[0]->getRoomWidth(); j++) 
+        {
+            stageArray[mainRoomTopLeftX + i][mainRoomTopLeftY + j] = mainRoomArray[i][j];
+        }
+    }
+
+   /* if (currentStage == 3 || currentStage == 5)
     {
 
     }
     else
     {
 
-    }
+    }*/
 }
 
 Stage::Stage(Game* game)
@@ -26,7 +39,7 @@ Stage::Stage(Game* game)
 {
     int currentStage = game->getCurrentStage();
 
-	rooms[0] = new mainRoom;
+	rooms[0] = new mainRoom(currentStage);
 
 
     int randomRoom1 = dis(gen);
@@ -72,5 +85,15 @@ Stage::~Stage()
     for (int i{ 0 }; i <= 2; i++)
     {
         delete rooms[i];
+    }
+}
+
+void Stage::printStage()
+{
+    for (int i = 0; i < 100; i++) {
+        for (int j = 0; j < 100; j++) {
+            std::cout << stageArray[i][j];
+        }
+        std::cout << std::endl;
     }
 }

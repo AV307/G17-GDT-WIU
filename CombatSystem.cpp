@@ -78,7 +78,62 @@ void CombatSystem::printCombatScreen() {
 		}
 	}
 
-
+	
+	// Implement once Player and Enemy (Entity) Code is out
+	//if (n == 9) {
+	//	cout << "// +";
+	//	for (int i = 0; i < 7; i++) {
+	//		cout << " ";
+	//	}
+	//	cout << "Player HP: " << player.getHealth();
+	//	if (player.getHealth() < 10) { // when Player Health is 1 digits
+	//		for (int i = 0; i < 35 - 7 - 12; i++) {
+	//			cout << " ";
+	//		}
+	//	}
+	//	else if (player.getHealth() > 9) { // when Player Health is 2 digits
+	//		for (int i = 0; i < 35 - 7 - 13; i++) {
+	//			cout << " ";
+	//		}
+	//	}
+	//	else if (player.getHealth() > 99) { // when Player Health is 3 digits
+	//		for (int i = 0; i < 35 - 7 - 14; i++) {
+	//			cout << " ";
+	//		}
+	//	}
+	//	else if (player.getHealth() > 999) { // when Player Health is 4 digits
+	//		for (int i = 0; i < 35 - 7 - 15; i++) {
+	//			cout << " ";
+	//		}
+	//	}
+	//	cout << "+";
+	//	for (int i = 0; i < 7; i++) {
+	//		cout << " ";
+	//	}
+	//	cout << "Enemy HP: " << specifiedEnemy.getHealth();
+	//	if (specifiedEnemy.getHealth() < 10) { // when Enemy Health is 1 digits
+	//		for (int i = 0; i < 35 - 7 - 11; i++) {
+	//			cout << " ";
+	//		}
+	//	}
+	//	else if (specifiedEnemy.getHealth() > 9) { // when Enemy Health is 2 digits
+	//		for (int i = 0; i < 35 - 7 - 12; i++) {
+	//			cout << " ";
+	//		}
+	//	}
+	//	else if (specifiedEnemy.getHealth() > 99) { // when Enemy Health is 3 digits
+	//		for (int i = 0; i < 35 - 7 - 13; i++) {
+	//			cout << " ";
+	//		}
+	//	}
+	//	else if (specifiedEnemy.getHealth() > 999) { // when Enemy Health is 4 digits
+	//		for (int i = 0; i < 35 - 7 - 14; i++) {
+	//			cout << " ";
+	//		}
+	//	}
+	//	cout << "+ //" << endl;
+	//}
+	
 	
 
 	// Hard-Code Combat Screen Design
@@ -96,7 +151,7 @@ void CombatSystem::printCombatScreen() {
 	// cout << "// +      Fight 'F'      +  +       Item 'I'      +  +       Run 'R'       + //" << endl;
 	// cout << "// +---------------------+  +---------------------+  +---------------------+ //" << endl;
 	// cout << "// +-----------------------------------------------------------------------+ //" << endl;
-	// cout << "// +                                   +                                   + //" << endl;  }  For Player & Enemy HP
+	// cout << "// +      Player HP:                   +       Enemy HP:                   + //" << endl;  }  For Player & Enemy HP
 	// cout << "// +-----------------------------------------------------------------------+ //" << endl;
 }
 
@@ -112,7 +167,39 @@ void CombatSystem::printCombatScreen() {
 // +----------------------------------------------------------------------------------+ //
 
 void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
+	//int critDeterminant = rand() % 100 + 1;
+	//
+	//if (critDeterminant > player.getCritRate())) {
+	//	if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
+	//		specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack());   // Enemy is attacked first by player
 
+	//		if (critDeterminant > specifiedEnemy.getCritRate()) {
+	//			player.setHealth(player.getHealth() - specifiedEnemy.getAttack());           // Player is then attacked by enemy
+	//		}
+	//		else if (critDeterminant <= specifiedEnemy.getCritRate()) {                      // Player is critical hit by enemy
+	//			player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCritDmg());
+	//		}
+	//	}
+	//}
+	//else if (critDeterminant <= player.getCritRate()) {
+	//	if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
+	//		specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack());   // Enemy is attacked first by player
+
+	//		if (critDeterminant > specifiedEnemy.getCritRate()) {
+	//			player.setHealth(player.getHealth() - specifiedEnemy.getAttack());           // Player is then attacked by enemy
+	//		}
+	//		else if (critDeterminant <= specifiedEnemy.getCritRate()) {
+	//			player.setHealth(player.getHealth() - specifiedEnemy.getAttack());
+	//		}
+	//	}
+	//}
+
+	//if (player.getHealth() < 0) {
+	//	player.setHealth(0);
+	//}
+	//if (specifiedEnemy.getHealth() < 0) {
+	//	specifiedEnemy.setHealth(0);
+	//}
 }
 
 

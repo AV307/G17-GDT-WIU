@@ -16,6 +16,7 @@ public:
 	int getAttackVal() const;
 	int getDefenseVal() const;
 	int getCost() const;
+	std::string getName() const;
 	bool isOwned() const;
 	bool isEquipped() const;
 

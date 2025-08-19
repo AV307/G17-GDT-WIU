@@ -2,6 +2,7 @@
 #include "Item.h"
 #include "Weapon.h"
 #include "Armour.h"
+#include "Potion.h"
 
 #include <conio.h>
 #include <iostream>
@@ -9,7 +10,7 @@
 #include <random>
 #include <conio.h>
 
-Player::Player() {
+Player::Player(string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl){
 	for (int i = 0; i < 10; i++) {
 		weaponry[i] = new Weapon;
 		weaponry[i]->setAttackVal(1);
@@ -23,16 +24,26 @@ Player::Player() {
 	}
 
 	for (int i = 0; i < 10; i++) {
+		consumables[i] = new Potion;
+		consumables[i]->setDefenseVal(1);
+		consumables[i]->setName("Potion");
+	}
+
+	for (int i = 0; i < 10; i++) {
 		armoury[i]->setOwned(false);
 		armoury[i]->setEquipped(false);
 
 		weaponry[i]->setOwned(false);
 		weaponry[i]->setEquipped(false);
+
+		consumables[i]->setOwned(false);
+		consumables[i]->setEquipped(false);
 	}
 
 	inventoryOpen = false;
 	inventoryIndex = 0;
-	menuIndex = 0;
+	menuIndex = 1;
+	hasKey = false;
 }
 Player::~Player() {
 
@@ -40,8 +51,13 @@ Player::~Player() {
 void Player::doAction() {
 	char input = _getch();
 
-	if (input == 'E') {
-		inventoryOpen = !inventoryOpen;
+	if (input == 'e') {
+		if (inventoryOpen == false) {
+			inventoryOpen = true;
+		}
+		else {
+			inventoryOpen = false;
+		}
 	}
 
 	if (inventoryOpen == true) {
@@ -63,13 +79,13 @@ void Player::checkConsumption() {
 void Player::handleMovement(char inputVal)
 {
 	switch (inputVal) {
-	case'W':
+	case'w':
 		break;
-	case'A':
+	case'a':
 		break;
-	case'S':
+	case's':
 		break;
-	case'D':
+	case'd':
 		break;
 	default:
 		break;
@@ -79,25 +95,27 @@ void Player::handleMovement(char inputVal)
 void Player::handleInventory(char inputVal)
 {
 	switch (inputVal) {
-	case'W':
+	case'w':
 		if (inventoryIndex > 0) {
 			inventoryIndex--;
 		}
 		break;
-	case'A':
-		if (menuIndex > 0) {
+	case'a':
+		if (menuIndex > 1) {
 			menuIndex--;
 		}
 		break;
-	case'S':
-		if (inventoryIndex < 10) {
+	case's':
+		if (inventoryIndex < 9) {
 			inventoryIndex++;
 		}
 		break;
-	case'D':
+	case'd':
 		if (menuIndex < 3) {
 			menuIndex++;
 		}
+		break;
+	case 13:
 		break;
 	default:
 		break;
@@ -107,6 +125,16 @@ void Player::handleInventory(char inputVal)
 int Player::getInventoryIndex()
 {
 	return inventoryIndex;
+}
+
+int Player::getMenuIndex()
+{
+	return menuIndex;
+}
+
+bool Player::checkInventoryOpen()
+{
+	return inventoryOpen;
 }
 
 Item** Player::getWeapons()

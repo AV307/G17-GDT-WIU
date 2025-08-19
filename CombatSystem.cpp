@@ -111,8 +111,11 @@ void CombatSystem::printCombatScreen() {
 // Return(s): None
 // +----------------------------------------------------------------------------------+ //
 
-void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
-	specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack());
+void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy, bool isEnemyAlive) {
+	specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack()); // Enemy is attacked first by player
+	if (isEnemyAlive) {
+		player.setHealth(player.getHealth() - specifiedEnemy.getAttack());         // Player is then attacked by enemy
+	}
 }
 
 

@@ -11,7 +11,7 @@ public:
 	~CombatSystem(); // Destroy CombatSystem object when player is not in Combat (out of scope)
 
 	void printCombatScreen();
-	void fightPVE(Entity& player, Entity& specifiedEnemy);
+	void fightPVE(Entity& player, Entity& specifiedEnemy, bool isEnemyAlive);
 	void itemPVE(Entity& player, Entity& specifiedEnemy);
 	void runPVE(Entity& player, Entity& specifiedEnemy);
 };

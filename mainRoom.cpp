@@ -1,36 +1,44 @@
 #include "mainRoom.h"
 #include "Game.h"
 
-mainRoom::mainRoom(int currentStage)
-    : game(game)
-{
+mainRoom::mainRoom(int currentStage) {
     roomHeight = 60;
     roomWidth = 60;
-    roomTopLeftX = 41;
-    roomTopLeftY = 21;
+    roomTopLeftX = 21;
+    roomTopLeftY = 41;
+
+    // dynamically allocate mainRoomArray
+    mainRoomArray = new char* [roomHeight];
+    for (int i{ 0 }; i < roomHeight; i++) {
+        mainRoomArray[i] = new char[roomWidth];
+    }
+
     // set empty room
-    for (int i{ 0 }; i < 60; i++) 
-    {
-        for (int j{ 0 }; j < 60; j++) 
-        {
-            if (i == 0 || i == 59 || j == 0 || j == 59) 
-            {
+    for (int i{ 0 }; i < roomHeight; i++) {
+        for (int j{ 0 }; j < roomWidth; j++) {
+            if (i == 0 || i == roomHeight - 1 || j == 0 || j == roomWidth - 1) {
                 mainRoomArray[i][j] = 'O'; // set to wall
             }
-            else 
-            {
+            else {
                 mainRoomArray[i][j] = ' '; // set to space
             }
         }
     }
 
     // more code here to determine and set specifics in the main room
-    switch (currentStage)
-    {
-
+    switch (currentStage) {
     }
 }
 
-mainRoom::~mainRoom()
+mainRoom::~mainRoom() {
+    // deallocate mainRoomArray
+    for (int i{ 0 }; i < roomHeight; i++) {
+        delete[] mainRoomArray[i];
+    }
+    delete[] mainRoomArray;
+}
+
+char** mainRoom::getMainRoomArray()
 {
+    return mainRoomArray;
 }

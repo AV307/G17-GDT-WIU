@@ -9,5 +9,8 @@ protected:
 public:
 	Room();
 	~Room();
+
+	int getRoomTopLeftX();
+	int getRoomTopLeftY();
 };
 

@@ -30,10 +30,10 @@ Player::Player(){
 	}
 
 	for (int i = 0; i < 10; i++) {
-		armoury[i]->setOwned(false);
+		armoury[i]->setOwned(true);
 		armoury[i]->setEquipped(false);
 
-		weaponry[i]->setOwned(false);
+		weaponry[i]->setOwned(true);
 		weaponry[i]->setEquipped(false);
 
 		consumables[i]->setOwned(false);

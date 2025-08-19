@@ -42,10 +42,9 @@ void Game::doTurn()
         switch (menuIndex) {
         case 1:
             for (int i = 0; i < 10; i++) {
+                std::cout << "|";
                 std::cout << i + 1 << ". ";
                 if (weapons[i]->isOwned() == true) {
-                    std::cout << "|";
-
                     SetConsoleTextAttribute(hConsole, (inventoryIndex == i) ? 14 : 7);
                     std::cout << weapons[i]->getName();
                     std::cout << " (";
@@ -78,10 +77,9 @@ void Game::doTurn()
             break;
         case 2:
             for (int i = 0; i < 10; i++) {
+                std::cout << "|";
                 std::cout << i + 1 << ". ";
                 if (armours[i]->isOwned()) {
-                    std::cout << "|";
-
                     SetConsoleTextAttribute(hConsole, (inventoryIndex == i) ? 14 : 7);
                     std::cout << armours[i]->getName();
                     std::cout << " (";
@@ -114,10 +112,9 @@ void Game::doTurn()
             break;
         case 3:
             for (int i = 0; i < 10; i++) {
+                std::cout << "|";
                 std::cout << i + 1 << ". ";
                 if (consumables[i]->isOwned()) {
-                    std::cout << "|";
-
                     SetConsoleTextAttribute(hConsole, (inventoryIndex == i) ? 14 : 7);
                     std::cout << consumables[i]->getName();
                     std::cout << " (";

@@ -11,6 +11,7 @@ Player::Player() {
 	CRITRate = 25;
 	CRITDMG = 50;
 	strength = 0;
+	identity = 'P';
 }
 Player::~Player() {
 

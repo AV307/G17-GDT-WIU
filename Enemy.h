@@ -5,6 +5,7 @@ class Enemy :
 {
 public:
     Enemy();
+    Enemy(char type);
     ~Enemy();
 };
 

@@ -8,6 +8,7 @@
 #include "Game.h"
 
 #include <random>
+#include <iostream>
 
 void Stage::setStageArray(int currentStage)
 {
@@ -23,14 +24,14 @@ void Stage::setStageArray(int currentStage)
         }
     }
 
-    if (currentStage == 3 || currentStage == 5)
+   /* if (currentStage == 3 || currentStage == 5)
     {
 
     }
     else
     {
 
-    }
+    }*/
 }
 
 Stage::Stage(Game* game)
@@ -84,5 +85,15 @@ Stage::~Stage()
     for (int i{ 0 }; i <= 2; i++)
     {
         delete rooms[i];
+    }
+}
+
+void Stage::printStage()
+{
+    for (int i = 0; i < 100; i++) {
+        for (int j = 0; j < 100; j++) {
+            std::cout << stageArray[i][j];
+        }
+        std::cout << std::endl;
     }
 }

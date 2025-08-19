@@ -5,7 +5,7 @@ BossRoom::BossRoom(int currentStage)
     roomHeight = 30;
     roomWidth = 30;
     roomTopLeftX = 10;
-    roomTopLeftY = 80;
+    roomTopLeftY = 30;
 
     // dynamically allocate bossRoomArray
     bossRoomArray = new char* [roomHeight];

@@ -26,7 +26,7 @@ Stage::Stage(Game* game)
 {
     int currentStage = game->getCurrentStage();
 
-	rooms[0] = new mainRoom;
+	rooms[0] = new mainRoom(currentStage);
 
 
     int randomRoom1 = dis(gen);

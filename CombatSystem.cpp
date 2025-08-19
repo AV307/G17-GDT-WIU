@@ -166,10 +166,39 @@ void CombatSystem::printCombatScreen() {
 // Return(s): None
 // +----------------------------------------------------------------------------------+ //
 
-void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy, bool isEnemyAlive) {
-	//specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack()); // Enemy is attacked first by player
-	//if (isEnemyAlive) {
-	//	player.setHealth(player.getHealth() - specifiedEnemy.getAttack());       // Player is then attacked by enemy
+void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
+	//int critDeterminant = rand() % 100 + 1;
+	//
+	//if (critDeterminant > player.getCritRate())) {
+	//	if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
+	//		specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack());   // Enemy is attacked first by player
+
+	//		if (critDeterminant > specifiedEnemy.getCritRate()) {
+	//			player.setHealth(player.getHealth() - specifiedEnemy.getAttack());           // Player is then attacked by enemy
+	//		}
+	//		else if (critDeterminant <= specifiedEnemy.getCritRate()) {                      // Player is critical hit by enemy
+	//			player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCritDmg());
+	//		}
+	//	}
+	//}
+	//else if (critDeterminant <= player.getCritRate()) {
+	//	if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
+	//		specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack());   // Enemy is attacked first by player
+
+	//		if (critDeterminant > specifiedEnemy.getCritRate()) {
+	//			player.setHealth(player.getHealth() - specifiedEnemy.getAttack());           // Player is then attacked by enemy
+	//		}
+	//		else if (critDeterminant <= specifiedEnemy.getCritRate()) {
+	//			player.setHealth(player.getHealth() - specifiedEnemy.getAttack());
+	//		}
+	//	}
+	//}
+
+	//if (player.getHealth() < 0) {
+	//	player.setHealth(0);
+	//}
+	//if (specifiedEnemy.getHealth() < 0) {
+	//	specifiedEnemy.setHealth(0);
 	//}
 }
 

@@ -22,5 +22,8 @@ public:
 	void setOwned(bool status);
 	void setName(std::string itemName);
 	void setEquipped(bool equip);
+	void setAttackVal(int val);
+	void setDefenseVal(int val);
+	void setCost(int val);
 };
 

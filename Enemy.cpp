@@ -28,3 +28,8 @@ Enemy::~Enemy() {
 	EXP = ((health + attack + defense) / 100) * level;
 }
 
+
+
+
+
+

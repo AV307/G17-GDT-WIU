@@ -4,7 +4,7 @@ class Enemy :
     public Entity
 {
 private:
-    int EXP;
+    int level, EXP;
 public:
     Enemy();
     Enemy(char type);

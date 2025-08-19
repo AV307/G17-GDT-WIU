@@ -32,9 +32,6 @@ Player::Player(){
 
 		weaponry[i]->setOwned(true);
 		weaponry[i]->setEquipped(false);
-
-		/*consumables[i]->setOwned(false);
-		consumables[i]->setEquipped(false);*/
 	}
 
 	inventoryOpen = false;
@@ -61,6 +58,8 @@ Player::~Player() {
 	delete equippedArmour;
 }
 
+//Jayren 250920U
+//Checks for player input and gets input key. Determines whether to handle inventory movement or player movement
 void Player::doAction() {
 	char input = _getch();
 
@@ -105,6 +104,8 @@ void Player::handleMovement(char inputVal)
 	}
 }
 
+//Jayren 250920U
+//Keybinds for selecting items and switching between menus, adding and removing potions (temporary), equipping gear as well.
 void Player::handleInventory(char inputVal)
 {
 	switch (inputVal) {
@@ -155,41 +156,57 @@ void Player::handleInventory(char inputVal)
 	}
 }
 
+//Jayren 250920U
+//Returns the inventoryIndex to get selected item
 int Player::getInventoryIndex()
 {
 	return inventoryIndex;
 }
 
+//Jayren 250920U
+//Returns the menuIndex to get selected menu screen
 int Player::getMenuIndex()
 {
 	return menuIndex;
 }
 
+//Jayren 250920U
+//returns inventoryOpen to check if inventory is Open or closed
 bool Player::checkInventoryOpen()
 {
 	return inventoryOpen;
 }
 
+//Jayren 250920U
+//returns hasKey to check if the player has found a key
 bool Player::checkKey()
 {
 	return hasKey;
 }
 
+//Jayren 250920U
+//returns the array of weapons
 Item** Player::getWeapons()
 {
 	return weaponry;
 }
 
+//Jayren 250920U
+//returns the array of armours
 Item** Player::getArmours()
 {
 	return armoury;
 }
 
+//Jayren 250920U
+//returns the array of consumables
 Item** Player::getConsumables()
 {
 	return consumables;
 }
 
+//Jayren 250920U
+//adds a consumable to the consumable array
 void Player::addConsumable(std::string Name, int attackVal, int defenseVal)
 {
 	for (int i = 0; i < 10; i++) {
@@ -205,6 +222,8 @@ void Player::addConsumable(std::string Name, int attackVal, int defenseVal)
 	}
 }
 
+//Jayren 250920U
+//removes a consumable from the consumables array (Temporary function)
 void Player::removeConsumable()
 {
 	for (int i = 9; i >= 0; i--) {

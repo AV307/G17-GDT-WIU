@@ -1,4 +1,8 @@
 #include "TreasureRoom.h"
+
+//Ang Zhi En 252317H
+//Constructor for TreasureRoom, set position and sets up the room
+//Incomplete
 TreasureRoom::TreasureRoom(int currentStage)
 {
     roomHeight = 20;
@@ -29,12 +33,12 @@ TreasureRoom::TreasureRoom(int currentStage)
         }
     }
 
-    // more code here to determine and set specifics in the main room
-    switch (currentStage)
-    {
-    }
+    //add code for setting up treasure room (chest)
 }
 
+//Ang Zhi En 252317H
+//Destructor for TreasureRoom, deletes pointers
+//Incomplete
 TreasureRoom::~TreasureRoom() {
     // deallocate treasureRoomArray
     for (int i{ 0 }; i < roomHeight; i++)
@@ -44,6 +48,8 @@ TreasureRoom::~TreasureRoom() {
     delete[] treasureRoomArray;
 }
 
+//Ang Zhi En 252317H
+//Getter for treasureRoomArray
 char** TreasureRoom::getTreasureRoomArray()
 {
 	return treasureRoomArray;

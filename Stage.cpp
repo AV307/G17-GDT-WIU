@@ -10,6 +10,9 @@
 #include <random>
 #include <iostream>
 
+//Ang Zhi En 252317H
+//set the stageArray, fill up stage area with all the rooms that are created for the currentStage
+//Incomplete
 void Stage::setStageArray(int currentStage)
 {
     // initialize stageArray to spaces
@@ -47,6 +50,9 @@ void Stage::setStageArray(int currentStage)
     }
 }
 
+//Ang Zhi En 252317H
+//Constructor for Stage, uses randomiser to decide on the rooms generated for currentStage
+//Incomplete
 Stage::Stage(Game* game)
 	: game(game), gen(rd()), dis(1, 3)
 {
@@ -92,6 +98,9 @@ Stage::Stage(Game* game)
     setStageArray(currentStage);
 }
 
+//Ang Zhi En 252317H
+//Destructor for stage, delete pointers
+//Incomplete
 Stage::~Stage() 
 {
     for (int i{ 0 }; i <= 2; i++)
@@ -100,6 +109,9 @@ Stage::~Stage()
     }
 }
 
+//Ang Zhi En 252317H
+//Print out the stage, with the rooms inside
+//Debugging function, will not be used (player will have fov in final game)
 void Stage::printStage()
 {
     for (int i = 0; i < 100; i++) {

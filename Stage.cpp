@@ -13,7 +13,7 @@
 //Ang Zhi En 252317H
 //set the stageArray, fill up stage area with all the rooms that are created for the currentStage
 //Incomplete
-void Stage::setStageArray(int currentStage)
+void Stage::setStageArray(int currentStage, char room1, char room2)
 {
     // initialize stageArray to spaces
     for (int i{ 0 }; i < 100; i++) {
@@ -34,19 +34,43 @@ void Stage::setStageArray(int currentStage)
         }
     }
 
-   if (currentStage == 3 || currentStage == 5)
+    switch (room1)
     {
-       // set the bossRoom into the stage
-       char** bossRoomArray = static_cast<BossRoom*>(rooms[2])->getBossRoomArray();
-       int bossRoomTopLeftX = rooms[2]->getRoomTopLeftX();
-       int bossRoomTopLeftY = rooms[2]->getRoomTopLeftY();
-       for (int i = 0; i < rooms[2]->getRoomHeight(); i++)
-       {
-           for (int j = 0; j < rooms[2]->getRoomWidth(); j++)
-           {
-               stageArray[bossRoomTopLeftX + i][bossRoomTopLeftY + j] = bossRoomArray[i][j];
-           }
-       }
+    case 'S':
+        // set shopRoom into stage
+
+        break;
+    case 'T':
+        // set treasureRoom into stage
+
+        break;
+    case 'B':
+        // set bedRoom into stage
+
+        break;
+    }
+    switch (room2)
+    {
+    case 'S':
+        break;
+    case 'T':
+        break;
+    case 'B':
+        break;
+    case 'F':
+        // set the bossRoom into the stage
+        char** bossRoomArray = static_cast<BossRoom*>(rooms[2])->getBossRoomArray();
+        int bossRoomTopLeftX = rooms[2]->getRoomTopLeftX();
+        int bossRoomTopLeftY = rooms[2]->getRoomTopLeftY();
+        for (int i = 0; i < rooms[2]->getRoomHeight(); i++)
+        {
+            for (int j = 0; j < rooms[2]->getRoomWidth(); j++)
+            {
+                stageArray[bossRoomTopLeftX + i][bossRoomTopLeftY + j] = bossRoomArray[i][j];
+            }
+        }
+
+        break;
     }
 }
 
@@ -61,22 +85,29 @@ Stage::Stage(Game* game)
 	rooms[0] = new mainRoom(currentStage);
 
     int randomRoom1 = dis(gen);
+
+    char room1{};
+    char room2{};
     switch (randomRoom1) 
     {
     case 0:
         rooms[1] = new ShopRoom(currentStage);
+        room1 = 'S';
         break;
     case 1:
         rooms[1] = new TreasureRoom(currentStage);
+        room1 = 'T';
         break;
     case 2:
         rooms[1] = new BedRoom(currentStage);
+        room1 = 'B';
         break;
     }
 
     if (currentStage == 3 || currentStage == 5) 
     {
         rooms[2] = new BossRoom(currentStage);
+        room2 = 'F';
     }
     else 
     {
@@ -85,17 +116,20 @@ Stage::Stage(Game* game)
         {
         case 0:
             rooms[2] = new ShopRoom(currentStage);
+            room2 = 'S';
             break;
         case 1:
             rooms[2] = new TreasureRoom(currentStage);
+            room2 = 'T';
             break;
         case 2:
             rooms[2] = new BedRoom(currentStage);
+            room2 = 'B';
             break;
         }
     }
 
-    setStageArray(currentStage);
+    setStageArray(currentStage, room1, room2);
 }
 
 //Ang Zhi En 252317H

@@ -7,7 +7,7 @@ BossRoom::BossRoom(int currentStage)
 {
     roomHeight = 30;
     roomWidth = 30;
-    roomTopLeftX = 0; //dependant on whether room 1 or 2, incomplete
+    roomTopLeftX = 0;
     roomTopLeftY = 0;
 
     // dynamically allocate bossRoomArray

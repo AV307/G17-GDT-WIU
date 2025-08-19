@@ -1,9 +1,11 @@
 #pragma once
 #include "Entity.h"
+#include <string>
 
 class CombatSystem {
 private:
 	int turnsInBattle;
+	std::string textDialogue;
 protected:
 
 public:
@@ -14,5 +16,8 @@ public:
 	void fightPVE(Entity& player, Entity& specifiedEnemy);
 	void itemPVE(Entity& player, Entity& specifiedEnemy);
 	void runPVE(Entity& player, Entity& specifiedEnemy);
+
+	std::string getTextDialogue();
+	void setTextDialogue(std::string textUpdate);
 };
 

@@ -14,6 +14,14 @@ CombatSystem::~CombatSystem() {
 
 }
 
+std::string CombatSystem::getTextDialogue() {
+	return textDialogue;
+}
+
+void CombatSystem::setTextDialogue(std::string textUpdate) {
+	textDialogue = textUpdate;
+}
+
 // +----------------------------------------------------------------------------------+ //
 // Function Name: printCombatScreen
 // Description: Used to print the combat screen when player enters combat with an enemy
@@ -227,6 +235,27 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 				}
 			}
 		}
+	}
+
+	if (critPlayerDeterminant > player.getCRITRate() && critEnemyDeterminant > specifiedEnemy.getCRITRate()) {                                            // If Player And Enemy DON'T Crit
+		int playerDmg = player.getAttack() - specifiedEnemy.getDefence();
+		int enemyDmg = specifiedEnemy.getAttack() - player.getDefence();
+		setTextDialogue("You dealt " + to_string(playerDmg) + " DMG, received " + to_string(enemyDmg) + " DMG");
+	}
+	else if (critPlayerDeterminant <= player.getCRITRate() && critEnemyDeterminant > specifiedEnemy.getCRITRate()) {                                      // If Player Crits BUT Enemy doesn't
+		int playerDmg = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefence();
+		int enemyDmg = specifiedEnemy.getAttack() - player.getDefence();
+		setTextDialogue("You dealt " + to_string(playerDmg) + " DMG (Critical!), received " + to_string(enemyDmg) + " DMG");
+	}
+	else if (critPlayerDeterminant > player.getCRITRate() && critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {                                      // If Enemy Crits BUT Player doesn't
+		int playerDmg = player.getAttack() - specifiedEnemy.getDefence();
+		int enemyDmg = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefence();
+		setTextDialogue("You dealt " + to_string(playerDmg) + " DMG, received " + to_string(enemyDmg) + " DMG (Critical!)");
+	}
+	else if (critPlayerDeterminant <= player.getCRITRate() && critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {                                     // If Player And Enemy BOTH Crit
+		int playerDmg = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefence();
+		int enemyDmg = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefence();
+		setTextDialogue("You dealt " + to_string(playerDmg) + " DMG (Critical!), received " + to_string(enemyDmg) + " DMG (Critical!)");
 	}
 
 	// Error Check To Ensure No Negative HP Values

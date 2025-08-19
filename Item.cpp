@@ -30,6 +30,11 @@ int Item::getCost() const
 	return cost;
 }
 
+std::string Item::getName() const
+{
+	return name;
+}
+
 void Item::setOwned(bool state)
 {
 	owned = state;

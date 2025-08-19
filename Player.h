@@ -23,6 +23,9 @@ public:
     void handleInventory(char inputVal);
 
     int getInventoryIndex();
+    int getMenuIndex();
+
+    bool checkInventoryOpen();
     Item** getWeapons();
     Item** getArmours();
     Item** getConsumables();

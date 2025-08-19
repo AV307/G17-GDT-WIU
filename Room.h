@@ -4,7 +4,8 @@ class Room
 protected:
 	int roomHeight;
 	int roomWidth;
-	int roomTopLeft;
+	int roomTopLeftX;
+	int roomTopLeftY;
 public:
 	Room();
 	~Room();

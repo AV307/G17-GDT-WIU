@@ -164,39 +164,40 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 // +----------------------------------------------------------------------------------+ //
 
 void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
-	int critDeterminant = rand() % 100 + 1;
-	
-	if (critDeterminant > player.getCritRate()) {
-		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack());                              // Enemy is attacked first by player
+	//int critPlayerDeterminant = rand() % 100 + 1;
+	//int critEnemyDeterminant = rand() % 100 + 1;
+	//
+	//if (critPlayerDeterminant > player.getCritRate()) {
+	//	if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
+	//		specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack());                              // Enemy is attacked first by player
 
-			if (critDeterminant > specifiedEnemy.getCritRate()) {
-				player.setHealth(player.getHealth() - specifiedEnemy.getAttack());                                  // Player is then attacked by enemy
-			}
-			else if (critDeterminant <= specifiedEnemy.getCritRate()) {
-				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCritDmg()));  // Player is critical hit by enemy
-			}
-		}
-	}
-	else if (critDeterminant <= player.getCritRate()) {
-		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() * player.getCritDmg()));      // Enemy is critical hit first by player
+	//		if (critEnemyDeterminant > specifiedEnemy.getCritRate()) {
+	//			player.setHealth(player.getHealth() - specifiedEnemy.getAttack());                                  // Player is then attacked by enemy
+	//		}
+	//		else if (critEnemyDeterminant <= specifiedEnemy.getCritRate()) {
+	//			player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCritDmg()));  // Player is critical hit by enemy
+	//		}
+	//	}
+	//}
+	//else if (critPlayerDeterminant <= player.getCritRate()) {
+	//	if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
+	//		specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() * player.getCritDmg()));      // Enemy is critical hit first by player
 
-			if (critDeterminant > specifiedEnemy.getCritRate()) {
-				player.setHealth(player.getHealth() - specifiedEnemy.getAttack());                                  // Player is then attacked by enemy
-			}
-			else if (critDeterminant <= specifiedEnemy.getCritRate()) {
-				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCritDmg()));  // Player is critical hit by enemy
-			}
-		}
-	}
+	//		if (critEnemyDeterminant > specifiedEnemy.getCritRate()) {
+	//			player.setHealth(player.getHealth() - specifiedEnemy.getAttack());                                  // Player is then attacked by enemy
+	//		}
+	//		else if (critEnemyDeterminant <= specifiedEnemy.getCritRate()) {
+	//			player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCritDmg()));  // Player is critical hit by enemy
+	//		}
+	//	}
+	//}
 
-	if (player.getHealth() < 0) {
-		player.setHealth(0);
-	}
-	if (specifiedEnemy.getHealth() < 0) {
-		specifiedEnemy.setHealth(0);
-	}
+	//if (player.getHealth() < 0) {
+	//	player.setHealth(0);
+	//}
+	//if (specifiedEnemy.getHealth() < 0) {
+	//	specifiedEnemy.setHealth(0);
+	//}
 }
 
 

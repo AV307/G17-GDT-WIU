@@ -23,9 +23,9 @@ void Stage::setStageArray(int currentStage)
     char** mainRoomArray = static_cast<mainRoom*>(rooms[0])->getMainRoomArray();
     int mainRoomTopLeftX = rooms[0]->getRoomTopLeftX();
     int mainRoomTopLeftY = rooms[0]->getRoomTopLeftY();
-    for (int i = 0; i < rooms[0]->getRoomHeight(); i++) 
+    for (int i = 0; i < rooms[0]->getRoomHeight(); i++)
     {
-        for (int j = 0; j < rooms[0]->getRoomWidth(); j++) 
+        for (int j = 0; j < rooms[0]->getRoomWidth(); j++)
         {
             stageArray[mainRoomTopLeftX + i][mainRoomTopLeftY + j] = mainRoomArray[i][j];
         }
@@ -65,7 +65,19 @@ Stage::Stage(Game* game)
 
     if (currentStage == 3 || currentStage == 5) 
     {
-        rooms[2] = new BossRoom;
+        rooms[2] = new BossRoom(currentStage);
+
+        // set the bossRoom into the stage
+        char** bossRoomArray = static_cast<BossRoom*>(rooms[0])->getBossRoomArray();
+        int bossRoomTopLeftX = rooms[0]->getRoomTopLeftX();
+        int bossRoomTopLeftY = rooms[0]->getRoomTopLeftY();
+        for (int i = 0; i < rooms[0]->getRoomHeight(); i++)
+        {
+            for (int j = 0; j < rooms[0]->getRoomWidth(); j++)
+            {
+                stageArray[bossRoomTopLeftX + i][bossRoomTopLeftY + j] = bossRoomArray[i][j];
+            }
+        }
     }
     else 
     {

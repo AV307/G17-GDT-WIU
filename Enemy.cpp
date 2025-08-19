@@ -4,10 +4,9 @@
 using namespace std;
 
 
-Enemy::Enemy(string n, int h, int atk, int dmg, int def, int xp, int g, int lvl)
-    : name(n), health(h), attack(atk), damage(dmg), defence(def), xp(xp), gold(g), level(lvl)
-{
-}
+Enemy::Enemy(string n, int h, int atk, int dmg, int def, int xp, int g, int lvl) {
+    : name(n), health(h), attack(atk), damage(dmg), defence(def), xp(xp), gold(g), level(lvl) {};
+
 //string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl);
 void Enemy::displayStatus() const {
     cout << "Enemy: " << name << endl;
@@ -22,9 +21,7 @@ void Enemy::displayStatus() const {
 string Enemy::getName() const { 
     return name; 
 }
-int Enemy::getHealth() const { 
-    return health; 
-}
+
 int Enemy::getAttack() const { 
     return attack; 
 }
@@ -74,6 +71,14 @@ void Enemy::levelUp(Enemy* enemy) {
     cout <<Enemy::name << " is lvl " <<Enemy::level << "!\n";
 }
 
+void Enemy::initialiseEnemies(Enemy* enemies)
+{
+    Enemy* Slime = new Enemy("Slime", 10, 10, 10, 10, 10, 10, 10);
+    Enemy* Kobold = new Enemy("Kobold", 20, 20, 20, 20, 20, 20, 20);
+    Enemy* Wolf = new Enemy("Wolf", 30, 30, 30, 30, 30, 30, 30);
+    Enemy* Boss = new Enemy("Boss", 100, 100, 100, 100, 100, 100, 100);
+}
+
 Enemy::~Enemy()
 {
 
@@ -81,10 +86,5 @@ Enemy::~Enemy()
 
 //name(n), health(h), attack(atk), damage(dmg), defence(def), speed(spd), reward(r)
 int main(void) {
-
-    Enemy* Slime = new Enemy("Slime", 10, 10, 10, 10, 10, 10, 10);
-    Enemy* Kobold = new Enemy("Kobold", 20, 20, 20, 20, 20, 20, 20);
-    Enemy* Wolf = new Enemy("Wolf", 30, 30, 30, 30, 30, 30, 30);
-    Enemy* Boss = new Enemy("Boss", 100, 100, 100, 100, 100, 100, 100);
 
 }

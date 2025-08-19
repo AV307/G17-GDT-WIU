@@ -10,7 +10,7 @@ private:
 public:
     Enemy(string type, char status);
     ~Enemy();
-    void killEnemy();
+    bool killEnemy();
     //char getStatus() const;
     //string getType() const;
 };

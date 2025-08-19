@@ -42,12 +42,14 @@ Enemy::Enemy(std::string type, char status) {
 		break;
 	}
 }
-Enemy::~Enemy() {}
+Enemy::~Enemy(){}
 
 
-void Enemy::killEnemy() {
+bool Enemy::killEnemy() {
 	if (health <= 0) {
 		 xp = static_cast<int>((((health + attack + defence) / 100) * level) / 10);
+		 return true;
 	}
+	return false;
 }
 	

@@ -5,5 +5,8 @@ class BedRoom :
 {
 private:
     char BedRoomArray[20][20];
+
+public:
+    BedRoom();
 };
 

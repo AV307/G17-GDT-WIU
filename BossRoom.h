@@ -5,5 +5,8 @@ class BossRoom :
 {
 private:
     char BossRoomArray[30][30];
+
+public:
+    BossRoom();
 };
 

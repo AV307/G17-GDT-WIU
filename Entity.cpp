@@ -8,6 +8,7 @@
 //	defense = 0;
 //}
 
+Entity::Entity() {}
 
 Entity::Entity(string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl) 
 	: name(n), health(h), attack(atk), damage(dmg), defence(def), xp(xp), gold(gold), level(lvl) {};

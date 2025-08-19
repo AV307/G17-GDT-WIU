@@ -9,6 +9,18 @@
 
 #include <random>
 
+void Stage::setStageArray(int currentStage)
+{
+    if (currentStage == 3 || currentStage == 5)
+    {
+
+    }
+    else
+    {
+
+    }
+}
+
 Stage::Stage(Game* game)
 	: game(game), gen(rd()), dis(1, 3)
 {
@@ -18,7 +30,8 @@ Stage::Stage(Game* game)
 
 
     int randomRoom1 = dis(gen);
-    switch (randomRoom1) {
+    switch (randomRoom1) 
+    {
     case 0:
         rooms[1] = new ShopRoom;
         break;
@@ -30,12 +43,15 @@ Stage::Stage(Game* game)
         break;
     }
 
-    if (currentStage == 3 || currentStage == 5) {
+    if (currentStage == 3 || currentStage == 5) 
+    {
         rooms[2] = new BossRoom;
     }
-    else {
+    else 
+    {
         int randomRoom2 = dis(gen);
-        switch (randomRoom2) {
+        switch (randomRoom2) 
+        {
         case 0:
             rooms[1] = new ShopRoom;
             break;
@@ -47,10 +63,14 @@ Stage::Stage(Game* game)
             break;
         }
     }
+
+    setStageArray(currentStage);
 }
 
-Stage::~Stage() {
-    for (int i = 0; i < 3; i++) {
+Stage::~Stage() 
+{
+    for (int i{ 0 }; i <= 2; i++)
+    {
         delete rooms[i];
     }
 }

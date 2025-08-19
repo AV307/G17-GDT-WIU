@@ -5,5 +5,9 @@ class mainRoom :
 {
 private:
     char mainRoomArray[60][60];
+
+public:
+    mainRoom();
+    ~mainRoom();
 };
 

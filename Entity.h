@@ -15,6 +15,7 @@ protected:
 
 
 public:
+    Entity();
 	Entity(string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl);
 
     string getName() const;

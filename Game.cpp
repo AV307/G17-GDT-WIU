@@ -7,9 +7,11 @@
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-Game::Game() {
+Game::Game() 
+{
     currentStage = 0;
     stage = new Stage(this);
+    stage->printStage();
 }
 
 Game::~Game() {

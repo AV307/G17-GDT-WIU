@@ -11,12 +11,19 @@
 
 void Stage::setStageArray(int currentStage)
 {
+    // set the mainRoom into the stage
     char** mainRoomArray = static_cast<mainRoom*>(rooms[0])->getMainRoomArray(); // get the array of the main room
-    
+    int mainRoomTopLeftX = rooms[0]->getRoomTopLeftX();
+    int mainRoomTopLeftY = rooms[0]->getRoomTopLeftY();
+    for (int i = 0; i < rooms[0]->getRoomHeight(); i++) {
+        for (int j = 0; j < rooms[0]->getRoomWidth(); j++) {
+            stageArray[mainRoomTopLeftX + i][mainRoomTopLeftY + j] = mainRoomArray[i][j];
+        }
+    }
 
     if (currentStage == 3 || currentStage == 5)
     {
-        
+
     }
     else
     {

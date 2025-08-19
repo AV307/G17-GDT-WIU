@@ -2,8 +2,15 @@
 #include <iostream>
 #include <cstdlib>
 #include <random>
-Player::Player() {
+#include <conio.h>
 
+Player::Player() {
+	health = 100;
+	attack = 15;
+	defense = 10;
+	CRITRate = 25;
+	CRITDMG = 50;
+	strength = 0;
 }
 Player::~Player() {
 
@@ -17,9 +24,5 @@ void Player::checkCollision() {
 }
 
 void Player::checkConsumption() {
-
-}
-
-void Player::calculateDamage() {
 
 }

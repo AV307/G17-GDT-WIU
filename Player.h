@@ -8,7 +8,7 @@ public:
 	void move();
 	void checkCollision();
 	void checkConsumption();
-	void calculateDamage();
+	static int health, attack, defense, CRITRate, CRITDMG, strength;
 };
 
 

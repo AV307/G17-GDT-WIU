@@ -6,6 +6,5 @@ class Enemy :
 public:
     Enemy();
     ~Enemy();
-    int health, attack, defense;
 };
 

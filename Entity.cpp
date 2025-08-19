@@ -5,47 +5,47 @@ Entity::Entity()
 
 }
 
-void Entity::setHealth()
+void Entity::setHealth(int hp)
 {
-	health = 0;
+	hp = 0;
 }
 
-void Entity::setAttack()
+void Entity::setAttack(int atk)
 {
-	attack = 0;
+	atk = 0;
 }
 
-void Entity::setDamage()
+void Entity::setDamage(int dmg)
 {
-	damage = 0;
+	dmg = 0;
 }
-void Entity::setDefense()
+void Entity::setDefence(int def)
 {
-	defence = 0;
+	def = 0;
 }
 
-void Entity::setXP()
+void Entity::setXP(int xp)
 {
 	xp = 0;
 }
 
-void Entity::setGold()
+void Entity::setGold(int gold)
 {
 	gold = 0;
 }
 
-void Entity::setLvl()
+void Entity::setLvl(int lvl)
 {
-	level = 1;
+	lvl = 1;
 }
 
-void Entity::setCRITDMG()
+void Entity::setCritDMG(int critDMG)
 {
-	CRITDMG = 0;
+	critDMG = 0;
 }
-void Entity::setCRITRate()
+void Entity::setCritRate(int critRate)
 {
-	CRITRate = 0;
+	critRate = 0;
 }
 
 int Entity::getHealth() const
@@ -63,7 +63,7 @@ int Entity::getDamage() const
 	return damage;
 }
 
-int Entity::getDefense() const
+int Entity::getDefence() const
 {
 	return defence;
 }

@@ -16,14 +16,14 @@ public:
     void setXP(int xp);
     void setGold(int gold);
     void setLvl(int lvl);
-    void setCRITDMG();
-    void setCRITRate();
+    void setCritDMG(int critDMG);
+    void setCritRate(int critRate);
 
 
     int getHealth() const;
     int getAttack() const;
     int getDamage() const;
-    int getDefense() const;
+    int getDefence() const;
     int getXP() const;
     int getGold() const;
     int getLvl() const;

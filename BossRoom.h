@@ -4,6 +4,6 @@ class BossRoom :
     public Room
 {
 private:
-    char BossRoomArray[20][20];
+    char BossRoomArray[30][30];
 };
 

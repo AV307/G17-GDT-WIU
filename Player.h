@@ -32,10 +32,13 @@ public:
     int getMenuIndex();
 
     bool checkInventoryOpen();
+    bool checkKey();
+
     Item** getWeapons();
     Item** getArmours();
     Item** getConsumables();
-
+    void addConsumable(std::string Name, int attackVal, int defenseVal);
+    void removeConsumable();
 };
 
 

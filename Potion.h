@@ -10,6 +10,9 @@ public:
 	Potion();
 	~Potion();
 
+	void setAttackVal(int val);
+	void setDefenseVal(int val);
+
 	int getAttackBuff() const;
 	int getDefenseBuff() const;
 };

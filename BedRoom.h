@@ -4,9 +4,10 @@ class BedRoom :
     public Room
 {
 private:
-    char BedRoomArray[20][20];
-
+    char** bedRoomArray;
 public:
-    BedRoom();
+    BedRoom(int currentStage);
+    ~BedRoom();
+    char** getBedRoomArray();
 };
 

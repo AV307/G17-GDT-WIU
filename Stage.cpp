@@ -11,9 +11,12 @@
 
 void Stage::setStageArray(int currentStage)
 {
+    char** mainRoomArray = static_cast<mainRoom*>(rooms[0])->getMainRoomArray(); // get the array of the main room
+    
+
     if (currentStage == 3 || currentStage == 5)
     {
-
+        
     }
     else
     {

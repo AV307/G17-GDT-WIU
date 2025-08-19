@@ -64,9 +64,16 @@ void Game::doTurn()
                     for (int j = 0; j < remainingSpaces; j++) {
                         std::cout << " ";
                     }
-
-                    std::cout << "|" << std::endl;
                 }
+                else {
+                    int numLength = std::to_string(i + 1).length();
+
+                    for (int j = 0; j < (39 - numLength); j++) {
+                        std::cout << " ";
+                    }
+                }
+
+                std::cout << "|" << std::endl;
             }
             break;
         case 2:
@@ -93,9 +100,16 @@ void Game::doTurn()
                     for (int j = 0; j < remainingSpaces; j++) {
                         std::cout << " ";
                     }
-
-                    std::cout << "|" << std::endl;
                 }
+                else {
+                    int numLength = std::to_string(i + 1).length();
+
+                    for (int j = 0; j < (39 - numLength); j++) {
+                        std::cout << " ";
+                    }
+                }
+
+                std::cout << "|" << std::endl;
             }
             break;
         case 3:
@@ -121,9 +135,16 @@ void Game::doTurn()
                     for (int j = 0; j < remainingSpaces; j++) {
                         std::cout << " ";
                     }
-
-                    std::cout << "|" << std::endl;
                 }
+                else {
+                    int numLength = std::to_string(i + 1).length();
+
+                    for (int j = 0; j < (39 - numLength); j++) {
+                        std::cout << " ";
+                    }
+                }
+
+                std::cout << "|" << std::endl;
             }
             break;
         default:

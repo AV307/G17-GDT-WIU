@@ -46,10 +46,15 @@ Player::Player(string n, int h, int atk, int dmg, int def, int xp, int gold, int
 	inventoryIndex = 0;
 	menuIndex = 1;
 	hasKey = false;
+
+	equippedWeapon = nullptr;
+	equippedArmour = nullptr;
 }
+
 Player::~Player() {
 
 }
+
 void Player::doAction() {
 	char input = _getch();
 
@@ -118,6 +123,20 @@ void Player::handleInventory(char inputVal)
 		}
 		break;
 	case 13:
+		if (menuIndex == 1) {
+			if (equippedWeapon != nullptr) {
+				equippedWeapon->setEquipped(false);
+			}
+			equippedWeapon = weaponry[inventoryIndex];
+			equippedWeapon->setEquipped(true);
+		}
+		else if (menuIndex == 2) {
+			if (equippedWeapon != nullptr) {
+				equippedWeapon->setEquipped(false);
+			}
+			equippedArmour = armoury[inventoryIndex];
+			equippedWeapon->setEquipped(true);
+		}
 		break;
 	default:
 		break;

@@ -8,6 +8,9 @@ private:
     Item* armoury[10];
     Item* consumables[10];
 
+    Item* equippedWeapon;
+    Item* equippedArmour;
+    
     bool inventoryOpen;
     bool hasKey;
 

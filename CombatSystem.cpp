@@ -173,8 +173,8 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// Example:
 	// (200 - 50) * 2      |      (ATK - DEF) * CRITDMG   =   300 Final Damage       |       Critical took place after ATK reduced by DEF
 	// (200 * 2) - 50      |      (ATK * CRITDMG) - DEF   =   350 Final Damage       |       DEF took place after Critical
-	// (200 * 2) * 0.5     |      (ATK * CRITDMG) * DEF   =   200 Final Damage
-	// (200 * 0.5) * 2     |      (ATK * DEF) * CRITDMG   =   200 Final Damage
+	// (200 * 2) * 0.5     |      (ATK * CRITDMG) * DEF   =   200 Final Damage       |
+	// (200 * 0.5) * 2     |      (ATK * DEF) * CRITDMG   =   200 Final Damage       |
 	
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {

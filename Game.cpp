@@ -21,7 +21,7 @@ int Game::getCurrentStage()
     return currentStage;
 }
 
-void Game::updateGame()
+void Game::doTurn()
 {
     plr.doAction();
 

@@ -12,5 +12,8 @@ public:
 
 	int getRoomTopLeftX();
 	int getRoomTopLeftY();
+
+	int getRoomWidth();
+	int getRoomHeight();
 };
 

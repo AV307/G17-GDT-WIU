@@ -17,3 +17,13 @@ int Room::getRoomTopLeftY()
 {
 	return roomTopLeftY;
 }
+
+int Room::getRoomHeight()
+{
+	return roomHeight;
+}
+
+int Room::getRoomWidth()
+{
+	return roomWidth;
+}

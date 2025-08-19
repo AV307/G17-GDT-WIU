@@ -23,7 +23,7 @@ public:
     int getHealth() const;
     int getAttack() const;
     int getDamage() const;
-    int getDefence() const;
+    int getDefense() const;
     int getXP() const;
     int getGold() const;
     int getLvl() const;

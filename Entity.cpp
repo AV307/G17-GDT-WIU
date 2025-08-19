@@ -19,10 +19,13 @@ void Entity::setDamage(int dmg)
 {
 	dmg = 0;
 }
-void Entity::setDefence(int def)
+void Entity::setDefense(int defence)
 {
-	def = 0;
 }
+//void Entity::setDefence(int def)
+//{
+//	def = 0;
+//}
 
 void Entity::setXP(int xp)
 {
@@ -63,7 +66,7 @@ int Entity::getDamage() const
 	return damage;
 }
 
-int Entity::getDefence() const
+int Entity::getDefense() const
 {
 	return defence;
 }

@@ -43,3 +43,7 @@ void CombatSystem::printCombatScreen() {
 	// cout << "// +----------------------------------------------+ //" << endl;
 	// cout << "// +----------------------------------------------+ //" << endl;
 }
+
+void CombatSystem::fightPVE() {
+
+}

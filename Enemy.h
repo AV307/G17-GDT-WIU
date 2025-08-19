@@ -3,11 +3,16 @@
 #include<string>
 using namespace std;
 
+//enum class Enemytype{
+//    Basic,
+//    Elite,
+//    Boss
+//};
 class Enemy {
 private:
     string name;
-    int health;
     int attack;
+    int health;
     int damage;
     int defence;
     int xp;
@@ -27,12 +32,15 @@ public:
     int getXP() const;
     int getGold() const;
     int getLvl() const;
+    enum getEnemytype(Enemytype);
 
     void setHealth(int h);
 
     void attackEnemy(Enemy* Enemy, int damage);
 
     void levelUp(Enemy* enemy);
+
+    void initialiseEnemies(Enemy* enemies);
 
     ~Enemy();
 };

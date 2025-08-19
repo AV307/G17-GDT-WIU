@@ -8,7 +8,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <random>
-#include <conio.h>
 
 Player::Player(){
 	for (int i = 0; i < 10; i++) {
@@ -24,9 +23,7 @@ Player::Player(){
 	}
 
 	for (int i = 0; i < 10; i++) {
-		consumables[i] = new Potion;
-		consumables[i]->setDefenseVal(1);
-		consumables[i]->setName("Potion");
+		consumables[i] = nullptr;
 	}
 
 	for (int i = 0; i < 10; i++) {
@@ -36,8 +33,8 @@ Player::Player(){
 		weaponry[i]->setOwned(true);
 		weaponry[i]->setEquipped(false);
 
-		consumables[i]->setOwned(false);
-		consumables[i]->setEquipped(false);
+		/*consumables[i]->setOwned(false);
+		consumables[i]->setEquipped(false);*/
 	}
 
 	inventoryOpen = false;
@@ -47,6 +44,10 @@ Player::Player(){
 
 	equippedWeapon = nullptr;
 	equippedArmour = nullptr;
+
+	CRITRate = 15;
+	CRITDMG = 15;
+	strength = 15;
 }
 
 Player::~Player() {
@@ -127,6 +128,12 @@ void Player::handleInventory(char inputVal)
 			menuIndex++;
 		}
 		break;
+	case'f':
+		addConsumable("Attack Potion", 5, 0);
+		break;
+	case'g':
+		removeConsumable();
+		break;
 	case 13:
 		if (menuIndex == 1) {
 			if (equippedWeapon != nullptr) {
@@ -163,6 +170,11 @@ bool Player::checkInventoryOpen()
 	return inventoryOpen;
 }
 
+bool Player::checkKey()
+{
+	return hasKey;
+}
+
 Item** Player::getWeapons()
 {
 	return weaponry;
@@ -176,4 +188,30 @@ Item** Player::getArmours()
 Item** Player::getConsumables()
 {
 	return consumables;
+}
+
+void Player::addConsumable(std::string Name, int attackVal, int defenseVal)
+{
+	for (int i = 0; i < 10; i++) {
+		if (consumables[i] == nullptr) {
+			Potion* consumable = new Potion;
+			consumable->setAttackVal(attackVal);
+			consumable->setDefenseVal(defenseVal);
+			consumable->setName(Name);
+
+			consumables[i] = consumable;
+			break;
+		}
+	}
+}
+
+void Player::removeConsumable()
+{
+	for (int i = 9; i >= 0; i--) {
+		if (consumables[i] != nullptr) {
+			delete consumables[i];
+			consumables[i] = nullptr;
+			break;
+		}
+	}
 }

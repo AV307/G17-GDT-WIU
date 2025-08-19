@@ -1,9 +1,9 @@
 #include "Game.h"
+#include "Item.h"
+
 #include <iostream>
 #include <string>
 #include <windows.h>
-
-#include <sstream>
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -40,6 +40,8 @@ void Game::doTurn()
     system("cls");
 
     bool inventoryOpen = plr.checkInventoryOpen();
+    bool hasKey = plr.checkKey();
+
     int menuIndex = plr.getMenuIndex();
     int inventoryIndex = plr.getInventoryIndex();
 
@@ -108,7 +110,7 @@ void Game::doTurn()
                     int equipLength = 0;
                     (armours[i]->isEquipped() == true) ? equipLength = 11 : equipLength = 0;
 
-                    int remainingSpaces = 40 - (nameLength + numLength + defenseLength + equipLength + 12);
+                    int remainingSpaces = 39 - (nameLength + numLength + defenseLength + equipLength + 12);
                     for (int j = 0; j < remainingSpaces; j++) {
                         std::cout << " ";
                     }
@@ -128,18 +130,14 @@ void Game::doTurn()
             for (int i = 0; i < 10; i++) {
                 std::cout << "|";
                 std::cout << i + 1 << ". ";
-                if (consumables[i]->isOwned()) {
+                if (consumables[i] != nullptr) {
                     SetConsoleTextAttribute(hConsole, (inventoryIndex == i) ? 14 : 7);
                     std::cout << consumables[i]->getName();
-                    std::cout << " (";
-                    std::cout << consumables[i]->getDefenseVal();
-                    std::cout << " Defense)";
                     SetConsoleTextAttribute(hConsole, 7);
                     int nameLength = consumables[i]->getName().length();
                     int numLength = std::to_string(i + 1).length();
-                    int defenseLength = std::to_string(consumables[i]->getDefenseVal()).length();
 
-                    int remainingSpaces = 39 - (nameLength + numLength + defenseLength + 12);
+                    int remainingSpaces = 39 - (nameLength + numLength + 1);
                     for (int j = 0; j < remainingSpaces; j++) {
                         std::cout << " ";
                     }
@@ -147,7 +145,7 @@ void Game::doTurn()
                 else {
                     int numLength = std::to_string(i + 1).length();
 
-                    for (int j = 0; j < (39 - numLength); j++) {
+                    for (int j = 0; j < (38 - numLength); j++) {
                         std::cout << " ";
                     }
                 }
@@ -160,6 +158,14 @@ void Game::doTurn()
         }
 
         std::cout << "+----------------------------------------+" << std::endl;
+        std::cout << "| ";
+        if (hasKey == true) {
+            std::cout << "            Player Has Key" << "            |";
+        }
+        else {
+            std::cout << "       Player does not have Key" << "        |";
+        }
+        std::cout << std::endl;
         std::cout << "+------------+" << "+------------+" << "+------------+" << std::endl;
         std::cout << "+";
         SetConsoleTextAttribute(hConsole, (menuIndex == 1) ? 14 : 7);
@@ -182,3 +188,5 @@ void Game::doTurn()
 
     //plr.setAttack()
 }
+
+

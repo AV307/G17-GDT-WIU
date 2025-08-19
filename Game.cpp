@@ -59,9 +59,9 @@ void Game::doTurn()
                     int numLength = std::to_string(i + 1).length();
                     int attackLength = std::to_string(weapons[i]->getAttackVal()).length();
                     int equipLength = 0;
-                    (weapons[i]->isEquipped() == true) ? equipLength = 10 : equipLength = 0;
+                    (weapons[i]->isEquipped() == true) ? equipLength = 11 : equipLength = 0;
 
-                    int remainingSpaces = 40 - (nameLength + numLength + attackLength + equipLength + 13);
+                    int remainingSpaces = 40 - (nameLength + numLength + attackLength + equipLength + 12);
                     for (int j = 0; j < remainingSpaces; j++) {
                         std::cout << " ";
                     }
@@ -86,7 +86,7 @@ void Game::doTurn()
                     std::cout << armours[i]->getName();
                     std::cout << " (";
                     std::cout << armours[i]->getDefenseVal();
-                    std::cout << " Attack)";
+                    std::cout << " Defense)";
                     if (armours[i]->isEquipped() == true) {
                         std::cout << " [Equipped]";
                     }
@@ -96,9 +96,9 @@ void Game::doTurn()
                     int numLength = std::to_string(i + 1).length();
                     int defenseLength = std::to_string(armours[i]->getDefenseVal()).length();
                     int equipLength = 0;
-                    (armours[i]->isEquipped() == true) ? equipLength = 10 : equipLength = 0;
+                    (armours[i]->isEquipped() == true) ? equipLength = 11 : equipLength = 0;
 
-                    int remainingSpaces = 39 - (nameLength + numLength + defenseLength + equipLength + 13);
+                    int remainingSpaces = 40 - (nameLength + numLength + defenseLength + equipLength + 12);
                     for (int j = 0; j < remainingSpaces; j++) {
                         std::cout << " ";
                     }

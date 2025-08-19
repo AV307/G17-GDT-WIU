@@ -1,32 +1,25 @@
 #pragma once
-#include "Enemy.h"
-#include<string>
+#include <string>
+using namespace std;
 class Entity
 {
 protected:
-    std::string name;
-    int attack;
-    int health;
-    int damage;
-    int defence;
-    int xp;
-    int gold;
-    int level;
-
-
+    int attack ,health ,damage ,defence ,xp ,gold ,level, CRITDMG, CRITRate;
 
 public:
-    Entity();
-	Entity(string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl);
-	Entity(std::string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl);
+	Entity();
 
-    const static int MAX_ENEMY_TYPE = 8;
-    std::string enemyBank[MAX_ENEMY_TYPE] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
-    int enemyHP[MAX_ENEMY_TYPE] = { 90 ,100 ,110, 100, 125, 100, 50, 120 };
-    int enemyATK[MAX_ENEMY_TYPE] = { 10, 10, 7, 12, 12, 10, 13, 9 };
-    int enemyDEF[MAX_ENEMY_TYPE] = { 10, 10, 9, 11, 12, 10, 35, 12 };
+    void setHealth(int hp);
+    void setAttack(int atk);
+    void setDamage(int dmg);
+    void setDefense(int defence);
+    void setXP(int xp);
+    void setGold(int gold);
+    void setLvl(int lvl);
+    void setCRITDMG();
+    void setCRITRate();
 
-    std::string getName() const;
+
     int getHealth() const;
     int getAttack() const;
     int getDamage() const;
@@ -34,17 +27,14 @@ public:
     int getXP() const;
     int getGold() const;
     int getLvl() const;
+    int getCRITDMG() const;
+    int getCRITRate() const;
 
-    void setName(std::string n);
-    void setHealth(int h);
-    void setAttack(int atk);
-    void setDamage(int dmg);
-    void setDefence(int defence);
-    void setXP(int xp);
-    void setGold(int gold);
-    void setLvl(int lvl);
-    void displayStatus();
-    virtual ~Entity();
+
+
+
+
+	virtual ~Entity();
 
 };
   

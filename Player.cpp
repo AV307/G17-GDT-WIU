@@ -6,13 +6,11 @@
 
 #include <conio.h>
 #include <iostream>
+#include <cstdlib>
+#include <random>
+#include <conio.h>
 
-Player::Player()
-{
-
-}
-
-Player::Player(string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl){
+Player::Player(){
 	for (int i = 0; i < 10; i++) {
 		weaponry[i] = new Weapon;
 		weaponry[i]->setAttackVal(1);
@@ -32,10 +30,10 @@ Player::Player(string n, int h, int atk, int dmg, int def, int xp, int gold, int
 	}
 
 	for (int i = 0; i < 10; i++) {
-		armoury[i]->setOwned(false);
+		armoury[i]->setOwned(true);
 		armoury[i]->setEquipped(false);
 
-		weaponry[i]->setOwned(false);
+		weaponry[i]->setOwned(true);
 		weaponry[i]->setEquipped(false);
 
 		consumables[i]->setOwned(false);
@@ -46,10 +44,15 @@ Player::Player(string n, int h, int atk, int dmg, int def, int xp, int gold, int
 	inventoryIndex = 0;
 	menuIndex = 1;
 	hasKey = false;
+
+	equippedWeapon = nullptr;
+	equippedArmour = nullptr;
 }
+
 Player::~Player() {
 
 }
+
 void Player::doAction() {
 	char input = _getch();
 
@@ -118,7 +121,21 @@ void Player::handleInventory(char inputVal)
 		}
 		break;
 	case 13:
-		break;
+		if (menuIndex == 1) {
+			if (equippedWeapon != nullptr) {
+				equippedWeapon->setEquipped(false);
+			}
+			equippedWeapon = weaponry[inventoryIndex];
+			equippedWeapon->setEquipped(true);
+		}
+		else if (menuIndex == 2) {
+			if (equippedArmour != nullptr) {
+				equippedArmour->setEquipped(false);
+			}
+			equippedArmour = armoury[inventoryIndex];
+			equippedArmour->setEquipped(true);
+		}
+		break;	
 	default:
 		break;
 	}

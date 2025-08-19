@@ -100,23 +100,15 @@ void Enemy::getCritRate()
 Enemy::~Enemy()
 {
 }
+Enemy::~Enemy(){}
 
 void Enemy::initialiseEnemies(Enemy* enemies, int size)
 {
     if (size < 8) {
 
-        enemies[0] = Enemy("Undead", 10, 5, 3, 2, 5, 2, 1, Enemytype::Basic);
-        enemies[1] = Enemy("Animals", 20, 8, 5, 4, 10, 5, 2, Enemytype::Basic);
-        enemies[2] = Enemy("Flowers", 30, 12, 8, 6, 15, 8, 3, Enemytype::Basic);
-        enemies[3] = Enemy("Aquatic", 100, 30, 20, 15, 100, 50, 10, Enemytype::Elite);
-        enemies[4] = Enemy("Vampires", 100, 30, 20, 15, 100, 50, 10, Enemytype::Elite);
-        enemies[5] = Enemy("Humanoid", 100, 30, 20, 15, 100, 50, 10, Enemytype::Elite);
-        enemies[6] = Enemy("Ascendants", 100, 30, 20, 15, 100, 50, 10, Enemytype::Boss);
-        enemies[7] = Enemy("Cubed", 100, 30, 20, 15, 100, 50, 10, Enemytype::Boss);
-    }
+void Enemy::killEnemy() {
+	if (health <= 0) {
+		 xp = static_cast<int>((((health + attack + defence) / 100) * level) / 10);
+	}
 }
-
-
-
-
-    
+	

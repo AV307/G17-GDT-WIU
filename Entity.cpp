@@ -1,26 +1,51 @@
 #include "Entity.h"
-#include "Enemy.h"
-#include<string>
-
-//Entity::Entity()
-//{
-//	health = 0;
-//	attack = 0;
-//	defense = 0;
-//}
-
 
 Entity::Entity()
 {
+
 }
 
-Entity::Entity(string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl)
-Entity::Entity(std::string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl) 
-	: name(n), health(h), attack(atk), damage(dmg), defence(def), xp(xp), gold(gold), level(lvl) {};
-
-std::string Entity::getName() const
+void Entity::setHealth()
 {
-	return name;
+	health = 0;
+}
+
+void Entity::setAttack()
+{
+	attack = 0;
+}
+
+void Entity::setDamage()
+{
+	damage = 0;
+}
+void Entity::setDefense()
+{
+	defence = 0;
+}
+
+void Entity::setXP()
+{
+	xp = 0;
+}
+
+void Entity::setGold()
+{
+	gold = 0;
+}
+
+void Entity::setLvl()
+{
+	level = 1;
+}
+
+void Entity::setCRITDMG()
+{
+	CRITDMG = 0;
+}
+void Entity::setCRITRate()
+{
+	CRITRate = 0;
 }
 
 int Entity::getHealth() const
@@ -57,43 +82,18 @@ int Entity::getLvl() const
 {
 	return getLvl();
 }
-
-void Entity::setName(std::string n)
+int Entity::getCRITDMG() const
 {
+	return CRITDMG;
+}
+int Entity::getCRITRate() const
+{
+	return CRITRate;
 }
 
-void Entity::setHealth(int h)
-{
-}
 
-void Entity::setAttack(int atk)
-{
-}
 
-void Entity::setDamage(int dmg)
-{
-}
 
-void Entity::setDefence(int defence)
-{
-}
-
-void Entity::setXP(int xp)
-{
-}
-
-void Entity::setGold(int gold)
-{
-}
-
-void Entity::setLvl(int lvl)
-{
-}
-
-void Entity::displayStatus()
-{
-
-}
 
 Entity::~Entity()
 {

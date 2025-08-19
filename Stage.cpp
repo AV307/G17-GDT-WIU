@@ -12,6 +12,13 @@
 
 void Stage::setStageArray(int currentStage)
 {
+    // initialize stageArray to spaces
+    for (int i{ 0 }; i < 100; i++) {
+        for (int j{ 0 }; j < 100; j++) {
+            stageArray[i][j] = ' ';
+        }
+    }
+
     // set the mainRoom into the stage
     char** mainRoomArray = static_cast<mainRoom*>(rooms[0])->getMainRoomArray();
     int mainRoomTopLeftX = rooms[0]->getRoomTopLeftX();

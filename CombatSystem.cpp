@@ -21,7 +21,7 @@ CombatSystem::~CombatSystem() {
 // Return(s): None
 // +----------------------------------------------------------------------------------+ //
 
-void CombatSystem::printCombatScreen() {
+void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 
 	for (int n = 1; n < 11; n++) {
 		if (n == 1) { // Enemy Design Line
@@ -65,74 +65,71 @@ void CombatSystem::printCombatScreen() {
 		if (n == 6) { // Combat Option Line
 			cout << "// +      Fight 'F'      +  +       Item 'I'      +  +       Run 'R'       + //" << endl;
 		}
-		if (n == 9) { // 1/2 Division Line
+		// if (n == 9) { // 1/2 Division Line
+		//	 cout << "// +";
+		//	 for (int i = 0; i < 35; i++) {
+		//		 cout << " ";
+		//	 }
+		//	 cout << "+";
+		//	 for (int i = 0; i < 35; i++) {
+		//		 cout << " ";
+		//	 }
+		//	 cout << "+ //" << endl;
+		// }
+		if (n == 9) {
 			cout << "// +";
-			for (int i = 0; i < 35; i++) {
+			for (int i = 0; i < 7; i++) {
 				cout << " ";
 			}
+			cout << "Player HP: " << player.getHealth();
+			if (player.getHealth() < 10) { // when Player Health is 1 digits
+				for (int i = 0; i < 35 - 7 - 12; i++) {
+					cout << " ";
+				}
+			}
+			else if (player.getHealth() > 9) { // when Player Health is 2 digits
+				for (int i = 0; i < 35 - 7 - 13; i++) {
+					cout << " ";
+				}
+			}
+			else if (player.getHealth() > 99) { // when Player Health is 3 digits
+				for (int i = 0; i < 35 - 7 - 14; i++) {
+					cout << " ";
+				}
+			}
+			else if (player.getHealth() > 999) { // when Player Health is 4 digits
+				for (int i = 0; i < 35 - 7 - 15; i++) {
+					cout << " ";
+				}
+			}
 			cout << "+";
-			for (int i = 0; i < 35; i++) {
+			for (int i = 0; i < 7; i++) {
 				cout << " ";
+			}
+			cout << "Enemy HP: " << specifiedEnemy.getHealth();
+			if (specifiedEnemy.getHealth() < 10) { // when Enemy Health is 1 digits
+				for (int i = 0; i < 35 - 7 - 11; i++) {
+					cout << " ";
+				}
+			}
+			else if (specifiedEnemy.getHealth() > 9) { // when Enemy Health is 2 digits
+				for (int i = 0; i < 35 - 7 - 12; i++) {
+					cout << " ";
+				}
+			}
+			else if (specifiedEnemy.getHealth() > 99) { // when Enemy Health is 3 digits
+				for (int i = 0; i < 35 - 7 - 13; i++) {
+					cout << " ";
+				}
+			}
+			else if (specifiedEnemy.getHealth() > 999) { // when Enemy Health is 4 digits
+				for (int i = 0; i < 35 - 7 - 14; i++) {
+					cout << " ";
+				}
 			}
 			cout << "+ //" << endl;
 		}
 	}
-
-	
-	// Implement once Player and Enemy (Entity) Code is out
-	//if (n == 9) {
-	//	cout << "// +";
-	//	for (int i = 0; i < 7; i++) {
-	//		cout << " ";
-	//	}
-	//	cout << "Player HP: " << player.getHealth();
-	//	if (player.getHealth() < 10) { // when Player Health is 1 digits
-	//		for (int i = 0; i < 35 - 7 - 12; i++) {
-	//			cout << " ";
-	//		}
-	//	}
-	//	else if (player.getHealth() > 9) { // when Player Health is 2 digits
-	//		for (int i = 0; i < 35 - 7 - 13; i++) {
-	//			cout << " ";
-	//		}
-	//	}
-	//	else if (player.getHealth() > 99) { // when Player Health is 3 digits
-	//		for (int i = 0; i < 35 - 7 - 14; i++) {
-	//			cout << " ";
-	//		}
-	//	}
-	//	else if (player.getHealth() > 999) { // when Player Health is 4 digits
-	//		for (int i = 0; i < 35 - 7 - 15; i++) {
-	//			cout << " ";
-	//		}
-	//	}
-	//	cout << "+";
-	//	for (int i = 0; i < 7; i++) {
-	//		cout << " ";
-	//	}
-	//	cout << "Enemy HP: " << specifiedEnemy.getHealth();
-	//	if (specifiedEnemy.getHealth() < 10) { // when Enemy Health is 1 digits
-	//		for (int i = 0; i < 35 - 7 - 11; i++) {
-	//			cout << " ";
-	//		}
-	//	}
-	//	else if (specifiedEnemy.getHealth() > 9) { // when Enemy Health is 2 digits
-	//		for (int i = 0; i < 35 - 7 - 12; i++) {
-	//			cout << " ";
-	//		}
-	//	}
-	//	else if (specifiedEnemy.getHealth() > 99) { // when Enemy Health is 3 digits
-	//		for (int i = 0; i < 35 - 7 - 13; i++) {
-	//			cout << " ";
-	//		}
-	//	}
-	//	else if (specifiedEnemy.getHealth() > 999) { // when Enemy Health is 4 digits
-	//		for (int i = 0; i < 35 - 7 - 14; i++) {
-	//			cout << " ";
-	//		}
-	//	}
-	//	cout << "+ //" << endl;
-	//}
 	
 	
 
@@ -167,39 +164,50 @@ void CombatSystem::printCombatScreen() {
 // +----------------------------------------------------------------------------------+ //
 
 void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
-	//int critDeterminant = rand() % 100 + 1;
-	//
-	//if (critDeterminant > player.getCritRate())) {
-	//	if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-	//		specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack());   // Enemy is attacked first by player
+	int critPlayerDeterminant = rand() % 100 + 1;
+	int critEnemyDeterminant = rand() % 100 + 1;
 
-	//		if (critDeterminant > specifiedEnemy.getCritRate()) {
-	//			player.setHealth(player.getHealth() - specifiedEnemy.getAttack());           // Player is then attacked by enemy
-	//		}
-	//		else if (critDeterminant <= specifiedEnemy.getCritRate()) {                      // Player is critical hit by enemy
-	//			player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCritDmg());
-	//		}
-	//	}
-	//}
-	//else if (critDeterminant <= player.getCritRate()) {
-	//	if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-	//		specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack());   // Enemy is attacked first by player
+	// Damage Equation
+	// Final Damage = (Base Attack * Crit Dmg) - Base Defence
+	// Crit Damage ignores Defence
+	// Example:
+	// (200 - 50) * 2      |      (ATK - DEF) * CRITDMG   =   300 Final Damage       |       Critical took place after ATK reduced by DEF
+	// (200 * 2) - 50      |      (ATK * CRITDMG) - DEF   =   350 Final Damage       |       DEF took place after Critical
+	// (200 * 2) * 0.5     |      (ATK * CRITDMG) * DEF   =   200 Final Damage
+	// (200 * 0.5) * 2     |      (ATK * DEF) * CRITDMG   =   200 Final Damage
+	
+	if (critPlayerDeterminant > player.getCRITRate()) {
+		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() - specifiedEnemy.getDefense()));                            // Enemy is attacked first by player
 
-	//		if (critDeterminant > specifiedEnemy.getCritRate()) {
-	//			player.setHealth(player.getHealth() - specifiedEnemy.getAttack());           // Player is then attacked by enemy
-	//		}
-	//		else if (critDeterminant <= specifiedEnemy.getCritRate()) {
-	//			player.setHealth(player.getHealth() - specifiedEnemy.getAttack());
-	//		}
-	//	}
-	//}
+			if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
+				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() - player.getDefense()));                                        // Player is then attacked by enemy
+			}
+			else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
+				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense()));          // Player is critical hit by enemy
+			}
+		}
+	}
+	else if (critPlayerDeterminant <= player.getCRITRate()) {
+		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense()));      // Enemy is critical hit first by player
 
-	//if (player.getHealth() < 0) {
-	//	player.setHealth(0);
-	//}
-	//if (specifiedEnemy.getHealth() < 0) {
-	//	specifiedEnemy.setHealth(0);
-	//}
+			if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
+				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() - player.getDefense()));                                        // Player is then attacked by enemy
+			}
+			else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
+				player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense()));          // Player is critical hit by enemy
+			}
+		}
+	}
+
+	// Error Check To Ensure No Negative HP Values
+	if (player.getHealth() < 0) {
+		player.setHealth(0);
+	}
+	if (specifiedEnemy.getHealth() < 0) {
+		specifiedEnemy.setHealth(0);
+	}
 }
 
 

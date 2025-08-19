@@ -58,6 +58,6 @@ public:
 
     ~Enemy();
     void killEnemy();
-    char getStatus() const;
-    string getType() const;
+    //char getStatus() const;
+    //string getType() const;
 };

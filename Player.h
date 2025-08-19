@@ -8,14 +8,19 @@ private:
     Item* armoury[10];
     Item* consumables[10];
 
+    Item* equippedWeapon;
+    Item* equippedArmour;
+    
     bool inventoryOpen;
     bool hasKey;
 
     int menuIndex;
     int inventoryIndex;
+
+    int CRITRate, CRITDMG, strength;
 public:
+
     Player();
-    Player(string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl);
     ~Player();
     void doAction();
     void checkCollision();

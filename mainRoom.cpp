@@ -1,6 +1,9 @@
 #include "mainRoom.h"
 #include "Game.h"
 
+//252317H
+//Constructor for mainRoom, defines the position and sets up the room
+//Incomplete
 mainRoom::mainRoom(int currentStage) {
     roomHeight = 60;
     roomWidth = 60;
@@ -30,12 +33,15 @@ mainRoom::mainRoom(int currentStage) {
         }
     }
 
-    // more code here to determine and set specifics in the main room
+    // more code here to determine and set specifics in the main room, based on curentStage
     switch (currentStage) 
     {
     }
 }
 
+//252317H
+//Destructor for mainRoom, deletes all created pointers
+//Incomplete
 mainRoom::~mainRoom() {
     // deallocate mainRoomArray
     for (int i{ 0 }; i < roomHeight; i++) 
@@ -45,6 +51,8 @@ mainRoom::~mainRoom() {
     delete[] mainRoomArray;
 }
 
+//252317H
+//mainRoomArray getter
 char** mainRoom::getMainRoomArray()
 {
     return mainRoomArray;

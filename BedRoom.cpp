@@ -1,11 +1,14 @@
 #include "BedRoom.h"
 
+//Ang Zhi En 252317H
+//Constructor for bedRoom, defines the position and sets up the room
+//Incomplete
 BedRoom::BedRoom(int currentStage)
 {
     roomHeight = 20;
     roomWidth = 20;
-    roomTopLeftX = 50;
-    roomTopLeftY = 30;
+    roomTopLeftX = 0; //dependant on whether room 1 or 2, incomplete
+    roomTopLeftY = 0;
 
     // dynamically allocate bedRoomArray
     bedRoomArray = new char* [roomHeight];
@@ -29,13 +32,11 @@ BedRoom::BedRoom(int currentStage)
             }
         }
     }
-
-    // more code here to determine and set specifics in the main room
-    switch (currentStage)
-    {
-    }
 }
 
+//Ang Zhi En 252317H
+//Destructor for bedRoom, deletes pointers
+//Incomplete
 BedRoom::~BedRoom()
 {
     // deallocate bedRoomArray
@@ -46,6 +47,8 @@ BedRoom::~BedRoom()
     delete[] bedRoomArray;
 }
 
+//Ang Zhi En 252317H
+//bedRoomArray getter
 char** BedRoom::getBedRoomArray()
 {
     return bedRoomArray;

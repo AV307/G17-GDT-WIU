@@ -1,11 +1,14 @@
 #include "ShopRoom.h"
 
+//Ang Zhi En 252317H
+//Constructor for ShopRoom, defines position and sets up room
+//Incomplete
 ShopRoom::ShopRoom(int currentStage)
 {
     roomHeight = 20;
     roomWidth = 20;
-    roomTopLeftX = 50;
-    roomTopLeftY = 30;
+    roomTopLeftX = 0; //dependant on room number
+    roomTopLeftY = 0;
 
     // dynamically allocate shopRoomArray
     shopRoomArray = new char* [roomHeight];
@@ -30,12 +33,12 @@ ShopRoom::ShopRoom(int currentStage)
         }
     }
 
-    // more code here to determine and set specifics in the main room
-    switch (currentStage)
-    {
-    }
+    //add code below for setting up specific shop related parts
 }
 
+//Ang Zhi En 252317H
+//Destructor for ShopRoom, deletes pointers
+//Incomplete
 ShopRoom::~ShopRoom()
 {
     // deallocate bedRoomArray
@@ -46,6 +49,8 @@ ShopRoom::~ShopRoom()
     delete[] shopRoomArray;
 }
 
+//Ang Zhi En 252317H
+//getter for shopRoomArray
 char** ShopRoom::getShopRoomArray()
 {
 	return shopRoomArray;

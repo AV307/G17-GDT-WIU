@@ -7,22 +7,31 @@
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
+//Ang Zhi En 252317H
+//Constructor for Game, creates a stage for the game
+//Incomplete
 Game::Game() 
 {
     //set to 3 or 5 to test the boss rooms
     currentStage = 3;
     stage = new Stage(this);
-    stage->printStage();
+    stage->printStage(); //debugging code
 }
 
+//Ang Zhi En 252317H
+//Destructor for Game, delete pointers
+//Incomplete
 Game::~Game() {
     delete stage;
 }
 
+//Ang Zhi En 252317H
+//Getter for currentStage
 int Game::getCurrentStage()
 {
     return currentStage;
 }
+
 
 void Game::doTurn()
 {

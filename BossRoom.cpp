@@ -1,11 +1,14 @@
 #include "BossRoom.h"
 
+//Ang Zhi En 252317H
+//Constructor for BossRoom, defines the position and sets up the room
+//Incomplete
 BossRoom::BossRoom(int currentStage)
 {
     roomHeight = 30;
     roomWidth = 30;
-    roomTopLeftX = 10;
-    roomTopLeftY = 30;
+    roomTopLeftX = 0; //dependant on whether room 1 or 2, incomplete
+    roomTopLeftY = 0;
 
     // dynamically allocate bossRoomArray
     bossRoomArray = new char* [roomHeight];
@@ -30,12 +33,15 @@ BossRoom::BossRoom(int currentStage)
         }
     }
 
-    // more code here to determine and set specifics in the main room
+    // boss selection will depend on whether stage 3 or 5, getting harder
     switch (currentStage)
     {
     }
 }
 
+//Ang Zhi En 252317H
+//Destructor for BossRoom, deletes pointers
+//Incomplete
 BossRoom::~BossRoom()
 {
     // deallocate bossRoomArray
@@ -46,6 +52,8 @@ BossRoom::~BossRoom()
     delete[] bossRoomArray;
 }
 
+//Ang Zhi En 252317H
+//BossRoom array getter
 char** BossRoom::getBossRoomArray()
 {
     return bossRoomArray;

@@ -5,7 +5,7 @@ class Game
 {
 private:
     Stage* stages[5];
-
+    int currentStage;
 public:
     Game();
     ~Game();

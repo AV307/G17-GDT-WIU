@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "Enemy.h"
+#include<string>
 
 //Entity::Entity()
 //{
@@ -9,12 +10,12 @@
 //}
 
 
-Entity::Entity(string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl) 
+Entity::Entity(std::string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl) 
 	: name(n), health(h), attack(atk), damage(dmg), defence(def), xp(xp), gold(gold), level(lvl) {};
 
-string Entity::getName() const
+std::string Entity::getName() const
 {
-	return string();
+	return name;
 }
 
 int Entity::getHealth() const
@@ -52,7 +53,7 @@ int Entity::getLvl() const
 	return getLvl();
 }
 
-void Entity::setName(string n)
+void Entity::setName(std::string n)
 {
 }
 
@@ -84,13 +85,7 @@ void Entity::setLvl(int lvl)
 {
 }
 
-
-void Entity::attackEnemy(Enemy* Enemy, int damage)
-{
-
-}
-
-void Entity::levelUp(Enemy* enemy)
+void Entity::displayStatus()
 {
 
 }

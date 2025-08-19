@@ -1,13 +1,12 @@
 #include "Enemy.h"
-#include<string>
 #include <iostream>
+
 using namespace std;
 
+Enemy::Enemy(string n, int h, int atk, int dmg, int def, int xpVal, int g, int lvl, Enemytype t)
+    : name(n), health(h), attack(atk), damage(dmg), defence(def), xp(xpVal), gold(g), level(lvl), type(t) {
+}
 
-Enemy::Enemy(string n, int h, int atk, int dmg, int def, int xp, int g, int lvl) {
-    : name(n), health(h), attack(atk), damage(dmg), defence(def), xp(xp), gold(g), level(lvl) {};
-
-//string n, int h, int atk, int dmg, int def, int xp, int gold, int lvl);
 void Enemy::displayStatus() const {
     cout << "Enemy: " << name << endl;
     cout << "Health: " << health << endl;
@@ -16,75 +15,73 @@ void Enemy::displayStatus() const {
     cout << "Defence: " << defence << endl;
     cout << "XP drop: " << xp << endl;
     cout << "Gold drop: " << gold << endl;
+    cout << "Level: " << level << endl;
 }
 
-string Enemy::getName() const { 
-    return name; 
-}
+string Enemy::getName() const { return name; }
+int Enemy::getHealth() const { return health; }
+int Enemy::getAttack() const { return attack; }
+int Enemy::getDamage() const { return damage; }
+int Enemy::getDefence() const { return defence; }
+int Enemy::getXP() const { return xp; }
+int Enemy::getGold() const { return gold; }
+int Enemy::getLvl() const { return level; }
+Enemytype Enemy::getEnemytype() const { return type; }
 
-int Enemy::getAttack() const { 
-    return attack; 
-}
-int Enemy::getDamage() const { 
-    return damage; 
-}
-int Enemy::getDefence() const { 
-    return defence; 
-}
-int Enemy::getXP() const
-{
-    return xp;
-}
-int Enemy::getGold() const
-{
-    return gold;
-}
-int Enemy::getLvl() const
-{
-    return level;
-}
+void Enemy::setHealth(int h) { health = h; }
 
+void Enemy::attackEnemy(Enemy* target, int dmg) {
+    if (!target) return;
 
+    target->health -= dmg;
+    cout << name << " attacks " << target->name << " for " << dmg << " damage!" << endl;
 
-void Enemy::setHealth(int h) { 
-    health = h; 
-}
-
-void Enemy::attackEnemy(Enemy* enemy, int damage)
-{
-    if (enemy->health <= 0 && enemy == 0) {
-        cout << "Enemy has been killed";
-        enemy->getGold();
-        enemy->getXP();
+    if (target->health <= 0) {
+        target->health = 0;
+        cout << target->name << " has been killed!" << endl;
+        cout << "You gained " << target->xp << " XP and " << target->gold << " gold.\n";
     }
-
 }
-void Enemy::levelUp(Enemy* enemy) {
-    
+
+void Enemy::levelUp() {
     level++;
-    health = static_cast<int>(health * level * 1.5);
-    attack = static_cast<int>(attack * level * 1.5);
-    damage = static_cast<int>(damage * level * 1.5);
-    defence = static_cast<int>(defence * level * 1.5);
-    xp = static_cast<int>(xp * level * 1.5);
-    gold = static_cast<int>(gold * level * 1.5);
-    cout <<Enemy::name << " is lvl " <<Enemy::level << "!\n";
+    health = static_cast<int>(health * 1.5);
+    attack = static_cast<int>(attack * 1.5);
+    damage = static_cast<int>(damage * 1.5);
+    defence = static_cast<int>(defence * 1.5);
+    xp = static_cast<int>(xp * 1.5);
+    gold = static_cast<int>(gold * 1.5);
+
+    cout << name << " leveled up to level " << level << "!\n";
 }
 
-void Enemy::initialiseEnemies(Enemy* enemies)
+void Enemy::getCritRate()
 {
-    Enemy* Slime = new Enemy("Slime", 10, 10, 10, 10, 10, 10, 10);
-    Enemy* Kobold = new Enemy("Kobold", 20, 20, 20, 20, 20, 20, 20);
-    Enemy* Wolf = new Enemy("Wolf", 30, 30, 30, 30, 30, 30, 30);
-    Enemy* Boss = new Enemy("Boss", 100, 100, 100, 100, 100, 100, 100);
+
 }
+
+
 
 Enemy::~Enemy()
 {
-
 }
 
-//name(n), health(h), attack(atk), damage(dmg), defence(def), speed(spd), reward(r)
-int main(void) {
+void Enemy::initialiseEnemies(Enemy* enemies, int size)
+{
+    if (size < 8) {
 
+        enemies[0] = Enemy("Undead", 10, 5, 3, 2, 5, 2, 1, Enemytype::Basic);
+        enemies[1] = Enemy("Animals", 20, 8, 5, 4, 10, 5, 2, Enemytype::Basic);
+        enemies[2] = Enemy("Flowers", 30, 12, 8, 6, 15, 8, 3, Enemytype::Basic);
+        enemies[3] = Enemy("Aquatic", 100, 30, 20, 15, 100, 50, 10, Enemytype::Elite);
+        enemies[4] = Enemy("Vampires", 100, 30, 20, 15, 100, 50, 10, Enemytype::Elite);
+        enemies[5] = Enemy("Humanoid", 100, 30, 20, 15, 100, 50, 10, Enemytype::Elite);
+        enemies[6] = Enemy("Ascendants", 100, 30, 20, 15, 100, 50, 10, Enemytype::Boss);
+        enemies[7] = Enemy("Cubed", 100, 30, 20, 15, 100, 50, 10, Enemytype::Boss);
+    }
 }
+
+
+
+
+    

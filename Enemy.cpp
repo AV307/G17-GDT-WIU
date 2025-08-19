@@ -25,6 +25,6 @@ Enemy::Enemy(char type) {
 	}
 }
 Enemy::~Enemy() {
-	EXP = ((health + attack + defense)/100)*level
+	EXP = ((health + attack + defense) / 100) * level;
 }
 

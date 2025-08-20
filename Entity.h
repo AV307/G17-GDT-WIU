@@ -36,9 +36,6 @@ public:
     int getCRITRate() const;
 
 
-
-
-
 	virtual bool isAlive() const {
 		return health > 0;
     }
@@ -49,6 +46,7 @@ public:
     void burn(int turns, int dmgPerTurn);
 
 	void freeze(int turns, int dmgPerTurn);
+    
 };
   
 

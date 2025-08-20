@@ -160,7 +160,7 @@ void Stage::setStageArray(int currentStage, char room1, char room2)
 //Constructor for Stage, uses randomiser to decide on the rooms generated for currentStage
 //Incomplete
 Stage::Stage(Game* game)
-	: game(game), gen(rd()), dis(1, 3)
+	: gen(rd()), dis(1, 3)
 {
     int currentStage{ game->getCurrentStage() };
 

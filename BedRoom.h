@@ -6,7 +6,7 @@ class BedRoom :
 private:
     char** bedRoomArray;
 public:
-    BedRoom(int currentStage);
+    BedRoom(int currentStage, int roomNumber);
     ~BedRoom();
     char** getBedRoomArray();
 };

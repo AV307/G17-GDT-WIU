@@ -91,15 +91,15 @@ Stage::Stage(Game* game)
     switch (randomRoom1) 
     {
     case 0:
-        rooms[1] = new ShopRoom(currentStage);
+        rooms[1] = new ShopRoom(currentStage, 1);
         room1 = 'S';
         break;
     case 1:
-        rooms[1] = new TreasureRoom(currentStage);
+        rooms[1] = new TreasureRoom(currentStage, 1);
         room1 = 'T';
         break;
     case 2:
-        rooms[1] = new BedRoom(currentStage);
+        rooms[1] = new BedRoom(currentStage, 1);
         room1 = 'B';
         break;
     }
@@ -115,15 +115,15 @@ Stage::Stage(Game* game)
         switch (randomRoom2) 
         {
         case 0:
-            rooms[2] = new ShopRoom(currentStage);
+            rooms[2] = new ShopRoom(currentStage, 2);
             room2 = 'S';
             break;
         case 1:
-            rooms[2] = new TreasureRoom(currentStage);
+            rooms[2] = new TreasureRoom(currentStage, 2);
             room2 = 'T';
             break;
         case 2:
-            rooms[2] = new BedRoom(currentStage);
+            rooms[2] = new BedRoom(currentStage, 2);
             room2 = 'B';
             break;
         }

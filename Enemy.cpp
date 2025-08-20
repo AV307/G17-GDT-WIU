@@ -60,19 +60,19 @@ Enemy::~Enemy() {}
 int Enemy::calculateLoot() {
 	switch (enemyStatus) {
 	case 'B':
-		xp = static_cast<int>((((health + attack + defence)) * level) / 100);
+		xp = static_cast<int>((((health + attack + defense)) * level) / 100);
 		gold = 3;
 		return xp, gold;
 	case 'E':
-		xp = static_cast<int>((((health + attack + defence)) * level) / 70);
+		xp = static_cast<int>((((health + attack + defense)) * level) / 70);
 		gold = 5;
 		return xp, gold;
 	case 'D':
-		xp = static_cast<int>((((health + attack + defence)) * level) / 35);
+		xp = static_cast<int>((((health + attack + defense)) * level) / 35);
 		gold = 10;
 		return xp, gold;
 	case 'X':
-		xp = static_cast<int>((((health + attack + defence)) * level) / 10);
+		xp = static_cast<int>((((health + attack + defense)) * level) / 10);
 		gold = 25;
 		return xp, gold;
 	}
@@ -102,7 +102,7 @@ int Enemy::getAttack() const
 }
 int Enemy::getDefense() const
 {
-	return defence;
+	return defense;
 }
 
 

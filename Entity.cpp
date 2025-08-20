@@ -46,7 +46,7 @@ int Entity::getCRITDMG() const {
 }
 int Entity::getCRITRate() const { 
     return CRITRate; 
-}
+}                                
 
 void Entity::setHealth(int hp) { 
     health = hp; 
@@ -83,7 +83,9 @@ void Entity::setCritDMG(int critdmg) {
 void Entity::setCritRate(int critrate) {
     CRITRate = critrate; 
 }
-
+//Benjamin 250572M
+//Check the amount of health damaged over turn
+//Completed
 void Entity::poison(int turns, int dmgPerTurn) {
     cout << "have been poisoned for " << turns << " turns!" << endl;
     for (int i = 0; i < turns; i++) {
@@ -93,21 +95,40 @@ void Entity::poison(int turns, int dmgPerTurn) {
         if (!isAlive()) break;
     }
 }
-
+//Benjamin 250572M
+//Check the amount of health damaged over turn
+//Completed
 void Entity::burn(int turns, int dmgPerTurn) {
     cout << "have been poisoned for " << turns << " turns!" << endl;
     for (int i = 0; i < turns; i++) {
         health -= dmgPerTurn;
         if (health < 0) health = 0;
-        cout << "Burn tick " << i + 1 << ": -" << dmgPerTurn << " HP. Health: " << health << endl;
+        cout << "Burn for " << i + 1 << ": -" << dmgPerTurn << " HP. Health: " << health << endl;
         if (!isAlive()) break;
     }
 }
-
+//Benjamin 250572M
+//Check the amount of freeze damage over turn
+//Completed
+void Entity::freeze(int turns, int dmgPerTurn)
+{
+	cout << "have been frozen for " << turns << " turns!" << endl;
+	for (int i = 0; i < turns; i++) {
+		health -= dmgPerTurn;
+		if (health < 0) health = 0;
+		cout << "Frozen for " << i + 1 << ": -" << dmgPerTurn << " HP. Health: " << health << endl;
+		if (!isAlive()) 
+            break;
+	}
+}
+//Benjamin 250572M
+//Check the amount of health increased over turn
+//Completed
 void Entity::healing(int health) {
 	this->health += health;
 	cout << "Health increased by " << health << ". Current health: " << this->health << endl; //debug
 }
+
 
 
 Entity::~Entity()

@@ -1,6 +1,8 @@
 #include "Entity.h"
 
-
+//Benjamin 250572M
+//default constructor + parameterised constructor + getters + setters
+//Completed
 
 Entity::Entity() : health(100), attack(10), damage(5), defense(5), xp(0), gold(0), level(1), CRITDMG(2), CRITRate(10) {
 }
@@ -82,8 +84,34 @@ void Entity::setCritRate(int critrate) {
     CRITRate = critrate; 
 }
 
+void Entity::poison(int turns, int dmgPerTurn) {
+    cout << "have been poisoned for " << turns << " turns!" << endl;
+    for (int i = 0; i < turns; i++) {
+        health -= dmgPerTurn;
+        if (health < 0) health = 0;
+        cout << "Poisoned for " << i + 1 << ": -" << dmgPerTurn << " HP. Health: " << health << endl;
+        if (!isAlive()) break;
+    }
+}
+
+void Entity::burn(int turns, int dmgPerTurn) {
+    cout << "have been poisoned for " << turns << " turns!" << endl;
+    for (int i = 0; i < turns; i++) {
+        health -= dmgPerTurn;
+        if (health < 0) health = 0;
+        cout << "Burn tick " << i + 1 << ": -" << dmgPerTurn << " HP. Health: " << health << endl;
+        if (!isAlive()) break;
+    }
+}
+
+void Entity::healing(int health) {
+	this->health += health;
+	cout << "Health increased by " << health << ". Current health: " << this->health << endl; //debug
+}
 
 
 Entity::~Entity()
 {
 }
+
+

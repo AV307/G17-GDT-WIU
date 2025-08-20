@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include<iostream>
 using namespace std;
 class Entity
 {
@@ -19,6 +20,8 @@ public:
     void setCritDMG(int critDMG);
     void setCritRate(int critRate);
 
+    void poison(int turns, int dmgPerTurn);
+
 
     Entity(int hp, int atk, int dmg, int def, int exp, int g, int lvl, int critdmg, int critrate);
 
@@ -34,15 +37,16 @@ public:
 
 
 
-    virtual void enemyPoison(int damage) {}
 
-    virtual void enemyBurn(int damage) {}
 
-	virtual bool isAlive() const { 
-        return health > 0; 
+	virtual bool isAlive() const {
+		return health > 0;
     }
 
+    virtual void healing(int health);
 	virtual ~Entity();
+
+    void burn(int turns, int dmgPerTurn);
 
 };
   

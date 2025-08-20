@@ -208,11 +208,13 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
 			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                        // If DEF <= ATK, Entity Final Damage is given value
 
-			if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-				player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
-			}
-			else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-				player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
+			if (specifiedEnemy.getHealth() > 0) {
+				if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
+					player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+				}
+				else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
+					player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
+				}
 			}
 			turnsInBattle++;
 		}
@@ -221,11 +223,13 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
 			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                    // If DEF <= ATK, Entity Final Damage is given value
 
-			if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-				player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
-			}
-			else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-				player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
+			if (specifiedEnemy.getHealth() > 0) {
+				if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
+					player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+				}
+				else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
+					player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
+				}
 			}
 			turnsInBattle++;
 		}

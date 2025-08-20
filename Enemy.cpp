@@ -17,6 +17,7 @@ int enemyHP[MAX_ENEMY_TYPE] = { 90 ,100 ,110, 100, 125, 100, 50, 120 };
 int enemyATK[MAX_ENEMY_TYPE] = { 10, 10, 7, 12, 12, 10, 13, 9 };
 int enemyDEF[MAX_ENEMY_TYPE] = { 10, 10, 9, 11, 12, 10, 35, 12 };
 
+
 Enemy::Enemy(std::string type, char status) {
 	//Checks what type of the enemy is (Undead/Animal/Flower ... )
 	xp = 0;
@@ -27,7 +28,7 @@ Enemy::Enemy(std::string type, char status) {
 			defence = enemyDEF[i];
 		}
 	}
-	//Checks what status the enemy is (Basic/Elite/Deluxe/Boss)
+	//Checks what status the enemy is (Basic/Elite/Deluxe/Boss)1
 	switch (status) {
 
 	case 'B':
@@ -61,4 +62,22 @@ bool Enemy::killEnemy() {
 	}
 	return false;
 }
+
+//Caleb 250601F
+//Getter functions for enemy statistics
+//Completed <- may expand 
+int Enemy::getHealth() const
+{
+	return health;
+}
+int Enemy::getAttack() const
+{
+	return attack;
+}
+int Enemy::getDefense() const
+{
+	return defence;
+}
+
+
 	

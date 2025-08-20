@@ -185,10 +185,10 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// (200 * 0.5) * 2     |      (ATK * DEF) * CRITDMG   =   200 Final Damage       |
 
 	// Damage Calculations
-	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                  // If Player Doesn't Crit
-	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                        // If Player Does Crit
-	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                   // If Enemy Doesn't Crit
-	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                 // If Enemy Does Crit
+	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                      // If Player Doesn't Crit
+	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                            // If Player Does Crit
+	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                       // If Enemy Doesn't Crit
+	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                     // If Enemy Does Crit
 
 	if (playerDamage < 0) {
 		playerDamage = 0;
@@ -206,7 +206,7 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// "Fight" Logic
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                        // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                            // If DEF <= ATK, Entity Final Damage is given value
 
 			if (specifiedEnemy.getHealth() > 0) {
 				if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
@@ -221,7 +221,7 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	}
 	else if (critPlayerDeterminant <= player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                    // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                        // If DEF <= ATK, Entity Final Damage is given value
 
 			if (specifiedEnemy.getHealth() > 0) {
 				if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
@@ -236,16 +236,16 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	}
 
 	// Damage Numbers Display (Text Dialogue)
-	if (critPlayerDeterminant > player.getCRITRate() && critEnemyDeterminant > specifiedEnemy.getCRITRate()) {                                            // If Player And Enemy DON'T Crit
+	if (critPlayerDeterminant > player.getCRITRate() && critEnemyDeterminant > specifiedEnemy.getCRITRate()) {                                                // If Player And Enemy DON'T Crit
 		setTextDialogue("You dealt " + to_string(playerDamage) + " DMG, received " + to_string(enemyDamage) + " DMG");
 	}
-	else if (critPlayerDeterminant <= player.getCRITRate() && critEnemyDeterminant > specifiedEnemy.getCRITRate()) {                                      // If Player Crits BUT Enemy doesn't
+	else if (critPlayerDeterminant <= player.getCRITRate() && critEnemyDeterminant > specifiedEnemy.getCRITRate()) {                                          // If Player Crits BUT Enemy doesn't
 		setTextDialogue("You dealt " + to_string(playerCritDamage) + " DMG (Critical!), received " + to_string(enemyDamage) + " DMG");
 	}
-	else if (critPlayerDeterminant > player.getCRITRate() && critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {                                      // If Enemy Crits BUT Player doesn't
+	else if (critPlayerDeterminant > player.getCRITRate() && critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {                                          // If Enemy Crits BUT Player doesn't
 		setTextDialogue("You dealt " + to_string(playerDamage) + " DMG, received " + to_string(enemyCritDamage) + " DMG (Critical!)");
 	}
-	else if (critPlayerDeterminant <= player.getCRITRate() && critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {                                     // If Player And Enemy BOTH Crit
+	else if (critPlayerDeterminant <= player.getCRITRate() && critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {                                         // If Player And Enemy BOTH Crit
 		setTextDialogue("You dealt " + to_string(playerCritDamage) + " DMG (Critical!), received " + to_string(enemyCritDamage) + " DMG (Critical!)");
 	}
 

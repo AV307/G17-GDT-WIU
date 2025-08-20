@@ -16,6 +16,7 @@ public:
 	void fightPVE(Entity& player, Entity& specifiedEnemy);
 	void itemPVE(Entity& player, Entity& specifiedEnemy);
 	void runPVE(Entity& player, Entity& specifiedEnemy);
+	bool winLoseCondition(Entity& player, Entity& specifiedEnemy);
 
 	std::string getTextDialogue();
 	void setTextDialogue(std::string textUpdate);

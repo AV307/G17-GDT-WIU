@@ -174,7 +174,7 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// (200 * 0.5) * 2     |      (ATK * DEF) * CRITDMG   =   200 Final Damage       |
 
 	// Damage Calculations
-	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                      // If Player Doesn't Crit
+	int playerDamage = player.getAttack() * (100-specifiedEnemy.getDefense()/100);                                                                                // If Player Doesn't Crit
 	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                            // If Player Does Crit
 	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                       // If Enemy Doesn't Crit
 	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                     // If Enemy Does Crit

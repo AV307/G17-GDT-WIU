@@ -233,6 +233,8 @@ void Player::removeConsumable(int index)
 	}
 }
 
+//Jayren 250920U
+//updates player's damage and defence stats based on equipped gear
 void Player::updateStats()
 {
 	int weaponAttackBonus = 0;

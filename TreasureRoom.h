@@ -6,7 +6,7 @@ class TreasureRoom :
 private:
     char** treasureRoomArray;
 public:
-    TreasureRoom(int currentStage);
+    TreasureRoom(int currentStage, int roomNumber);
     ~TreasureRoom();
     char** getTreasureRoomArray();
 };

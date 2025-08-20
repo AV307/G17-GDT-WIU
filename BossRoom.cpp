@@ -7,7 +7,7 @@ BossRoom::BossRoom(int currentStage)
 {
     roomHeight = 30;
     roomWidth = 30;
-    roomTopLeftX = 0;
+    roomTopLeftX = 0; //boss room should be diagonal up,left of main room
     roomTopLeftY = 0;
 
     // dynamically allocate bossRoomArray

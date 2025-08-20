@@ -37,8 +37,11 @@ public:
     Item** getWeapons();
     Item** getArmours();
     Item** getConsumables();
-    void addConsumable(std::string Name, int attackVal, int defenseVal);
+
+    void addConsumable(std::string Name, int attackVal, int defenseVal, int healVal);
     void removeConsumable(int index);
+
+    void updateStats();
 };
 
 

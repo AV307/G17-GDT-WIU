@@ -1,7 +1,7 @@
 #include "mainRoom.h"
 #include "Game.h"
 
-//252317H
+//Ang Zhi En 252317H
 //Constructor for mainRoom, defines the position and sets up the room
 //Incomplete
 mainRoom::mainRoom(int currentStage) {
@@ -39,7 +39,7 @@ mainRoom::mainRoom(int currentStage) {
     }
 }
 
-//252317H
+//Ang Zhi En 252317H
 //Destructor for mainRoom, deletes all created pointers
 //Incomplete
 mainRoom::~mainRoom() {
@@ -51,7 +51,7 @@ mainRoom::~mainRoom() {
     delete[] mainRoomArray;
 }
 
-//252317H
+//Ang Zhi En 252317H
 //mainRoomArray getter
 char** mainRoom::getMainRoomArray()
 {

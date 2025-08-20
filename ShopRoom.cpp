@@ -3,7 +3,7 @@
 //Ang Zhi En 252317H
 //Constructor for ShopRoom, defines position and sets up room
 //Incomplete
-ShopRoom::ShopRoom(int currentStage)
+ShopRoom::ShopRoom(int currentStage, int roomNumber)
 {
     roomHeight = 20;
     roomWidth = 20;

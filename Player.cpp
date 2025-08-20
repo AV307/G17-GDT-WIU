@@ -131,7 +131,7 @@ void Player::handleInventory(char inputVal)
 		}
 		break;
 	case'f':
-		addConsumable("Attack Potion", 5, 0);
+		addConsumable("Attack Potion", 5, 0, 0);
 		break;
 	case'g':
 		removeConsumable(inventoryIndex);
@@ -208,13 +208,14 @@ Item** Player::getConsumables()
 
 //Jayren 250920U
 //adds a consumable to the consumable array
-void Player::addConsumable(std::string Name, int attackVal, int defenseVal)
+void Player::addConsumable(std::string Name, int attackVal, int defenseVal, int healVal)
 {
 	for (int i = 0; i < 10; i++) {
 		if (consumables[i] == nullptr) {
 			Potion* consumable = new Potion;
 			consumable->setAttackVal(attackVal);
 			consumable->setDefenseVal(defenseVal);
+			consumable->setHealVal(healVal);
 			consumable->setName(Name);
 
 			consumables[i] = consumable;
@@ -231,4 +232,17 @@ void Player::removeConsumable(int index)
 		delete consumables[index];
 		consumables[index] = nullptr;
 	}
+}
+
+//Jayren 250920U
+//updates player's damage and defence stats based on equipped gear
+void Player::updateStats()
+{
+	int weaponAttackBonus = 0;
+	(equippedWeapon != nullptr) ? weaponAttackBonus = equippedWeapon->getAttackVal() : 0;
+	setDamage(attack + weaponAttackBonus);
+
+	int armourDefenseBonus = 0;
+	(equippedArmour != nullptr) ? armourDefenseBonus = equippedArmour->getDefenseVal() : 0;
+	setDefence(defence + armourDefenseBonus);
 }

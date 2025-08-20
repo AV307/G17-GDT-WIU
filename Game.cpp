@@ -188,7 +188,7 @@ void Game::doTurn()
 
     SetConsoleTextAttribute(hConsole, 7);
 
-    //plr.setAttack()
+    plr.updateStats();
 }
 
 

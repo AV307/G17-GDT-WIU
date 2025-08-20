@@ -82,6 +82,16 @@ void Player::doAction() {
 	}
 }
 
+int Player::getDamage() {
+	if (rand() % 100 <= CRITRate) {
+		attack *= (100 + CRITDMG);
+		damage = attack * (100 + strength / 100);
+	}
+	else {
+		damage = attack * (100 + strength / 100);
+	}
+	return damage;
+}
 void Player::checkCollision() {
 
 }

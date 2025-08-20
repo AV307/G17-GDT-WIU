@@ -1,7 +1,8 @@
 #include "Entity.h"
 #include "Enemy.h"
 #include "Game.h"
-#include <cmath>
+#include <cstdlib>
+#include <random>
 #include <iostream>
 #include <string>
 
@@ -22,6 +23,7 @@ char enemyStatus = ' ';
 
 Enemy::Enemy(std::string type, char status) {
 	//Checks what type of the enemy is (Undead/Animal/Flower ... )
+	srand(static_cast<unsigned int>(time(0)));
 	xp = 0;
 	gold = 0;
 	for (int i = 0; i < MAX_ENEMY_TYPE; i++) {
@@ -115,5 +117,16 @@ int Enemy::getDefense() const
 	return defense;
 }
 
+int Enemy::getDamage()
+{
+	if (rand() % 100 <= CRITRate) {
+		attack *= (100 + CRITDMG);
+		damage = attack;
+	}
+	else {
+		damage = attack;
+	}
+	return damage;
+}
 
 	

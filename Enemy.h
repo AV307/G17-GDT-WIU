@@ -16,6 +16,7 @@ public:
     int getHealth() const;
     int getAttack() const;
     int getDefense() const;
+    int getDamage() override;
 };
 
 

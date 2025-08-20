@@ -46,7 +46,18 @@ int Entity::getCRITDMG() const {
 }
 int Entity::getCRITRate() const { 
     return CRITRate; 
-}                                
+}     
+
+int Entity::getDamage() {
+    if (rand() % 100 <= CRITRate) {
+        attack *= (100 + CRITDMG);
+        damage = attack;
+    }
+    else {
+        damage = attack;
+    }
+    return damage;
+}
 
 void Entity::setHealth(int hp) { 
     health = hp; 

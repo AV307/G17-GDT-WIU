@@ -16,11 +16,12 @@ std::string enemyBank[MAX_ENEMY_TYPE] = { "Undead", "Animal", "Flower", "Aquatic
 int enemyHP[MAX_ENEMY_TYPE] = { 90 ,100 ,110, 100, 125, 100, 50, 120 };
 int enemyATK[MAX_ENEMY_TYPE] = { 10, 10, 7, 12, 12, 10, 13, 9 };
 int enemyDEF[MAX_ENEMY_TYPE] = { 10, 10, 9, 11, 12, 10, 35, 12 };
-
+char enemyStatus = ' ';
 
 Enemy::Enemy(std::string type, char status) {
 	//Checks what type of the enemy is (Undead/Animal/Flower ... )
 	xp = 0;
+	gold = 0;
 	for (int i = 0; i < MAX_ENEMY_TYPE; i++) {
 		if (type == enemyBank[i]) {
 			health = enemyHP[i];
@@ -28,6 +29,7 @@ Enemy::Enemy(std::string type, char status) {
 			defence = enemyDEF[i];
 		}
 	}
+	enemyStatus = status;
 	//Checks what status the enemy is (Basic/Elite/Deluxe/Boss)1
 	switch (status) {
 
@@ -57,8 +59,15 @@ Enemy::~Enemy(){}
 //Completed
 bool Enemy::killEnemy() {
 	if (health <= 0) {
-		 xp = static_cast<int>((((health + attack + defence) / 100) * level) / 10);
-		 return true;
+		if (enemyStatus != 'D') {
+			xp = static_cast<int>((((health + attack + defence)) * level) / 10);
+			gold = 1;
+		}
+		else if (enemyStatus == 'D') {
+			xp = static_cast<int>((((health + attack + defence)) * level) / 5);
+			gold = 5;
+		}
+		return true;
 	}
 	return false;
 }

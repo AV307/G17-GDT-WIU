@@ -5,6 +5,10 @@
 #include <random>
 #include <iostream>
 #include <string>
+
+//Caleb 250601F
+//4 arrays to store enemy types for its corresponding statistics
+//Completed
 using namespace std;
 
 const static int MAX_ENEMY_TYPE = 8;
@@ -13,7 +17,9 @@ int enemyHP[MAX_ENEMY_TYPE] = { 90 ,100 ,110, 100, 125, 100, 50, 120 };
 int enemyATK[MAX_ENEMY_TYPE] = { 10, 10, 7, 12, 12, 10, 13, 9 };
 int enemyDEF[MAX_ENEMY_TYPE] = { 10, 10, 9, 11, 12, 10, 35, 12 };
 
+
 Enemy::Enemy(std::string type, char status) {
+	//Checks what type of the enemy is (Undead/Animal/Flower ... )
 	xp = 0;
 	for (int i = 0; i < MAX_ENEMY_TYPE; i++) {
 		if (type == enemyBank[i]) {
@@ -22,7 +28,9 @@ Enemy::Enemy(std::string type, char status) {
 			defence = enemyDEF[i];
 		}
 	}
+	//Checks what status the enemy is (Basic/Elite/Deluxe/Boss)1
 	switch (status) {
+
 	case 'B':
 		break;
 	case 'E':
@@ -44,7 +52,9 @@ Enemy::Enemy(std::string type, char status) {
 }
 Enemy::~Enemy(){}
 
-
+//Caleb 250601F
+//Checks if enemy is killed, returns true if does and vice versa
+//Completed
 bool Enemy::killEnemy() {
 	if (health <= 0) {
 		 xp = static_cast<int>((((health + attack + defence) / 100) * level) / 10);
@@ -52,4 +62,22 @@ bool Enemy::killEnemy() {
 	}
 	return false;
 }
+
+//Caleb 250601F
+//Getter functions for enemy statistics
+//Completed <- may expand 
+int Enemy::getHealth() const
+{
+	return health;
+}
+int Enemy::getAttack() const
+{
+	return attack;
+}
+int Enemy::getDefense() const
+{
+	return defence;
+}
+
+
 	

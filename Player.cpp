@@ -242,6 +242,6 @@ void Player::updateStats()
 	setDamage(attack + weaponAttackBonus);
 
 	int armourDefenseBonus = 0;
-	(equippedArmour != nullptr) ? armourDefenseBonus = equippedArmour->getAttackVal() : 0;
+	(equippedArmour != nullptr) ? armourDefenseBonus = equippedArmour->getDefenseVal() : 0;
 	setDefence(defence + armourDefenseBonus);
 }

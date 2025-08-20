@@ -42,9 +42,10 @@ Player::Player(){
 	equippedWeapon = nullptr;
 	equippedArmour = nullptr;
 
-	CRITRate = 15;
-	CRITDMG = 15;
-	strength = 15;
+	CRITRate = 25;
+	CRITDMG = 50;
+	strength = 0;
+	attack = 15;
 }
 
 Player::~Player() {
@@ -130,10 +131,10 @@ void Player::handleInventory(char inputVal)
 		}
 		break;
 	case'f':
-		addConsumable("Attack Potion", 5, 0);
+		addConsumable("Attack Potion", 5, 0, 0);
 		break;
 	case'g':
-		removeConsumable();
+		removeConsumable(inventoryIndex);
 		break;
 	case 13:
 		if (menuIndex == 1) {
@@ -207,13 +208,14 @@ Item** Player::getConsumables()
 
 //Jayren 250920U
 //adds a consumable to the consumable array
-void Player::addConsumable(std::string Name, int attackVal, int defenseVal)
+void Player::addConsumable(std::string Name, int attackVal, int defenseVal, int healVal)
 {
 	for (int i = 0; i < 10; i++) {
 		if (consumables[i] == nullptr) {
 			Potion* consumable = new Potion;
 			consumable->setAttackVal(attackVal);
 			consumable->setDefenseVal(defenseVal);
+			consumable->setHealVal(healVal);
 			consumable->setName(Name);
 
 			consumables[i] = consumable;
@@ -223,14 +225,24 @@ void Player::addConsumable(std::string Name, int attackVal, int defenseVal)
 }
 
 //Jayren 250920U
-//removes a consumable from the consumables array (Temporary function)
-void Player::removeConsumable()
+//removes a consumable from the consumables array
+void Player::removeConsumable(int index)
 {
-	for (int i = 9; i >= 0; i--) {
-		if (consumables[i] != nullptr) {
-			delete consumables[i];
-			consumables[i] = nullptr;
-			break;
-		}
+	if (consumables[index] != nullptr) {
+		delete consumables[index];
+		consumables[index] = nullptr;
 	}
+}
+
+//Jayren 250920U
+//updates player's damage and defence stats based on equipped gear
+void Player::updateStats()
+{
+	int weaponAttackBonus = 0;
+	(equippedWeapon != nullptr) ? weaponAttackBonus = equippedWeapon->getAttackVal() : 0;
+	setDamage(attack + weaponAttackBonus);
+
+	int armourDefenseBonus = 0;
+	(equippedArmour != nullptr) ? armourDefenseBonus = equippedArmour->getDefenseVal() : 0;
+	setDefence(defence + armourDefenseBonus);
 }

@@ -11,8 +11,11 @@ public:
     Enemy(string type, char status);
     ~Enemy();
     bool killEnemy();
-    //char getStatus() const;
-    //string getType() const;
+    int calculateLoot();
+
+    int getHealth() const;
+    int getAttack() const;
+    int getDefense() const;
 };
 
 

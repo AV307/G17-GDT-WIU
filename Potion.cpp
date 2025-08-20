@@ -4,6 +4,7 @@ Potion::Potion()
 {
 	attackBuff = 0;
 	defenseBuff = 0;
+	heal = 0;
 }
 
 Potion::~Potion()
@@ -20,6 +21,11 @@ void Potion::setDefenseVal(int val)
 	defenseBuff = val;
 }
 
+void Potion::setHealVal(int val)
+{
+	heal = val;
+}
+
 int Potion::getAttackBuff() const
 {
 	return attackBuff;
@@ -28,4 +34,9 @@ int Potion::getAttackBuff() const
 int Potion::getDefenseBuff() const
 {
 	return defenseBuff;
+}
+
+int Potion::getHeal() const
+{
+	return heal;
 }

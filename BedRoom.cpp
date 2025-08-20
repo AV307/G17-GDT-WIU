@@ -3,12 +3,11 @@
 //Ang Zhi En 252317H
 //Constructor for bedRoom, defines the position and sets up the room
 //Incomplete
-BedRoom::BedRoom(int currentStage)
+BedRoom::BedRoom(int currentStage, int roomNumber)
 {
     roomHeight = 20;
     roomWidth = 20;
-    roomTopLeftX = 0; //dependant on whether room 1 or 2, incomplete
-    roomTopLeftY = 0;
+    setRoomLocation(roomNumber);
 
     // dynamically allocate bedRoomArray
     bedRoomArray = new char* [roomHeight];

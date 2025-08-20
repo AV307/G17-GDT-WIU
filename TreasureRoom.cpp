@@ -3,12 +3,11 @@
 //Ang Zhi En 252317H
 //Constructor for TreasureRoom, set position and sets up the room
 //Incomplete
-TreasureRoom::TreasureRoom(int currentStage)
+TreasureRoom::TreasureRoom(int currentStage, int roomNumber)
 {
     roomHeight = 20;
     roomWidth = 20;
-    roomTopLeftX = 0;
-    roomTopLeftY = 30;
+    setRoomLocation(roomNumber);
 
     // dynamically allocate treasureRoomArray
     treasureRoomArray = new char* [roomHeight];

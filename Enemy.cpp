@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "Enemy.h"
+#include "Game.h"
 #include <cmath>
 #include <cstdlib>
 #include <random>
@@ -104,7 +105,7 @@ int Enemy::getAttack() const
 }
 int Enemy::getDefense() const
 {
-	return defence;
+	return defense;
 }
 
 

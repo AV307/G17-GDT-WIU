@@ -6,6 +6,7 @@ class Entity
 {
 protected:
     int attack ,health ,damage ,defense ,xp ,gold ,level, CRITDMG, CRITRate;
+    int xPos, yPos;
 
 public:
 	Entity();
@@ -25,6 +26,10 @@ public:
 
     Entity(int hp, int atk, int dmg, int def, int exp, int g, int lvl, int critdmg, int critrate);
 
+    const static int MAX_LEVEL = 5;
+    int currentLevel = 1;
+    int thresholdXP[(MAX_LEVEL-1)] = { 50, 100, 200, 300 };
+    int getThresholdXP();
     int getHealth() const;
     int getAttack() const;
     int getDamage() const;

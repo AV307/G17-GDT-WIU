@@ -312,8 +312,8 @@ bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
 		player.setGold(player.getGold() + specifiedEnemy.getGold());
 		player.setXP(player.getXP() + specifiedEnemy.getXP());
 
-		while (player.getXP() > player.thresholdXP()) {
-			player.setXP(player.getXP() - player.thresholdXP());
+		while (player.getXP() > player.getThresholdXP()) {
+			player.setXP(player.getXP() - player.getThresholdXP());
 			player.setLvl(player.getLvl() + 1);
 		}
 		return true;                                                                                               // Boolean returns isPlayerAlive to be true

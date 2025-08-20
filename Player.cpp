@@ -47,6 +47,8 @@ Player::Player(){
 	CRITDMG = 50;
 	strength = 0;
 	attack = 15;
+	xPos = 0;
+	yPos = 0;
 }
 
 Player::~Player() {
@@ -90,16 +92,23 @@ void Player::checkConsumption() {
 
 }
 
+//Caleb 250601F
+//KeyPressed movements for player
 void Player::handleMovement(char inputVal)
 {
+	inputVal = _getch();
 	switch (inputVal) {
 	case'w':
+		yPos++;
 		break;
 	case'a':
+		xPos--;
 		break;
 	case's':
+		yPos++;
 		break;
 	case'd':
+		xPos++;
 		break;
 	default:
 		break;

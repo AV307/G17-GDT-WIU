@@ -5,8 +5,7 @@ using namespace std;
 
 class Enemy : public Entity {
 private:
-
-
+    int currentStage;
 public:
     Enemy(string type, char status);
     ~Enemy();

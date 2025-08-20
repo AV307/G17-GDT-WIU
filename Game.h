@@ -8,11 +8,14 @@ private:
     Stage* stage;
     int currentStage;
     Player plr;
+
 public:
     Game();
     ~Game();
 
+    static Game& getInstance(); 
     int getCurrentStage();
+
     void doTurn();
 };
 

@@ -1,6 +1,7 @@
 #include "Entity.h"
 #include "Enemy.h"
 #include "Game.h"
+#include "Game.cpp"
 #include <cmath>
 #include <cstdlib>
 #include <random>
@@ -59,22 +60,25 @@ Enemy::~Enemy() {}
 //Calculate enemy loot based on level, status, and type
 //Completed
 int Enemy::calculateLoot() {
+
+	currentStage = Game::getInstance().getCurrentStage(); //Singleton Technqiue: only one object
+
 	switch (enemyStatus) {
 	case 'B':
 		xp = static_cast<int>((((health + attack + defense)) * level) / 100);
-		gold = 3;
+		gold = 3 + currentStage;
 		return xp, gold;
 	case 'E':
 		xp = static_cast<int>((((health + attack + defense)) * level) / 70);
-		gold = 5;
+		gold = 5 + currentStage;
 		return xp, gold;
 	case 'D':
 		xp = static_cast<int>((((health + attack + defense)) * level) / 35);
-		gold = 10;
+		gold = 10 + currentStage;
 		return xp, gold;
 	case 'X':
 		xp = static_cast<int>((((health + attack + defense)) * level) / 10);
-		gold = 25;
+		gold = 25 + currentStage;
 		return xp, gold;
 	}
 }

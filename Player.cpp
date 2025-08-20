@@ -134,7 +134,7 @@ void Player::handleInventory(char inputVal)
 		addConsumable("Attack Potion", 5, 0);
 		break;
 	case'g':
-		removeConsumable();
+		removeConsumable(inventoryIndex);
 		break;
 	case 13:
 		if (menuIndex == 1) {
@@ -224,14 +224,11 @@ void Player::addConsumable(std::string Name, int attackVal, int defenseVal)
 }
 
 //Jayren 250920U
-//removes a consumable from the consumables array (Temporary function)
-void Player::removeConsumable()
+//removes a consumable from the consumables array
+void Player::removeConsumable(int index)
 {
-	for (int i = 9; i >= 0; i--) {
-		if (consumables[i] != nullptr) {
-			delete consumables[i];
-			consumables[i] = nullptr;
-			break;
-		}
+	if (consumables[index] != nullptr) {
+		delete consumables[index];
+		consumables[index] = nullptr;
 	}
 }

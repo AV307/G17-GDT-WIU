@@ -129,4 +129,7 @@ int Enemy::getDamage()
 	return damage;
 }
 
-	
+//Benjamin 250572M
+bool Enemy::isBossDefeated() const {
+	return bossDefeated;
+}

@@ -256,3 +256,16 @@ void Player::updateStats()
 	(equippedArmour != nullptr) ? armourDefenseBonus = equippedArmour->getDefenseVal() : 0;
 	setDefense(defense + armourDefenseBonus);
 }
+
+//Benjamim 250572M
+int Player::getEnemiesDefeated() const {
+	return enemiesDefeated;
+}
+
+bool Player::hasSolvedPuzzle() const {
+	return solvedPuzzle;
+}
+
+int Player::getWeaponCount() const {
+	return weaponCount;
+}

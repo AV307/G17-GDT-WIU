@@ -17,6 +17,11 @@ private:
     int menuIndex;
     int inventoryIndex;
 
+    int enemiesDefeated;      
+    bool solvedPuzzle;        
+    int weaponCount;          
+
+
     int CRITRate, CRITDMG, strength;
 public:
 
@@ -27,6 +32,10 @@ public:
     void checkConsumption();
     void handleMovement(char inputVal);
     void handleInventory(char inputVal);
+    int getEnemiesDefeated() const;    
+    bool hasSolvedPuzzle() const;      
+    int getWeaponCount() const;        
+
 
     int getInventoryIndex();
     int getMenuIndex();

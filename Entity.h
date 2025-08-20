@@ -6,7 +6,6 @@ class Entity
 {
 protected:
     int attack ,health ,damage ,defense ,xp ,gold ,level, CRITDMG, CRITRate;
-    virtual int getDamage();
 
 public:
 	Entity();

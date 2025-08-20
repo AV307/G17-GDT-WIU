@@ -30,7 +30,6 @@ public:
 
     int getInventoryIndex();
     int getMenuIndex();
-    int getDamage() override;
 
     bool checkInventoryOpen();
     bool checkKey();

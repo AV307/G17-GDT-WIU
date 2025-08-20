@@ -17,6 +17,5 @@ public:
     int getAttack() const;
     int getDefense() const;
 };
-   
 
 

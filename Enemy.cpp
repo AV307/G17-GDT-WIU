@@ -86,7 +86,9 @@ bool Enemy::killEnemy() {
 		calculateLoot();
 		return true;
 	}
-	return false;
+	else {
+		return false;
+	}
 }
 
 //Caleb 250601F

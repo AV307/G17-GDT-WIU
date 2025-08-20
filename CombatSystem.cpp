@@ -165,8 +165,8 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	int critEnemyDeterminant = rand() % 100 + 1;
 
 	// Damage Equation
-	// Final Damage = (Base Attack * Crit Dmg) - Base Defence
-	// Crit Damage ignores Defence
+	// Final Damage = Attack * (100 + Strength)% * (100 - EnemyDefense)%
+	// Crit Damage =  (100 + CRIT DMG)% * Normal Damage
 	// Example:
 	// (200 - 50) * 2      |      (ATK - DEF) * CRITDMG   =   300 Final Damage       |       Critical took place after ATK reduced by DEF
 	// (200 * 2) - 50      |      (ATK * CRITDMG) - DEF   =   350 Final Damage       |       DEF took place after Critical

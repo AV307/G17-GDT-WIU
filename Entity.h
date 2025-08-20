@@ -6,6 +6,7 @@ class Entity
 {
 protected:
     int attack ,health ,damage ,defense ,xp ,gold ,level, CRITDMG, CRITRate;
+    int sycophant_heart;
     int xPos, yPos;
 
 public:

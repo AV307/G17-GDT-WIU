@@ -21,12 +21,12 @@ void CombatSystem::setTextDialogue(std::string textUpdate) {
 	textDialogue = textUpdate;
 }
 
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 // Function Name: printCombatScreen
 // Description: Used to print the combat screen when player enters combat with an enemy
-// Parameter(s): None
+// Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): None
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 
@@ -72,18 +72,7 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 		if (n == 6) { // Combat Option Line
 			cout << "// +      Fight 'F'      +  +       Item 'I'      +  +       Run 'R'       + //" << endl;
 		}
-		// if (n == 9) { // 1/2 Division Line
-		//	 cout << "// +";
-		//	 for (int i = 0; i < 35; i++) {
-		//		 cout << " ";
-		//	 }
-		//	 cout << "+";
-		//	 for (int i = 0; i < 35; i++) {
-		//		 cout << " ";
-		//	 }
-		//	 cout << "+ //" << endl;
-		// }
-		if (n == 9) {
+		if (n == 9) { // 1/2 Division Line
 			cout << "// +";
 			for (int i = 0; i < 7; i++) {
 				cout << " ";
@@ -163,12 +152,12 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 
 
 
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 // Function Name: fightPVE
 // Description: To carry out the "Fight" action between Player and Enemy
-// Parameter(s): None
+// Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): None
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 
@@ -185,10 +174,10 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// (200 * 0.5) * 2     |      (ATK * DEF) * CRITDMG   =   200 Final Damage       |
 
 	// Damage Calculations
-	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                  // If Player Doesn't Crit
-	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                        // If Player Does Crit
-	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                   // If Enemy Doesn't Crit
-	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                 // If Enemy Does Crit
+	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                      // If Player Doesn't Crit
+	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                            // If Player Does Crit
+	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                       // If Enemy Doesn't Crit
+	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                     // If Enemy Does Crit
 
 	if (playerDamage < 0) {
 		playerDamage = 0;
@@ -206,7 +195,7 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// "Fight" Logic
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                        // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                            // If DEF <= ATK, Entity Final Damage is given value
 
 			if (specifiedEnemy.getHealth() > 0) {
 				if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
@@ -221,7 +210,7 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	}
 	else if (critPlayerDeterminant <= player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                    // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                        // If DEF <= ATK, Entity Final Damage is given value
 
 			if (specifiedEnemy.getHealth() > 0) {
 				if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
@@ -236,16 +225,16 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	}
 
 	// Damage Numbers Display (Text Dialogue)
-	if (critPlayerDeterminant > player.getCRITRate() && critEnemyDeterminant > specifiedEnemy.getCRITRate()) {                                            // If Player And Enemy DON'T Crit
+	if (critPlayerDeterminant > player.getCRITRate() && critEnemyDeterminant > specifiedEnemy.getCRITRate()) {                                                // If Player And Enemy DON'T Crit
 		setTextDialogue("You dealt " + to_string(playerDamage) + " DMG, received " + to_string(enemyDamage) + " DMG");
 	}
-	else if (critPlayerDeterminant <= player.getCRITRate() && critEnemyDeterminant > specifiedEnemy.getCRITRate()) {                                      // If Player Crits BUT Enemy doesn't
+	else if (critPlayerDeterminant <= player.getCRITRate() && critEnemyDeterminant > specifiedEnemy.getCRITRate()) {                                          // If Player Crits BUT Enemy doesn't
 		setTextDialogue("You dealt " + to_string(playerCritDamage) + " DMG (Critical!), received " + to_string(enemyDamage) + " DMG");
 	}
-	else if (critPlayerDeterminant > player.getCRITRate() && critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {                                      // If Enemy Crits BUT Player doesn't
+	else if (critPlayerDeterminant > player.getCRITRate() && critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {                                          // If Enemy Crits BUT Player doesn't
 		setTextDialogue("You dealt " + to_string(playerDamage) + " DMG, received " + to_string(enemyCritDamage) + " DMG (Critical!)");
 	}
-	else if (critPlayerDeterminant <= player.getCRITRate() && critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {                                     // If Player And Enemy BOTH Crit
+	else if (critPlayerDeterminant <= player.getCRITRate() && critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {                                         // If Player And Enemy BOTH Crit
 		setTextDialogue("You dealt " + to_string(playerCritDamage) + " DMG (Critical!), received " + to_string(enemyCritDamage) + " DMG (Critical!)");
 	}
 
@@ -262,12 +251,12 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 
 
 
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 // Function Name: itemPVE
 // Description: To carry out the "Item" action between Player and Enemy
-// Parameter(s): None
+// Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): None
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 
@@ -277,13 +266,46 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 
 
 
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 // Function Name: runPVE
 // Description: To carry out the "Run" action between Player and Enemy
-// Parameter(s): None
+// Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): None
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 
+}
+
+
+
+
+
+// +----------------------------------------------------------------------------------------------+ //
+// Function Name: winLoseOutcome
+// Description: To carry out what happens if the battle ends
+// Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
+// Return(s): A boolean of true or false
+// +----------------------------------------------------------------------------------------------+ //
+
+bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
+	if (player.getHealth() == 0) {                                                                                 // If Player HP is 0
+		exit(0);
+		return false;                                                                                              // Boolean returns isPlayerAlive to be false, exit game
+	}
+	else if (player.getHealth() == 0 && specifiedEnemy.getHealth() == 0) {                                         // If Enemy HP is 0 BUT Player HP is 0
+		exit(0);
+		return false;                                                                                              // Boolean returns isPlayerAlive to be false, exit game
+	}
+	else if (specifiedEnemy.getHealth() == 0 && player.getHealth() > 0) {                                          // If Enemy HP is 0 but Player is Alive
+		player.setGold(player.getGold() + specifiedEnemy.getGold());
+		player.setXP(player.getXP() + specifiedEnemy.getXP());
+
+		while (player.getXP() > player.getThresholdXP()) {
+			player.setXP(player.getXP() - player.getThresholdXP());
+			player.setLvl(player.getLvl() + 1);
+		}
+		return true;                                                                                               // Boolean returns isPlayerAlive to be true
+	}
+	return true;
 }

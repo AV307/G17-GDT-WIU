@@ -3,7 +3,8 @@
 #include "Weapon.h"
 #include "Armour.h"
 #include "Potion.h"
-
+#include "Entity.h"
+#include "Enemy.h"
 #include <conio.h>
 #include <iostream>
 #include <cstdlib>
@@ -46,6 +47,8 @@ Player::Player(){
 	CRITDMG = 50;
 	strength = 0;
 	attack = 15;
+	xPos = 0;
+	yPos = 0;
 }
 
 Player::~Player() {
@@ -89,16 +92,23 @@ void Player::checkConsumption() {
 
 }
 
+//Caleb 250601F
+//KeyPressed movements for player
 void Player::handleMovement(char inputVal)
 {
+	inputVal = _getch();
 	switch (inputVal) {
 	case'w':
+		yPos++;
 		break;
 	case'a':
+		xPos--;
 		break;
 	case's':
+		yPos++;
 		break;
 	case'd':
+		xPos++;
 		break;
 	default:
 		break;
@@ -245,4 +255,17 @@ void Player::updateStats()
 	int armourDefenseBonus = 0;
 	(equippedArmour != nullptr) ? armourDefenseBonus = equippedArmour->getDefenseVal() : 0;
 	setDefense(defense + armourDefenseBonus);
+}
+
+//Benjamim 250572M
+int Player::getEnemiesDefeated() const {
+	return enemiesDefeated;
+}
+
+bool Player::hasSolvedPuzzle() const {
+	return solvedPuzzle;
+}
+
+int Player::getWeaponCount() const {
+	return weaponCount;
 }

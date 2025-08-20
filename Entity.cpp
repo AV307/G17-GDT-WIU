@@ -46,8 +46,11 @@ int Entity::getCRITDMG() const {
 }
 int Entity::getCRITRate() const { 
     return CRITRate; 
-}                                
+}     
 
+int Entity::getThresholdXP() {
+    return thresholdXP[currentLevel];
+}
 void Entity::setHealth(int hp) { 
     health = hp; 
 }
@@ -83,6 +86,8 @@ void Entity::setCritDMG(int critdmg) {
 void Entity::setCritRate(int critrate) {
     CRITRate = critrate; 
 }
+
+
 //Benjamin 250572M
 //Check the amount of health damaged over turn
 //Completed

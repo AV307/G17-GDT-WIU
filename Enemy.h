@@ -7,15 +7,20 @@ class Game;
 class Enemy : public Entity {
 private:
     int currentStage;
+    bool bossDefeated;
+
 public:
     Enemy(string type, char status);
     ~Enemy();
     bool killEnemy(Game* game);
+    bool isBossDefeated() const;
     int calculateLoot(Game* game);
 
     int getHealth() const;
     int getAttack() const;
     int getDefense() const;
+    int getDamage();
+
 };
 
 

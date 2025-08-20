@@ -26,39 +26,25 @@ void Stage::setStageArray(int currentStage, char room1, char room2)
     char** mainRoomArray = static_cast<mainRoom*>(rooms[0])->getMainRoomArray();
     int mainRoomTopLeftX = rooms[0]->getRoomTopLeftX();
     int mainRoomTopLeftY = rooms[0]->getRoomTopLeftY();
-    for (int i = 0; i < rooms[0]->getRoomHeight(); i++)
+    for (int i{ 0 }; i < rooms[0]->getRoomHeight(); i++)
     {
-        for (int j = 0; j < rooms[0]->getRoomWidth(); j++)
+        for (int j{ 0 }; j < rooms[0]->getRoomWidth(); j++)
         {
             stageArray[mainRoomTopLeftX + i][mainRoomTopLeftY + j] = mainRoomArray[i][j];
         }
     }
 
+    // sets whatever room is randomly generated into the stage for room1
     switch (room1)
-    {
-    case 'S':
-        // set shopRoom into stage
-
-        break;
-    case 'T':
-        // set treasureRoom into stage
-
-        break;
-    case 'B':
-        // set bedRoom into stage
-
-        break;
-    }
-    switch (room2)
     {
     case 'S': {
         // set shopRoom into stage
-        char** shopRoomArray = static_cast<ShopRoom*>(rooms[2])->getShopRoomArray();
-        int shopRoomTopLeftX = rooms[2]->getRoomTopLeftX();
-        int shopRoomTopLeftY = rooms[2]->getRoomTopLeftY();
-        for (int i = 0; i < rooms[2]->getRoomHeight(); i++)
+        char** shopRoomArray{ static_cast<ShopRoom*>(rooms[1])->getShopRoomArray() };
+        int shopRoomTopLeftX{ rooms[1]->getRoomTopLeftX() };
+        int shopRoomTopLeftY{ rooms[1]->getRoomTopLeftY() };
+        for (int i{ 0 }; i < rooms[1]->getRoomHeight(); i++)
         {
-            for (int j = 0; j < rooms[2]->getRoomWidth(); j++)
+            for (int j{ 0 }; j < rooms[1]->getRoomWidth(); j++)
             {
                 stageArray[shopRoomTopLeftX + i][shopRoomTopLeftY + j] = shopRoomArray[i][j];
             }
@@ -67,12 +53,12 @@ void Stage::setStageArray(int currentStage, char room1, char room2)
     }
     case 'T': {
         // set treasureRoom into stage
-        char** treasureRoomArray = static_cast<TreasureRoom*>(rooms[2])->getTreasureRoomArray();
-        int treasureRoomTopLeftX = rooms[2]->getRoomTopLeftX();
-        int treasureRoomTopLeftY = rooms[2]->getRoomTopLeftY();
-        for (int i = 0; i < rooms[2]->getRoomHeight(); i++)
+        char** treasureRoomArray{ static_cast<TreasureRoom*>(rooms[1])->getTreasureRoomArray() };
+        int treasureRoomTopLeftX{ rooms[1]->getRoomTopLeftX() };
+        int treasureRoomTopLeftY{ rooms[1]->getRoomTopLeftY() };
+        for (int i{ 0 }; i < rooms[1]->getRoomHeight(); i++)
         {
-            for (int j = 0; j < rooms[2]->getRoomWidth(); j++)
+            for (int j{ 0 }; j < rooms[1]->getRoomWidth(); j++)
             {
                 stageArray[treasureRoomTopLeftX + i][treasureRoomTopLeftY + j] = treasureRoomArray[i][j];
             }
@@ -81,12 +67,59 @@ void Stage::setStageArray(int currentStage, char room1, char room2)
     }
     case 'B': {
         // set bedRoom into stage
-        char** bedRoomArray = static_cast<BedRoom*>(rooms[2])->getBedRoomArray();
-        int bedRoomTopLeftX = rooms[2]->getRoomTopLeftX();
-        int bedRoomTopLeftY = rooms[2]->getRoomTopLeftY();
-        for (int i = 0; i < rooms[2]->getRoomHeight(); i++)
+        char** bedRoomArray{ static_cast<BedRoom*>(rooms[1])->getBedRoomArray() };
+        int bedRoomTopLeftX{ rooms[1]->getRoomTopLeftX() };
+        int bedRoomTopLeftY{ rooms[1]->getRoomTopLeftY() };
+        for (int i{ 0 }; i < rooms[1]->getRoomHeight(); i++)
         {
-            for (int j = 0; j < rooms[2]->getRoomWidth(); j++)
+            for (int j{ 0 }; j < rooms[1]->getRoomWidth(); j++)
+            {
+                stageArray[bedRoomTopLeftX + i][bedRoomTopLeftY + j] = bedRoomArray[i][j];
+            }
+        }
+        break;
+    }
+    }
+
+    // sets whatever room is randomly generated (or the bossRoom for stage 3 and 5) into the stage for room2
+    switch (room2)
+    {
+    case 'S': {
+        // set shopRoom into stage
+        char** shopRoomArray{ static_cast<ShopRoom*>(rooms[2])->getShopRoomArray() };
+        int shopRoomTopLeftX{ rooms[2]->getRoomTopLeftX() };
+        int shopRoomTopLeftY{ rooms[2]->getRoomTopLeftY() };
+        for (int i{ 0 }; i < rooms[2]->getRoomHeight(); i++)
+        {
+            for (int j{ 0 }; j < rooms[2]->getRoomWidth(); j++)
+            {
+                stageArray[shopRoomTopLeftX + i][shopRoomTopLeftY + j] = shopRoomArray[i][j];
+            }
+        }
+        break;
+    }
+    case 'T': {
+        // set treasureRoom into stage
+        char** treasureRoomArray{ static_cast<TreasureRoom*>(rooms[2])->getTreasureRoomArray() };
+        int treasureRoomTopLeftX{ rooms[2]->getRoomTopLeftX() };
+        int treasureRoomTopLeftY{ rooms[2]->getRoomTopLeftY() };
+        for (int i{ 0 }; i < rooms[2]->getRoomHeight(); i++)
+        {
+            for (int j{ 0 }; j < rooms[2]->getRoomWidth(); j++)
+            {
+                stageArray[treasureRoomTopLeftX + i][treasureRoomTopLeftY + j] = treasureRoomArray[i][j];
+            }
+        }
+        break;
+    }
+    case 'B': {
+        // set bedRoom into stage
+        char** bedRoomArray{ static_cast<BedRoom*>(rooms[2])->getBedRoomArray() };
+        int bedRoomTopLeftX{ rooms[2]->getRoomTopLeftX() };
+        int bedRoomTopLeftY{ rooms[2]->getRoomTopLeftY() };
+        for (int i{ 0 }; i < rooms[2]->getRoomHeight(); i++)
+        {
+            for (int j{ 0 }; j < rooms[2]->getRoomWidth(); j++)
             {
                 stageArray[bedRoomTopLeftX + i][bedRoomTopLeftY + j] = bedRoomArray[i][j];
             }
@@ -95,12 +128,12 @@ void Stage::setStageArray(int currentStage, char room1, char room2)
     }
     case 'F': {
         // set the bossRoom into the stage
-        char** bossRoomArray = static_cast<BossRoom*>(rooms[2])->getBossRoomArray();
-        int bossRoomTopLeftX = rooms[2]->getRoomTopLeftX();
-        int bossRoomTopLeftY = rooms[2]->getRoomTopLeftY();
-        for (int i = 0; i < rooms[2]->getRoomHeight(); i++)
+        char** bossRoomArray{ static_cast<BossRoom*>(rooms[2])->getBossRoomArray() };
+        int bossRoomTopLeftX{ rooms[2]->getRoomTopLeftX() };
+        int bossRoomTopLeftY{ rooms[2]->getRoomTopLeftY() };
+        for (int i{ 0 }; i < rooms[2]->getRoomHeight(); i++)
         {
-            for (int j = 0; j < rooms[2]->getRoomWidth(); j++)
+            for (int j{ 0 }; j < rooms[2]->getRoomWidth(); j++)
             {
                 stageArray[bossRoomTopLeftX + i][bossRoomTopLeftY + j] = bossRoomArray[i][j];
             }
@@ -116,25 +149,25 @@ void Stage::setStageArray(int currentStage, char room1, char room2)
 Stage::Stage(Game* game)
 	: game(game), gen(rd()), dis(1, 3)
 {
-    int currentStage = game->getCurrentStage();
+    int currentStage{ game->getCurrentStage() };
 
 	rooms[0] = new mainRoom(currentStage);
 
-    int randomRoom1 = dis(gen);
+    int randomRoom1{ dis(gen) };
 
     char room1{};
     char room2{};
     switch (randomRoom1) 
     {
-    case 0:
+    case 1:
         rooms[1] = new ShopRoom(currentStage, 1);
         room1 = 'S';
         break;
-    case 1:
+    case 2:
         rooms[1] = new TreasureRoom(currentStage, 1);
         room1 = 'T';
         break;
-    case 2:
+    case 3:
         rooms[1] = new BedRoom(currentStage, 1);
         room1 = 'B';
         break;
@@ -184,8 +217,8 @@ Stage::~Stage()
 //Debugging function, will not be used (player will have fov in final game)
 void Stage::printStage()
 {
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
+    for (int i{ 0 }; i < 100; i++) {
+        for (int j{ 0 }; j < 100; j++) {
             std::cout << stageArray[i][j];
         }
         std::cout << std::endl;

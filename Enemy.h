@@ -3,14 +3,15 @@
 #include<string>
 using namespace std;
 
+class Game;
 class Enemy : public Entity {
 private:
     int currentStage;
 public:
     Enemy(string type, char status);
     ~Enemy();
-    bool killEnemy();
-    int calculateLoot();
+    bool killEnemy(Game* game);
+    int calculateLoot(Game* game);
 
     int getHealth() const;
     int getAttack() const;

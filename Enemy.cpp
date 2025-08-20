@@ -1,7 +1,6 @@
 #include "Entity.h"
 #include "Enemy.h"
 #include "Game.h"
-#include "Game.cpp"
 #include <cmath>
 #include <cstdlib>
 #include <random>
@@ -59,9 +58,10 @@ Enemy::~Enemy() {}
 //Caleb 250601F
 //Calculate enemy loot based on level, status, and type
 //Completed
-int Enemy::calculateLoot() {
+int Enemy::calculateLoot(Game* game)
+{
 
-	currentStage = Game::getInstance().getCurrentStage(); //Singleton Technqiue: only one object
+	currentStage = game->getCurrentStage(); //Singleton Technique: gets values from one object
 
 	switch (enemyStatus) {
 	case 'B':
@@ -86,9 +86,9 @@ int Enemy::calculateLoot() {
 //Caleb 250601F
 //Checks if enemy is killed, returns true if does and vice versa
 //Completed
-bool Enemy::killEnemy() {
+bool Enemy::killEnemy(Game* game) {
 	if (health <= 0) {
-		calculateLoot();
+		calculateLoot(game);
 		return true;
 	}
 	else {

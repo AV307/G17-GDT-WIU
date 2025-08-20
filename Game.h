@@ -13,7 +13,6 @@ public:
     Game();
     ~Game();
 
-    static Game& getInstance(); 
     int getCurrentStage();
 
     void doTurn();

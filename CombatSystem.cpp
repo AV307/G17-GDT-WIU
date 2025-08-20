@@ -72,18 +72,7 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 		if (n == 6) { // Combat Option Line
 			cout << "// +      Fight 'F'      +  +       Item 'I'      +  +       Run 'R'       + //" << endl;
 		}
-		// if (n == 9) { // 1/2 Division Line
-		//	 cout << "// +";
-		//	 for (int i = 0; i < 35; i++) {
-		//		 cout << " ";
-		//	 }
-		//	 cout << "+";
-		//	 for (int i = 0; i < 35; i++) {
-		//		 cout << " ";
-		//	 }
-		//	 cout << "+ //" << endl;
-		// }
-		if (n == 9) {
+		if (n == 9) { // 1/2 Division Line
 			cout << "// +";
 			for (int i = 0; i < 7; i++) {
 				cout << " ";

@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "Enemy.h"
+#include "Game.h"
 #include <cmath>
 #include <cstdlib>
 #include <random>
@@ -86,7 +87,9 @@ bool Enemy::killEnemy() {
 		calculateLoot();
 		return true;
 	}
-	return false;
+	else {
+		return false;
+	}
 }
 
 //Caleb 250601F

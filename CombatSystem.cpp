@@ -1,7 +1,6 @@
 #include "CombatSystem.h"
 #include <iostream>
 #include <string>
-#include <conio.h>
 #include "Entity.h"
 
 using namespace std;
@@ -172,6 +171,7 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 // +----------------------------------------------------------------------------------+ //
 
 void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
+
 	int critPlayerDeterminant = rand() % 100 + 1;
 	int critEnemyDeterminant = rand() % 100 + 1;
 
@@ -183,79 +183,66 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// (200 * 2) - 50      |      (ATK * CRITDMG) - DEF   =   350 Final Damage       |       DEF took place after Critical
 	// (200 * 2) * 0.5     |      (ATK * CRITDMG) * DEF   =   200 Final Damage       |
 	// (200 * 0.5) * 2     |      (ATK * DEF) * CRITDMG   =   200 Final Damage       |
+
+	// Damage Calculations
+	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                  // If Player Doesn't Crit
+	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                        // If Player Does Crit
+	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                   // If Enemy Doesn't Crit
+	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                 // If Enemy Does Crit
+
+	if (playerDamage < 0) {
+		playerDamage = 0;
+	}
+	if (playerCritDamage < 0) {
+		playerCritDamage = 0;
+	}
+	if (enemyDamage < 0) {
+		enemyDamage = 0;
+	}
+	if (enemyCritDamage < 0) {
+		enemyCritDamage = 0;
+	}
 	
+	// "Fight" Logic
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			if (player.getAttack() - specifiedEnemy.getDefense() < 0) {
-				specifiedEnemy.setHealth(specifiedEnemy.getHealth());                                                                                     // If DEF > ATK, Entity Final Damage = 0 (heal from hit prevention)
-			}
-			else {
-				specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() - specifiedEnemy.getDefense()));                                // If DEF <= ATK, Entity Final Damage is given value
-			}
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                        // If DEF <= ATK, Entity Final Damage is given value
+
 			if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-				if (specifiedEnemy.getAttack() - player.getDefense() < 0) {
-					player.setHealth(player.getHealth());                                                                                                 // If DEF > ATK, Entity Final Damage = 0 (heal from hit prevention)
-				}
-				else {
-					player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() - player.getDefense()));                                            // If DEF <= ATK, Entity Final Damage is given value
-				}
+				player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
 			}
 			else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-				if (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense() < 0) {
-					player.setHealth(player.getHealth());                                                                                                 // If DEF > ATK, Entity Final Damage = 0 (heal from hit prevention)
-				}
-				else {
-					player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense()));              // If DEF <= ATK, Entity Final Damage is given value
-				}
+				player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
 			}
+			turnsInBattle++;
 		}
 	}
 	else if (critPlayerDeterminant <= player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			if (player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense() < 0) {
-				specifiedEnemy.setHealth(specifiedEnemy.getHealth());                                                                                     // If DEF > ATK, Entity Final Damage = 0 (heal from hit prevention)
-			}
-			else {
-				specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense()));          // If DEF <= ATK, Entity Final Damage is given value
-			}
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                    // If DEF <= ATK, Entity Final Damage is given value
+
 			if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-				if (specifiedEnemy.getAttack() - player.getDefense() < 0) {
-					player.setHealth(player.getHealth());                                                                                                 // If DEF > ATK, Entity Final Damage = 0 (heal from hit prevention)
-				}
-				else {
-					player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() - player.getDefense()));                                            // If DEF <= ATK, Entity Final Damage is given value
-				}
+				player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
 			}
 			else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-				if (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense() < 0) {
-					player.setHealth(player.getHealth());                                                                                                 // If DEF > ATK, Entity Final Damage = 0 (heal from hit prevention)
-				}
-				else {
-					player.setHealth(player.getHealth() - (specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense()));              // If DEF <= ATK, Entity Final Damage is given value
-				}
+				player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
 			}
+			turnsInBattle++;
 		}
 	}
 
+	// Damage Numbers Display (Text Dialogue)
 	if (critPlayerDeterminant > player.getCRITRate() && critEnemyDeterminant > specifiedEnemy.getCRITRate()) {                                            // If Player And Enemy DON'T Crit
-		int playerDmg = player.getAttack() - specifiedEnemy.getDefense();
-		int enemyDmg = specifiedEnemy.getAttack() - player.getDefense();
-		setTextDialogue("You dealt " + to_string(playerDmg) + " DMG, received " + to_string(enemyDmg) + " DMG");
+		setTextDialogue("You dealt " + to_string(playerDamage) + " DMG, received " + to_string(enemyDamage) + " DMG");
 	}
 	else if (critPlayerDeterminant <= player.getCRITRate() && critEnemyDeterminant > specifiedEnemy.getCRITRate()) {                                      // If Player Crits BUT Enemy doesn't
-		int playerDmg = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();
-		int enemyDmg = specifiedEnemy.getAttack() - player.getDefense();
-		setTextDialogue("You dealt " + to_string(playerDmg) + " DMG (Critical!), received " + to_string(enemyDmg) + " DMG");
+		setTextDialogue("You dealt " + to_string(playerCritDamage) + " DMG (Critical!), received " + to_string(enemyDamage) + " DMG");
 	}
 	else if (critPlayerDeterminant > player.getCRITRate() && critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {                                      // If Enemy Crits BUT Player doesn't
-		int playerDmg = player.getAttack() - specifiedEnemy.getDefense();
-		int enemyDmg = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();
-		setTextDialogue("You dealt " + to_string(playerDmg) + " DMG, received " + to_string(enemyDmg) + " DMG (Critical!)");
+		setTextDialogue("You dealt " + to_string(playerDamage) + " DMG, received " + to_string(enemyCritDamage) + " DMG (Critical!)");
 	}
 	else if (critPlayerDeterminant <= player.getCRITRate() && critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {                                     // If Player And Enemy BOTH Crit
-		int playerDmg = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();
-		int enemyDmg = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();
-		setTextDialogue("You dealt " + to_string(playerDmg) + " DMG (Critical!), received " + to_string(enemyDmg) + " DMG (Critical!)");
+		setTextDialogue("You dealt " + to_string(playerCritDamage) + " DMG (Critical!), received " + to_string(enemyCritDamage) + " DMG (Critical!)");
 	}
 
 	// Error Check To Ensure No Negative HP Values

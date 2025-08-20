@@ -7,8 +7,7 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
 {
     roomHeight = 20;
     roomWidth = 20;
-    roomTopLeftX = 0; //dependant on room number
-    roomTopLeftY = 0;
+    setRoomLocation(roomNumber);
 
     // dynamically allocate shopRoomArray
     shopRoomArray = new char* [roomHeight];

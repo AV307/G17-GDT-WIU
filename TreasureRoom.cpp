@@ -7,8 +7,7 @@ TreasureRoom::TreasureRoom(int currentStage, int roomNumber)
 {
     roomHeight = 20;
     roomWidth = 20;
-    roomTopLeftX = 0;
-    roomTopLeftY = 30;
+    setRoomLocation(roomNumber);
 
     // dynamically allocate treasureRoomArray
     treasureRoomArray = new char* [roomHeight];

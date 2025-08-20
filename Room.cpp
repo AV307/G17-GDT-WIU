@@ -2,6 +2,7 @@
 
 Room::Room()
 {
+	// literally nothing to put here
 }
 
 Room::~Room()

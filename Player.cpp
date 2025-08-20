@@ -232,3 +232,16 @@ void Player::removeConsumable(int index)
 		consumables[index] = nullptr;
 	}
 }
+
+//Jayren 250920U
+//updates player's damage and defence stats based on equipped gear
+void Player::updateStats()
+{
+	int weaponAttackBonus = 0;
+	(equippedWeapon != nullptr) ? weaponAttackBonus = equippedWeapon->getAttackVal() : 0;
+	setDamage(attack + weaponAttackBonus);
+
+	int armourDefenseBonus = 0;
+	(equippedArmour != nullptr) ? armourDefenseBonus = equippedArmour->getAttackVal() : 0;
+	setDefence(defence + armourDefenseBonus);
+}

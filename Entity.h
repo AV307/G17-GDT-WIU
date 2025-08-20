@@ -36,15 +36,15 @@ public:
     int getCRITRate() const;
 
 
-
-
-
 	virtual bool isAlive() const {
 		return health > 0;
     }
 
     virtual void healing(int health);
 	virtual ~Entity();
+    virtual int getDamage(int oppDef) {
+        return damage;
+    }
 
     void burn(int turns, int dmgPerTurn);
 

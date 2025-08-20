@@ -185,6 +185,9 @@ void Game::doTurn()
         std::cout << "+------------+" << "+------------+" << "+------------+" << std::endl;
         std::cout << "+----------------------------------------+" << std::endl;
     }
+    else {
+
+    }
 
     SetConsoleTextAttribute(hConsole, 7);
 

@@ -14,6 +14,7 @@ Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
     currentStage = 3;
+    plr = new Player;
     stage = new Stage(this);
     //stage->printStage(); //debugging code
 }
@@ -23,6 +24,7 @@ Game::Game()
 //Incomplete
 Game::~Game() {
     delete stage;
+    delete plr;
 }
 
 //Ang Zhi En 252317H
@@ -37,20 +39,20 @@ int Game::getCurrentStage()
 //Does a turn. if inventory is open, gameplay pauses, player movement keys control the inventory menu
 void Game::doTurn()
 {
-    plr.doAction();
+    plr->doAction();
 
     system("cls");
 
-    bool inventoryOpen = plr.checkInventoryOpen();
-    bool hasKey = plr.checkKey();
+    bool inventoryOpen = plr->checkInventoryOpen();
+    bool hasKey = plr->checkKey();
 
-    int menuIndex = plr.getMenuIndex();
-    int inventoryIndex = plr.getInventoryIndex();
+    int menuIndex = plr->getMenuIndex();
+    int inventoryIndex = plr->getInventoryIndex();
 
-    Item** weapons = plr.getWeapons();
-    Item** armours = plr.getArmours();
-    Item** consumables = plr.getConsumables();
-    Item** artifacts = plr.getArtifacts();
+    Item** weapons = plr->getWeapons();
+    Item** armours = plr->getArmours();
+    Item** consumables = plr->getConsumables();
+    Item** artifacts = plr->getArtifacts();
 
     if (inventoryOpen == true) {
         std::cout << "+------------------------------------------------------+" << std::endl;
@@ -224,7 +226,7 @@ void Game::doTurn()
 
     SetConsoleTextAttribute(hConsole, 7);
 
-    plr.updateStats();
+    plr->updateStats();
 }
 
 

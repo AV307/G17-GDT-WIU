@@ -53,8 +53,8 @@ Player::Player(){
 	CRITRate = 25;
 	CRITDMG = 1.5;
 	attack = 15;
-	xPos = 0;
-	yPos = 0;
+	setXPos(50);
+	setYPos(90);
 }
 
 Player::~Player() {
@@ -102,19 +102,20 @@ void Player::checkConsumption() {
 //KeyPressed movements for player
 void Player::handleMovement(char inputVal)
 {
-	inputVal = _getch();
+	int xPosition = getXPos();
+	int yPosition = getYPos();
 	switch (inputVal) {
 	case'w':
-		yPos++;
+		setYPos(yPosition - 1);
 		break;
 	case'a':
-		xPos--;
+		setXPos(xPosition - 1);
 		break;
 	case's':
-		yPos++;
+		setYPos(yPosition + 1);
 		break;
 	case'd':
-		xPos++;
+		setXPos(xPosition + 1);
 		break;
 	default:
 		break;

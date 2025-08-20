@@ -21,12 +21,12 @@ void CombatSystem::setTextDialogue(std::string textUpdate) {
 	textDialogue = textUpdate;
 }
 
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 // Function Name: printCombatScreen
 // Description: Used to print the combat screen when player enters combat with an enemy
-// Parameter(s): None
+// Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): None
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 
@@ -163,12 +163,12 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 
 
 
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 // Function Name: fightPVE
 // Description: To carry out the "Fight" action between Player and Enemy
-// Parameter(s): None
+// Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): None
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 
@@ -262,12 +262,12 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 
 
 
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 // Function Name: itemPVE
 // Description: To carry out the "Item" action between Player and Enemy
-// Parameter(s): None
+// Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): None
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 
@@ -277,13 +277,40 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 
 
 
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 // Function Name: runPVE
 // Description: To carry out the "Run" action between Player and Enemy
-// Parameter(s): None
+// Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): None
-// +----------------------------------------------------------------------------------+ //
+// +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 
+}
+
+
+
+
+
+// +----------------------------------------------------------------------------------------------+ //
+// Function Name: winLoseOutcome
+// Description: To carry out what happens if the battle ends
+// Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
+// Return(s): A boolean of true or false
+// +----------------------------------------------------------------------------------------------+ //
+
+bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
+	if (player.getHealth() == 0) {                                                                                 // If Player HP is 0
+		exit(0);
+		return false;                                                                                              // Boolean returns isPlayerAlive to be false, exit game
+	}
+	else if (player.getHealth() == 0 && specifiedEnemy.getHealth() == 0) {                                         // If Enemy HP is 0 BUT Player HP is 0
+		exit(0);
+		return false;                                                                                              // Boolean returns isPlayerAlive to be false, exit game
+	}
+	else if (specifiedEnemy.getHealth() == 0 && player.getHealth() > 0) {                                          // If Enemy HP is 0 but Player is Alive
+		player.setGold(player.getGold() + specifiedEnemy.getGold());
+		player.setXP(player.getXP() + specifiedEnemy.getXP());
+		return true;                                                                                               // Boolean returns isPlayerAlive to be true
+	}
 }

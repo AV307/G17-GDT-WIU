@@ -2,12 +2,12 @@
 
 
 
-Entity::Entity() : health(100), attack(10), damage(5), defence(5), xp(0), gold(0), level(1), CRITDMG(2), CRITRate(10) {
+Entity::Entity() : health(100), attack(10), damage(5), defense(5), xp(0), gold(0), level(1), CRITDMG(2), CRITRate(10) {
 }
 
 
 Entity::Entity(int hp, int atk, int dmg, int def, int exp, int g, int lvl, int critdmg, int critrate)
-    : health(hp), attack(atk), damage(dmg), defence(def),
+    : health(hp), attack(atk), damage(dmg), defense(def),
     xp(exp), gold(g), level(lvl), CRITDMG(critdmg), CRITRate(critrate) {
 }
 
@@ -24,7 +24,7 @@ int Entity::getDamage() const {
 }
 
 int Entity::getDefense() const { 
-    return defence; 
+    return defense; 
 }
 
 int Entity::getXP() const { 
@@ -59,7 +59,7 @@ void Entity::setDamage(int dmg) {
 }
 
 void Entity::setDefense(int def) { 
-    defence = def; 
+    defense = def; 
 }
 
 void Entity::setXP(int exp) { 

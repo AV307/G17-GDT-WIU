@@ -24,7 +24,7 @@ Enemy::Enemy(std::string type, char status) {
 		if (type == enemyBank[i]) {
 			health = enemyHP[i];
 			attack = enemyATK[i];
-			defence = enemyDEF[i];
+			defense = enemyDEF[i];
 		}
 	}
 	//Checks what status the enemy is (Basic/Elite/Deluxe/Boss)
@@ -35,17 +35,17 @@ Enemy::Enemy(std::string type, char status) {
 	case 'E':
 		health *= static_cast<int>(150 / 100);
 		attack *= static_cast<int>(150 / 100);
-		defence *= static_cast<int>(150 / 100);
+		defense *= static_cast<int>(150 / 100);
 		break;
 	case 'D':
 		health *= static_cast<int>(220 / 100);
 		attack *= static_cast<int>(175 / 100);
-		defence *= static_cast<int>(175 / 100);
+		defense *= static_cast<int>(175 / 100);
 		break;
 	case 'X':
 		health *= static_cast<int>(350 / 100);
 		attack *= static_cast<int>(250 / 100);
-		defence *= static_cast<int>(200 / 100);
+		defense *= static_cast<int>(200 / 100);
 		break;
 	}
 }
@@ -56,7 +56,7 @@ Enemy::~Enemy() {}
 //Completed
 bool Enemy::killEnemy() {
 	if (health <= 0) {
-		xp = static_cast<int>((((health + attack + defence) / 100) * level) / 10);
+		xp = static_cast<int>((((health + attack + defense) / 100) * level) / 10);
 		return true;
 	}
 	return false;

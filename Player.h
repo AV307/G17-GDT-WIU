@@ -7,6 +7,7 @@ private:
     Item* weaponry[10];
     Item* armoury[10];
     Item* consumables[10];
+    Item* artifacts[10];
 
     Item* equippedWeapon;
     Item* equippedArmour;
@@ -46,9 +47,12 @@ public:
     Item** getWeapons();
     Item** getArmours();
     Item** getConsumables();
+    Item** getArtifacts();
 
     void addConsumable(std::string Name, int attackVal, int defenseVal, int healVal);
     void removeConsumable(int index);
+
+    void addArtifact(int index);
 
     void updateStats();
 };

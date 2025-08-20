@@ -28,11 +28,18 @@ Player::Player(){
 	}
 
 	for (int i = 0; i < 10; i++) {
-		armoury[i]->setOwned(true);
+		artifacts[i] = new Item;
+		artifacts[i]->setName("Artifact");
+	}
+
+	for (int i = 0; i < 10; i++) {
+		armoury[i]->setOwned(false);
 		armoury[i]->setEquipped(false);
 
-		weaponry[i]->setOwned(true);
+		weaponry[i]->setOwned(false);
 		weaponry[i]->setEquipped(false);
+		
+		artifacts[i]->setOwned(false);
 	}
 
 	inventoryOpen = false;
@@ -135,7 +142,7 @@ void Player::handleInventory(char inputVal)
 		}
 		break;
 	case'd':
-		if (menuIndex < 3) {
+		if (menuIndex < 4) {
 			menuIndex++;
 		}
 		break;
@@ -215,6 +222,11 @@ Item** Player::getConsumables()
 	return consumables;
 }
 
+Item** Player::getArtifacts()
+{
+	return artifacts;
+}
+
 //Jayren 250920U
 //adds a consumable to the consumable array
 void Player::addConsumable(std::string Name, int attackVal, int defenseVal, int healVal)
@@ -240,6 +252,13 @@ void Player::removeConsumable(int index)
 	if (consumables[index] != nullptr) {
 		delete consumables[index];
 		consumables[index] = nullptr;
+	}
+}
+
+void Player::addArtifact(int index)
+{
+	if (artifacts[index] != nullptr) {
+		artifacts[index]->setOwned(true);
 	}
 }
 

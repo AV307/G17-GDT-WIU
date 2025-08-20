@@ -44,8 +44,7 @@ Player::Player(){
 	equippedArmour = nullptr;
 
 	CRITRate = 25;
-	CRITDMG = 50;
-	strength = 0;
+	CRITDMG = 1.5;
 	attack = 15;
 	xPos = 0;
 	yPos = 0;

@@ -76,14 +76,17 @@ int Enemy::calculateLoot(Game* gamePtr)
 	case 'E':
 		xp = static_cast<int>(baseEXP / 70);
 		gold = 5 + currentStage;
+		sycophant_heart += 1;
 		return xp, gold;
 	case 'D':
 		xp = static_cast<int>(baseEXP / 35);
 		gold = 10 + currentStage;
+		sycophant_heart += 2;
 		return xp, gold;
 	case 'X':
 		xp = static_cast<int>(baseEXP / 10);
 		gold = 25 + currentStage;
+		sycophant_heart += 3;
 		return xp, gold;
 	}
 }
@@ -115,18 +118,6 @@ int Enemy::getAttack() const
 int Enemy::getDefense() const
 {
 	return defense;
-}
-
-int Enemy::getDamage()
-{
-	if (rand() % 100 <= CRITRate) {
-		attack *= (100 + CRITDMG);
-		damage = attack;
-	}
-	else {
-		damage = attack;
-	}
-	return damage;
 }
 
 // vampire

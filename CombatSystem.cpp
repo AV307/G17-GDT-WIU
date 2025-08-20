@@ -165,8 +165,8 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	int critEnemyDeterminant = rand() % 100 + 1;
 
 	// Damage Equation
-	// Final Damage = (Base Attack * Crit Dmg) - Base Defence
-	// Crit Damage ignores Defence
+	// Final Damage = Attack * (100 - EnemyDefense)/100
+	// Crit Damage =  (100 + CRIT DMG)% * Normal Damage
 	// Example:
 	// (200 - 50) * 2      |      (ATK - DEF) * CRITDMG   =   300 Final Damage       |       Critical took place after ATK reduced by DEF
 	// (200 * 2) - 50      |      (ATK * CRITDMG) - DEF   =   350 Final Damage       |       DEF took place after Critical
@@ -174,9 +174,9 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// (200 * 0.5) * 2     |      (ATK * DEF) * CRITDMG   =   200 Final Damage       |
 
 	// Damage Calculations
-	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                      // If Player Doesn't Crit
+	int playerDamage = player.getAttack() * (100-specifiedEnemy.getDefense()/100);                                                                                // If Player Doesn't Crit
 	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                            // If Player Does Crit
-	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                       // If Enemy Doesn't Crit
+	int enemyDamage = specifiedEnemy.getAttack() - (100-player.getDefense()/100);                                                                                       // If Enemy Doesn't Crit
 	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                     // If Enemy Does Crit
 
 	if (playerDamage < 0) {

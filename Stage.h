@@ -7,7 +7,7 @@ class Stage
 {
 private:
     char stageArray[100][100];
-    Room* rooms[3];
+    Room* rooms[4];
     Game* game;
 
     std::random_device rd;

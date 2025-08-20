@@ -40,7 +40,7 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
 //Incomplete
 ShopRoom::~ShopRoom()
 {
-    // deallocate bedRoomArray
+    // deallocate shopRoomArray
     for (int i{ 0 }; i < roomHeight; i++)
     {
         delete[] shopRoomArray[i];

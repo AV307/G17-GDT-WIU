@@ -4,6 +4,7 @@
 #include "TreasureRoom.h"
 #include "BedRoom.h"
 #include "BossRoom.h"
+#include "PortalRoom.h"
 
 #include "Game.h"
 
@@ -141,6 +142,18 @@ void Stage::setStageArray(int currentStage, char room1, char room2)
         break;
     }
     }
+
+    // set the portalRoom into the stage
+    char** portalRoomArray = static_cast<PortalRoom*>(rooms[3])->getPortalRoomArray();
+    int portalRoomTopLeftX = rooms[3]->getRoomTopLeftX();
+    int portalRoomTopLeftY = rooms[3]->getRoomTopLeftY();
+    for (int i{ 0 }; i < rooms[3]->getRoomHeight(); i++)
+    {
+        for (int j{ 0 }; j < rooms[3]->getRoomWidth(); j++)
+        {
+            stageArray[portalRoomTopLeftX + i][portalRoomTopLeftY + j] = portalRoomArray[i][j];
+        }
+    }
 }
 
 //Ang Zhi En 252317H
@@ -197,6 +210,8 @@ Stage::Stage(Game* game)
             break;
         }
     }
+
+    rooms[3] = new PortalRoom(currentStage, 3);
 
     setStageArray(currentStage, room1, room2);
 }

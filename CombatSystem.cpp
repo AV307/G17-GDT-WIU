@@ -1,7 +1,6 @@
 #include "CombatSystem.h"
 #include <iostream>
 #include <string>
-#include <conio.h>
 #include "Entity.h"
 
 using namespace std;

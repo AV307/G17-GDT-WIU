@@ -1,4 +1,4 @@
-#include "Entity.h"
+﻿#include "Entity.h"
 #include "Enemy.h"
 #include "Game.h"
 #include <cstdlib>
@@ -128,6 +128,7 @@ int Enemy::getDamage()
 	}
 	return damage;
 }
+
 
 // vampire
 //			    \--\           \--\ 

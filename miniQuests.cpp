@@ -61,7 +61,6 @@ void miniQuests::setQuest(int index, string name, int gold, int xp) {
     }
 }
 
-// Show all quests
 void miniQuests::showQuests() const {
     for (int i = 0; i < numberOfQuests; i++) {
         cout << i + 1 << ". " << questNames[i]

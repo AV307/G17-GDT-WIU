@@ -10,12 +10,15 @@
 #include <random>
 #include <iostream>
 
-void Stage::setStageArray(int currentStage)
+//Ang Zhi En 252317H
+//set the stageArray, fill up stage area with all the rooms that are created for the currentStage
+//Incomplete
+void Stage::setStageArray(int currentStage, char room1, char room2)
 {
     // initialize stageArray to spaces
     for (int i{ 0 }; i < 100; i++) {
         for (int j{ 0 }; j < 100; j++) {
-            stageArray[i][j] = ' ';
+            stageArray[i][j] = '-';
         }
     }
 
@@ -31,28 +34,49 @@ void Stage::setStageArray(int currentStage)
         }
     }
 
-    // set the bossRoom into the stage
-    char** bossRoomArray = static_cast<BossRoom*>(rooms[0])->getBossRoomArray();
-    int bossRoomTopLeftX = rooms[0]->getRoomTopLeftX();
-    int bossRoomTopLeftY = rooms[0]->getRoomTopLeftY();
-    for (int i = 0; i < rooms[0]->getRoomHeight(); i++)
+    switch (room1)
     {
-        for (int j = 0; j < rooms[0]->getRoomWidth(); j++)
+    case 'S':
+        // set shopRoom into stage
+
+        break;
+    case 'T':
+        // set treasureRoom into stage
+
+        break;
+    case 'B':
+        // set bedRoom into stage
+
+        break;
+    }
+    switch (room2)
+    {
+    case 'S':
+        break;
+    case 'T':
+        break;
+    case 'B':
+        break;
+    case 'F':
+        // set the bossRoom into the stage
+        char** bossRoomArray = static_cast<BossRoom*>(rooms[2])->getBossRoomArray();
+        int bossRoomTopLeftX = rooms[2]->getRoomTopLeftX();
+        int bossRoomTopLeftY = rooms[2]->getRoomTopLeftY();
+        for (int i = 0; i < rooms[2]->getRoomHeight(); i++)
         {
-            stageArray[bossRoomTopLeftX + i][bossRoomTopLeftY + j] = bossRoomArray[i][j];
+            for (int j = 0; j < rooms[2]->getRoomWidth(); j++)
+            {
+                stageArray[bossRoomTopLeftX + i][bossRoomTopLeftY + j] = bossRoomArray[i][j];
+            }
         }
+
+        break;
     }
-
-   /* if (currentStage == 3 || currentStage == 5)
-    {
-
-    }
-    else
-    {
-
-    }*/
 }
 
+//Ang Zhi En 252317H
+//Constructor for Stage, uses randomiser to decide on the rooms generated for currentStage
+//Incomplete
 Stage::Stage(Game* game)
 	: game(game), gen(rd()), dis(1, 3)
 {
@@ -60,24 +84,30 @@ Stage::Stage(Game* game)
 
 	rooms[0] = new mainRoom(currentStage);
 
-
     int randomRoom1 = dis(gen);
+
+    char room1{};
+    char room2{};
     switch (randomRoom1) 
     {
     case 0:
-        rooms[1] = new ShopRoom;
+        rooms[1] = new ShopRoom(currentStage);
+        room1 = 'S';
         break;
     case 1:
-        rooms[1] = new TreasureRoom;
+        rooms[1] = new TreasureRoom(currentStage);
+        room1 = 'T';
         break;
     case 2:
-        rooms[1] = new BedRoom;
+        rooms[1] = new BedRoom(currentStage);
+        room1 = 'B';
         break;
     }
 
     if (currentStage == 3 || currentStage == 5) 
     {
-        rooms[2] = new BossRoom;
+        rooms[2] = new BossRoom(currentStage);
+        room2 = 'F';
     }
     else 
     {
@@ -85,20 +115,26 @@ Stage::Stage(Game* game)
         switch (randomRoom2) 
         {
         case 0:
-            rooms[1] = new ShopRoom;
+            rooms[2] = new ShopRoom(currentStage);
+            room2 = 'S';
             break;
         case 1:
-            rooms[1] = new TreasureRoom;
+            rooms[2] = new TreasureRoom(currentStage);
+            room2 = 'T';
             break;
         case 2:
-            rooms[1] = new BedRoom;
+            rooms[2] = new BedRoom(currentStage);
+            room2 = 'B';
             break;
         }
     }
 
-    setStageArray(currentStage);
+    setStageArray(currentStage, room1, room2);
 }
 
+//Ang Zhi En 252317H
+//Destructor for stage, delete pointers
+//Incomplete
 Stage::~Stage() 
 {
     for (int i{ 0 }; i <= 2; i++)
@@ -107,6 +143,9 @@ Stage::~Stage()
     }
 }
 
+//Ang Zhi En 252317H
+//Print out the stage, with the rooms inside
+//Debugging function, will not be used (player will have fov in final game)
 void Stage::printStage()
 {
     for (int i = 0; i < 100; i++) {

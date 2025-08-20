@@ -8,6 +8,8 @@ Room::~Room()
 {
 }
 
+//Ang Zhi En 252317H
+//Getters for room related data
 int Room::getRoomTopLeftX()
 {
 	return roomTopLeftX;

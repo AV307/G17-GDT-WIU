@@ -4,9 +4,10 @@ class TreasureRoom :
     public Room
 {
 private:
-    char treasureRoomarray[20][20];
+    char** treasureRoomArray;
 public:
-    TreasureRoom();
+    TreasureRoom(int currentStage);
     ~TreasureRoom();
+    char** getTreasureRoomArray();
 };
 

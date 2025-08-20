@@ -4,9 +4,10 @@ class ShopRoom :
     public Room
 {
 private:
-    char shopRoomArray[20][20];
-
+    char** shopRoomArray;
 public:
-    ShopRoom();
+    ShopRoom(int currentStage);
+    ~ShopRoom();
+    char** getShopRoomArray();
 };
 

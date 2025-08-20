@@ -9,12 +9,21 @@ protected:
 public:
 	Entity();
 
-    Entity(int hp, int atk, int dmg, int def, int exp, int g, int lvl, int critdmg, int critrate);
+    void setHealth(int hp);
+    void setAttack(int atk);
+    void setDamage(int dmg);
+    void setDefence(int def);
+    void setXP(int xp);
+    void setGold(int gold);
+    void setLvl(int lvl);
+    void setCritDMG(int critDMG);
+    void setCritRate(int critRate);
+
 
     int getHealth() const;
     int getAttack() const;
     int getDamage() const;
-    int getDefense() const;
+    int getDefence() const;
     int getXP() const;
     int getGold() const;
     int getLvl() const;

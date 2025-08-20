@@ -6,7 +6,7 @@ class ShopRoom :
 private:
     char** shopRoomArray;
 public:
-    ShopRoom(int currentStage);
+    ShopRoom(int currentStage, int roomNumber);
     ~ShopRoom();
     char** getShopRoomArray();
 };

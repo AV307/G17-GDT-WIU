@@ -15,5 +15,7 @@ public:
 
 	int getRoomWidth();
 	int getRoomHeight();
+
+	void setRoomLocation(int roomNumber);
 };
 

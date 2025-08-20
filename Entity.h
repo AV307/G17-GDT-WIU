@@ -42,7 +42,6 @@ public:
 
     virtual void healing(int health);
 	virtual ~Entity();
-
     void burn(int turns, int dmgPerTurn);
 
 	void freeze(int turns, int dmgPerTurn);

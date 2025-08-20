@@ -3,7 +3,8 @@
 #include "Weapon.h"
 #include "Armour.h"
 #include "Potion.h"
-
+#include "Entity.h"
+#include "Enemy.h"
 #include <conio.h>
 #include <iostream>
 #include <cstdlib>

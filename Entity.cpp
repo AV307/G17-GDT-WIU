@@ -46,7 +46,7 @@ int Entity::getCRITDMG() const {
 }
 int Entity::getCRITRate() const { 
     return CRITRate; 
-}                                
+}     
 
 void Entity::setHealth(int hp) { 
     health = hp; 

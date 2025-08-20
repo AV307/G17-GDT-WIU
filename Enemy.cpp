@@ -1,7 +1,6 @@
 #include "Entity.h"
 #include "Enemy.h"
 #include "Game.h"
-#include <cmath>
 #include <cstdlib>
 #include <random>
 #include <iostream>
@@ -17,10 +16,14 @@ std::string enemyBank[MAX_ENEMY_TYPE] = { "Undead", "Animal", "Flower", "Aquatic
 int enemyHP[MAX_ENEMY_TYPE] = { 90 ,100 ,110, 45, 125, 100, 50, 130 };
 int enemyATK[MAX_ENEMY_TYPE] = { 10, 10, 7, 35, 15, 10, 13, 7 };
 int enemyDEF[MAX_ENEMY_TYPE] = { 10, 10, 9, 10, 12, 10, 35, 5 };
+int enemyCRITRate[MAX_ENEMY_TYPE] = { 20, 25, 5, 45, 25, 20, 10, 15 };
+int enemyCRITDMG[MAX_ENEMY_TYPE] = { 50, 50, 95, 40, 70, 40, 60, 60 };
+int baseEXP = 0;
 char enemyStatus = ' ';
 
 Enemy::Enemy(std::string type, char status) {
 	//Checks what type of the enemy is (Undead/Animal/Flower ... )
+	srand(static_cast<unsigned int>(time(0)));
 	xp = 0;
 	gold = 0;
 	for (int i = 0; i < MAX_ENEMY_TYPE; i++) {
@@ -28,6 +31,8 @@ Enemy::Enemy(std::string type, char status) {
 			health = enemyHP[i];
 			attack = enemyATK[i];
 			defense = enemyDEF[i];
+			CRITRate = enemyCRITRate[i];
+			CRITDMG = enemyCRITDMG[i];
 		}
 	}
 	enemyStatus = status;
@@ -58,26 +63,26 @@ Enemy::~Enemy() {}
 //Caleb 250601F
 //Calculate enemy loot based on level, status, and type
 //Completed
-int Enemy::calculateLoot(Game* game)
+int Enemy::calculateLoot(Game* gamePtr)
 {
-
-	currentStage = game->getCurrentStage(); //Singleton Technique: gets values from one object
+	currentStage = gamePtr->getCurrentStage(); //Singleton Technique: gets values from one object
+	baseEXP = (((health + attack + defense) + ((CRITRate + CRITDMG) / 12) * level));
 
 	switch (enemyStatus) {
 	case 'B':
-		xp = static_cast<int>((((health + attack + defense)) * level) / 100);
+		xp = static_cast<int>(baseEXP / 100);
 		gold = 3 + currentStage;
 		return xp, gold;
 	case 'E':
-		xp = static_cast<int>((((health + attack + defense)) * level) / 70);
+		xp = static_cast<int>(baseEXP / 70);
 		gold = 5 + currentStage;
 		return xp, gold;
 	case 'D':
-		xp = static_cast<int>((((health + attack + defense)) * level) / 35);
+		xp = static_cast<int>(baseEXP / 35);
 		gold = 10 + currentStage;
 		return xp, gold;
 	case 'X':
-		xp = static_cast<int>((((health + attack + defense)) * level) / 10);
+		xp = static_cast<int>(baseEXP / 10);
 		gold = 25 + currentStage;
 		return xp, gold;
 	}
@@ -112,5 +117,16 @@ int Enemy::getDefense() const
 	return defense;
 }
 
+int Enemy::getDamage()
+{
+	if (rand() % 100 <= CRITRate) {
+		attack *= (100 + CRITDMG);
+		damage = attack;
+	}
+	else {
+		damage = attack;
+	}
+	return damage;
+}
 
 	

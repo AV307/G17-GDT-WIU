@@ -286,7 +286,7 @@ void Stage::updateStageArray(Player* player)
                 switch (type) {
 
                 case SWITCH: {
-                    std::cout << "die"
+                    std::cout << "help";
                     int switchID = objects->getObjectId(xPos - rooms[0]->getRoomTopLeftY(), yPos - rooms[0]->getRoomTopLeftX());
                     for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
                         for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {

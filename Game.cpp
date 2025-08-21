@@ -16,7 +16,7 @@ Game::Game()
     currentStage = 3;
     plr = new Player;
     stage = new Stage(this);
-    //stage->printStage(); //debugging code
+    stage->printStage(); //debugging code
 }
 
 //Ang Zhi En 252317H

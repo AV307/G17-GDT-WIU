@@ -7,7 +7,7 @@ class Game
 private:
     Stage* stage;
     int currentStage;
-    Player plr;
+    Player* plr;
 
 public:
     Game();

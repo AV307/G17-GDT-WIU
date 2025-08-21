@@ -28,11 +28,18 @@ Player::Player(){
 	}
 
 	for (int i = 0; i < 10; i++) {
-		armoury[i]->setOwned(true);
+		artifacts[i] = new Item;
+		artifacts[i]->setName("Artifact");
+	}
+
+	for (int i = 0; i < 10; i++) {
+		armoury[i]->setOwned(false);
 		armoury[i]->setEquipped(false);
 
-		weaponry[i]->setOwned(true);
+		weaponry[i]->setOwned(false);
 		weaponry[i]->setEquipped(false);
+		
+		artifacts[i]->setOwned(false);
 	}
 
 	inventoryOpen = false;
@@ -44,11 +51,10 @@ Player::Player(){
 	equippedArmour = nullptr;
 
 	CRITRate = 25;
-	CRITDMG = 50;
-	strength = 0;
+	CRITDMG = 1.5;
 	attack = 15;
-	xPos = 0;
-	yPos = 0;
+	setXPos(50);
+	setYPos(90);
 }
 
 Player::~Player() {
@@ -96,19 +102,20 @@ void Player::checkConsumption() {
 //KeyPressed movements for player
 void Player::handleMovement(char inputVal)
 {
-	inputVal = _getch();
+	int xPosition = getXPos();
+	int yPosition = getYPos();
 	switch (inputVal) {
 	case'w':
-		yPos++;
+		setYPos(yPosition - 1);
 		break;
 	case'a':
-		xPos--;
+		setXPos(xPosition - 1);
 		break;
 	case's':
-		yPos++;
+		setYPos(yPosition + 1);
 		break;
 	case'd':
-		xPos++;
+		setXPos(xPosition + 1);
 		break;
 	default:
 		break;
@@ -136,7 +143,7 @@ void Player::handleInventory(char inputVal)
 		}
 		break;
 	case'd':
-		if (menuIndex < 3) {
+		if (menuIndex < 4) {
 			menuIndex++;
 		}
 		break;
@@ -216,6 +223,11 @@ Item** Player::getConsumables()
 	return consumables;
 }
 
+Item** Player::getArtifacts()
+{
+	return artifacts;
+}
+
 //Jayren 250920U
 //adds a consumable to the consumable array
 void Player::addConsumable(std::string Name, int attackVal, int defenseVal, int healVal)
@@ -241,6 +253,13 @@ void Player::removeConsumable(int index)
 	if (consumables[index] != nullptr) {
 		delete consumables[index];
 		consumables[index] = nullptr;
+	}
+}
+
+void Player::addArtifact(int index)
+{
+	if (artifacts[index] != nullptr) {
+		artifacts[index]->setOwned(true);
 	}
 }
 

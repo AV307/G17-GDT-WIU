@@ -62,9 +62,7 @@ Enemy::~Enemy() {}
 //Calculate the chance of the enemy loot based on level, status, and type
 //Completed
 int Enemy::calculateDropChance(int mult) {
-	if (rand() % 100 <= chance + mult) {
-		return 1;
-	}
+	return (rand() % 100 <= chance + mult) ? 1 : 0;
 }
 
 //Caleb 250601F

@@ -75,16 +75,16 @@ void miniQuests::checkQuestCompletion(Player& player, Enemy& enemy) {
     if (!questCompleted[1] && player.hasSolvedPuzzle())
         completeQuest(1, player);
 
-    if (!questCompleted[2] && player.getWeaponCount() >= 10)
+    if (!questCompleted[2] && player.getWeaponCount() >= 5)
         completeQuest(2, player);
 
     if (!questCompleted[3] && player.getGold() >= 500)
         completeQuest(3, player);
 
-    if (!questCompleted[4] && player.getWeaponCount() >= 5)
+    if (!questCompleted[4] && player.getWeaponCount() >= 10)
         completeQuest(4, player);
 
-    if (!questCompleted[5] && player.getWeaponCount() >= 10)
+    if (!questCompleted[5] && player.getWeaponCount() >= 20)
         completeQuest(5, player);
 
     if (!questCompleted[6] && enemy.isBossDefeated())

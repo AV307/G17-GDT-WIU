@@ -8,19 +8,20 @@ class Enemy : public Entity {
 private:
     int currentStage = 0;
     int baseEXP = 0;
+    int chance = 0;
 
 public:
     Enemy(string type, char status);
     ~Enemy();
     bool killEnemy(Game* game);
     bool isBossDefeated() const;
-    int calculateLoot(Game* game);
-    int calculateDropChance();
+    void calculateLoot(Game* game);
+    int calculateDropChance(int mult);
 
     int getHealth() const;
     int getAttack() const;
     int getDefense() const;
-
+    int getXP() const;
 };
 
 

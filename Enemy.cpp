@@ -20,6 +20,7 @@ int enemyCRITRate[MAX_ENEMY_TYPE] = { 20, 25, 5, 45, 25, 20, 10, 15 };
 int enemyCRITDMG[MAX_ENEMY_TYPE] = { 50, 50, 95, 40, 70, 40, 60, 60 };
 int baseEXP = 0;
 char enemyStatus = ' ';
+string enemyType = "None";
 
 Enemy::Enemy(std::string type, char status) {
 	//Checks what type of the enemy is (Undead/Animal/Flower ... )
@@ -28,6 +29,7 @@ Enemy::Enemy(std::string type, char status) {
 	gold = 0;
 	for (int i = 0; i < MAX_ENEMY_TYPE; i++) {
 		if (type == enemyBank[i]) {
+			enemyType = type;
 			health = enemyHP[i];
 			attack = enemyATK[i];
 			defense = enemyDEF[i];
@@ -54,7 +56,7 @@ Enemy::Enemy(std::string type, char status) {
 	case 'X':
 		health *= static_cast<int>(350 / 100);
 		attack *= static_cast<int>(250 / 100);
-		defense *= static_cast<int>(200 / 100);
+		defense *= static_cast<int>(250 / 100);
 		break;
 	}
 }
@@ -65,7 +67,7 @@ Enemy::~Enemy() {}
 //Completed
 int Enemy::calculateLoot(Game* gamePtr)
 {
-	currentStage = gamePtr->getCurrentStage(); //Singleton Technique: gets values from one object
+	currentStage = gamePtr->getCurrentStage(); 
 	baseEXP = (((health + attack + defense) + ((CRITRate + CRITDMG) / 12) * level));
 
 	switch (enemyStatus) {
@@ -124,13 +126,16 @@ int Enemy::getDefense() const
 {
 	return defense;
 }
+string Enemy::getEnemyType() const {
+	return enemyType;
+}
 
 // vampire
 //			    \--\           \--\ 
 //               \  \ -----------  \
 //				Y \    o  v  v   o  \
-//			   / o| ______________  |
-//            /___/                 |
+//			   / o| ______________   \
+//            /___/                  /
 //            Y Y \__mm_________mm__/      
 // 
 // Humanoid
@@ -157,4 +162,4 @@ int Enemy::getDefense() const
 //          ||                 |
 //          ||                 |
 //          ||    o    >     o |
-//          ||_________________|
+//          \|_________________|

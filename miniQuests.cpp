@@ -8,7 +8,6 @@
 using namespace std;
 
 miniQuests::miniQuests() {
-    numberOfQuests = 7; 
     for (int i = 0; i < numberOfQuests; i++) {
         questCompleted[i] = 0;
         questActive[i] = false;

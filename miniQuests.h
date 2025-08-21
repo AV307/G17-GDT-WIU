@@ -7,16 +7,14 @@
 #include "item.h"
 using namespace std;
 
-using namespace std;
-
 class miniQuests {
 protected:
-    int questCompleted[7];
-    bool questActive[7];
-    string questNames[7];
-    int questGoldReward[7];
-    int questXPReward[7];
-    int numberOfQuests;
+    const static int numberOfQuests = 7;
+    int questCompleted[numberOfQuests];
+    bool questActive[numberOfQuests];
+    string questNames[numberOfQuests];
+    int questGoldReward[numberOfQuests];
+    int questXPReward[numberOfQuests];
 
 public:
     miniQuests();

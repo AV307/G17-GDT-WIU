@@ -49,10 +49,16 @@ public:
     Item** getConsumables();
     Item** getArtifacts();
 
+    void addWeapon(std::string Name, int attackVal);
+    void removeWeapon(int index);
+
+    void addArmour(std::string Name, int defenseVal);
+    void removeArmour(int index);
+
     void addConsumable(std::string Name, int attackVal, int defenseVal, int healVal);
     void removeConsumable(int index);
 
-    void addArtifact(int index);
+    void addArtifact(std::string Name);
 
     void updateStats();
 };

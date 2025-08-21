@@ -98,7 +98,7 @@ void Game::doTurn()
                 (inventoryMenuArray[i]->getAttackVal() == 0) ? attackLength = 0 : attackLength += 11;
                 (inventoryMenuArray[i]->getDefenseVal() == 0) ? defenseLength = 0 : defenseLength += 11;
 
-                int remainingSpaces = 54 - (nameLength + numLength + attackLength + equipLength + defenseLength + 12);
+                int remainingSpaces = 54 - (nameLength + numLength + equipLength + attackLength + defenseLength + 12);
                 for (int j = 0; j < remainingSpaces; j++) {
                     std::cout << " ";
                 }

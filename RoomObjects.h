@@ -1,15 +1,25 @@
 #pragma once
 
 enum ObjectType {
+	//main room
 	SWITCH,
 	STEPBUTTON,
 	TELEPORTER,
-	CHEST,
+	CHEST, // also treasure room
 	LOCKEDDOOR,
 	TORCH,
 	ONEDIRECTIONALDOOR,
 	PRESSUREPLATE,
 
+	//bed room
+	BED,
+
+	//shop room
+
+	//portal room
+	PORTAL,
+
+	// general
 	WALL, // for walls 'O'
 	SPACE, // for blank spaces
 };

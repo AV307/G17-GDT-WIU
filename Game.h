@@ -1,6 +1,7 @@
 #pragma once
 #include "Stage.h"
 #include "Player.h"
+#include "CombatSystem.h"
 
 class Game
 {
@@ -15,6 +16,6 @@ public:
 
     int getCurrentStage();
 
-    void doTurn();
+    void doTurn(CombatSystem combatsystem);
 };
 

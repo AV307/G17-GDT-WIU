@@ -102,6 +102,12 @@ bool Player::getCombatIsWon() {
 void Player::setCombatIsWon(bool combatIsWon) {
 	this->combatIsWon = combatIsWon;
 }
+Entity* Player::getCurrentEnemy() {
+	return currentEnemy;
+}
+void Player::setCurrentEnemy(Entity* enemy) {
+	currentEnemy = enemy;
+}
 
 // +----------------------------------------------------------------------------------------------+ //
 // Function Name: checkCollision

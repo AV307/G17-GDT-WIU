@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Item.h"
+#include "CombatSystem.h"
 
 #include <iostream>
 #include <string>
@@ -36,7 +37,7 @@ int Game::getCurrentStage()
 
 //Jayren 250920U
 //Does a turn. if inventory is open, gameplay pauses, player movement keys control the inventory menu
-void Game::doTurn()
+void Game::doTurn(CombatSystem combatsystem)
 {
     stage->updateStageArray(plr);
 
@@ -156,6 +157,10 @@ void Game::doTurn()
     SetConsoleTextAttribute(hConsole, 7);
 
     plr->updateStats();
+
+    if (plr->getIsInCombat()) {
+        combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
+    }
 }
 
 

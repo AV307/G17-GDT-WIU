@@ -27,6 +27,7 @@ private:
     bool isInCombat;
     bool isRunning;
     bool combatIsWon;
+    Entity* currentEnemy;
 
     int CRITRate, CRITDMG, strength;
 public:
@@ -48,6 +49,8 @@ public:
     void setRun(bool isRunning);
     bool getCombatIsWon();
     void setCombatIsWon(bool combatIsWon);
+    Entity* getCurrentEnemy();
+    void setCurrentEnemy(Entity* specifiedEnemy);
 
 
     int getInventoryIndex();

@@ -32,10 +32,34 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 
 	for (int n = 1; n < 11; n++) {
 		if (n == 1) { // Enemy Design Line
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 5; i++) { // Going By Line
 				cout << "//";
-				for (int j = 0; j < 75; j++) {
-					cout << ' ';
+				if (specifiedEnemy.getEntityType() == "Undead") {
+					for (int j = 0; j < 34; j++) {
+						cout << ' ';
+					}
+					if (i == 0) {
+						cout << R"(.-"""-.)";
+					}
+					if (i == 1) {
+						cout << R"(/ 0  0\)";
+					}
+					if (i == 2) {
+						cout << R"(|  w  |)";
+					}
+					if (i == 3) {
+						cout << R"(|.___.|)";
+					}
+					if (i == 4) {
+						cout << R"(  \-/  )";
+					}
+					for (int j = 0; j < 34; j++) {
+						cout << ' ';
+					}
+					cout << "//" << endl;
+				}
+			    else if (specifiedEnemy.getEntityType() == "Animal") {
+
 				}
 				cout << "//" << endl;
 			}

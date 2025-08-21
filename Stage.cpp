@@ -14,7 +14,7 @@
 //Ang Zhi En 252317H
 //set the stageArray, fill up stage area with all the rooms that are created for the currentStage
 //Incomplete
-void Stage::setStageArray(int currentStage, char room1, char room2)
+void Stage::setStageArray(int currentStage, char room1, char room2, Player* player)
 {
     // initialize stageArray to spaces
     for (int i{ 0 }; i < 100; i++) {
@@ -154,12 +154,17 @@ void Stage::setStageArray(int currentStage, char room1, char room2)
             stageArray[portalRoomTopLeftX + i][portalRoomTopLeftY + j] = portalRoomArray[i][j];
         }
     }
+
+    int playerXPos = player->getXPos();
+    int playerYPos = player->getYPos();
+
+    stageArray[playerYPos][playerXPos] = 'P';
 }
 
 //Ang Zhi En 252317H
 //Constructor for Stage, uses randomiser to decide on the rooms generated for currentStage
 //Incomplete
-Stage::Stage(Game* game)
+Stage::Stage(Game* game, Player* player)
 	: gen(rd()), dis(1, 3)
 {
     int currentStage{ game->getCurrentStage() };
@@ -213,7 +218,7 @@ Stage::Stage(Game* game)
 
     rooms[3] = new PortalRoom(currentStage, 3);
 
-    setStageArray(currentStage, room1, room2);
+    setStageArray(currentStage, room1, room2, player);
 }
 
 //Ang Zhi En 252317H
@@ -225,6 +230,21 @@ Stage::~Stage()
     {
         delete rooms[i];
     }
+}
+
+void Stage::updateStageArray(Player* player)
+{
+    int playerXPos = player->getXPos();
+    int playerYPos = player->getYPos();
+
+    stageArray[playerYPos][playerXPos] = ' ';
+
+    player->doAction();
+
+    playerXPos = player->getXPos();
+    playerYPos = player->getYPos();
+
+    stageArray[playerYPos][playerXPos] = 'P';
 }
 
 //Ang Zhi En 252317H

@@ -1,5 +1,7 @@
 #pragma once
 #include "Room.h"
+#include "Player.h"
+
 #include <random>
 
 class Game;
@@ -14,10 +16,12 @@ private:
     std::mt19937 gen;
     std::uniform_int_distribution<> dis;
 public:
-    void setStageArray(int currentStage, char room1, char room2);
+    void setStageArray(int currentStage, char room1, char room2, Player* player);
 
-    Stage(Game* game);
+    Stage(Game* game, Player* player);
     ~Stage();
+
+    void updateStageArray(Player* player);
 
     //debug
     void printStage();

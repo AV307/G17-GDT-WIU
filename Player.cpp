@@ -29,6 +29,8 @@ Player::Player(){
 	equippedArmour = nullptr;
 
 	isInCombat = false;
+	isRunning = false;
+	combatIsWon = false;
 
 	CRITRate = 25;
 	CRITDMG = 1.5;
@@ -94,6 +96,12 @@ bool Player::getRun() {
 void Player::setRun(bool isRunning) {
 	this->isRunning = isRunning;
 }
+bool Player::getCombatIsWon() {
+	return combatIsWon;
+}
+void Player::setCombatIsWon(bool combatIsWon) {
+	this->combatIsWon = combatIsWon;
+}
 
 // +----------------------------------------------------------------------------------------------+ //
 // Function Name: checkCollision
@@ -106,12 +114,6 @@ void Player::setRun(bool isRunning) {
 void Player::checkCollision(Entity& player, Entity& specifiedEnemy) {
 	if (player.getXPos() == specifiedEnemy.getXPos() && player.getYPos() == specifiedEnemy.getYPos()) {
 		static_cast<Player&>(player).setIsInCombat(true);
-		if (isRunning) {
-			static_cast<Player&>(player).setIsInCombat(false);
-			if (player.getXPos() != specifiedEnemy.getXPos() && player.getYPos() != specifiedEnemy.getYPos()) {
-				isRunning = false;
-			}
-		}
 	}
 }
 

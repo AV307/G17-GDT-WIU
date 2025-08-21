@@ -22,6 +22,8 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
             }
         }
     }
+
+    objects[roomHeight-10][roomWidth-10] = SWITCH;
 }
 
 RoomObjects::~RoomObjects()

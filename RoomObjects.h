@@ -20,6 +20,7 @@ class RoomObjects
 private:
 	ObjectType** objects;
 
+
 public:
 	RoomObjects(int roomWidth, int roomHeight);
 	~RoomObjects();

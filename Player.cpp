@@ -35,6 +35,8 @@ Player::Player(){
 	attack = 15;
 	setXPos(50);
 	setYPos(90);
+
+	action = "Move";
 }
 
 Player::~Player() {
@@ -109,8 +111,8 @@ void Player::checkConsumption() {
 	
 }
 
-//Caleb 250601F
-//KeyPressed movements for player
+//Jayren 250920U
+//Determines what actions are made from the player input
 void Player::handleMovement(char inputVal)
 {
 	int xPosition = getXPos();
@@ -127,6 +129,9 @@ void Player::handleMovement(char inputVal)
 		break;
 	case'd':
 		setXPos(xPosition + 1);
+		break;
+	case' ':
+		action = "Interact";
 		break;
 	default:
 		break;
@@ -231,6 +236,11 @@ bool Player::checkInventoryOpen()
 bool Player::checkKey()
 {
 	return hasKey;
+}
+
+std::string Player::getAction()
+{
+	return action;
 }
 
 //Jayren 250920U

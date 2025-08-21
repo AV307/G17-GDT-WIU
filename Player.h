@@ -50,6 +50,8 @@ public:
 
     bool checkInventoryOpen();
     bool checkKey();
+    
+    std::string getAction();
 
     Item** getWeapons();
     Item** getArmours();

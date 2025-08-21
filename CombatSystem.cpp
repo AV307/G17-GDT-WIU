@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include "Entity.h"
+#include "Stage.h"
 
 using namespace std;
 

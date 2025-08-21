@@ -28,11 +28,15 @@ Player::Player(){
 	equippedWeapon = nullptr;
 	equippedArmour = nullptr;
 
+	isInCombat = false;
+
 	CRITRate = 25;
 	CRITDMG = 1.5;
 	attack = 15;
 	setXPos(50);
 	setYPos(90);
+
+	action = "Move";
 }
 
 Player::~Player() {
@@ -78,16 +82,37 @@ void Player::doAction() {
 	}
 }
 
-void Player::checkCollision() {
+bool Player::getIsInCombat() {
+	return isInCombat;
+}
+void Player::setIsInCombat(bool isInCombat) {
+	this->isInCombat = isInCombat;
+}
+bool Player::getRun() {
+	return isRunning;
+}
+void Player::setRun(bool isRunning) {
+	this->isRunning = isRunning;
+}
 
+void Player::checkCollision(Entity& player, Entity& specifiedEnemy) {
+	if (player.getXPos() == specifiedEnemy.getXPos() && player.getYPos() == specifiedEnemy.getYPos()) {
+		static_cast<Player&>(player).setIsInCombat(true);
+		if (isRunning) {
+			static_cast<Player&>(player).setIsInCombat(false);
+			if (player.getXPos() != specifiedEnemy.getXPos() && player.getYPos() != specifiedEnemy.getYPos()) {
+				isRunning = false;
+			}
+		}
+	}
 }
 
 void Player::checkConsumption() {
-
+	
 }
 
-//Caleb 250601F
-//KeyPressed movements for player
+//Jayren 250920U
+//Determines what actions are made from the player input
 void Player::handleMovement(char inputVal)
 {
 	int xPosition = getXPos();
@@ -104,6 +129,9 @@ void Player::handleMovement(char inputVal)
 		break;
 	case'd':
 		setXPos(xPosition + 1);
+		break;
+	case' ':
+		action = "Interact";
 		break;
 	default:
 		break;
@@ -208,6 +236,11 @@ bool Player::checkInventoryOpen()
 bool Player::checkKey()
 {
 	return hasKey;
+}
+
+std::string Player::getAction()
+{
+	return action;
 }
 
 //Jayren 250920U

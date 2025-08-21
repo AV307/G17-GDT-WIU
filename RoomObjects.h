@@ -24,18 +24,27 @@ enum ObjectType {
 	SPACE, // for blank spaces
 };
 
+struct Object
+{
+	ObjectType type;
+	int id;
+};
 
 class RoomObjects
 {
 private:
-	ObjectType** objects;
+	Object*** objects;
+
 
 public:
 	RoomObjects(int roomWidth, int roomHeight);
 	~RoomObjects();
 
-	void addObjects(int currentStage, char roomType);
+	void addObjects(int xCoord, int yCoord, ObjectType type, int id);
 	void removeObject(int xCoord, int yCoord);
-	ObjectType getObjectType(int xCoord, int yCoord);
+	Object* getObject(int xCoord, int yCoord) const;
+	ObjectType getObjectType(int xCoord, int yCoord) const;
+
+	int getObjectId(int xCoord, int yCoord) const;
 };
 

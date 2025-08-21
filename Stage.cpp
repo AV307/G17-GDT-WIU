@@ -5,6 +5,7 @@
 #include "BedRoom.h"
 #include "BossRoom.h"
 #include "PortalRoom.h"
+#include "RoomObjects.h"
 
 #include "Game.h"
 
@@ -14,7 +15,7 @@
 //Ang Zhi En 252317H
 //set the stageArray, fill up stage area with all the rooms that are created for the currentStage
 //Incomplete
-void Stage::setStageArray(int currentStage, char room1, char room2)
+void Stage::setStageArray(int currentStage, char room1, char room2, Player* player)
 {
     // initialize stageArray to spaces
     for (int i{ 0 }; i < 100; i++) {
@@ -154,12 +155,17 @@ void Stage::setStageArray(int currentStage, char room1, char room2)
             stageArray[portalRoomTopLeftX + i][portalRoomTopLeftY + j] = portalRoomArray[i][j];
         }
     }
+
+    int playerXPos = player->getXPos();
+    int playerYPos = player->getYPos();
+
+    stageArray[playerYPos][playerXPos] = 'P';
 }
 
 //Ang Zhi En 252317H
 //Constructor for Stage, uses randomiser to decide on the rooms generated for currentStage
 //Incomplete
-Stage::Stage(Game* game)
+Stage::Stage(Game* game, Player* player)
 	: gen(rd()), dis(1, 3)
 {
     int currentStage{ game->getCurrentStage() };
@@ -170,7 +176,7 @@ Stage::Stage(Game* game)
 
     char room1{};
     char room2{};
-    switch (randomRoom1) 
+    switch (randomRoom1)
     {
     case 1:
         rooms[1] = new ShopRoom(currentStage, 1);
@@ -186,15 +192,15 @@ Stage::Stage(Game* game)
         break;
     }
 
-    if (currentStage == 3 || currentStage == 5) 
+    if (currentStage == 3 || currentStage == 5)
     {
         rooms[2] = new BossRoom(currentStage);
         room2 = 'F';
     }
-    else 
+    else
     {
         int randomRoom2 = dis(gen);
-        switch (randomRoom2) 
+        switch (randomRoom2)
         {
         case 1:
             rooms[2] = new ShopRoom(currentStage, 2);
@@ -213,19 +219,83 @@ Stage::Stage(Game* game)
 
     rooms[3] = new PortalRoom(currentStage, 3);
 
-    setStageArray(currentStage, room1, room2);
+    previousTile = ' ';
+
+    setStageArray(currentStage, room1, room2, player);
 }
 
 //Ang Zhi En 252317H
 //Destructor for stage, delete pointers
 //Incomplete
-Stage::~Stage() 
+Stage::~Stage()
 {
     for (int i{ 0 }; i <= 2; i++)
     {
         delete rooms[i];
     }
 }
+
+void Stage::updateStageArray(Player* player)
+{
+    int playerXPos = player->getXPos();
+    int playerYPos = player->getYPos();
+
+    stageArray[playerYPos][playerXPos] = previousTile;
+
+    player->doAction();
+
+    char collisionObjects[4] = { '#','L','C','D' };
+    char interactableObjects[2] = { 'C','L' };
+    int offsetsX[4] = { -1,1,0,0 };
+    int offsetsY[4] = { 0,0,-1,1 };
+
+    {
+        bool blocked = false;
+
+        for (int i = 0; i < 3; i++) {
+            if (stageArray[player->getYPos()][player->getXPos()] == collisionObjects[i]) {
+                blocked = true;
+                break;
+            }
+        }
+
+        if (blocked == false) {
+            playerXPos = player->getXPos();
+            playerYPos = player->getYPos();
+        }
+    }
+
+    {
+        if (player->getAction() == "Interact") {
+            for (int i = 0; i < 2; i++) {
+                int xPos = playerXPos + offsetsX[i];
+                int yPos = playerYPos + offsetsY[i];
+
+                for (int j = 0; j < 2; j++) {
+                    if (stageArray[yPos][xPos] == interactableObjects[j]) {
+                        
+                    }
+                }
+            }
+        }
+    }
+
+    player->setXPos(playerXPos);
+    player->setYPos(playerYPos);
+
+    previousTile = stageArray[playerYPos][playerXPos];
+
+    stageArray[playerYPos][playerXPos] = 'P';
+}
+
+//bool Stage::checkCollision(int xPos, int yPos, int currentRoom)
+//{
+//    RoomObjects* objects = rooms[currentRoom]->getRoomObjects();
+//    if (objects->getObjectType(xPos - rooms[currentRoom]->getRoomWidth(), yPos- rooms[currentRoom]->getRoomHeight()) != WALL) {
+//        return true;
+//    }
+//    return false;
+//}
 
 //Ang Zhi En 252317H
 //Print out the stage, with the rooms inside
@@ -239,3 +309,4 @@ void Stage::printStage()
         std::cout << std::endl;
     }
 }
+

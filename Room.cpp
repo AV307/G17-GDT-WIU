@@ -1,4 +1,5 @@
 #include "Room.h"
+#include "Object.h"
 
 Room::Room()
 {
@@ -20,6 +21,9 @@ void Room::placeRoomObjects(char** roomArray)
 				break;
 			case WALL:
 				roomArray[x][y] = '#';
+				break;
+			case SWITCH:
+				roomArray[x][y] = 'L';
 				break;
 			}
 		}
@@ -64,5 +68,10 @@ void Room::setRoomLocation(int roomNumber)
 		roomTopLeftY = 60;
 		break;
 	}
+}
+
+RoomObjects* Room::getRoomObjects()
+{
+	return roomObjects;
 }
 

@@ -15,7 +15,7 @@ Game::Game()
     //set to 3 or 5 to test the boss rooms
     currentStage = 1;
     plr = new Player;
-    stage = new Stage(this);
+    stage = new Stage(this, plr);
     stage->printStage(); //debugging code
 }
 
@@ -34,12 +34,11 @@ int Game::getCurrentStage()
     return currentStage;
 }
 
-
 //Jayren 250920U
 //Does a turn. if inventory is open, gameplay pauses, player movement keys control the inventory menu
 void Game::doTurn()
 {
-    plr->doAction();
+    stage->updateStageArray(plr);
 
     system("cls");
 

@@ -19,7 +19,7 @@ void Room::placeRoomObjects(char** roomArray)
 				roomArray[x][y] = ' ';
 				break;
 			case WALL:
-				roomArray[x][y] = 'O';
+				roomArray[x][y] = '#';
 				break;
 			}
 		}

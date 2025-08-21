@@ -10,6 +10,8 @@ BossRoom::BossRoom(int currentStage)
     roomTopLeftX = 10;
     roomTopLeftY = 60;
 
+    roomObjects = new RoomObjects(roomWidth, roomHeight);
+
     // dynamically allocate bossRoomArray
     bossRoomArray = new char* [roomHeight];
     for (int i{ 0 }; i < roomHeight; i++)
@@ -17,21 +19,7 @@ BossRoom::BossRoom(int currentStage)
         bossRoomArray[i] = new char[roomWidth];
     }
 
-    // set empty room
-    for (int i{ 0 }; i < roomHeight; i++)
-    {
-        for (int j{ 0 }; j < roomWidth; j++)
-        {
-            if (i == 0 || i == roomHeight - 1 || j == 0 || j == roomWidth - 1)
-            {
-                bossRoomArray[i][j] = 'O'; // set to wall
-            }
-            else
-            {
-                bossRoomArray[i][j] = ' '; // set to space
-            }
-        }
-    }
+    placeRoomObjects(bossRoomArray);
 
     // boss selection will depend on whether stage 3 or 5, getting harder
     switch (currentStage)

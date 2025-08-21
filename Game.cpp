@@ -13,7 +13,7 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 Game::Game() 
 {
     //set to 3 or 5 to test the boss rooms
-    currentStage = 3;
+    currentStage = 1;
     plr = new Player;
     stage = new Stage(this);
     stage->printStage(); //debugging code
@@ -70,6 +70,8 @@ void Game::doTurn()
             break;
         }
 
+        // Inventory Items
+
         for (int i = 0; i < 10; i++) {
             std::cout << "|";
             std::cout << i + 1 << ". ";
@@ -115,6 +117,8 @@ void Game::doTurn()
             SetConsoleTextAttribute(hConsole, 7);
             std::cout << "|" << std::endl;
         }
+
+        // Inventory Menus
 
         std::cout << "+------------------------------------------------------+" << std::endl;
         std::cout << "| ";

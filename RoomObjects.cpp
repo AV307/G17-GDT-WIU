@@ -24,6 +24,19 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
     }
 }
 
+RoomObjects::~RoomObjects()
+{
+}
+
+
+void RoomObjects::addObjects(int currentStage, char roomType)
+{
+}
+
+void RoomObjects::removeObject(int xCoord, int yCoord)
+{
+    objects[xCoord][yCoord] = SPACE;
+}
 
 ObjectType RoomObjects::getObjectType(int xCoord, int yCoord)
 {

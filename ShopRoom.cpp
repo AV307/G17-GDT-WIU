@@ -9,6 +9,8 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
     roomWidth = 20;
     setRoomLocation(roomNumber);
 
+    roomObjects = new RoomObjects(roomWidth, roomHeight);
+
     // dynamically allocate shopRoomArray
     shopRoomArray = new char* [roomHeight];
     for (int i{ 0 }; i < roomHeight; i++)
@@ -16,21 +18,7 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
         shopRoomArray[i] = new char[roomWidth];
     }
 
-    // set empty room
-    for (int i{ 0 }; i < roomHeight; i++)
-    {
-        for (int j{ 0 }; j < roomWidth; j++)
-        {
-            if (i == 0 || i == roomHeight - 1 || j == 0 || j == roomWidth - 1)
-            {
-                shopRoomArray[i][j] = 'O'; // set to wall
-            }
-            else
-            {
-                shopRoomArray[i][j] = ' '; // set to space
-            }
-        }
-    }
+    placeRoomObjects(shopRoomArray);
 
     //add code below for setting up specific shop related parts
 }

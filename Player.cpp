@@ -5,6 +5,8 @@
 #include "Potion.h"
 #include "Entity.h"
 #include "Enemy.h"
+
+#include <Windows.h>
 #include <conio.h>
 #include <iostream>
 #include <cstdlib>
@@ -47,6 +49,16 @@ Player::~Player() {
 //Jayren 250920U
 //Checks for player input and gets input key. Determines whether to handle inventory movement or player movement
 void Player::doAction() {
+	HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
+	DWORD prev_mode;
+	GetConsoleMode(hInput, &prev_mode);
+
+	DWORD new_mode = prev_mode;
+	new_mode &= ~ENABLE_QUICK_EDIT_MODE;
+	new_mode &= ~ENABLE_INSERT_MODE;
+
+	SetConsoleMode(hInput, new_mode);
+
 	char input = _getch();
 
 	if (input == 'e') {

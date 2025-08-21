@@ -40,7 +40,7 @@ public:
 	RoomObjects(int roomWidth, int roomHeight);
 	~RoomObjects();
 
-	void addObjects(int xCoord, int yCoord, ObjectType type, int id);
+	void addObjects(int xCoord, int yCoord, ObjectType type, int id, int currentStage, char roomType);
 	void removeObject(int xCoord, int yCoord);
 	Object* getObject(int xCoord, int yCoord) const;
 	ObjectType getObjectType(int xCoord, int yCoord) const;

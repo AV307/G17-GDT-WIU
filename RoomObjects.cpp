@@ -33,7 +33,7 @@ RoomObjects::~RoomObjects()
 }
 
 
-void RoomObjects::addObjects(int xCoord, int yCoord, ObjectType type, int id)
+void RoomObjects::addObjects(int xCoord, int yCoord, ObjectType type, int id, int currentStage, char roomType)
 {
     // essentially presets for the rooms
     switch (roomType)
@@ -69,6 +69,8 @@ void RoomObjects::addObjects(int xCoord, int yCoord, ObjectType type, int id)
     case 'P': // portal room
         break;
     }
+
+
     if (objects[yCoord][xCoord] != nullptr) {
         delete objects[yCoord][xCoord];
     }

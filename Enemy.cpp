@@ -65,7 +65,7 @@ Enemy::~Enemy() {}
 //Completed
 int Enemy::calculateLoot(Game* gamePtr)
 {
-	currentStage = gamePtr->getCurrentStage(); //Singleton Technique: gets values from one object
+	currentStage = gamePtr->getCurrentStage(); 
 	baseEXP = (((health + attack + defense) + ((CRITRate + CRITDMG) / 12) * level));
 
 	switch (enemyStatus) {
@@ -129,8 +129,8 @@ int Enemy::getDefense() const
 //			    \--\           \--\ 
 //               \  \ -----------  \
 //				Y \    o  v  v   o  \
-//			   / o| ______________  |
-//            /___/                 |
+//			   / o| ______________   \
+//            /___/                  /
 //            Y Y \__mm_________mm__/      
 // 
 // Humanoid
@@ -157,4 +157,4 @@ int Enemy::getDefense() const
 //          ||                 |
 //          ||                 |
 //          ||    o    >     o |
-//          ||_________________|
+//          \|_________________|

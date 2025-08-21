@@ -7,14 +7,6 @@
 #include "item.h"
 using namespace std;
 
-#pragma once
-#include <string>
-#include "Entity.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "item.h"
-using namespace std;
-
 class miniQuests {
 protected:
     const static int numberOfQuests = 7;

@@ -19,12 +19,11 @@ int enemyDEF[MAX_ENEMY_TYPE] = { 10, 10, 9, 10, 12, 10, 35, 5 };
 int enemyCRITRate[MAX_ENEMY_TYPE] = { 20, 25, 5, 45, 25, 20, 10, 15 };
 int enemyCRITDMG[MAX_ENEMY_TYPE] = { 50, 50, 95, 40, 70, 40, 60, 60 };
 int baseEXP = 0;
-char enemyStatus = ' ';
-string enemyType = "None";
 
 Enemy::Enemy(std::string type, char status) {
 	//Checks what type of the enemy is (Undead/Animal/Flower ... )
 	srand(static_cast<unsigned int>(time(0)));
+
 	xp = 0;
 	gold = 0;
 	for (int i = 0; i < MAX_ENEMY_TYPE; i++) {
@@ -78,17 +77,17 @@ int Enemy::calculateLoot(Game* gamePtr)
 	case 'E':
 		xp = static_cast<int>(baseEXP / 70);
 		gold = 5 + currentStage;
-		sycophant_heart += 1;
+		sycophant_heart = 1;
 		return xp, gold;
 	case 'D':
 		xp = static_cast<int>(baseEXP / 35);
 		gold = 10 + currentStage;
-		sycophant_heart += 2;
+		sycophant_heart = 2;
 		return xp, gold;
 	case 'X':
 		xp = static_cast<int>(baseEXP / 10);
 		gold = 25 + currentStage;
-		sycophant_heart += 3;
+		sycophant_heart = 3;
 		return xp, gold;
 	}
 }
@@ -125,9 +124,6 @@ int Enemy::getAttack() const
 int Enemy::getDefense() const
 {
 	return defense;
-}
-string Enemy::getEnemyType() const {
-	return enemyType;
 }
 
 // vampire

@@ -9,6 +9,8 @@ protected:
     int sycophant_heart;
     int xPos;
     int yPos;
+    string enemyType = "None";
+    char enemyStatus = ' ';
 
 public:
 	Entity();
@@ -45,7 +47,8 @@ public:
     int getCRITRate() const;
     int getXPos() const;
     int getYPos() const;
-
+    string getEntityType() const;
+    char getEnemyStatus() const;
 
 	virtual bool isAlive() const {
 		return health > 0;

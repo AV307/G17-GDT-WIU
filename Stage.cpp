@@ -5,6 +5,7 @@
 #include "BedRoom.h"
 #include "BossRoom.h"
 #include "PortalRoom.h"
+#include "RoomObjects.h"
 
 #include "Game.h"
 
@@ -241,11 +242,45 @@ void Stage::updateStageArray(Player* player)
 
     player->doAction();
 
-    playerXPos = player->getXPos();
-    playerYPos = player->getYPos();
+    char collisionObjects[4] = { '#','L','C','D' };
+    char interactableObjects[2] = { 'C','L' };
+
+    {
+        bool blocked = false;
+
+        for (int i = 0; i < 3; i++) {
+            if (stageArray[player->getYPos()][player->getXPos()] == collisionObjects[i]) {
+                blocked = true;
+                break;
+            }
+        }
+
+        if (blocked == false) {
+            playerXPos = player->getXPos();
+            playerYPos = player->getYPos();
+        }
+    }
+
+    {
+        if (player->getAction() == "Interact") {
+            
+        }
+    }
+
+    player->setXPos(playerXPos);
+    player->setYPos(playerYPos);
 
     stageArray[playerYPos][playerXPos] = 'P';
 }
+
+//bool Stage::checkCollision(int xPos, int yPos, int currentRoom)
+//{
+//    RoomObjects* objects = rooms[currentRoom]->getRoomObjects();
+//    if (objects->getObjectType(xPos - rooms[currentRoom]->getRoomWidth(), yPos- rooms[currentRoom]->getRoomHeight()) != WALL) {
+//        return true;
+//    }
+//    return false;
+//}
 
 //Ang Zhi En 252317H
 //Print out the stage, with the rooms inside
@@ -259,3 +294,4 @@ void Stage::printStage()
         std::cout << std::endl;
     }
 }
+

@@ -1,6 +1,7 @@
 #pragma once
 #include "Room.h"
 #include "Player.h"
+#include "RoomObjects.h"
 
 #include <random>
 
@@ -22,6 +23,7 @@ public:
     ~Stage();
 
     void updateStageArray(Player* player);
+    //bool checkCollision(int xPos, int yPos, int currentRoom);
 
     //debug
     void printStage();

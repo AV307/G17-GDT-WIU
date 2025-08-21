@@ -66,3 +66,8 @@ void Room::setRoomLocation(int roomNumber)
 	}
 }
 
+RoomObjects* Room::getRoomObjects()
+{
+	return roomObjects;
+}
+

@@ -22,6 +22,7 @@ private:
     bool solvedPuzzle;        
     int weaponCount;          
 
+    std::string action;
 
     int CRITRate, CRITDMG, strength;
 public:
@@ -43,6 +44,8 @@ public:
 
     bool checkInventoryOpen();
     bool checkKey();
+    
+    std::string getAction();
 
     Item** getWeapons();
     Item** getArmours();

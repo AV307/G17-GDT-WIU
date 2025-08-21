@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <windows.h>
+#include <conio.h>
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -158,8 +159,28 @@ void Game::doTurn(CombatSystem combatsystem)
 
     plr->updateStats();
 
+    // Entering Combat System Check and Trigger
+
+    char combatKeyPress = getch();
+
     if (plr->getIsInCombat()) {
         combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
+        while (plr->getIsInCombat()) {
+            switch (combatKeyPress) {
+            case 'f':
+                combatsystem.fightPVE(*plr, *plr->getCurrentEnemy());
+                break;
+            case 'i':
+                combatsystem.itemPVE(*plr, *plr->getCurrentEnemy());
+                break;
+            case 'r':
+                combatsystem.runPVE(*plr, *plr->getCurrentEnemy());
+                break;
+            default:
+                combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
+            }
+            combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
+        }
     }
 }
 

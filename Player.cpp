@@ -111,9 +111,9 @@ void Player::setCombatIsWon(bool combatIsWon) {
 // Function Writer(s): Ethan, Jayren
 // +----------------------------------------------------------------------------------------------+ //
 
-void Player::checkCollision(Entity& player, Entity& specifiedEnemy) {
-	if (player.getXPos() == specifiedEnemy.getXPos() && player.getYPos() == specifiedEnemy.getYPos()) {
-		static_cast<Player&>(player).setIsInCombat(true);
+void Player::checkCollision(Entity& specifiedEnemy) {
+	if (this->getXPos() == specifiedEnemy.getXPos() && this->getYPos() == specifiedEnemy.getYPos()) {
+		this->setIsInCombat(true);
 	}
 }
 

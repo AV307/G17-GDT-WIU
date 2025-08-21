@@ -34,7 +34,7 @@ public:
     Player();
     ~Player();
     void doAction();
-    void checkCollision(Entity& player, Entity& specifiedEnemy);
+    void checkCollision(Entity& specifiedEnemy);
     void checkConsumption();
     void handleMovement(char inputVal);
     void handleInventory(char inputVal);

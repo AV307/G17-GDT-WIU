@@ -258,7 +258,7 @@ void Stage::updateStageArray(Player* player)
     {
         type = objects->getObjectType(roomX, roomY);
         toggled = objects->getObjectToggle(roomX, roomY);
-        std::cout << type << std::endl;
+        std::cout << roomX << " " << roomY << std::endl;
     }
 
     int offsetsX[4] = { -1,1,0,0 };

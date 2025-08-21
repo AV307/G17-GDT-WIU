@@ -26,6 +26,7 @@ private:
 
     bool isInCombat;
     bool isRunning;
+    bool combatIsWon;
 
     int CRITRate, CRITDMG, strength;
 public:
@@ -42,9 +43,11 @@ public:
     int getWeaponCount() const;     
 
     bool getIsInCombat();
-    void setIsInCombat(bool combatState);
+    void setIsInCombat(bool isInCombat);
     bool getRun();
     void setRun(bool isRunning);
+    bool getCombatIsWon();
+    void setCombatIsWon(bool combatIsWon);
 
 
     int getInventoryIndex();

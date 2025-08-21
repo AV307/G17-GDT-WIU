@@ -85,7 +85,7 @@ int Enemy::calculateLoot(Game* gamePtr)
 	case 'X':
 		xp = static_cast<int>(baseEXP / 10);
 		gold = 25 + currentStage;
-		enemyDrops[drops] = 3;
+		enemyDrops[drops] = 5;
 		return xp, gold;
 	}
 }

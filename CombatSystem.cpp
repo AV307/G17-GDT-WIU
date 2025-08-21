@@ -233,31 +233,31 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					}
 				}
 				else if (specifiedEnemy.getEntityType() == "Cubed") {
-					for (int j = 0; j < 22; j++) {
+					for (int j = 0; j < 27; j++) {
 						cout << ' ';
 					}
 					if (i == 0) {
-						cout << R"(____________________)";
+						cout << R"(_____________________)";
 					}
 					if (i == 1) {
-						cout << R"(|\_________________\)";
+						cout << R"(|\_________________\|)";
 					}
 					if (i == 2) {
-						cout << R"(||                 |)";
+						cout << R"(||                 ||)";
 					}
 					if (i == 3) {
-						cout << R"(||                 |)";
+						cout << R"(||                 ||)";
 					}
 					if (i == 4) {
-						cout << R"(||                 |)";
+						cout << R"(||                 ||)";
 					}
 					if (i == 5) {
-						cout << R"(||   o    >    o   |)";
+						cout << R"(||   o    >    o   ||)";
 					}
 					if (i == 6) {
-						cout << R"(||_________________|)";
+						cout << R"(||_________________||)";
 					}
-					for (int j = 0; j < 22; j++) {
+					for (int j = 0; j < 27; j++) {
 						cout << ' ';
 					}
 				}

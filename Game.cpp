@@ -49,10 +49,9 @@ void Game::doTurn()
     int menuIndex = plr->getMenuIndex();
     int inventoryIndex = plr->getInventoryIndex();
 
-    Item** inventoryMenuArray;
+    Item** inventoryMenuArray = nullptr;
 
     if (inventoryOpen == true) {
-        std::cout << menuIndex;
         std::cout << "+------------------------------------------------------+" << std::endl;
         switch (menuIndex) {
         case 1:

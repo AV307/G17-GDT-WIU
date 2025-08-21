@@ -244,19 +244,31 @@ void Stage::updateStageArray(Player* player)
 
     player->doAction();
 
-    char collisionObjects[4] = { '#','L','C','D' };
-    char interactableObjects[2] = { 'C','L' };
+    std::cout << "Left Right: " << player->getXPos() << " Up Down: " << player->getYPos() << std::endl;
+    std::cout << "Up Down range: " << rooms[0]->getRoomTopLeftX() << " to " << rooms[0]->getRoomTopLeftX() + rooms[0]->getRoomWidth() - 1 << std::endl;
+    std::cout << "Left Right range: " << rooms[0]->getRoomTopLeftY() << " to " << rooms[0]->getRoomTopLeftY() + rooms[0]->getRoomHeight() - 1 << std::endl;
+
+    RoomObjects* objects = rooms[0]->getRoomObjects();
+    //ObjectType type = objects->getObjectType(player->getXPos() - rooms[1]->getRoomTopLeftY(), player->getYPos() - rooms[1]->getRoomTopLeftX());
+    
+    ObjectType type = SPACE;
+
+    if (player->getYPos() >= rooms[0]->getRoomTopLeftX() && 
+        player->getYPos() < rooms[0]->getRoomTopLeftX() + rooms[0]->getRoomWidth() &&
+        player->getXPos() >= rooms[0]->getRoomTopLeftY() && 
+        player->getXPos() < rooms[0]->getRoomTopLeftY() + rooms[0]->getRoomHeight()) 
+    {
+        type = objects->getObjectType(player->getXPos() - rooms[0]->getRoomTopLeftY(), player->getYPos() - rooms[0]->getRoomTopLeftX());
+    }
+
     int offsetsX[4] = { -1,1,0,0 };
     int offsetsY[4] = { 0,0,-1,1 };
 
     {
         bool blocked = false;
 
-        for (int i = 0; i < 3; i++) {
-            if (stageArray[player->getYPos()][player->getXPos()] == collisionObjects[i]) {
-                blocked = true;
-                break;
-            }
+        if (type == WALL || type == LOCKEDDOOR || type == SWITCH || type == CHEST) {
+            blocked = true;
         }
 
         if (blocked == false) {
@@ -266,7 +278,7 @@ void Stage::updateStageArray(Player* player)
     }
 
     {
-        if (player->getAction() == "Interact") {
+        /*if (player->getAction() == "Interact") {
             for (int i = 0; i < 2; i++) {
                 int xPos = playerXPos + offsetsX[i];
                 int yPos = playerYPos + offsetsY[i];
@@ -277,7 +289,7 @@ void Stage::updateStageArray(Player* player)
                     }
                 }
             }
-        }
+        }*/
     }
 
     player->setXPos(playerXPos);

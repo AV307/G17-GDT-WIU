@@ -2,9 +2,12 @@
 
 RoomObjects::RoomObjects(int roomWidth, int roomHeight)
 {
-    objects = new ObjectType * [roomHeight];
+    objects = new Object** [roomHeight];
     for (int i = 0; i < roomHeight; i++) {
-        objects[i] = new ObjectType[roomWidth];
+        objects[i] = new Object*[roomWidth];
+        for (int j = 0; j < roomWidth; j++) {
+            objects[i][j] = nullptr;
+        }
     }
 
     // creates empty room with walls
@@ -14,16 +17,15 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
         {
             if (i == 0 || i == roomHeight - 1 || j == 0 || j == roomWidth - 1)
             {
-                objects[i][j] = WALL; // set to wall
+                objects[i][j] = new Object{WALL, -1}; // set to wall
             }
-            else
-            {
-                objects[i][j] = SPACE; // set to space
+            else {
+                objects[i][j] = nullptr;
             }
         }
     }
 
-    objects[roomHeight-10][roomWidth-10] = SWITCH;
+    objects[roomHeight-10][roomWidth-10] = new Object{SWITCH, 0};
 }
 
 RoomObjects::~RoomObjects()
@@ -31,16 +33,41 @@ RoomObjects::~RoomObjects()
 }
 
 
-void RoomObjects::addObjects(int currentStage, char roomType)
+void RoomObjects::addObjects(int xCoord, int yCoord, ObjectType type, int id)
 {
+    if (objects[yCoord][xCoord] != nullptr) {
+        delete objects[yCoord][xCoord];
+    }
+    objects[yCoord][xCoord] = new Object{type, id};
 }
 
 void RoomObjects::removeObject(int xCoord, int yCoord)
 {
-    objects[xCoord][yCoord] = SPACE;
+    if (objects[yCoord][xCoord] != nullptr) {
+        delete objects[yCoord][xCoord];
+        objects[yCoord][xCoord] = nullptr;
+    }
 }
 
-ObjectType RoomObjects::getObjectType(int xCoord, int yCoord)
+Object* RoomObjects::getObject(int xCoord, int yCoord) const
 {
-    return objects[xCoord][yCoord];
+    return objects[yCoord][xCoord];
+}
+
+ObjectType RoomObjects::getObjectType(int xCoord, int yCoord) const
+{
+    Object* obj = objects[yCoord][xCoord];
+    if (obj != nullptr) {
+        return obj->type;
+    }
+    return SPACE;
+}
+
+int RoomObjects::getObjectId(int xCoord, int yCoord) const
+{
+    Object* obj = objects[yCoord][xCoord];
+    if (obj != nullptr) {
+        return obj->type;
+    }
+    return -1;
 }

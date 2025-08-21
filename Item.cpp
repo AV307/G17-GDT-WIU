@@ -5,7 +5,6 @@ Item::Item()
 	attack = 0;
 	defense = 0;
 	cost = 0;
-	owned = false;
 	equipped = false;
 	name = "blank";
 }
@@ -35,11 +34,6 @@ std::string Item::getName() const
 	return name;
 }
 
-void Item::setOwned(bool state)
-{
-	owned = state;
-}
-
 void Item::setName(std::string itemName)
 {
 	name = itemName;
@@ -63,11 +57,6 @@ void Item::setDefenseVal(int val)
 void Item::setCost(int val)
 {
 	cost = val;
-}
-
-bool Item::isOwned() const
-{
-	return owned;
 }
 
 bool Item::isEquipped() const

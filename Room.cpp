@@ -1,5 +1,5 @@
 #include "Room.h"
-#include "Object.h"
+#include "RoomObjects.h"
 
 Room::Room()
 {

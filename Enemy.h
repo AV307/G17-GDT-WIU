@@ -15,6 +15,7 @@ public:
     bool killEnemy(Game* game);
     bool isBossDefeated() const;
     int calculateLoot(Game* game);
+    int calculateDropChance();
 
     int getHealth() const;
     int getAttack() const;

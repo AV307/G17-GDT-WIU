@@ -15,6 +15,18 @@ protected:
     int enemyDEF[MAX_ENEMY_TYPE] = { 10, 10, 9, 10, 12, 10, 35, 5 };
     int enemyCRITRate[MAX_ENEMY_TYPE] = { 20, 25, 5, 45, 25, 20, 10, 15 };
     int enemyCRITDMG[MAX_ENEMY_TYPE] = { 50, 50, 95, 40, 70, 40, 60, 60 };
+    int enemyXP[MAX_ENEMY_TYPE] = { 8, 9, 12, 8, 14, 7, 10 };
+
+    int enemyStats[7][MAX_ENEMY_TYPE] = {
+        { 90 ,100 ,110, 45, 125, 100, 50, 130 },
+        { 10, 10, 7, 35, 15, 10, 13, 7 },
+        { 10, 10, 9, 10, 12, 10, 35, 5 },
+        { 20, 25, 5, 45, 25, 20, 10, 15 },
+        { 50, 50, 95, 40, 70, 40, 60, 60 },
+        { 8, 9, 12, 8, 14, 7, 10 },
+        { 25, 25, 50, 50, 20, 20, 10, 50 }
+    }
+
     int sycophant_heart, poisoned_fang, withered_nectar, prismarine_fin, jar_of_hemovibe, burning_skin, opal_crystals, magma_jelly = 0;
     int enemyDrops[MAX_ENEMY_TYPE] = { sycophant_heart, poisoned_fang, withered_nectar, prismarine_fin, jar_of_hemovibe, burning_skin, opal_crystals, magma_jelly };
 
@@ -44,9 +56,9 @@ public:
 
     Entity(int hp, int atk, int dmg, int def, int exp, int g, int lvl, int critdmg, int critrate);
 
-    const static int MAX_LEVEL = 5;
+    const static int MAX_LEVEL = 15;
     int currentLevel = 1;
-    int thresholdXP[(MAX_LEVEL-1)] = { 50, 100, 200, 300 };
+    int thresholdXP[(MAX_LEVEL-1)] = { 5, 15, 20, 40, 65, 90, 135, 170, 200, 360, 450, 600, 800, 1000 };
     int getThresholdXP();
     int getHealth() const;
     int getAttack() const;

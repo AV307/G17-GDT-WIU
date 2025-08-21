@@ -28,6 +28,7 @@ Enemy::Enemy(std::string type, char status) {
 			CRITRate = enemyCRITRate[i];
 			CRITDMG = enemyCRITDMG[i];
 			enemyDrops[i] += 1;
+			baseEXP = enemyXP[i];
 			drops = i;
 		}
 	}
@@ -57,12 +58,18 @@ Enemy::Enemy(std::string type, char status) {
 Enemy::~Enemy() {}
 
 //Caleb 250601F
+//Calculate the chance of the enemy loot based on level, status, and type
+//Completed
+int Enemy::calculateDropChance() {
+
+}
+
+//Caleb 250601F
 //Calculate enemy loot based on level, status, and type
 //Completed
 int Enemy::calculateLoot(Game* gamePtr)
 {
 	currentStage = gamePtr->getCurrentStage(); 
-	baseEXP = (((health + attack + defense) + ((CRITRate + CRITDMG) / 12) * level));
 
 	switch (enemyStatus) {
 	case 'B':
@@ -74,16 +81,19 @@ int Enemy::calculateLoot(Game* gamePtr)
 		return xp, gold;
 	case 'E':
 		xp = static_cast<int>(baseEXP / 70);
+		baseEXP += 2;
 		gold = 5 + currentStage;
 		enemyDrops[drops] = 1;
 		return xp, gold;
 	case 'D':
 		xp = static_cast<int>(baseEXP / 35);
 		gold = 10 + currentStage;
+		baseEXP += 3;
 		enemyDrops[drops] = 2;
 		return xp, gold;
 	case 'X':
 		xp = static_cast<int>(baseEXP / 10);
+		baseEXP += 4;
 		gold = 25 + currentStage;
 		enemyDrops[drops] = 5;
 		return xp, gold;

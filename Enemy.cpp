@@ -20,6 +20,7 @@ int enemyCRITRate[MAX_ENEMY_TYPE] = { 20, 25, 5, 45, 25, 20, 10, 15 };
 int enemyCRITDMG[MAX_ENEMY_TYPE] = { 50, 50, 95, 40, 70, 40, 60, 60 };
 int baseEXP = 0;
 char enemyStatus = ' ';
+string enemyType = "None";
 
 Enemy::Enemy(std::string type, char status) {
 	//Checks what type of the enemy is (Undead/Animal/Flower ... )
@@ -28,6 +29,7 @@ Enemy::Enemy(std::string type, char status) {
 	gold = 0;
 	for (int i = 0; i < MAX_ENEMY_TYPE; i++) {
 		if (type == enemyBank[i]) {
+			enemyType = type;
 			health = enemyHP[i];
 			attack = enemyATK[i];
 			defense = enemyDEF[i];
@@ -123,6 +125,9 @@ int Enemy::getAttack() const
 int Enemy::getDefense() const
 {
 	return defense;
+}
+string Enemy::getEnemyType() const {
+	return enemyType;
 }
 
 // vampire

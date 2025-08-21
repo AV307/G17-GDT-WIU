@@ -12,34 +12,10 @@
 
 Player::Player(){
 	for (int i = 0; i < 10; i++) {
-		weaponry[i] = new Weapon;
-		weaponry[i]->setAttackVal(1);
-		weaponry[i]->setName("Weapon");
-	}
-
-	for (int i = 0; i < 10; i++) {
-		armoury[i] = new Armour;
-		armoury[i]->setDefenseVal(1);
-		armoury[i]->setName("Armour");
-	}
-
-	for (int i = 0; i < 10; i++) {
+		weaponry[i] = nullptr;
+		armoury[i] = nullptr;
 		consumables[i] = nullptr;
-	}
-
-	for (int i = 0; i < 10; i++) {
-		artifacts[i] = new Item;
-		artifacts[i]->setName("Artifact");
-	}
-
-	for (int i = 0; i < 10; i++) {
-		armoury[i]->setOwned(false);
-		armoury[i]->setEquipped(false);
-
-		weaponry[i]->setOwned(false);
-		weaponry[i]->setEquipped(false);
-		
-		artifacts[i]->setOwned(false);
+		artifacts[i] = nullptr;
 	}
 
 	inventoryOpen = false;
@@ -148,10 +124,30 @@ void Player::handleInventory(char inputVal)
 		}
 		break;
 	case'f':
-		addConsumable("Attack Potion", 5, 0, 0);
+		if (menuIndex == 1) {
+			addWeapon("Sword", 5);
+		}
+		if (menuIndex == 2) {
+			addArmour("Chestplate", 5);
+		}
+		if (menuIndex == 3) {
+			addConsumable("Potion", 5, 5, 5);
+		}
+		if (menuIndex == 4) {
+			addArtifact("Artifact");
+		}
+		std::cout << "hi";
 		break;
 	case'g':
-		removeConsumable(inventoryIndex);
+		if (menuIndex == 1) {
+			removeWeapon(inventoryIndex);
+		}
+		if (menuIndex == 2) {
+			removeArmour(inventoryIndex);
+		}
+		if (menuIndex == 3) {
+			removeConsumable(inventoryIndex);
+		}
 		break;
 	case 13:
 		if (menuIndex == 1) {
@@ -228,6 +224,53 @@ Item** Player::getArtifacts()
 	return artifacts;
 }
 
+void Player::addWeapon(std::string Name, int attackVal)
+{
+	for (int i = 0; i < 9; i++) {
+		if (weaponry[i] == nullptr) {
+			Weapon* weapon = new Weapon;
+			weapon->setName(Name);
+			weapon->setAttackVal(attackVal);
+			weapon->setDefenseVal(0);
+			weapon->setEquipped(false);
+			weaponry[i] = weapon;
+			break;
+		}
+	}
+}
+
+void Player::removeWeapon(int index)
+{
+	if (weaponry[index] != nullptr) {
+		delete weaponry[index];
+		weaponry[index] = nullptr;
+	}
+}
+
+void Player::addArmour(std::string Name, int defenseVal)
+{
+	for (int i = 0; i < 9; i++) {
+		if (armoury[i] == nullptr) {
+			Armour* armour = new Armour;
+			armour->setName(Name);
+			armour->setAttackVal(0);
+			armour->setDefenseVal(defenseVal);
+			armour->setEquipped(false);
+			armoury[i] = armour;
+			break;
+		}
+	}
+}
+
+void Player::removeArmour(int index)
+{
+	if (armoury[index] != nullptr) {
+		delete armoury[index];
+		armoury[index] = nullptr;
+	}
+}
+
+
 //Jayren 250920U
 //adds a consumable to the consumable array
 void Player::addConsumable(std::string Name, int attackVal, int defenseVal, int healVal)
@@ -256,10 +299,20 @@ void Player::removeConsumable(int index)
 	}
 }
 
-void Player::addArtifact(int index)
+
+
+void Player::addArtifact(std::string Name)
 {
-	if (artifacts[index] != nullptr) {
-		artifacts[index]->setOwned(true);
+	for (int i = 0; i < 10; i++) {
+		if (artifacts[i] == nullptr) {
+			Item* artifact = new Item;;
+			artifact->setName(Name);
+			artifact->setAttackVal(0);
+			artifact->setDefenseVal(0);
+
+			artifacts[i] = artifact;
+			break;
+		}
 	}
 }
 

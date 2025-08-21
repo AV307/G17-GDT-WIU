@@ -11,7 +11,7 @@ int main()
 
     //CombatSystem.printCombatScreen();
     while (true) {
-        game.doTurn();
+        game.doTurn(CombatSystem);
     }
 
     return 0;

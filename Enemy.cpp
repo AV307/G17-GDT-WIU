@@ -120,7 +120,17 @@ bool Enemy::killEnemy(Game* game) {
 
 bool Enemy::isBossDefeated() const
 {
-	return false;
+	if (enemyStatus != 'B') {
+		return false;
+	}
+	if (enemyStatus == 'B') {
+		if (health <= 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
 
 //Caleb 250601F

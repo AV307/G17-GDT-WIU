@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "Item.h"
+#include "Weapon.h"
 class Player : public Entity
 {
 private:
@@ -41,7 +42,6 @@ public:
     bool hasSolvedPuzzle() const;      
     int getWeaponCount() const;        
 
-
     int getInventoryIndex();
     int getMenuIndex();
     int getItemsTraded();
@@ -71,6 +71,7 @@ public:
     void addItemInventory(const std::string& name);
 
 	void printInventory() const;
+    bool checkKey() const;
 };
 
 

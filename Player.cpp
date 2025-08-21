@@ -416,6 +416,18 @@ void Player::printInventory() const {
 	std::cout << "=======================\n";
 }
 
+//Benjamin 250572M
+//Checks if the player has a key in their inventory
+bool Player::checkKey() const {
+	for (int i = 0; i < 10; i++) {
+		if (artifacts[i] != nullptr && artifacts[i]->getName() == "Key") {
+			return true;
+		}
+	}
+	return false;
+}
+
+
 //Benjamim 250572M
 int Player::getEnemiesDefeated() const {
 	return enemiesDefeated;

@@ -157,11 +157,16 @@ void Entity::healing(int health) {
 	this->health += health;
 	cout << "Health increased by " << health << ". Current health: " << this->health << endl; //debug
 }
+std::string Entity::getEntityType() const
+{
+    return entityType;
+}
 
 
 
 Entity::~Entity()
 {
 }
+
 
 

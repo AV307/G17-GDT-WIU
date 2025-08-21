@@ -9,6 +9,7 @@ protected:
     int sycophant_heart;
     int xPos;
     int yPos;
+	string entityType;
 
 public:
 	Entity();
@@ -53,6 +54,7 @@ public:
 
     virtual void healing(int health);
 	virtual ~Entity();
+    std::string getEntityType() const;
     void burn(int turns, int dmgPerTurn);
 
 	void freeze(int turns, int dmgPerTurn);

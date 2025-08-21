@@ -6,8 +6,7 @@ using namespace std;
 class Game;
 class Enemy : public Entity {
 private:
-    int currentStage;
-    bool bossDefeated;
+    int currentStage = 0;
 
 public:
     Enemy(string type, char status);
@@ -19,7 +18,6 @@ public:
     int getHealth() const;
     int getAttack() const;
     int getDefense() const;
-    string getEnemyType() const;
 
 };
 

@@ -21,6 +21,9 @@ void Room::placeRoomObjects(char** roomArray)
 			case WALL:
 				roomArray[x][y] = '#';
 				break;
+			case SWITCH:
+				roomArray[x][y] = 'L';
+				break;
 			}
 		}
 	}

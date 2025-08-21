@@ -273,7 +273,7 @@ void Stage::updateStageArray(Player* player)
 
                 for (int j = 0; j < 2; j++) {
                     if (stageArray[yPos][xPos] == interactableObjects[j]) {
-                        stageArray[yPos][xPos] = ' ';
+                        
                     }
                 }
             }

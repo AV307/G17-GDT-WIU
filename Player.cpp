@@ -95,6 +95,14 @@ void Player::setRun(bool isRunning) {
 	this->isRunning = isRunning;
 }
 
+// +----------------------------------------------------------------------------------------------+ //
+// Function Name: checkCollision
+// Description: Checks collision between Player And Enemy, between Player and other Game Objects
+// Parameter(s): The player and the specific enemy that is (if) involved
+// Return(s): None
+// Function Writer(s): Ethan, Jayren
+// +----------------------------------------------------------------------------------------------+ //
+
 void Player::checkCollision(Entity& player, Entity& specifiedEnemy) {
 	if (player.getXPos() == specifiedEnemy.getXPos() && player.getYPos() == specifiedEnemy.getYPos()) {
 		static_cast<Player&>(player).setIsInCombat(true);

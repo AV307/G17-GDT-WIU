@@ -26,6 +26,7 @@ void CombatSystem::setTextDialogue(std::string textUpdate) {
 // Description: Used to print the combat screen when player enters combat with an enemy
 // Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): None
+// Function Writer(s): Ethan
 // +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
@@ -387,6 +388,7 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 // Description: To carry out the "Fight" action between Player and Enemy
 // Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): None
+// Function Writer(s): Ethan
 // +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
@@ -486,6 +488,7 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 // Description: To carry out the "Item" action between Player and Enemy
 // Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): None
+// Function Writer(s): Ethan
 // +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
@@ -501,6 +504,7 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 // Description: To carry out the "Run" action between Player and Enemy
 // Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): None
+// Function Writer(s): Ethan
 // +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
@@ -516,8 +520,8 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 // Description: To carry out what happens if the battle ends
 // Parameter(s): The player and the specific enemy that is entering the battle, directly referenced
 // Return(s): A boolean of true or false
+// Function Writer(s): Ethan
 // +----------------------------------------------------------------------------------------------+ //
-
 bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
 	if (player.getHealth() == 0) {                                                                                 // If Player HP is 0
 		exit(0);

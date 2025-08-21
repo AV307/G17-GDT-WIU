@@ -59,7 +59,31 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					cout << "//" << endl;
 				}
 			    else if (specifiedEnemy.getEntityType() == "Animal") {
-
+					for (int j = 0; j < 28; j++) {
+						cout << ' ';
+					}
+					if (i == 0) {
+						cout << R"(.-"""-.)";
+					}
+					if (i == 1) {
+						cout << R"(/ 0  0\)";
+					}
+					if (i == 2) {
+						cout << R"(|  w  |)";
+					}
+					if (i == 3) {
+						cout << R"(|.___.|)";
+					}
+					if (i == 4) {
+						cout << R"(  \-/  )";
+					}
+					for (int j = 0; j < 34; j++) {
+						cout << ' ';
+					}
+					for (int j = 0; j < 34; j++) {
+						cout << ' ';
+					}
+					cout << "//" << endl;
 				}
 				cout << "//" << endl;
 			}
@@ -198,9 +222,9 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// (200 * 0.5) * 2     |      (ATK * DEF) * CRITDMG   =   200 Final Damage       |
 
 	// Damage Calculations
-	int playerDamage = player.getAttack() * (100-specifiedEnemy.getDefense()/100);                                                                                // If Player Doesn't Crit
+	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                // If Player Doesn't Crit
 	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                            // If Player Does Crit
-	int enemyDamage = specifiedEnemy.getAttack() - (100-player.getDefense()/100);                                                                                       // If Enemy Doesn't Crit
+	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                       // If Enemy Doesn't Crit
 	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                     // If Enemy Does Crit
 
 	if (playerDamage < 0) {

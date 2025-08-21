@@ -7,6 +7,7 @@ class Game;
 class Enemy : public Entity {
 private:
     int currentStage = 0;
+    int baseEXP = 0;
 
 public:
     Enemy(string type, char status);

@@ -22,7 +22,8 @@ private:
     bool solvedPuzzle;        
     int weaponCount;          
 
-    std::string action;
+    bool isInCombat;
+    bool isRunning;
 
     int CRITRate, CRITDMG, strength;
 public:
@@ -30,13 +31,18 @@ public:
     Player();
     ~Player();
     void doAction();
-    void checkCollision();
+    void checkCollision(Entity& player, Entity& specifiedEnemy);
     void checkConsumption();
     void handleMovement(char inputVal);
     void handleInventory(char inputVal);
     int getEnemiesDefeated() const;    
     bool hasSolvedPuzzle() const;      
-    int getWeaponCount() const;        
+    int getWeaponCount() const;     
+
+    bool getIsInCombat();
+    void setIsInCombat(bool combatState);
+    bool getRun();
+    void setRun(bool isRunning);
 
 
     int getInventoryIndex();

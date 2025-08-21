@@ -34,7 +34,6 @@ int Game::getCurrentStage()
     return currentStage;
 }
 
-
 //Jayren 250920U
 //Does a turn. if inventory is open, gameplay pauses, player movement keys control the inventory menu
 void Game::doTurn()

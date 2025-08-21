@@ -74,6 +74,10 @@ char Entity::getEnemyStatus() const {
     return enemyStatus;
 }
 
+int Entity::getListDrops(int enemyType) const {
+    return enemyDrops[enemyType];
+}
+
 void Entity::setHealth(int hp) { 
     health = hp; 
 }

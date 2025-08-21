@@ -6,7 +6,19 @@ class Entity
 {
 protected:
     int attack ,health ,damage ,defense ,xp ,gold ,level, CRITDMG, CRITRate;
-    int sycophant_heart;
+
+    int drops = 0;
+    const static int MAX_ENEMY_TYPE = 8;
+    std::string enemyBank[MAX_ENEMY_TYPE] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
+    int enemyHP[MAX_ENEMY_TYPE] = { 90 ,100 ,110, 45, 125, 100, 50, 130 };
+    int enemyATK[MAX_ENEMY_TYPE] = { 10, 10, 7, 35, 15, 10, 13, 7 };
+    int enemyDEF[MAX_ENEMY_TYPE] = { 10, 10, 9, 10, 12, 10, 35, 5 };
+    int enemyCRITRate[MAX_ENEMY_TYPE] = { 20, 25, 5, 45, 25, 20, 10, 15 };
+    int enemyCRITDMG[MAX_ENEMY_TYPE] = { 50, 50, 95, 40, 70, 40, 60, 60 };
+    int sycophant_heart, poisoned_fang, withered_nectar, prismarine_fin, jar_of_hemovibe, burning_skin, opal_crystals, magma_jelly = 0;
+    int enemyDrops[MAX_ENEMY_TYPE] = { sycophant_heart, poisoned_fang, withered_nectar, prismarine_fin, jar_of_hemovibe, burning_skin, opal_crystals, magma_jelly };
+
+
     int xPos;
     int yPos;
     string enemyType = "None";
@@ -49,6 +61,7 @@ public:
     int getYPos() const;
     string getEntityType() const;
     char getEnemyStatus() const;
+    int getListDrops(int enemyType) const;
 
 	virtual bool isAlive() const {
 		return health > 0;

@@ -95,10 +95,10 @@ void Game::doTurn()
                 int defenseLength = std::to_string(inventoryMenuArray[i]->getDefenseVal()).length();
                 int equipLength = 0;
                 (inventoryMenuArray[i]->isEquipped() == true) ? equipLength = 11 : equipLength = 0;
-                (inventoryMenuArray[i]->getAttackVal() == 0) ? attackLength = 0 : attackLength += 11;
+                (inventoryMenuArray[i]->getAttackVal() == 0) ? attackLength = 0 : attackLength += 10;
                 (inventoryMenuArray[i]->getDefenseVal() == 0) ? defenseLength = 0 : defenseLength += 11;
 
-                int remainingSpaces = 54 - (nameLength + numLength + equipLength + attackLength + defenseLength + 12);
+                int remainingSpaces = 54 - (nameLength + numLength + equipLength + attackLength + defenseLength + 2);
                 for (int j = 0; j < remainingSpaces; j++) {
                     std::cout << " ";
                 }

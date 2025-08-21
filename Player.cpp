@@ -231,6 +231,7 @@ void Player::addWeapon(std::string Name, int attackVal)
 			Weapon* weapon = new Weapon;
 			weapon->setName(Name);
 			weapon->setAttackVal(attackVal);
+			weapon->setDefenseVal(0);
 			weapon->setEquipped(false);
 			weaponry[i] = weapon;
 			break;
@@ -252,6 +253,7 @@ void Player::addArmour(std::string Name, int defenseVal)
 		if (armoury[i] == nullptr) {
 			Armour* armour = new Armour;
 			armour->setName(Name);
+			armour->setAttackVal(0);
 			armour->setDefenseVal(defenseVal);
 			armour->setEquipped(false);
 			armoury[i] = armour;
@@ -304,7 +306,9 @@ void Player::addArtifact(std::string Name)
 	for (int i = 0; i < 10; i++) {
 		if (artifacts[i] == nullptr) {
 			Item* artifact = new Item;;
-			artifacts[i]->setName(Name);
+			artifact->setName(Name);
+			artifact->setAttackVal(0);
+			artifact->setDefenseVal(0);
 
 			artifacts[i] = artifact;
 			break;

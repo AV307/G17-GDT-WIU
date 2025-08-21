@@ -251,6 +251,8 @@ Item** Player::getArtifacts()
 	return artifacts;
 }
 
+
+
 void Player::addWeapon(std::string Name, int attackVal)
 {
 	for (int i = 0; i < 9; i++) {
@@ -354,6 +356,64 @@ void Player::updateStats()
 	int armourDefenseBonus = 0;
 	(equippedArmour != nullptr) ? armourDefenseBonus = equippedArmour->getDefenseVal() : 0;
 	setDefense(defense + armourDefenseBonus);
+}
+
+
+//Benjamin 250572M
+//Shop items
+void Player::addItemInventory(const std::string& name) {
+	if (name == "Sword") {
+		addWeapon("Sword", 10);
+	}
+	else if (name == "Shield") {
+		addArmour("Shield", 5);
+	}
+	else if (name == "Potion") {
+		addConsumable("Potion", 0, 0, 20); // heal 20
+	}
+	else if (name == "Bow") {
+		addWeapon("Bow", 7);
+	}
+}
+
+//Benjamin 250572M
+// loops through the player's inventory. Prints the player's inventory, including weapons, armour, consumables, and artifacts
+void Player::printInventory() const {
+	std::cout << "\n====== INVENTORY ======\n";
+
+	std::cout << "\nWeapons:\n";
+	for (int i = 0; i < 10; i++) {
+		if (weaponry[i] != nullptr) {
+			std::cout << i << ". " << weaponry[i]->getName();
+			if (weaponry[i] == equippedWeapon) std::cout << " (Equipped)";
+			std::cout << "\n";
+		}
+	}
+
+	std::cout << "\nArmour:\n";
+	for (int i = 0; i < 10; i++) {
+		if (armoury[i] != nullptr) {
+			std::cout << i << ". " << armoury[i]->getName();
+			if (armoury[i] == equippedArmour) std::cout << " (Equipped)";
+			std::cout << "\n";
+		}
+	}
+
+	std::cout << "\nConsumables:\n";
+	for (int i = 0; i < 10; i++) {
+		if (consumables[i] != nullptr) {
+			std::cout << i << ". " << consumables[i]->getName() << "\n";
+		}
+	}
+
+	std::cout << "\nArtifacts:\n";
+	for (int i = 0; i < 10; i++) {
+		if (artifacts[i] != nullptr) {
+			std::cout << i << ". " << artifacts[i]->getName() << "\n";
+		}
+	}
+
+	std::cout << "=======================\n";
 }
 
 //Benjamim 250572M

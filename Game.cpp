@@ -176,6 +176,7 @@ void Game::doTurn()
         system("cls");
         stage->printStage();
     }
+
 }
 
 //Benjamin 250572M 

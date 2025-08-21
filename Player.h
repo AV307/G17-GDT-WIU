@@ -8,6 +8,7 @@ private:
     Item* armoury[10];
     Item* consumables[10];
     Item* artifacts[10];
+	Item* shopInventory[10];
 
     Item* equippedWeapon;
     Item* equippedArmour;
@@ -22,6 +23,8 @@ private:
     int enemiesDefeated;      
     bool solvedPuzzle;        
     int weaponCount;          
+
+    int gold = 0; // starting gold
 
 
     int CRITRate, CRITDMG, strength;
@@ -65,6 +68,9 @@ public:
     void addArtifact(std::string Name);
 
     void updateStats();
+    void addItemInventory(const std::string& name);
+
+	void printInventory() const;
 };
 
 

@@ -17,7 +17,7 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
         {
             if (i == 0 || i == roomHeight - 1 || j == 0 || j == roomWidth - 1)
             {
-                objects[i][j] = new Object{WALL, -1}; // set to wall
+                objects[i][j] = new Object{WALL, -1, false}; // set to wall
             }
             else {
                 objects[i][j] = nullptr;
@@ -29,7 +29,7 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
 
     objects[roomHeight - 10][roomWidth - 8] = new Object{ DOOR, 1 ,false };
     objects[roomHeight - 10][roomWidth - 7] = new Object{ DOOR, 1 ,false };
-    objects[roomHeight - 10][roomWidth - 6] = new Object{ DOOR, 1 ,false};
+    objects[roomHeight - 10][roomWidth - 6] = new Object{ DOOR, 1 ,false };
 }
 
 RoomObjects::~RoomObjects()
@@ -107,7 +107,7 @@ int RoomObjects::getObjectId(int xCoord, int yCoord) const
 {
     Object* obj = objects[yCoord][xCoord];
     if (obj != nullptr) {
-        return obj->type;
+        return obj->id;
     }
     return -1;
 }

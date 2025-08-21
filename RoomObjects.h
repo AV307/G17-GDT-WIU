@@ -3,10 +3,10 @@
 enum ObjectType {
 	//main room
 	SWITCH,
+	DOOR,
 	STEPBUTTON,
 	TELEPORTER,
 	CHEST, // also treasure room
-	DOOR,
 	KEYDOOR,
 	TORCH,
 	ONEDIRECTIONALDOOR,

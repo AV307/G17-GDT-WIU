@@ -258,7 +258,6 @@ void Stage::updateStageArray(Player* player)
     {
         type = objects->getObjectType(roomX, roomY);
         toggled = objects->getObjectToggle(roomX, roomY);
-        std::cout << type << std::endl;
     }
 
     int offsetsX[4] = { -1,1,0,0 };
@@ -268,6 +267,8 @@ void Stage::updateStageArray(Player* player)
         bool blocked = false;
 
         if (type == WALL || (type == DOOR && toggled == false) || type == SWITCH || type == CHEST || stageArray[player->getYPos()][player->getXPos()] == '#') {
+            std::cout << "Checking tile (" << player->getXPos() << "," << player->getYPos() << "): "
+                << "type=" << type << " toggle=" << toggled << std::endl;
             blocked = true;
         }
 
@@ -283,7 +284,9 @@ void Stage::updateStageArray(Player* player)
                 int xPos = playerXPos + offsetsX[i];
                 int yPos = playerYPos + offsetsY[i];
 
-                switch (type) {
+                ObjectType interactType = objects->getObjectType(xPos - rooms[0]->getRoomTopLeftY(),yPos - rooms[0]->getRoomTopLeftX());
+
+                switch (interactType) {
 
                 case SWITCH: {
                     std::cout << "help";
@@ -295,6 +298,7 @@ void Stage::updateStageArray(Player* player)
                             {
                                 bool doorToggle = objects->getObjectToggle(x, y);
                                 objects->setObjectToggle(x, y, !doorToggle);
+
                             }
                         }
                     }

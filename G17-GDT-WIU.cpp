@@ -1,6 +1,7 @@
 ﻿#include "Game.h"
-#include <iostream>
 #include "CombatSystem.h"
+
+#include <iostream>
 
 int main()
 {

@@ -9,6 +9,23 @@ Room::~Room()
 {
 }
 
+void Room::placeRoomObjects(char** roomArray)
+{
+	for (int x = 0; x < roomWidth; x++) {
+		for (int y = 0; y < roomHeight; y++) {
+			ObjectType objectType = roomObjects->getObjectType(x, y);
+			switch (objectType) {
+			case SPACE:
+				roomArray[x][y] = ' ';
+				break;
+			case WALL:
+				roomArray[x][y] = 'O';
+				break;
+			}
+		}
+	}
+}
+
 //Ang Zhi En 252317H
 //Getters for room related data
 int Room::getRoomTopLeftX()

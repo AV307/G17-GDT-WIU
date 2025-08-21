@@ -19,7 +19,7 @@ void Stage::setStageArray(int currentStage, char room1, char room2)
     // initialize stageArray to spaces
     for (int i{ 0 }; i < 100; i++) {
         for (int j{ 0 }; j < 100; j++) {
-            stageArray[i][j] = '-';
+            stageArray[i][j] = '-'; //debugging purposes set to '-', will be space when done
         }
     }
 

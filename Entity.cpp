@@ -5,12 +5,16 @@
 //Completed
 
 Entity::Entity() : health(100), attack(10), damage(5), defense(5), xp(0), gold(0), level(1), CRITDMG(2), CRITRate(10) {
+    xPos = 0;
+    yPos = 0;
 }
 
 
 Entity::Entity(int hp, int atk, int dmg, int def, int exp, int g, int lvl, int critdmg, int critrate)
     : health(hp), attack(atk), damage(dmg), defense(def),
     xp(exp), gold(g), level(lvl), CRITDMG(critdmg), CRITRate(critrate) {
+    xPos = 0;
+    yPos = 0;
 }
 
 int Entity::getHealth() const { 
@@ -46,7 +50,17 @@ int Entity::getCRITDMG() const {
 }
 int Entity::getCRITRate() const { 
     return CRITRate; 
-}     
+}
+
+int Entity::getXPos() const
+{
+    return xPos;
+}
+
+int Entity::getYPos() const
+{
+    return yPos;
+}
 
 int Entity::getThresholdXP() {
     return thresholdXP[currentLevel];
@@ -85,6 +99,16 @@ void Entity::setCritDMG(int critdmg) {
 
 void Entity::setCritRate(int critrate) {
     CRITRate = critrate; 
+}
+
+void Entity::setXPos(int val)
+{
+    xPos = val;
+}
+
+void Entity::setYPos(int val)
+{
+    yPos = val;
 }
 
 

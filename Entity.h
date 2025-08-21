@@ -7,7 +7,8 @@ class Entity
 protected:
     int attack ,health ,damage ,defense ,xp ,gold ,level, CRITDMG, CRITRate;
     int sycophant_heart;
-    int xPos, yPos;
+    int xPos;
+    int yPos;
 
 public:
 	Entity();
@@ -21,6 +22,8 @@ public:
     void setLvl(int lvl);
     void setCritDMG(int critDMG);
     void setCritRate(int critRate);
+    void setXPos(int val);
+    void setYPos(int val);
 
     void poison(int turns, int dmgPerTurn);
 
@@ -40,6 +43,8 @@ public:
     int getLvl() const;
     int getCRITDMG() const;
     int getCRITRate() const;
+    int getXPos() const;
+    int getYPos() const;
 
 
 	virtual bool isAlive() const {

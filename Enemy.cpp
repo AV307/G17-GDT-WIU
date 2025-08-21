@@ -104,6 +104,11 @@ bool Enemy::killEnemy(Game* game) {
 	}
 }
 
+bool Enemy::isBossDefeated() const
+{
+	return false;
+}
+
 //Caleb 250601F
 //Getter functions for enemy statistics
 //Completed <- may expand 

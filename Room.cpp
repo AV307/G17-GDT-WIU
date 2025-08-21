@@ -28,7 +28,13 @@ void Room::placeRoomObjects(char** roomArray)
 			case DOOR:
 				roomArray[y][x] = '+';
 				break;
-			}
+			case TELEPORTER1:
+				roomArray[y][x] = 'T';
+				break;
+			case TELEPORTER2:
+				roomArray[y][x] = 'T';
+				break;
+		}
 		}
 	}
 }

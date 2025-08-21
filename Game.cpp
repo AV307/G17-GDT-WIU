@@ -42,7 +42,7 @@ void Game::doTurn(CombatSystem combatsystem)
 {
     stage->updateStageArray(plr);
 
-    //system("cls");
+    system("cls");
 
     bool inventoryOpen = plr->checkInventoryOpen();
     bool hasKey = plr->checkKey();
@@ -161,7 +161,7 @@ void Game::doTurn(CombatSystem combatsystem)
 
     // Entering Combat System Check and Trigger
 
-    char combatKeyPress = getch();                                                       // To receive player's input during battle
+    char combatKeyPress = _getch();                                                       // To receive player's input during battle
 
     if (plr->getIsInCombat()) {                                                          // If the player enters combat
         combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                   // Print the starting screen where all values are at base

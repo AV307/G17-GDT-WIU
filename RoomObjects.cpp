@@ -33,6 +33,9 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
 
     objects[roomWidth - 11][roomWidth - 9] = new Object{ DOOR, 1 ,false };
     objects[roomWidth - 11][roomWidth - 8] = new Object{ DOOR, 1 ,false };
+
+    objects[roomWidth - 10][roomHeight - 14] = new Object{ TELEPORTER1, 1 ,false };
+    objects[roomWidth - 10][roomWidth - 8] = new Object{ TELEPORTER2, 1 ,false };
 }
 
 RoomObjects::~RoomObjects()

@@ -258,7 +258,7 @@ void Stage::updateStageArray(Player* player)
     {
         type = objects->getObjectType(roomX, roomY);
         toggled = objects->getObjectToggle(roomX, roomY);
-        std::cout << roomX << " " << roomY << std::endl;
+        //std::cout << roomX << " " << roomY << std::endl;
     }
 
     int offsetsX[4] = { -1,1,0,0 };
@@ -274,6 +274,36 @@ void Stage::updateStageArray(Player* player)
         if (blocked == false) {
             playerXPos = player->getXPos();
             playerYPos = player->getYPos();
+        }
+
+        if (type == TELEPORTER1 || type == TELEPORTER2) {
+            int ID = objects->getObjectId(roomX, roomY);
+            if (type == TELEPORTER1) {
+                for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+                    for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                        if (objects->getObjectType(x, y) == TELEPORTER2 &&
+                            objects->getObjectId(x, y) == ID)
+                        {
+                            playerXPos = x + rooms[0]->getRoomTopLeftY();
+                            playerYPos = y + rooms[0]->getRoomTopLeftX();
+                            break;
+                        }
+                    }
+                }
+            }
+            if (type == TELEPORTER2) {
+                for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+                    for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                        if (objects->getObjectType(x, y) == TELEPORTER1 &&
+                            objects->getObjectId(x, y) == ID)
+                        {
+                            playerXPos = x + rooms[0]->getRoomTopLeftY();
+                            playerYPos = y + rooms[0]->getRoomTopLeftX();
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 

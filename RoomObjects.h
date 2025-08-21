@@ -5,7 +5,8 @@ enum ObjectType {
 	SWITCH,
 	DOOR,
 	STEPBUTTON,
-	TELEPORTER,
+	TELEPORTER1,
+	TELEPORTER2,
 	CHEST, // also treasure room
 	KEYDOOR,
 	TORCH,

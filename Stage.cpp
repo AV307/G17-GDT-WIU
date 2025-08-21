@@ -296,13 +296,19 @@ void Stage::updateStageArray(Player* player)
                             {
                                 bool doorToggle = objects->getObjectToggle(x, y);
                                 objects->setObjectToggle(x, y, !doorToggle);
-
+                                if (doorToggle == false) {
+                                    stageArray[y + rooms[0]->getRoomTopLeftX()][x + rooms[0]->getRoomTopLeftY()] = ' ';
+                                }
+                                else {
+                                    stageArray[y + rooms[0]->getRoomTopLeftX()][x + rooms[0]->getRoomTopLeftY()] = '+';
+                                }
                             }
                         }
                     }
                     break;
                 }
                 case CHEST:
+
                     break;
                 }
             }

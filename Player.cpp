@@ -127,6 +127,7 @@ void Player::handleMovement(char inputVal)
 {
 	int xPosition = getXPos();
 	int yPosition = getYPos();
+	action = "Move";
 	switch (inputVal) {
 	case'w':
 		setYPos(yPosition - 1);

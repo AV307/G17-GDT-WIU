@@ -26,6 +26,7 @@ private:
 
     bool isInCombat;
     bool isRunning;
+    bool combatIsWon;
 
     int CRITRate, CRITDMG, strength;
 public:
@@ -33,7 +34,7 @@ public:
     Player();
     ~Player();
     void doAction();
-    void checkCollision(Entity& player, Entity& specifiedEnemy);
+    void checkCollision(Entity& specifiedEnemy);
     void checkConsumption();
     void handleMovement(char inputVal);
     void handleInventory(char inputVal);
@@ -42,9 +43,11 @@ public:
     int getWeaponCount() const;     
 
     bool getIsInCombat();
-    void setIsInCombat(bool combatState);
+    void setIsInCombat(bool isInCombat);
     bool getRun();
     void setRun(bool isRunning);
+    bool getCombatIsWon();
+    void setCombatIsWon(bool combatIsWon);
 
 
     int getInventoryIndex();

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include "Entity.h"
+#include "Stage.h"
 
 using namespace std;
 
@@ -523,11 +524,11 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 // Function Writer(s): Ethan
 // +----------------------------------------------------------------------------------------------+ //
 bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
-	if (player.getHealth() == 0) {                                                                                 // If Player HP is 0
+	if (player.getHealth() == 0 && specifiedEnemy.getHealth() == 0) {                                              // If Enemy HP is 0 BUT Player HP is 0
 		exit(0);
 		return false;                                                                                              // Boolean returns isPlayerAlive to be false, exit game
 	}
-	else if (player.getHealth() == 0 && specifiedEnemy.getHealth() == 0) {                                         // If Enemy HP is 0 BUT Player HP is 0
+	else if (player.getHealth() == 0) {                                                                            // If Player HP is 0
 		exit(0);
 		return false;                                                                                              // Boolean returns isPlayerAlive to be false, exit game
 	}
@@ -539,6 +540,7 @@ bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
 			player.setXP(player.getXP() - player.getThresholdXP());
 			player.setLvl(player.getLvl() + 1);
 		}
+		static_cast<Player&>(player).setCombatIsWon(true);
 		return true;                                                                                               // Boolean returns isPlayerAlive to be true
 	}
 	return true;

@@ -22,12 +22,14 @@ Enemy::Enemy(std::string type, char status) {
 	for (int i = 0; i < MAX_ENEMY_TYPE; i++) {
 		if (type == enemyBank[i]) {
 			enemyType = type;
-			health = enemyHP[i];
-			attack = enemyATK[i];
-			defense = enemyDEF[i];
-			CRITRate = enemyCRITRate[i];
-			CRITDMG = enemyCRITDMG[i];
+			health = enemyStats[0][i];
+			attack = enemyStats[1][i];
+			defense = enemyStats[2][i];
+			CRITRate = enemyStats[3][i];
+			CRITDMG = enemyStats[4][i];
 			enemyDrops[i] += 1;
+			baseEXP = enemyStats[5][i];
+			chance = enemyStats[6][i];
 			drops = i;
 		}
 	}
@@ -57,36 +59,49 @@ Enemy::Enemy(std::string type, char status) {
 Enemy::~Enemy() {}
 
 //Caleb 250601F
+//Calculate the chance of the enemy loot based on level, status, and type
+//Completed
+int Enemy::calculateDropChance(int mult) {
+	return (rand() % 100 <= chance + mult) ? 1 : 0;
+}
+
+//Caleb 250601F
 //Calculate enemy loot based on level, status, and type
 //Completed
-int Enemy::calculateLoot(Game* gamePtr)
+void Enemy::calculateLoot(Game* gamePtr)
 {
 	currentStage = gamePtr->getCurrentStage(); 
-	baseEXP = (((health + attack + defense) + ((CRITRate + CRITDMG) / 12) * level));
 
 	switch (enemyStatus) {
 	case 'B':
 		xp = static_cast<int>(baseEXP / 100);
 		gold = 3 + currentStage;
-		if (rand() % 100 <= 25) {
+		enemyDrops[drops] = calculateDropChance(0);
+		return;
+	case 'E':
+		if (enemyType == "Ascendants") {
+			enemyDrops[drops] = calculateDropChance(40);
+		}
+		else {
 			enemyDrops[drops] = 1;
 		}
-		return xp, gold;
-	case 'E':
 		xp = static_cast<int>(baseEXP / 70);
+		baseEXP += 2;
 		gold = 5 + currentStage;
-		enemyDrops[drops] = 1;
-		return xp, gold;
+		return;
+
 	case 'D':
 		xp = static_cast<int>(baseEXP / 35);
 		gold = 10 + currentStage;
+		baseEXP += 3;
 		enemyDrops[drops] = 2;
-		return xp, gold;
+		return;
 	case 'X':
 		xp = static_cast<int>(baseEXP / 10);
+		baseEXP += 4;
 		gold = 25 + currentStage;
 		enemyDrops[drops] = 5;
-		return xp, gold;
+		return;
 	}
 }
 
@@ -122,6 +137,10 @@ int Enemy::getAttack() const
 int Enemy::getDefense() const
 {
 	return defense;
+}
+int Enemy::getXP() const
+{
+	return baseEXP;
 }
 
 // vampire

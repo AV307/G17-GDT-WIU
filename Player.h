@@ -20,7 +20,9 @@ private:
 
     int enemiesDefeated;      
     bool solvedPuzzle;        
-    int weaponCount;          
+    int weaponCount;         
+
+    std::string action;
 
     bool isInCombat;
     bool isRunning;

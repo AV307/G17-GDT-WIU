@@ -32,11 +32,236 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 
 	for (int n = 1; n < 11; n++) {
 		if (n == 1) { // Enemy Design Line
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 10; i++) { // Going By Line
 				cout << "//";
-				for (int j = 0; j < 75; j++) {
-					cout << ' ';
+				if (specifiedEnemy.getEntityType() == "Undead") {
+					for (int j = 0; j < 34; j++) {
+						cout << ' ';
+					}
+					if (i < 3) {
+						for (int l = 0; l < 7; l++) {
+							cout << ' ';
+						}
+					}
+					if (i == 3) {
+						cout << R"(.-"""-.)";
+					}
+					if (i == 4) {
+						cout << R"(/ 0  0\)";
+					}
+					if (i == 5) {
+						cout << R"(|  w  |)";
+					}
+					if (i == 6) {
+						cout << R"(|.___.|)";
+					}
+					if (i == 7) {
+						cout << R"(  \-/  )";
+					}
+					if (i > 7) {
+						for (int l = 0; l < 7; l++) {
+							cout << ' ';
+						}
+					}
+					for (int j = 0; j < 34; j++) {
+						cout << ' ';
+					}
 				}
+			    else if (specifiedEnemy.getEntityType() == "Animal") {
+					for (int j = 0; j < 28; j++) {
+						cout << ' ';
+					}
+					if (i == 0 || i == 9) {
+						for (int l = 0; l < 19; l++) {
+							cout << ' ';
+						}
+					}
+					if (i == 1) {
+						cout << R"(          .--.     )";
+					}
+					if (i == 2) {
+						cout << R"(      / 6_6 \      )";
+					}
+					if (i == 3) {
+						cout << R"(      \_ v _/      )";
+					}
+					if (i == 4) {
+						cout << R"(      /     \     /)";
+					}
+					if (i == 5) {
+						cout << R"(     //|/.\|\\   / )";
+					}
+					if (i == 6) {
+						cout << R"(    ||  \_/  ||_/  )";
+					}
+					if (i == 7) {
+						cout << R"(     \\     //     )";
+					}
+					if (i == 8) {
+						cout << R"(      `-----`      )";
+					}
+					for (int j = 0; j < 28; j++) {
+						cout << ' ';
+					}
+				}
+				else if (specifiedEnemy.getEntityType() == "Flower") {
+					for (int j = 0; j < 27; j++) {
+						cout << ' ';
+					}
+					if (i == 0 || i == 4) {
+						cout << R"(       ((@@@))       )";
+					}
+					if (i == 1 || i == 3) {
+						cout << R"(     ((@@@@@@@))     )";
+					}
+					if (i == 2) {
+						cout << R"(    ((@@@@@@@@@))    )";
+					}
+					if (i > 4) {
+						cout << R"(         \|/         )";
+					}
+				}
+				else if (specifiedEnemy.getEntityType() == "Aquatic") {
+					for (int j = 0; j < 28; j++) {
+						cout << ' ';
+					}
+					if (i < 3 || i > 7) {
+						for (int l = 0; l < 19; l++) {
+							cout << ' ';
+						}
+					}
+					if (i == 3) {
+						cout << R"(      __/""-._     )";
+					}
+					if (i == 4) {
+						cout << R"(     /     o  '""-.)";
+					}
+					if (i == 5) {
+						cout << R"(><(((('>        )  )";
+					}
+					if (i == 6) {
+						cout << R"(     \__      _.'  )";
+					}
+					if (i == 7) {
+						cout << R"(        """--"     )";
+					}
+				}
+				else if (specifiedEnemy.getEntityType() == "Vampire") {
+					for (int j = 0; j < 26; j++) {
+						cout << ' ';
+					}
+					if (i < 2 || i > 7) {
+						for (int l = 0; l < 23; l++) {
+							cout << ' ';
+						}
+					}
+					if (i == 2) {
+						cout << R"(  \--\           \--\  )";
+					}
+					if (i == 3) {
+						cout << R"(   \  \ --------- \  \ )";
+					}
+					if (i == 4) {
+						cout << R"(  Y \    o  v  v  o   \)";
+					}
+					if (i == 5) {
+						cout << R"( / o| _______________ |)";
+					}
+					if (i == 6) {
+						cout << R"(/__/                  |)";
+					}
+					if (i == 7) {
+						cout << R"(Y Y \__mm_________mm__/)";
+					}
+					for (int j = 0; j < 26; j++) {
+						cout << ' ';
+					}
+				}
+				else if (specifiedEnemy.getEntityType() == "Humanoid") {
+					for (int j = 0; j < 20; j++) {
+						cout << ' ';
+					}
+					if (i == 0) {
+						cout << R"(    _____________________________    )";
+					}
+					if (i == 1) {
+						cout << R"(   |                             |   )";
+					}
+					if (i == 2) {
+						cout << R"(   |UUUUUUUUUUUUUUUUUUUUUUUUUUUUU|   )";
+					}
+					if (i == 3) {
+						cout << R"( __|          o   ---   o        |__ )";
+					}
+					if (i == 4) {
+						cout << R"(|  |_____________________________|  |)";
+					}
+					if (i == 5) {
+						cout << R"(|_X|                             |X_|)";
+					}
+					if (i == 6) {
+						cout << R"(   |_____________|-|_____________|   )";
+					}
+					for (int j = 0; j < 20; j++) {
+						cout << ' ';
+					}
+				}
+				else if (specifiedEnemy.getEntityType() == "Ascendants") {
+					for (int j = 0; j < 25; j++) {
+						cout << ' ';
+					}
+					if (i == 0) {
+						cout << R"(     /|\     )";
+					}
+					if (i == 1) {
+						cout << R"(    / | \    )";
+					}
+					if (i == 2) {
+						cout << R"(   /_ | _\   )";
+					}
+					if (i == 3) {
+						cout << R"(  /-| 0 |-\  )";
+					}
+					if (i == 4) {
+						cout << R"( /_| ___ |_\ )";
+					}
+					if (i == 5) {
+						cout << R"(/_/ \ _ / \_\)";
+					}
+					for (int j = 0; j < 25; j++) {
+						cout << ' ';
+					}
+				}
+				else if (specifiedEnemy.getEntityType() == "Cubed") {
+					for (int j = 0; j < 27; j++) {
+						cout << ' ';
+					}
+					if (i == 0) {
+						cout << R"(_____________________)";
+					}
+					if (i == 1) {
+						cout << R"(|\_________________\|)";
+					}
+					if (i == 2) {
+						cout << R"(||                 ||)";
+					}
+					if (i == 3) {
+						cout << R"(||                 ||)";
+					}
+					if (i == 4) {
+						cout << R"(||                 ||)";
+					}
+					if (i == 5) {
+						cout << R"(||   o    >    o   ||)";
+					}
+					if (i == 6) {
+						cout << R"(||_________________||)";
+					}
+					for (int j = 0; j < 27; j++) {
+						cout << ' ';
+					}
+				}
+
 				cout << "//" << endl;
 			}
 		}
@@ -49,11 +274,16 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 		}
 		if (n == 3) { // Text Dialogue Line
 			for (int i = 0; i < 3; i++) {
-				cout << "//";
-				for (int j = 0; j < 75; j++) {
-					cout << ' ';
+				if (i == 0 || i == 2) {
+					cout << "//";
+					for (int j = 0; j < 75; j++) {
+						cout << ' ';
+					}
+					cout << "//" << endl;
 				}
-				cout << "//" << endl;
+				if (i == 1) {
+					cout << getTextDialogue();
+				}
 			}
 		}
 		if (n == 5 || n == 7) { // 1/3 Division Lines
@@ -174,9 +404,9 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// (200 * 0.5) * 2     |      (ATK * DEF) * CRITDMG   =   200 Final Damage       |
 
 	// Damage Calculations
-	int playerDamage = player.getAttack() * (100-specifiedEnemy.getDefense()/100);                                                                                // If Player Doesn't Crit
+	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                // If Player Doesn't Crit
 	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                            // If Player Does Crit
-	int enemyDamage = specifiedEnemy.getAttack() - (100-player.getDefense()/100);                                                                                       // If Enemy Doesn't Crit
+	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                       // If Enemy Doesn't Crit
 	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                     // If Enemy Does Crit
 
 	if (playerDamage < 0) {

@@ -70,6 +70,14 @@ string Entity::getEntityType() const {
     return enemyType;
 }
 
+string Entity::getEntityDropName() {
+    return enemyDropName[drops];
+}
+
+int Entity::getEntityDrops() {
+    return enemyDrops[drops];
+}
+
 char Entity::getEnemyStatus() const {
     return enemyStatus;
 }

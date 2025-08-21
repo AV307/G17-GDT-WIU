@@ -29,7 +29,7 @@ protected:
 
     int sycophant_heart, poisoned_fang, withered_nectar, prismarine_fin, jar_of_hemovibe, burning_skin, opal_crystals, magma_jelly = 0;
     int enemyDrops[MAX_ENEMY_TYPE] = { sycophant_heart, poisoned_fang, withered_nectar, prismarine_fin, jar_of_hemovibe, burning_skin, opal_crystals, magma_jelly };
-
+    const string enemyDropName[MAX_ENEMY_TYPE] = { "sycophant_heart", "poisoned_fang", "withered_nectar", "prismarine_fin", "jar_of_hemovibe", "burning_skin", "opal_crystals", "magma_jelly" };
 
     int xPos;
     int yPos;
@@ -74,6 +74,8 @@ public:
     string getEntityType() const;
     char getEnemyStatus() const;
     int getListDrops(int enemyType) const;
+    string getEntityDropName();
+    int getEntityDrops();
 
 	virtual bool isAlive() const {
 		return health > 0;

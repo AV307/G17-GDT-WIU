@@ -1,9 +1,25 @@
 #pragma once
 
 enum ObjectType {
-	SWITCH,
-	STEPBUTTON,
+	SWITCH1,
+	SWITCH2,
+	SWITCH3,
+	SWITCH4,
+	SWITCH5,
+
+	STEPBUTTON1,
+	STEPBUTTON2,
+	STEPBUTTON3,
+	STEPBUTTON4,
+	STEPBUTTON5,
+	
 	TELEPORTER,
+	TELEPORTER,
+	TELEPORTER,
+	TELEPORTER,
+	TELEPORTER,
+
+
 	CHEST,
 	LOCKEDDOOR,
 	TORCH,
@@ -19,6 +35,7 @@ class RoomObjects
 {
 private:
 	ObjectType** objects;
+
 
 public:
 	RoomObjects(int roomWidth, int roomHeight);

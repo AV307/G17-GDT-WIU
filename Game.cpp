@@ -49,145 +49,71 @@ void Game::doTurn()
     int menuIndex = plr->getMenuIndex();
     int inventoryIndex = plr->getInventoryIndex();
 
-    Item** weapons = plr->getWeapons();
-    Item** armours = plr->getArmours();
-    Item** consumables = plr->getConsumables();
-    Item** artifacts = plr->getArtifacts();
+    Item** inventoryMenuArray;
 
     if (inventoryOpen == true) {
         std::cout << "+------------------------------------------------------+" << std::endl;
         switch (menuIndex) {
         case 1:
-            for (int i = 0; i < 10; i++) {
-                std::cout << "|";
-                std::cout << i + 1 << ". ";
-                SetConsoleTextAttribute(hConsole, (inventoryIndex == i) ? 14 : 7);
-                if (weapons[i]->isOwned() == true) {
-                    std::cout << weapons[i]->getName();
-                    std::cout << " (";
-                    std::cout << weapons[i]->getAttackVal();
-                    std::cout << " Attack)";
-                    if (weapons[i]->isEquipped() == true) {
-                        std::cout << " [Equipped]";
-                    }
-                    int nameLength = weapons[i]->getName().length();
-                    int numLength = std::to_string(i + 1).length();
-                    int attackLength = std::to_string(weapons[i]->getAttackVal()).length();
-                    int equipLength = 0;
-                    (weapons[i]->isEquipped() == true) ? equipLength = 11 : equipLength = 0;
-
-                    int remainingSpaces = 54 - (nameLength + numLength + attackLength + equipLength + 12);
-                    for (int j = 0; j < remainingSpaces; j++) {
-                        std::cout << " ";
-                    }
-                }
-                else {
-                    std::cout << "Empty";
-                    int numLength = std::to_string(i + 1).length();
-
-                    for (int j = 0; j < (52 - numLength - 5); j++) {
-                        std::cout << " ";
-                    }
-                }
-
-                SetConsoleTextAttribute(hConsole, 7);
-                std::cout << "|" << std::endl;
-            }
+            inventoryMenuArray = plr->getWeapons();
             break;
         case 2:
-            for (int i = 0; i < 10; i++) {
-                std::cout << "|";
-                std::cout << i + 1 << ". ";
-                SetConsoleTextAttribute(hConsole, (inventoryIndex == i) ? 14 : 7);
-                if (armours[i]->isOwned()) {
-                    std::cout << armours[i]->getName();
-                    std::cout << " (";
-                    std::cout << armours[i]->getDefenseVal();
-                    std::cout << " Defense)";
-                    if (armours[i]->isEquipped() == true) {
-                        std::cout << " [Equipped]";
-                    }
-
-                    int nameLength = armours[i]->getName().length();
-                    int numLength = std::to_string(i + 1).length();
-                    int defenseLength = std::to_string(armours[i]->getDefenseVal()).length();
-                    int equipLength = 0;
-                    (armours[i]->isEquipped() == true) ? equipLength = 11 : equipLength = 0;
-
-                    int remainingSpaces = 53 - (nameLength + numLength + defenseLength + equipLength + 12);
-                    for (int j = 0; j < remainingSpaces; j++) {
-                        std::cout << " ";
-                    }
-                }
-                else {
-                    std::cout << "Empty";
-                    int numLength = std::to_string(i + 1).length();
-
-                    for (int j = 0; j < (52 - numLength - 5); j++) {
-                        std::cout << " ";
-                    }
-                }
-
-                SetConsoleTextAttribute(hConsole, 7);
-                std::cout << "|" << std::endl;
-            }
+            inventoryMenuArray = plr->getArmours();
             break;
         case 3:
-            for (int i = 0; i < 10; i++) {
-                std::cout << "|";
-                std::cout << i + 1 << ". ";
-                SetConsoleTextAttribute(hConsole, (inventoryIndex == i) ? 14 : 7);
-                if (consumables[i] != nullptr) {
-                    std::cout << consumables[i]->getName();
-                    int nameLength = consumables[i]->getName().length();
-                    int numLength = std::to_string(i + 1).length();
-
-                    int remainingSpaces = 53 - (nameLength + numLength + 1);
-                    for (int j = 0; j < remainingSpaces; j++) {
-                        std::cout << " ";
-                    }
-                }
-                else {
-                    std::cout << "Empty";
-                    int numLength = std::to_string(i + 1).length();
-
-                    for (int j = 0; j < (52 - numLength - 5); j++) {
-                        std::cout << " ";
-                    }
-                }
-                SetConsoleTextAttribute(hConsole, 7);
-                std::cout << "|" << std::endl;
-            }
+            inventoryMenuArray = plr->getConsumables();
             break;
         case 4:
-            for (int i = 0; i < 10; i++) {
-                std::cout << "|";
-                std::cout << i + 1 << ". ";
-                SetConsoleTextAttribute(hConsole, (inventoryIndex == i) ? 14 : 7);
-                if (artifacts[i]->isOwned()) {
-                    std::cout << artifacts[i]->getName();
-                    int nameLength = artifacts[i]->getName().length();
-                    int numLength = std::to_string(i + 1).length();
-
-                    int remainingSpaces = 53 - (nameLength + numLength + 1);
-                    for (int j = 0; j < remainingSpaces; j++) {
-                        std::cout << " ";
-                    }
-                }
-                else {
-                    std::cout << "Empty";
-                    int numLength = std::to_string(i + 1).length();
-
-                    for (int j = 0; j < (52 - numLength - 5); j++) {
-                        std::cout << " ";
-                    }
-                }
-                SetConsoleTextAttribute(hConsole, 7);
-                std::cout << "|" << std::endl;
-            }
+            inventoryMenuArray = plr->getArtifacts();
             break;
         default:
             break;
+        }
+
+        for (int i = 0; i < 10; i++) {
+            std::cout << "|";
+            std::cout << i + 1 << ". ";
+            SetConsoleTextAttribute(hConsole, (inventoryIndex == i) ? 14 : 7);
+            if (inventoryMenuArray[i] != nullptr) {
+                std::cout << inventoryMenuArray[i]->getName();
+                if (inventoryMenuArray[i]->getAttackVal() != 0) {
+                    std::cout << " (";
+                    std::cout << inventoryMenuArray[i]->getAttackVal();
+                    std::cout << " Attack)";
+                }
+                if (inventoryMenuArray[i]->getDefenseVal() != 0) {
+                    std::cout << " (";
+                    std::cout << inventoryMenuArray[i]->getDefenseVal();
+                    std::cout << " Defense)";
+                }
+                if (inventoryMenuArray[i]->isEquipped() == true) {
+                    std::cout << " [Equipped]";
+                }
+                int nameLength = inventoryMenuArray[i]->getName().length();
+                int numLength = std::to_string(i + 1).length();
+                int attackLength = std::to_string(inventoryMenuArray[i]->getAttackVal()).length();
+                int defenseLength = std::to_string(inventoryMenuArray[i]->getDefenseVal()).length();
+                int equipLength = 0;
+                (inventoryMenuArray[i]->isEquipped() == true) ? equipLength = 11 : equipLength = 0;
+                (inventoryMenuArray[i]->getAttackVal() == 0) ? attackLength = 0 : attackLength += 11;
+                (inventoryMenuArray[i]->getDefenseVal() == 0) ? defenseLength = 0 : defenseLength += 11;
+
+                int remainingSpaces = 54 - (nameLength + numLength + attackLength + equipLength + defenseLength + 12);
+                for (int j = 0; j < remainingSpaces; j++) {
+                    std::cout << " ";
+                }
+            }
+            else {
+                std::cout << "Empty";
+                int numLength = std::to_string(i + 1).length();
+
+                for (int j = 0; j < (52 - numLength - 5); j++) {
+                    std::cout << " ";
+                }
+            }
+
+            SetConsoleTextAttribute(hConsole, 7);
+            std::cout << "|" << std::endl;
         }
 
         std::cout << "+------------------------------------------------------+" << std::endl;

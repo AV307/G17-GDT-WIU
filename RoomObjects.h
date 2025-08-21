@@ -6,7 +6,8 @@ enum ObjectType {
 	STEPBUTTON,
 	TELEPORTER,
 	CHEST, // also treasure room
-	LOCKEDDOOR,
+	DOOR,
+	KEYDOOR,
 	TORCH,
 	ONEDIRECTIONALDOOR,
 	PRESSUREPLATE,
@@ -28,6 +29,7 @@ struct Object
 {
 	ObjectType type;
 	int id;
+	bool toggled;
 };
 
 class RoomObjects
@@ -42,9 +44,13 @@ public:
 
 	void addObjects(int xCoord, int yCoord, ObjectType type, int id, int currentStage, char roomType);
 	void removeObject(int xCoord, int yCoord);
+
 	Object* getObject(int xCoord, int yCoord) const;
 	ObjectType getObjectType(int xCoord, int yCoord) const;
 
 	int getObjectId(int xCoord, int yCoord) const;
+
+	bool getObjectToggle(int xCoord, int yCoord) const;
+	void setObjectToggle(int xCoord, int yCoord, bool toggle);
 };
 

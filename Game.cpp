@@ -40,7 +40,7 @@ void Game::doTurn()
 {
     stage->updateStageArray(plr);
 
-    //system("cls");
+    system("cls");
 
     bool inventoryOpen = plr->checkInventoryOpen();
     bool hasKey = plr->checkKey();

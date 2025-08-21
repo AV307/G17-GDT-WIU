@@ -25,7 +25,11 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
         }
     }
 
-    objects[roomHeight-10][roomWidth-10] = new Object{SWITCH, 0};
+    objects[roomHeight - 10][roomWidth - 10] = new Object{ SWITCH, 1 ,false };
+
+    objects[roomHeight - 10][roomWidth - 8] = new Object{ DOOR, 1 ,false };
+    objects[roomHeight - 10][roomWidth - 7] = new Object{ DOOR, 1 ,false };
+    objects[roomHeight - 10][roomWidth - 6] = new Object{ DOOR, 1 ,false};
 }
 
 RoomObjects::~RoomObjects()
@@ -106,4 +110,21 @@ int RoomObjects::getObjectId(int xCoord, int yCoord) const
         return obj->type;
     }
     return -1;
+}
+
+bool RoomObjects::getObjectToggle(int xCoord, int yCoord) const
+{
+    Object* obj = objects[yCoord][xCoord];
+    if (obj != nullptr) {
+        return obj->toggled;
+    }
+    return false;
+}
+
+void RoomObjects::setObjectToggle(int xCoord, int yCoord, bool toggle)
+{
+    Object* obj = objects[yCoord][xCoord];
+    if (obj != nullptr) {
+        obj->toggled = toggle;
+    }
 }

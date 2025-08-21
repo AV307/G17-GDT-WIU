@@ -244,21 +244,20 @@ void Stage::updateStageArray(Player* player)
 
     player->doAction();
 
-    std::cout << "Left Right: " << player->getXPos() << " Up Down: " << player->getYPos() << std::endl;
-    std::cout << "Up Down range: " << rooms[0]->getRoomTopLeftX() << " to " << rooms[0]->getRoomTopLeftX() + rooms[0]->getRoomWidth() - 1 << std::endl;
-    std::cout << "Left Right range: " << rooms[0]->getRoomTopLeftY() << " to " << rooms[0]->getRoomTopLeftY() + rooms[0]->getRoomHeight() - 1 << std::endl;
-
     RoomObjects* objects = rooms[0]->getRoomObjects();
-    //ObjectType type = objects->getObjectType(player->getXPos() - rooms[1]->getRoomTopLeftY(), player->getYPos() - rooms[1]->getRoomTopLeftX());
-    
     ObjectType type = SPACE;
+    bool toggled = false;
+
+    int roomX = player->getXPos() - rooms[0]->getRoomTopLeftY();
+    int roomY = player->getYPos() - rooms[0]->getRoomTopLeftX();
 
     if (player->getYPos() >= rooms[0]->getRoomTopLeftX() && 
         player->getYPos() < rooms[0]->getRoomTopLeftX() + rooms[0]->getRoomWidth() &&
         player->getXPos() >= rooms[0]->getRoomTopLeftY() && 
         player->getXPos() < rooms[0]->getRoomTopLeftY() + rooms[0]->getRoomHeight()) 
     {
-        type = objects->getObjectType(player->getXPos() - rooms[0]->getRoomTopLeftY(), player->getYPos() - rooms[0]->getRoomTopLeftX());
+        type = objects->getObjectType(roomX, roomY);
+        toggled = objects->getObjectToggle(roomX, roomY);
     }
 
     int offsetsX[4] = { -1,1,0,0 };
@@ -267,7 +266,7 @@ void Stage::updateStageArray(Player* player)
     {
         bool blocked = false;
 
-        if (type == WALL || type == LOCKEDDOOR || type == SWITCH || type == CHEST) {
+        if (type == WALL || (type == DOOR && toggled == false) || type == SWITCH || type == CHEST || stageArray[player->getYPos()][player->getXPos()] == '#') {
             blocked = true;
         }
 
@@ -278,18 +277,31 @@ void Stage::updateStageArray(Player* player)
     }
 
     {
-        /*if (player->getAction() == "Interact") {
-            for (int i = 0; i < 2; i++) {
+        if (player->getAction() == "Interact") {
+            for (int i = 0; i < 3; i++) {
                 int xPos = playerXPos + offsetsX[i];
                 int yPos = playerYPos + offsetsY[i];
 
-                for (int j = 0; j < 2; j++) {
-                    if (stageArray[yPos][xPos] == interactableObjects[j]) {
-                        
+                switch (type) {
+
+                case SWITCH:
+                    int switchID = objects->getObjectId(xPos - rooms[0]->getRoomTopLeftY(), yPos - rooms[0]->getRoomTopLeftX());
+                    for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+                        for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                            if (objects->getObjectType(x, y) == DOOR &&
+                                objects->getObjectId(x, y) == switchID)
+                            {
+                                bool doorToggle = objects->getObjectToggle(x, y);
+                                objects->setObjectToggle(x, y, !doorToggle);
+                            }
+                        }
                     }
+                    break;
+                case CHEST:
+                    break;
                 }
             }
-        }*/
+        }
     }
 
     player->setXPos(playerXPos);

@@ -52,6 +52,7 @@ void Game::doTurn()
     Item** inventoryMenuArray;
 
     if (inventoryOpen == true) {
+        std::cout << menuIndex;
         std::cout << "+------------------------------------------------------+" << std::endl;
         switch (menuIndex) {
         case 1:

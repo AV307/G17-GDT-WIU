@@ -15,16 +15,7 @@ Player::Player(){
 		weaponry[i] = nullptr;
 		armoury[i] = nullptr;
 		consumables[i] = nullptr;
-	}
-
-	for (int i = 0; i < 10; i++) {
-		artifacts[i] = new Item;
-		artifacts[i]->setName("Artifact");
-	}
-
-	for (int i = 0; i < 10; i++) {
-		armoury[i]->setEquipped(false);
-		weaponry[i]->setEquipped(false);
+		artifacts[i] = nullptr;
 	}
 
 	inventoryOpen = false;
@@ -133,13 +124,26 @@ void Player::handleInventory(char inputVal)
 		}
 		break;
 	case'f':
+		if (menuIndex == 1) {
+			addWeapon("Sword", 5);
+		}
+		if (menuIndex == 2) {
+			addArmour("Chestplate", 5);
+		}
+		if (menuIndex == 3) {
+			addConsumable("Potion", 5, 5, 5);
+		}
+		if (menuIndex == 4) {
+			addArtifact("Artifact");
+		}
+		std::cout << "hi";
 		break;
 	case'g':
 		if (menuIndex == 1) {
-
+			removeWeapon(inventoryIndex);
 		}
 		if (menuIndex == 2) {
-
+			removeArmour(inventoryIndex);
 		}
 		if (menuIndex == 3) {
 			removeConsumable(inventoryIndex);
@@ -227,6 +231,7 @@ void Player::addWeapon(std::string Name, int attackVal)
 			Weapon* weapon = new Weapon;
 			weapon->setName(Name);
 			weapon->setAttackVal(attackVal);
+			weapon->setEquipped(false);
 			weaponry[i] = weapon;
 			break;
 		}
@@ -248,6 +253,7 @@ void Player::addArmour(std::string Name, int defenseVal)
 			Armour* armour = new Armour;
 			armour->setName(Name);
 			armour->setDefenseVal(defenseVal);
+			armour->setEquipped(false);
 			armoury[i] = armour;
 			break;
 		}

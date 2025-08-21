@@ -244,19 +244,33 @@ void Stage::updateStageArray(Player* player)
 
     player->doAction();
 
-    char collisionObjects[4] = { '#','L','C','D' };
-    char interactableObjects[2] = { 'C','L' };
+    RoomObjects* objects = rooms[1]->getRoomObjects();
+    //ObjectType type = objects->getObjectType(player->getXPos() - rooms[1]->getRoomTopLeftY(), player->getYPos() - rooms[1]->getRoomTopLeftX());
+    
+    ObjectType type = SPACE;
+
+    if (playerXPos >= rooms[1]->getRoomTopLeftX() &&
+        playerXPos < rooms[1]->getRoomTopLeftX() + rooms[1]->getRoomWidth() &&
+        playerYPos >= rooms[1]->getRoomTopLeftY() &&
+        playerYPos < rooms[1]->getRoomTopLeftY() + rooms[1]->getRoomHeight())
+    {
+        player->setXPos(playerXPos);
+        player->setYPos(playerYPos);
+
+        previousTile = stageArray[playerYPos][playerXPos];
+
+        stageArray[playerYPos][playerXPos] = 'P';
+        //type = objects->getObjectType(playerXPos, playerYPos);
+    }
+
     int offsetsX[4] = { -1,1,0,0 };
     int offsetsY[4] = { 0,0,-1,1 };
 
     {
         bool blocked = false;
 
-        for (int i = 0; i < 3; i++) {
-            if (stageArray[player->getYPos()][player->getXPos()] == collisionObjects[i]) {
-                blocked = true;
-                break;
-            }
+        if (type == WALL || type == LOCKEDDOOR || type == SWITCH || type == CHEST) {
+            blocked = true;
         }
 
         if (blocked == false) {
@@ -266,7 +280,7 @@ void Stage::updateStageArray(Player* player)
     }
 
     {
-        if (player->getAction() == "Interact") {
+        /*if (player->getAction() == "Interact") {
             for (int i = 0; i < 2; i++) {
                 int xPos = playerXPos + offsetsX[i];
                 int yPos = playerYPos + offsetsY[i];
@@ -277,15 +291,19 @@ void Stage::updateStageArray(Player* player)
                     }
                 }
             }
-        }
+        }*/
     }
 
-    player->setXPos(playerXPos);
+    std::cout << "PlayerX: " << playerXPos << " PlayerY: " << playerYPos << std::endl;
+    std::cout << "Room X range: " << rooms[1]->getRoomTopLeftX() << " to " << rooms[1]->getRoomTopLeftX() + rooms[1]->getRoomWidth() - 1 << std::endl;
+    std::cout << "Room Y range: " << rooms[1]->getRoomTopLeftY() << " to " << rooms[1]->getRoomTopLeftY() + rooms[1]->getRoomHeight() - 1 << std::endl;
+
+    /*player->setXPos(playerXPos);
     player->setYPos(playerYPos);
 
     previousTile = stageArray[playerYPos][playerXPos];
 
-    stageArray[playerYPos][playerXPos] = 'P';
+    stageArray[playerYPos][playerXPos] = 'P';*/
 }
 
 //bool Stage::checkCollision(int xPos, int yPos, int currentRoom)

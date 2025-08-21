@@ -164,23 +164,17 @@ void Game::doTurn()
     {
         // Check if a key was pressed
         if (_kbhit()) {
-			char key = _getch();  // get the key 'p' or 'P'
+            char key = _getch();
 
             if (key == 'p' || key == 'P') {
-                restartStage(currentStage);
+                pauseGame(); // Show pause menu
                 return;
-            }
-            else if (key == ' ') { // space to pause
-                pauseGame();
-                return;
-            
             }
         }
 
         plr->doAction();
-
         system("cls");
-
+        stage->printStage();
     }
 }
 
@@ -208,11 +202,56 @@ void Game::restartStage(int currentStage)
 
 //Benjamin 250572M
 // Pauses the game and waits for a key press to continue
+
+
 void Game::pauseGame() {
-    std::cout << "\nGame Paused. Press any key to continue...";
-    _getch(); 
-    system("cls"); // Clear screen after resuming
+    int choice = 0; // 0 = Resume, 1 = Restart, 2 = Quit
+    char key;
+
+    while (true) {
+        system("cls");
+
+        std::cout << "+------------------------+\n";
+        std::cout << "|        PAUSED          |\n";
+        std::cout << "+------------------------+\n";
+
+        // Resume option
+        SetConsoleTextAttribute(hConsole, (choice == 0) ? 14 : 7); // Yellow for selected
+        std::cout << "| " << (choice == 0 ? "> " : "  ") << "Resume               |\n";
+
+        // Restart stage option
+        SetConsoleTextAttribute(hConsole, (choice == 1) ? 14 : 7);
+        std::cout << "| " << (choice == 1 ? "> " : "  ") << "Restart Stage        |\n";
+
+        // Quit option
+        SetConsoleTextAttribute(hConsole, (choice == 2) ? 14 : 7);
+        std::cout << "| " << (choice == 2 ? "> " : "  ") << "Quit                 |\n";
+
+        SetConsoleTextAttribute(hConsole, 7); // Reset color
+        std::cout << "+------------------------+\n";
+
+        key = _getch();
+
+        if (key == 'w' || key == 'W') {
+            choice = (choice == 0) ? 2 : choice - 1; // move up
+        }
+        else if (key == 's' || key == 'S') {
+            choice = (choice == 2) ? 0 : choice + 1; // move down
+        }
+        else if (key == 13) { // Enter
+            switch (choice) {
+            case 0: // Resume
+                return;
+            case 1: // Restart Stage
+                restartStage(currentStage);
+                return;
+            case 2: // Quit
+                exit(0);
+            }
+        }
+    }
 }
+
 
 
 

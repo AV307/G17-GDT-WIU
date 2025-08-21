@@ -13,6 +13,8 @@ private:
     Room* rooms[4];
     Game* game;
 
+    char previousTile;
+
     std::random_device rd;
     std::mt19937 gen;
     std::uniform_int_distribution<> dis;

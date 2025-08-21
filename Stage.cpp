@@ -176,7 +176,7 @@ Stage::Stage(Game* game, Player* player)
 
     char room1{};
     char room2{};
-    switch (randomRoom1) 
+    switch (randomRoom1)
     {
     case 1:
         rooms[1] = new ShopRoom(currentStage, 1);
@@ -192,15 +192,15 @@ Stage::Stage(Game* game, Player* player)
         break;
     }
 
-    if (currentStage == 3 || currentStage == 5) 
+    if (currentStage == 3 || currentStage == 5)
     {
         rooms[2] = new BossRoom(currentStage);
         room2 = 'F';
     }
-    else 
+    else
     {
         int randomRoom2 = dis(gen);
-        switch (randomRoom2) 
+        switch (randomRoom2)
         {
         case 1:
             rooms[2] = new ShopRoom(currentStage, 2);
@@ -219,13 +219,15 @@ Stage::Stage(Game* game, Player* player)
 
     rooms[3] = new PortalRoom(currentStage, 3);
 
+    previousTile = ' ';
+
     setStageArray(currentStage, room1, room2, player);
 }
 
 //Ang Zhi En 252317H
 //Destructor for stage, delete pointers
 //Incomplete
-Stage::~Stage() 
+Stage::~Stage()
 {
     for (int i{ 0 }; i <= 2; i++)
     {
@@ -238,12 +240,14 @@ void Stage::updateStageArray(Player* player)
     int playerXPos = player->getXPos();
     int playerYPos = player->getYPos();
 
-    stageArray[playerYPos][playerXPos] = ' ';
+    stageArray[playerYPos][playerXPos] = previousTile;
 
     player->doAction();
 
     char collisionObjects[4] = { '#','L','C','D' };
     char interactableObjects[2] = { 'C','L' };
+    int offsetsX[4] = { -1,1,0,0 };
+    int offsetsY[4] = { 0,0,-1,1 };
 
     {
         bool blocked = false;
@@ -263,12 +267,23 @@ void Stage::updateStageArray(Player* player)
 
     {
         if (player->getAction() == "Interact") {
-            
+            for (int i = 0; i < 2; i++) {
+                int xPos = playerXPos + offsetsX[i];
+                int yPos = playerYPos + offsetsY[i];
+
+                for (int j = 0; j < 2; j++) {
+                    if (stageArray[yPos][xPos] == interactableObjects[j]) {
+                        stageArray[yPos][xPos] = ' ';
+                    }
+                }
+            }
         }
     }
 
     player->setXPos(playerXPos);
     player->setYPos(playerYPos);
+
+    previousTile = stageArray[playerYPos][playerXPos];
 
     stageArray[playerYPos][playerXPos] = 'P';
 }

@@ -17,6 +17,8 @@ miniQuests::miniQuests() {
         questGoldReward[i] = 10 * (i + 1);
         questXPReward[i] = 5 * (i + 1);
     }
+
+
 }
 
 miniQuests::~miniQuests() {}
@@ -92,6 +94,9 @@ void miniQuests::checkQuestCompletion(Player& player, Enemy& enemy) {
 
     if (!questCompleted[6] && enemy.isBossDefeated())
         completeQuest(6, player);
+
+    if (!questCompleted[7] && player.getItemsTraded() >= 3)
+        completeQuest(7, player);
 }
 
 string miniQuests::getQuestName(int index) const {

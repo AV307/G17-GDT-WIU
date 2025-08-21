@@ -7,6 +7,7 @@ class Game
 private:
     Stage* stage;
     int currentStage;
+	int highestStage;
     Player* plr;
 
 public:
@@ -21,7 +22,7 @@ public:
 
 	void pauseGame();
 
-
+	void getHighestStage(int currentStage);
 
 };
 

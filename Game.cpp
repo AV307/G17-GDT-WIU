@@ -252,6 +252,17 @@ void Game::pauseGame() {
     }
 }
 
+//get the highest stage reached by the player
+void Game::getHighestStage(int currentStage)
+{
+	if (currentStage > highestStage) {
+		highestStage = currentStage;
+	}
+	std::cout << "Highest Stage Reached: " << highestStage << std::endl; // for debugging purposes
+}
+
+
+
 
 
 

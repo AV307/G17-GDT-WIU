@@ -5,6 +5,7 @@ class ShopRoom :
 {
 private:
     char** shopRoomArray;
+    //Item* shopInventory[10];
 public:
     ShopRoom(int currentStage, int roomNumber);
     ~ShopRoom();

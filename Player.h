@@ -17,6 +17,7 @@ private:
 
     int menuIndex;
     int inventoryIndex;
+    int itemsTraded;
 
     int enemiesDefeated;      
     bool solvedPuzzle;        
@@ -40,6 +41,7 @@ public:
 
     int getInventoryIndex();
     int getMenuIndex();
+    int getItemsTraded();
     int resetStats();
 	int setPosition(int x, int y);
 

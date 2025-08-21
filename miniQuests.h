@@ -9,7 +9,7 @@ using namespace std;
 
 class miniQuests {
 protected:
-    const static int numberOfQuests = 7;
+    const static int numberOfQuests = 8;
     int questCompleted[numberOfQuests];
     bool questActive[numberOfQuests];
     string questNames[numberOfQuests];

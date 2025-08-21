@@ -196,6 +196,11 @@ int Player::getMenuIndex()
 	return menuIndex;
 }
 
+int Player::getItemsTraded()
+{
+	return itemsTraded;
+}
+
 int Player::resetStats()
 {
 	return 0;

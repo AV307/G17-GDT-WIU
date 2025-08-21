@@ -9,6 +9,8 @@ BedRoom::BedRoom(int currentStage, int roomNumber)
     roomWidth = 20;
     setRoomLocation(roomNumber);
 
+    roomObjects = new RoomObjects(roomWidth, roomHeight);
+
     // dynamically allocate bedRoomArray
     bedRoomArray = new char* [roomHeight];
     for (int i{ 0 }; i < roomHeight; i++)
@@ -16,21 +18,7 @@ BedRoom::BedRoom(int currentStage, int roomNumber)
         bedRoomArray[i] = new char[roomWidth];
     }
 
-    // set empty room
-    for (int i{ 0 }; i < roomHeight; i++)
-    {
-        for (int j{ 0 }; j < roomWidth; j++)
-        {
-            if (i == 0 || i == roomHeight - 1 || j == 0 || j == roomWidth - 1)
-            {
-                bedRoomArray[i][j] = 'O'; // set to wall
-            }
-            else
-            {
-                bedRoomArray[i][j] = ' '; // set to space
-            }
-        }
-    }
+    placeRoomObjects(bedRoomArray);
 }
 
 //Ang Zhi En 252317H

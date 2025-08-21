@@ -139,6 +139,7 @@
     <ClCompile Include="PortalRoom.cpp" />
     <ClCompile Include="Potion.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="RoomObjects.cpp" />
     <ClCompile Include="ShopRoom.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="TreasureRoom.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="PortalRoom.h" />
     <ClInclude Include="Potion.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="RoomObjects.h" />
     <ClInclude Include="ShopRoom.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="TreasureRoom.h" />

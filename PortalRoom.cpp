@@ -10,6 +10,8 @@ PortalRoom::PortalRoom(int currentStage, int roomNumber)
     roomTopLeftX = 0;
     roomTopLeftY = 45;
 
+    roomObjects = new RoomObjects(roomWidth, roomHeight);
+
     // dynamically allocate shopRoomArray
     portalRoomArray = new char* [roomHeight];
     for (int i{ 0 }; i < roomHeight; i++)
@@ -17,21 +19,7 @@ PortalRoom::PortalRoom(int currentStage, int roomNumber)
         portalRoomArray[i] = new char[roomWidth];
     }
 
-    // set empty room
-    for (int i{ 0 }; i < roomHeight; i++)
-    {
-        for (int j{ 0 }; j < roomWidth; j++)
-        {
-            if (i == 0 || i == roomHeight - 1 || j == 0 || j == roomWidth - 1)
-            {
-                portalRoomArray[i][j] = 'O'; // set to wall
-            }
-            else
-            {
-                portalRoomArray[i][j] = ' '; // set to space
-            }
-        }
-    }
+    placeRoomObjects(portalRoomArray);
 
     //add code below for setting up specific portal related parts
 }

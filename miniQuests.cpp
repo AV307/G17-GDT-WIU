@@ -7,6 +7,8 @@
 #include "item.h"
 using namespace std;
 
+//Benjamin 250572M 
+//Constructor for miniQuests, loops through the number of quests and initializes them
 miniQuests::miniQuests() {
     for (int i = 0; i < numberOfQuests; i++) {
         questCompleted[i] = 0;
@@ -67,6 +69,8 @@ void miniQuests::showQuests() const {
     }
 }
 
+//Benjamin 250572M
+//Checks if the player has completed any quests based on their actions
 void miniQuests::checkQuestCompletion(Player& player, Enemy& enemy) {
     if (!questCompleted[0] && player.getEnemiesDefeated() >= 10)
         completeQuest(0, player);
@@ -105,5 +109,20 @@ int miniQuests::getQuestGoldReward(int index) const {
 int miniQuests::getQuestXPReward(int index) const {
     if (index >= 0 && index < numberOfQuests)
         return questXPReward[index];
+    return 0;
+}
+
+int miniQuests::getEnemiesDefeated() const
+{
+    return 0;
+}
+
+bool miniQuests::hasSolvedPuzzle() const
+{
+    return false;
+}
+
+int miniQuests::getWeaponCount() const
+{
     return 0;
 }

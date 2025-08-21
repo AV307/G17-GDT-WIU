@@ -40,6 +40,8 @@ public:
 
     int getInventoryIndex();
     int getMenuIndex();
+    int resetStats();
+	int setPosition(int x, int y);
 
     bool checkInventoryOpen();
     bool checkKey();

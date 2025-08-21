@@ -16,5 +16,10 @@ public:
     int getCurrentStage();
 
     void doTurn();
+
+    void restartStage(int currentStage);
+
+	void pauseGame();
+
 };
 

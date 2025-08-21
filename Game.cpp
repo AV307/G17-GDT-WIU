@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Item.h"
+#include <conio.h>
 
 #include <iostream>
 #include <string>
@@ -157,6 +158,61 @@ void Game::doTurn()
     SetConsoleTextAttribute(hConsole, 7);
 
     plr->updateStats();
+
+	//Benjamin 250572M
+	// Check if the player has pressed 'p' to restart the stage
+    {
+        // Check if a key was pressed
+        if (_kbhit()) {
+			char key = _getch();  // get the key 'p' or 'P'
+
+            if (key == 'p' || key == 'P') {
+                restartStage(currentStage);
+                return;
+            }
+            else if (key == ' ') { // space to pause
+                pauseGame();
+                return;
+            
+            }
+        }
+
+        plr->doAction();
+
+        system("cls");
+
+    }
 }
+
+//Benjamin 250572M 
+//restarts the stage
+void Game::restartStage(int currentStage)
+{
+	//Checks if the stage still exists using nullptr and deletes it if it does
+    if (stage != nullptr) {
+        delete stage;
+        stage = nullptr;
+    }
+
+	// Restart the stage where the player is currently at
+    stage = new Stage(this);
+
+    plr->resetStats();   
+    //resets the position
+    plr->setPosition(0, 0); 
+
+    // Print the new stage
+    stage->printStage();
+	std::cout << "Stage " << currentStage << " has been restarted." << std::endl; //for debugging purposes
+}
+
+//Benjamin 250572M
+// Pauses the game and waits for a key press to continue
+void Game::pauseGame() {
+    std::cout << "\nGame Paused. Press any key to continue...";
+    _getch(); 
+    system("cls"); // Clear screen after resuming
+}
+
 
 

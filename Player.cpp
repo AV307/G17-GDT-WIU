@@ -196,6 +196,16 @@ int Player::getMenuIndex()
 	return menuIndex;
 }
 
+int Player::resetStats()
+{
+	return 0;
+}
+
+int Player::setPosition(int x, int y)
+{
+	return 0;
+}
+
 //Jayren 250920U
 //returns inventoryOpen to check if inventory is Open or closed
 bool Player::checkInventoryOpen()

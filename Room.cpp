@@ -15,24 +15,18 @@ void Room::placeRoomObjects(char** roomArray)
 	for (int x = 0; x < roomWidth; x++) {
 		for (int y = 0; y < roomHeight; y++) {
 			ObjectType objectType = roomObjects->getObjectType(x, y);
-			bool toggled = roomObjects->getObjectToggle(x, y);
 			switch (objectType) {
 			case SPACE:
-				roomArray[x][y] = ' ';
+				roomArray[y][x] = ' ';
 				break;
 			case WALL:
-				roomArray[x][y] = '#';
+				roomArray[y][x] = '#';
 				break;
 			case SWITCH:
-				roomArray[x][y] = 'L';
+				roomArray[y][x] = 'L';
 				break;
 			case DOOR:
-				if (toggled == false) {
-					roomArray[x][y] = '+';
-				}
-				else {
-					roomArray[x][y] = ' ';
-				}
+				roomArray[y][x] = '+';
 				break;
 			}
 		}

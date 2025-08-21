@@ -25,11 +25,13 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
         }
     }
 
-    objects[roomHeight - 10][roomWidth - 10] = new Object{ SWITCH, 1 ,false };
+    objects[roomWidth - 11][roomHeight - 14] = new Object{ DOOR, 1 ,false };
+    objects[roomWidth - 11][roomWidth - 13] = new Object{ DOOR, 1 ,false };
 
-    objects[roomHeight - 10][roomWidth - 8] = new Object{ DOOR, 1 ,false };
-    objects[roomHeight - 10][roomWidth - 7] = new Object{ DOOR, 1 ,false };
-    objects[roomHeight - 10][roomWidth - 6] = new Object{ DOOR, 1 ,false };
+    objects[roomWidth - 11][roomWidth - 11] = new Object{ SWITCH, 1 ,false };
+
+    objects[roomWidth - 11][roomWidth - 9] = new Object{ DOOR, 1 ,false };
+    objects[roomWidth - 11][roomWidth - 8] = new Object{ DOOR, 1 ,false };
 }
 
 RoomObjects::~RoomObjects()

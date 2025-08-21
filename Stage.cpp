@@ -258,6 +258,7 @@ void Stage::updateStageArray(Player* player)
     {
         type = objects->getObjectType(roomX, roomY);
         toggled = objects->getObjectToggle(roomX, roomY);
+        std::cout << type << std::endl;
     }
 
     int offsetsX[4] = { -1,1,0,0 };
@@ -266,7 +267,7 @@ void Stage::updateStageArray(Player* player)
     {
         bool blocked = false;
 
-        if (type == WALL || (type == DOOR) || type == SWITCH || type == CHEST || stageArray[player->getYPos()][player->getXPos()] == '#') {
+        if (type == WALL || (type == DOOR && toggled == false) || type == SWITCH || type == CHEST || stageArray[player->getYPos()][player->getXPos()] == '#') {
             blocked = true;
         }
 
@@ -285,6 +286,7 @@ void Stage::updateStageArray(Player* player)
                 switch (type) {
 
                 case SWITCH: {
+                    std::cout << "die"
                     int switchID = objects->getObjectId(xPos - rooms[0]->getRoomTopLeftY(), yPos - rooms[0]->getRoomTopLeftX());
                     for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
                         for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {

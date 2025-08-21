@@ -54,7 +54,7 @@ Enemy::Enemy(std::string type, char status) {
 	case 'X':
 		health *= static_cast<int>(350 / 100);
 		attack *= static_cast<int>(250 / 100);
-		defense *= static_cast<int>(200 / 100);
+		defense *= static_cast<int>(250 / 100);
 		break;
 	}
 }

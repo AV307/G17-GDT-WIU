@@ -12,7 +12,7 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 //Ang Zhi En 252317H
 //Constructor for Game, creates a stage for the game
 //Incomplete
-Game::Game() 
+Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
     currentStage = 1;
@@ -42,7 +42,7 @@ void Game::doTurn(CombatSystem combatsystem)
 {
     stage->updateStageArray(plr);
 
-    system("cls");
+    //system("cls");
 
     bool inventoryOpen = plr->checkInventoryOpen();
     bool hasKey = plr->checkKey();
@@ -200,4 +200,68 @@ void Game::doTurn(CombatSystem combatsystem)
     
 }
 
+//Benjamin 250572M 
+// Restart the stage
+void Game::restartStage(int currentStage)
+{
+    if (stage != nullptr) {
+        delete stage;
+        stage = nullptr;
+    }
 
+    stage = new Stage(this, plr);   
+
+    plr->resetStats();
+    plr->setPosition(0, 0);
+
+    stage->printStage();
+    std::cout << "Stage " << currentStage << " has been restarted." << std::endl;
+}
+
+
+// Update highest stage reached
+void Game::getHighestStage(int currentStage)
+{
+    if (currentStage > highestStage) {
+        highestStage = currentStage;
+    }
+    std::cout << "Highest Stage Reached: " << highestStage << std::endl;
+}
+
+// Pause game
+void Game::pauseGame() {
+    int choice = 0;
+    char key;
+
+    while (true) {
+        system("cls");
+
+        std::cout << "+------------------------+\n";
+        std::cout << "|        PAUSED          |\n";
+        std::cout << "+------------------------+\n";
+
+        SetConsoleTextAttribute(hConsole, (choice == 0) ? 14 : 7);
+        std::cout << "| " << (choice == 0 ? "> " : "  ") << "Resume               |\n";
+
+        SetConsoleTextAttribute(hConsole, (choice == 1) ? 14 : 7);
+        std::cout << "| " << (choice == 1 ? "> " : "  ") << "Restart Stage        |\n";
+
+        SetConsoleTextAttribute(hConsole, (choice == 2) ? 14 : 7);
+        std::cout << "| " << (choice == 2 ? "> " : "  ") << "Quit                 |\n";
+
+        SetConsoleTextAttribute(hConsole, 7);
+        std::cout << "+------------------------+\n";
+
+        key = _getch();
+
+        if (key == 'w' || key == 'W') choice = (choice == 0) ? 2 : choice - 1;
+        else if (key == 's' || key == 'S') choice = (choice == 2) ? 0 : choice + 1;
+        else if (key == 13) {
+            switch (choice) {
+            case 0: return;
+            case 1: restartStage(currentStage); return;
+            case 2: exit(0);
+            }
+        }
+    }
+}

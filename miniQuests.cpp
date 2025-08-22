@@ -7,6 +7,8 @@
 #include "item.h"
 using namespace std;
 
+//Benjamin 250572M 
+//Constructor for miniQuests, loops through the number of quests and initializes them
 miniQuests::miniQuests() {
     for (int i = 0; i < numberOfQuests; i++) {
         questCompleted[i] = 0;
@@ -15,6 +17,8 @@ miniQuests::miniQuests() {
         questGoldReward[i] = 10 * (i + 1);
         questXPReward[i] = 5 * (i + 1);
     }
+
+
 }
 
 miniQuests::~miniQuests() {}
@@ -60,7 +64,6 @@ void miniQuests::setQuest(int index, string name, int gold, int xp) {
     }
 }
 
-// Show all quests
 void miniQuests::showQuests() const {
     for (int i = 0; i < numberOfQuests; i++) {
         cout << i + 1 << ". " << questNames[i]
@@ -68,6 +71,8 @@ void miniQuests::showQuests() const {
     }
 }
 
+//Benjamin 250572M
+//Checks if the player has completed any quests based on their actions
 void miniQuests::checkQuestCompletion(Player& player, Enemy& enemy) {
     if (!questCompleted[0] && player.getEnemiesDefeated() >= 10)
         completeQuest(0, player);
@@ -75,20 +80,23 @@ void miniQuests::checkQuestCompletion(Player& player, Enemy& enemy) {
     if (!questCompleted[1] && player.hasSolvedPuzzle())
         completeQuest(1, player);
 
-    if (!questCompleted[2] && player.getWeaponCount() >= 10)
+    if (!questCompleted[2] && player.getWeaponCount() >= 5)
         completeQuest(2, player);
 
     if (!questCompleted[3] && player.getGold() >= 500)
         completeQuest(3, player);
 
-    if (!questCompleted[4] && player.getWeaponCount() >= 5)
+    if (!questCompleted[4] && player.getWeaponCount() >= 10)
         completeQuest(4, player);
 
-    if (!questCompleted[5] && player.getWeaponCount() >= 10)
+    if (!questCompleted[5] && player.getWeaponCount() >= 20)
         completeQuest(5, player);
 
     if (!questCompleted[6] && enemy.isBossDefeated())
         completeQuest(6, player);
+
+    if (!questCompleted[7] && player.getItemsTraded() >= 3)
+        completeQuest(7, player);
 }
 
 string miniQuests::getQuestName(int index) const {
@@ -106,5 +114,20 @@ int miniQuests::getQuestGoldReward(int index) const {
 int miniQuests::getQuestXPReward(int index) const {
     if (index >= 0 && index < numberOfQuests)
         return questXPReward[index];
+    return 0;
+}
+
+int miniQuests::getEnemiesDefeated() const
+{
+    return 0;
+}
+
+bool miniQuests::hasSolvedPuzzle() const
+{
+    return false;
+}
+
+int miniQuests::getWeaponCount() const
+{
     return 0;
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "Item.h"
+#include "Weapon.h"
 class Player : public Entity
 {
 private:
@@ -8,6 +9,7 @@ private:
     Item* armoury[10];
     Item* consumables[10];
     Item* artifacts[10];
+	Item* shopInventory[10];
 
     Item* equippedWeapon;
     Item* equippedArmour;
@@ -17,6 +19,7 @@ private:
 
     int menuIndex;
     int inventoryIndex;
+    int itemsTraded;
 
     int enemiesDefeated;      
     bool solvedPuzzle;        
@@ -30,6 +33,7 @@ private:
     bool combatIsWon;
     Entity* currentEnemy;
     bool justLeftCombat;
+
 
     int CRITRate, CRITDMG, strength;
 public:
@@ -59,6 +63,9 @@ public:
 
     int getInventoryIndex();
     int getMenuIndex();
+    int getItemsTraded();
+    int resetStats();
+	int setPosition(int x, int y);
 
     bool checkInventoryOpen();
     bool checkKey();
@@ -82,6 +89,10 @@ public:
     void addArtifact(std::string Name);
 
     void updateStats();
+    void addItemInventory(const std::string& name);
+
+	void printInventory() const;
+    bool checkKey() const;
 };
 
 

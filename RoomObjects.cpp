@@ -1,5 +1,4 @@
 #include "RoomObjects.h"
-#include <iostream>
 
 // Ang Zhi En 252317H
 // Constructor for roomObjects, creates empty room and creates array for objects
@@ -50,7 +49,10 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[11][11] = new Object{ DOOR, 1 ,false };
 
             objects[12][12] = new Object{ SWITCH, 1 ,false };
-            objects[13][12] = new Object{ PRESSUREPLATE, 1 ,false };
+            objects[13][12] = new Object{ PRESSUREPLATE, 2 ,false };
+
+            objects[15][11] = new Object{ DOOR, 2 ,false };
+            objects[16][10] = new Object{ DOOR, 2 ,false };
 
             objects[13][13] = new Object{ DOOR, 1 ,false };
             objects[14][14] = new Object{ DOOR, 1 ,false };
@@ -152,8 +154,6 @@ void RoomObjects::setObjectToggle(int xCoord, int yCoord, bool toggle)
 {
     Object* obj = objects[yCoord][xCoord];
     if (obj != nullptr) {
-        std::cout << "Door at (" << xCoord << "," << yCoord << ") toggled to "
-            << (toggle ? "OPEN" : "CLOSED") << '\n';
         obj->toggled = toggle;
     }
 }

@@ -134,7 +134,7 @@ void Entity::setYPos(int val)
 
 
 //Benjamin 250572M
-//Check the amount of health damaged over turn
+//Check the amount of health damaged over turn if the entity is poisoned
 //Completed
 void Entity::poison(int turns, int dmgPerTurn) {
     cout << "have been poisoned for " << turns << " turns!" << endl;
@@ -146,7 +146,7 @@ void Entity::poison(int turns, int dmgPerTurn) {
     }
 }
 //Benjamin 250572M
-//Check the amount of health damaged over turn
+//Check the amount of health damaged over turn if the entity is burning
 //Completed
 void Entity::burn(int turns, int dmgPerTurn) {
     cout << "have been poisoned for " << turns << " turns!" << endl;
@@ -158,7 +158,7 @@ void Entity::burn(int turns, int dmgPerTurn) {
     }
 }
 //Benjamin 250572M
-//Check the amount of freeze damage over turn
+//Check the amount of freeze damage over turn if the entity is frozen
 //Completed
 void Entity::freeze(int turns, int dmgPerTurn)
 {
@@ -172,7 +172,7 @@ void Entity::freeze(int turns, int dmgPerTurn)
 	}
 }
 //Benjamin 250572M
-//Check the amount of health increased over turn
+//Check the amount of health increased over turn if the entity is healing
 //Completed
 void Entity::healing(int health) {
 	this->health += health;
@@ -180,9 +180,30 @@ void Entity::healing(int health) {
 }
 
 
+//Benjamin 250572M
+//Manages the enemy drops in player inventory
+
+int Entity::getListDrops(int index) {
+    if (index < 0 || index >= 8) return 0;
+    return drops[index];
+}
+
+void Entity::addDrop(int index, int amount) {
+    if (index < 0 || index >= 8) return;
+    drops[index] += amount;
+}
+
+void Entity::consumeDrop(int index) {
+    if (index < 0 || index >= 8) return;
+    if (drops[index] > 0) {
+        drops[index] -= 1; // remove one
+    }
+}
+
 
 Entity::~Entity()
 {
 }
+
 
 

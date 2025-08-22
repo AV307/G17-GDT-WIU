@@ -60,6 +60,13 @@ public:
     void setXPos(int val);
     void setYPos(int val);
 
+    //Drops for trading system
+    int drops[8];
+
+    int getListDrops(int index);
+    void addDrop(int index, int amount);
+    void consumeDrop(int index);
+
     void poison(int turns, int dmgPerTurn);
 
 

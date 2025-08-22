@@ -35,6 +35,7 @@ Enemy::Enemy(std::string type, char status) {
 	}
 	enemyStatus = status;
 	//Checks what status the enemy is (Basic/Elite/Deluxe/Boss)
+	//Enemy with higher status will have higher stats
 	switch (status) {
 
 	case 'B':
@@ -82,7 +83,7 @@ void Enemy::calculateLoot(Game* gamePtr)
 		enemyDrops[dropName] = calculateDropChance(0);
 		return;
 	case 'E':
-		if (enemyType == "Ascendants") {
+		if (enemyType == "Ascendants" || dropAmount[dropName][dropAMTID] == 50) {          // If drop amount is 50% chance and type is ascendants
 			enemyDrops[dropName] = calculateDropChance(40);
 		}
 		else {
@@ -156,6 +157,8 @@ int Enemy::getXP() const
 	return baseEXP;
 }
 
+
+// DRAFT DESIGNS
 // vampire
 //			    \--\           \--\ 
 //               \  \ -----------  \

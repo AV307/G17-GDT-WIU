@@ -189,6 +189,7 @@ void Game::doTurn(CombatSystem combatsystem)
             if (plr->getCombatIsWon()) {                                                               // Once a player has won, then end the combat system
                 plr->setIsInCombat(false);
                 plr->setCombatIsWon(false);
+                plr->setJustLeftCombat(true);
             }
                                                                                                        // If none of these conditions are met, continue combat system until one happens
         }

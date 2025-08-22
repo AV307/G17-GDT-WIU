@@ -13,7 +13,6 @@ using namespace std;
 
 Enemy::Enemy(std::string type, char status) {
 	//Checks what type of the enemy is (Undead/Animal/Flower ... )
-	srand(static_cast<unsigned int>(time(0)));
 	for (int h = 0; h < MAX_ENEMY_TYPE; h++) {
 		enemyDrops[h] = 0;
 	}

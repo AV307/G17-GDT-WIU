@@ -22,9 +22,9 @@ private:
     };
 
 public:
-    TradingSystem(Player* p, Entity* e);
+    //TradingSystem(Player* p, Entity* e);
 
-    void showAvailableDrops();
+    //void showAvailableDrops();
     void tradeDrop(int dropIndex, int choice);
    // choice = 0 (gold), 1 (xp), 2 (item)
 };

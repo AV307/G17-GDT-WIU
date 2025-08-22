@@ -48,6 +48,9 @@ char** TreasureRoom::getTreasureRoomArray()
 
 int chestCounter = 0; // put this in TreasureRoom.cpp (or static in class)
 
+//Benjamin 250572M
+// function that checks if player has key to unlock the treasure chest
+
 void TreasureRoom::openChest(Player* player) {
     if (player->checkKey()) {
         chestCounter++;

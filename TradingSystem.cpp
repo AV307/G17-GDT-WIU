@@ -29,24 +29,44 @@ void TradingSystem::tradeDrop(int dropIndex, int choice) {
 
     std::cout << "Trading " << drops[dropIndex] << "...\n";
 
-    if (choice == 0) { // Gold
-        int goldReward = 100; // fixed since no rand
+    switch (choice) {
+    case 0: { // Gold
+        int goldReward = 100;
         player->setGold(player->getGold() + goldReward);
         std::cout << "You received " << goldReward << " gold!\n";
+        break;
     }
-    else if (choice == 1) { // XP
+    case 1: { // XP
         int xpReward = 50;
         player->setXP(player->getXP() + xpReward);
         std::cout << "You gained " << xpReward << " XP!\n";
+        break;
     }
-    else if (choice == 2) { // Item
+    case 2: { // Weapon
+        player->addWeapon("Sword", 10); 
+        std::cout << "You received a Sword!\n";
+        break;
+    }
+    case 3: { // Armour
+        player->addArmour("Shield", 5); // 
+        std::cout << "You received a Shield!\n";
+        break;
+    }
+    case 4: { // Potion
+        player->addConsumable("Potion", 0, 0, 20); 
         std::cout << "You received a Health Potion!\n";
+        break;
     }
-    else {
+    case 5: { // Artifact
+        player->addArtifact("Artifact");
+        std::cout << "You received an Artifact!\n";
+        break;
+    }
+    default:
         std::cout << "Invalid choice.\n";
         return;
     }
 
-    // Consume the drop
+   
     entity->consumeDrop(dropIndex);
 }

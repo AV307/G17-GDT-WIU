@@ -16,6 +16,8 @@ enum ObjectType {
 	RIGHTDIRECTIONALDOOR,
 	PRESSUREPLATE,
 
+	MOVEABLEBLOCK, // for puzzles
+
 	//bed room
 	BED,
 

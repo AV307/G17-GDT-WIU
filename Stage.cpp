@@ -254,6 +254,9 @@ void Stage::updateStageArray(Player* player)
     int roomX = player->getXPos() - rooms[0]->getRoomTopLeftY();
     int roomY = player->getYPos() - rooms[0]->getRoomTopLeftX();
 
+	int diffX = player->getXPos() - playerXPos;
+	int diffY = player->getYPos() - playerYPos;
+
     if (player->getYPos() >= rooms[0]->getRoomTopLeftX() && 
         player->getYPos() < rooms[0]->getRoomTopLeftX() + rooms[0]->getRoomWidth() &&
         player->getXPos() >= rooms[0]->getRoomTopLeftY() && 
@@ -274,68 +277,22 @@ void Stage::updateStageArray(Player* player)
             blocked = true;
         }
 
+        if (type == MOVEABLEBLOCK) {
+            int newX = player->getXPos() + diffX;
+            int newY = player->getYPos() + diffY;
+            ObjectType tileType = objects->getObjectType(newX, newY);
+            if (tileType == SPACE || tileType == PRESSUREPLATE) {
+                stageArray[newY][newX] = 'M';
+
+            }
+            else {
+                blocked = true;
+            }
+        }
+
         if (blocked == false) {
             playerXPos = player->getXPos();
             playerYPos = player->getYPos();
-        }
-
-        for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
-            for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
-                if (objects->getObjectType(x, y) == PRESSUREPLATE) {
-                    int pressureID = objects->getObjectId(x, y);
-                    bool toggle = false;
-
-                    int worldY = y + rooms[0]->getRoomTopLeftX();
-                    int worldX = x + rooms[0]->getRoomTopLeftY();
-
-                    if (playerXPos == worldX && playerYPos == worldY) {
-                        toggle = true;
-                    }
-                    else if (stageArray[worldY][worldX] == 'O') {
-                        toggle = true;
-                    }
-
-                    for (int dy = 0; dy < rooms[0]->getRoomHeight(); dy++) {
-                        for (int dx = 0; dx < rooms[0]->getRoomWidth(); dx++) {
-                            if (objects->getObjectType(dx, dy) == DOOR &&
-                                objects->getObjectId(dx, dy) == pressureID)
-                            {
-                                objects->setObjectToggle(dx, dy, toggle);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        if (type == TELEPORTER1 || type == TELEPORTER2) {
-            int ID = objects->getObjectId(roomX, roomY);
-            if (type == TELEPORTER1) {
-                for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
-                    for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
-                        if (objects->getObjectType(x, y) == TELEPORTER2 &&
-                            objects->getObjectId(x, y) == ID)
-                        {
-                            playerXPos = x + rooms[0]->getRoomTopLeftY();
-                            playerYPos = y + rooms[0]->getRoomTopLeftX();
-                            break;
-                        }
-                    }
-                }
-            }
-            if (type == TELEPORTER2) {
-                for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
-                    for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
-                        if (objects->getObjectType(x, y) == TELEPORTER1 &&
-                            objects->getObjectId(x, y) == ID)
-                        {
-                            playerXPos = x + rooms[0]->getRoomTopLeftY();
-                            playerYPos = y + rooms[0]->getRoomTopLeftX();
-                            break;
-                        }
-                    }
-                }
-            }
         }
     }
 
@@ -371,8 +328,68 @@ void Stage::updateStageArray(Player* player)
         }
     }
 
-    // DOOR RENDER
+    // PRESSURE PLATE CODE
+    for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+        for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+            if (objects->getObjectType(x, y) == PRESSUREPLATE) {
+                int pressureID = objects->getObjectId(x, y);
+                bool toggle = false;
 
+                int worldY = y + rooms[0]->getRoomTopLeftX();
+                int worldX = x + rooms[0]->getRoomTopLeftY();
+
+                if (playerXPos == worldX && playerYPos == worldY) {
+                    toggle = true;
+                }
+                else if (stageArray[worldY][worldX] == 'M') {
+                    toggle = true;
+                }
+
+                for (int dy = 0; dy < rooms[0]->getRoomHeight(); dy++) {
+                    for (int dx = 0; dx < rooms[0]->getRoomWidth(); dx++) {
+                        if (objects->getObjectType(dx, dy) == DOOR &&
+                            objects->getObjectId(dx, dy) == pressureID)
+                        {
+                            objects->setObjectToggle(dx, dy, toggle);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // TELEPORTER CODE
+    if (type == TELEPORTER1 || type == TELEPORTER2) {
+        int ID = objects->getObjectId(roomX, roomY);
+        if (type == TELEPORTER1) {
+            for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+                for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                    if (objects->getObjectType(x, y) == TELEPORTER2 &&
+                        objects->getObjectId(x, y) == ID)
+                    {
+                        playerXPos = x + rooms[0]->getRoomTopLeftY();
+                        playerYPos = y + rooms[0]->getRoomTopLeftX();
+                        break;
+                    }
+                }
+            }
+        }
+        if (type == TELEPORTER2) {
+            for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+                for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                    if (objects->getObjectType(x, y) == TELEPORTER1 &&
+                        objects->getObjectId(x, y) == ID)
+                    {
+                        playerXPos = x + rooms[0]->getRoomTopLeftY();
+                        playerYPos = y + rooms[0]->getRoomTopLeftX();
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    // DOOR RENDER
     for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
         for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
             if (objects->getObjectType(x, y) == DOOR) {

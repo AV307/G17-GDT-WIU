@@ -183,6 +183,30 @@ std::string Entity::getEntityType() const
 	return Entity::enemyType;
 }
 
+//Benjamin 250572M
+//Checks the drops in player inventory
+Entity::Entity() {
+    for (int i = 0; i < 8; i++) {
+        drops[i] = 0; // start with none
+    }
+}
+
+int Entity::getListDrops(int index) {
+    if (index < 0 || index >= 8) return 0;
+    return drops[index];
+}
+
+void Entity::addDrop(int index, int amount) {
+    if (index < 0 || index >= 8) return;
+    drops[index] += amount;
+}
+
+void Entity::consumeDrop(int index) {
+    if (index < 0 || index >= 8) return;
+    if (drops[index] > 0) {
+        drops[index] -= 1; // remove one
+    }
+}
 
 
 Entity::~Entity()

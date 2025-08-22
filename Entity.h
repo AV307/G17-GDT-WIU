@@ -12,13 +12,9 @@ protected:
     int dropName = 0;
     const static int MAX_ENEMY_TYPE = 8;
     const string enemyBank[MAX_ENEMY_TYPE] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
-    //int enemyHP[MAX_ENEMY_TYPE] = { 90 ,100 ,110, 45, 125, 100, 50, 130 };
-    //int enemyATK[MAX_ENEMY_TYPE] = { 10, 10, 7, 35, 15, 10, 13, 7 };
-    //int enemyDEF[MAX_ENEMY_TYPE] = { 10, 10, 9, 10, 12, 10, 35, 5 };
-    //int enemyCRITRate[MAX_ENEMY_TYPE] = { 20, 25, 5, 45, 25, 20, 10, 15 };
-    //int enemyCRITDMG[MAX_ENEMY_TYPE] = { 50, 50, 95, 40, 70, 40, 60, 60 };
-    //int enemyXP[MAX_ENEMY_TYPE] = { 8, 9, 12, 8, 14, 7, 10 };
 
+
+    // 2 2D array to store the stats and drop respectively
     int enemyStats[7][MAX_ENEMY_TYPE] = {
         { 90 ,100 ,110, 45, 125, 100, 50, 130 },
         { 10, 10, 7, 35, 15, 10, 13, 7 },
@@ -39,7 +35,8 @@ protected:
         {50, 1, 2},
         {2, 3, 5}
     };
-    int sycophant_heart, poisoned_fang, withered_nectar, prismarine_fin, jar_of_hemovibe, burning_skin, opal_crystals, magma_jelly = 0;
+    int sycophant_heart = 0, poisoned_fang = 0, withered_nectar = 0, prismarine_fin = 0,
+        jar_of_hemovibe = 0, burning_skin = 0, opal_crystals = 0, magma_jelly = 0;
     int enemyDrops[MAX_ENEMY_TYPE] = { sycophant_heart, poisoned_fang, withered_nectar, prismarine_fin, jar_of_hemovibe, burning_skin, opal_crystals, magma_jelly };
     const string enemyDropName[MAX_ENEMY_TYPE] = { "sycophant_heart", "poisoned_fang", "withered_nectar", "prismarine_fin", "jar_of_hemovibe", "burning_skin", "opal_crystals", "magma_jelly" };
 

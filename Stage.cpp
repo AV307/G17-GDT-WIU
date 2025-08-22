@@ -399,7 +399,7 @@ void Stage::printStage()
         for (int j{ 0 }; j < 100; j++) {
             std::cout << stageArray[i][j];
         }
-        std::cout << std::endl;
+        std::cout << '\n';
     }
 }
 

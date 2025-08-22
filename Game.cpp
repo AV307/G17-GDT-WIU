@@ -53,7 +53,7 @@ void Game::doTurn(CombatSystem combatsystem)
     Item** inventoryMenuArray = nullptr;
 
     if (inventoryOpen == true) {
-        std::cout << "+------------------------------------------------------+" << std::endl;
+        std::cout << "+------------------------------------------------------+" << '\n';
         switch (menuIndex) {
         case 1:
             inventoryMenuArray = plr->getWeapons();
@@ -116,12 +116,12 @@ void Game::doTurn(CombatSystem combatsystem)
             }
 
             SetConsoleTextAttribute(hConsole, 7);
-            std::cout << "|" << std::endl;
+            std::cout << "|" << '\n';
         }
 
         // Inventory Menus
 
-        std::cout << "+------------------------------------------------------+" << std::endl;
+        std::cout << "+------------------------------------------------------+" << '\n';
         std::cout << "| ";
         if (hasKey == true) {
             std::cout << "                   Player Has Key" << "                    |";

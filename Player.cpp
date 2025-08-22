@@ -75,6 +75,11 @@ void Player::doAction() {
 			inventoryOpen = false;
 		}
 	}
+	if (input == '6') {
+		if (shopOpen) {
+			shopOpen == false;
+		}
+	}
 
 	if (inventoryOpen == true) {
 		handleInventory(input);

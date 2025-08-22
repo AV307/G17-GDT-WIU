@@ -160,9 +160,11 @@ void Game::doTurn(CombatSystem combatsystem)
     plr->updateStats();
 
     // Entering Combat System Check and Trigger
+    plr->checkCollision(*plr->getCurrentEnemy());
 
     if (plr->getIsInCombat()) {                                                                        // If the player enters combat
         combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                                 // Print the starting screen where all values are at base
+        combatsystem.setTextDialogue("You've been ambushed!");
         while (plr->getIsInCombat()) {                                                                 // While the player remains in combat
             char combatKeyPress = _getch();                                                            // To receive player's input during battle
             switch (combatKeyPress) {
@@ -183,8 +185,10 @@ void Game::doTurn(CombatSystem combatsystem)
             combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                             // Update combat screen
 
             if (combatsystem.winLoseCondition(*plr, *plr->getCurrentEnemy()) == true) {                // If Player dies or both Player and Enemy die
-                exit(0);                                                                               // Else, do not end the program
-            }
+                plr->setIsInCombat(false);
+                plr->setCombatIsWon(false);
+                restartStage(currentStage);                                                            // Restart the stage
+            }                                                                                          // Else, do not end the program
 
             if (plr->getCombatIsWon()) {                                                               // Once a player has won, then end the combat system
                 plr->setIsInCombat(false);

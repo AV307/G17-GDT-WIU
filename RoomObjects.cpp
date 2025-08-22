@@ -22,7 +22,8 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
             {
                 objects[i][j] = new Object{WALL, -1, false}; // set to wall
             }
-            else {
+            else 
+            {
                 objects[i][j] = nullptr;
             }
         }
@@ -110,9 +111,9 @@ void RoomObjects::removeObject(int xCoord, int yCoord)
 
 // Ang Zhi En 252317H
 // Getter for object type at a certain coordinate
-ObjectType RoomObjects::getObjectType(int xCoord, int yCoord) const
+ObjectType RoomObjects::getObjectType(int column, int row) const
 {
-    Object* object{ objects[yCoord][xCoord] };
+    Object* object{ objects[row][column] };
     if (object != nullptr) 
     {
         return object->type;
@@ -125,9 +126,9 @@ ObjectType RoomObjects::getObjectType(int xCoord, int yCoord) const
 // Ang Zhi En 252317H
 // Getter for object ID at a certain coordinate
 // Returns -1 if there's no ID (e.g. torch)
-int RoomObjects::getObjectId(int xCoord, int yCoord) const
+int RoomObjects::getObjectId(int column, int row) const
 {
-    Object* object = objects[yCoord][xCoord];
+    Object* object = objects[row][column];
     if (object != nullptr) 
     {
         return object->id;
@@ -138,9 +139,9 @@ int RoomObjects::getObjectId(int xCoord, int yCoord) const
 //Jayren 250920U
 //Getter for the state of the object
 //Return toggle state of object, if no toggle state, return false
-bool RoomObjects::getObjectToggle(int xCoord, int yCoord) const
+bool RoomObjects::getObjectToggle(int column, int row) const
 {
-    Object* obj = objects[yCoord][xCoord];
+    Object* obj = objects[row][column];
     if (obj != nullptr) {
         return obj->toggled;
     }
@@ -150,9 +151,9 @@ bool RoomObjects::getObjectToggle(int xCoord, int yCoord) const
 //Jayren 250920U
 //Setter for the state of the object
 //Toggles state from true to false or false to true
-void RoomObjects::setObjectToggle(int xCoord, int yCoord, bool toggle)
+void RoomObjects::setObjectToggle(int column, int row, bool toggle)
 {
-    Object* obj = objects[yCoord][xCoord];
+    Object* obj = objects[row][column];
     if (obj != nullptr) {
         obj->toggled = toggle;
     }

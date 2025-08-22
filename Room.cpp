@@ -10,6 +10,9 @@ Room::~Room()
 {
 }
 
+//Jayren Choi 250920U
+//Place the objects into the room
+//Incomplete
 void Room::placeRoomObjects(char** roomArray)
 {
 	for (int x = 0; x < roomWidth; x++) {
@@ -79,6 +82,8 @@ void Room::setRoomLocation(int roomNumber)
 	}
 }
 
+//Ang Zhi En 252317H
+//Getter for roomObjects
 RoomObjects* Room::getRoomObjects()
 {
 	return roomObjects;

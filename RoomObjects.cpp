@@ -46,16 +46,16 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
         switch (currentStage)
         {
         case 1:
-            objects[47][27] = new Object{ DOOR, 1 ,false };
-            objects[47][28] = new Object{ DOOR, 1 ,false };
+            objects[10][10] = new Object{ DOOR, 1 ,false };
+            objects[11][11] = new Object{ DOOR, 1 ,false };
 
-            objects[47][30] = new Object{ SWITCH, 1 ,false };
+            objects[12][12] = new Object{ SWITCH, 1 ,false };
 
-            objects[47][32] = new Object{ DOOR, 1 ,false };
-            objects[47][33] = new Object{ DOOR, 1 ,false };
+            objects[13][13] = new Object{ DOOR, 1 ,false };
+            objects[14][14] = new Object{ DOOR, 1 ,false };
 
-            objects[48][27] = new Object{ TELEPORTER1, 1 ,false };
-            objects[48][33] = new Object{ TELEPORTER2, 1 ,false };
+            objects[15][15] = new Object{ TELEPORTER1, 1 ,false };
+            objects[16][16] = new Object{ TELEPORTER2, 1 ,false };
             break;
         case 2:
             break;

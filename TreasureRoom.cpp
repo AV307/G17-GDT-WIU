@@ -42,3 +42,28 @@ char** TreasureRoom::getTreasureRoomArray()
 {
 	return treasureRoomArray;
 }
+
+//Benjamin 250572M
+// function that checks if player has key to unlock the treasure chest
+
+void TreasureRoom::openChest(Player* player) {
+    if (player->checkKey()) {
+        chestCounter++;
+
+        if (chestCounter % 3 == 1) {
+            player->setGold(player->getGold() + 200);
+            std::cout << "You found 200 gold!\n";
+        }
+        else if (chestCounter % 3 == 2) {
+            player->addWeapon("Steel Axe", 15);
+            std::cout << "You found a Steel Axe!\n";
+        }
+        else {
+            player->addConsumable("Healing potion", 25, 25, 25);
+            std::cout << "You found a Healing Potion!\n";
+        }
+    }
+    else {
+        std::cout << "The chest is locked. You need a key!\n";
+    }
+}

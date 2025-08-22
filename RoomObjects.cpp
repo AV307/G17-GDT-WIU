@@ -152,7 +152,7 @@ void RoomObjects::setObjectToggle(int xCoord, int yCoord, bool toggle)
     Object* obj = objects[yCoord][xCoord];
     if (obj != nullptr) {
         std::cout << "Door at (" << xCoord << "," << yCoord << ") toggled to "
-            << (toggle ? "OPEN" : "CLOSED") << std::endl;
+            << (toggle ? "OPEN" : "CLOSED") << '\n';
         obj->toggled = toggle;
     }
 }

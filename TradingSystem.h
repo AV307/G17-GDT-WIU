@@ -26,4 +26,5 @@ public:
 
     void showAvailableDrops();
     void tradeDrop(int dropIndex, int choice);
+    // choice = 0 (gold), 1 (xp), 2 (item)
 };

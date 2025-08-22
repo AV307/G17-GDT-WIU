@@ -45,10 +45,6 @@ char** TreasureRoom::getTreasureRoomArray()
 	return treasureRoomArray;
 }
 
-
-
-int chestCounter = 0; 
-
 //Benjamin 250572M
 // function that checks if player has key to unlock the treasure chest
 

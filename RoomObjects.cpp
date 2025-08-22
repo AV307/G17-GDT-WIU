@@ -1,6 +1,9 @@
 #include "RoomObjects.h"
 #include <iostream>
 
+// Ang Zhi En 252317H
+// Constructor for roomObjects, creates empty room and creates array for objects
+// Incomplete
 RoomObjects::RoomObjects(int roomWidth, int roomHeight)
 {
     objects = new Object** [roomHeight];
@@ -42,7 +45,9 @@ RoomObjects::~RoomObjects()
 {
 }
 
-
+// Ang Zhi En 252317H
+// Add (all) objects into a room after checking what room it is
+// Incomplete
 void RoomObjects::addObjects(int xCoord, int yCoord, ObjectType type, int id, int currentStage, char roomType)
 {
     // essentially presets for the rooms
@@ -81,43 +86,54 @@ void RoomObjects::addObjects(int xCoord, int yCoord, ObjectType type, int id, in
     }
 
 
-    if (objects[yCoord][xCoord] != nullptr) {
+    if (objects[yCoord][xCoord] != nullptr) 
+    {
         delete objects[yCoord][xCoord];
     }
     objects[yCoord][xCoord] = new Object{type, id};
 }
 
+// Ang Zhi En 252317H
+// Removes object from a coordinate
 void RoomObjects::removeObject(int xCoord, int yCoord)
 {
-    if (objects[yCoord][xCoord] != nullptr) {
+    if (objects[yCoord][xCoord] != nullptr) 
+    {
         delete objects[yCoord][xCoord];
         objects[yCoord][xCoord] = nullptr;
     }
 }
 
-Object* RoomObjects::getObject(int xCoord, int yCoord) const
-{
-    return objects[yCoord][xCoord];
-}
-
+// Ang Zhi En 252317H
+// Getter for object type at a certain coordinate
 ObjectType RoomObjects::getObjectType(int xCoord, int yCoord) const
 {
-    Object* obj = objects[yCoord][xCoord];
-    if (obj != nullptr) {
-        return obj->type;
+    Object* object{ objects[yCoord][xCoord] };
+    if (object != nullptr) 
+    {
+        return object->type;
     }
+
+    // might change this code later if we use SPACE instead of nullptr in roomobject constructor
     return SPACE;
 }
 
+// Ang Zhi En 252317H
+// Getter for object ID at a certain coordinate
+// Returns -1 if there's no ID (e.g. torch)
 int RoomObjects::getObjectId(int xCoord, int yCoord) const
 {
-    Object* obj = objects[yCoord][xCoord];
-    if (obj != nullptr) {
-        return obj->id;
+    Object* object = objects[yCoord][xCoord];
+    if (object != nullptr) 
+    {
+        return object->id;
     }
     return -1;
 }
 
+//Jayren 250920U
+//Getter for the state of the object
+//Return toggle state of object, if no toggle state, return false
 bool RoomObjects::getObjectToggle(int xCoord, int yCoord) const
 {
     Object* obj = objects[yCoord][xCoord];
@@ -127,6 +143,9 @@ bool RoomObjects::getObjectToggle(int xCoord, int yCoord) const
     return false;
 }
 
+//Jayren 250920U
+//Setter for the state of the object
+//Toggles state from true to false or false to true
 void RoomObjects::setObjectToggle(int xCoord, int yCoord, bool toggle)
 {
     Object* obj = objects[yCoord][xCoord];

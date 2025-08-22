@@ -41,19 +41,19 @@ Enemy::Enemy(std::string type, char status) {
 	case 'B':
 		break;
 	case 'E':
-		dropAMTID = 1;
+		dropAMTID = 0;
 		health *= static_cast<int>(150 / 100);
 		attack *= static_cast<int>(150 / 100);
 		defense *= static_cast<int>(150 / 100);
 		break;
 	case 'D':
-		dropAMTID = 2;
+		dropAMTID = 1;
 		health *= static_cast<int>(220 / 100);
 		attack *= static_cast<int>(175 / 100);
 		defense *= static_cast<int>(175 / 100);
 		break;
 	case 'X':
-		dropAMTID = 3;
+		dropAMTID = 2;
 		health *= static_cast<int>(350 / 100);
 		attack *= static_cast<int>(250 / 100);
 		defense *= static_cast<int>(250 / 100);

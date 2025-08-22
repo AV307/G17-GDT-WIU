@@ -71,11 +71,11 @@ string Entity::getEntityType() const {
 }
 
 string Entity::getEntityDropName() const {
-    return enemyDropName[drops];
+    return enemyDropName[dropName];
 }
 
 int Entity::getEntityDrops() const {
-    return enemyDrops[drops];
+    return enemyDrops[dropName];
 }
 
 char Entity::getEnemyStatus() const {

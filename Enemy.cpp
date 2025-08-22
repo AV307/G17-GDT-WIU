@@ -83,7 +83,7 @@ void Enemy::calculateLoot(Game* gamePtr)
 		enemyDrops[dropName] = calculateDropChance(0);
 		return;
 	case 'E':
-		if (enemyType == "Ascendants") {
+		if (enemyType == "Ascendants" || dropAmount[dropName][dropAMTID] == 50) {          // If drop amount is 50% chance and type is ascendants
 			enemyDrops[dropName] = calculateDropChance(40);
 		}
 		else {

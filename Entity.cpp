@@ -178,18 +178,10 @@ void Entity::healing(int health) {
 	this->health += health;
 	cout << "Health increased by " << health << ". Current health: " << this->health << endl; //debug
 }
-std::string Entity::getEntityType() const
-{
-	return Entity::enemyType;
-}
+
 
 //Benjamin 250572M
 //Manages the enemy drops in player inventory
-Entity::Entity() {
-    for (int i = 0; i < 8; i++) {
-        drops[i] = 0; // start with none
-    }
-}
 
 int Entity::getListDrops(int index) {
     if (index < 0 || index >= 8) return 0;

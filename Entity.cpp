@@ -70,11 +70,11 @@ string Entity::getEntityType() const {
     return enemyType;
 }
 
-string Entity::getEntityDropName() {
+string Entity::getEntityDropName() const {
     return enemyDropName[drops];
 }
 
-int Entity::getEntityDrops() {
+int Entity::getEntityDrops() const {
     return enemyDrops[drops];
 }
 

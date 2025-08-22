@@ -7,7 +7,7 @@ class Entity
 protected:
     int attack ,health ,damage ,defense ,xp ,gold ,level, CRITDMG, CRITRate;
 
-    int drops = 0;
+    int dropName = 0;
     const static int MAX_ENEMY_TYPE = 8;
     const string enemyBank[MAX_ENEMY_TYPE] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
     //int enemyHP[MAX_ENEMY_TYPE] = { 90 ,100 ,110, 45, 125, 100, 50, 130 };
@@ -27,6 +27,16 @@ protected:
         { 25, 25, 50, 50, 20, 20, 10, 50 }
     };
 
+    int dropAmount[MAX_ENEMY_TYPE][3] = {
+        {1, 2, 3},
+        {1, 2, 4},
+        {1, 2, 3},
+        {1, 2, 3},
+        {1, 2, 4},
+        {1, 2, 3},
+        {50, 1, 2},
+        {2, 3, 5}
+    };
     int sycophant_heart, poisoned_fang, withered_nectar, prismarine_fin, jar_of_hemovibe, burning_skin, opal_crystals, magma_jelly = 0;
     int enemyDrops[MAX_ENEMY_TYPE] = { sycophant_heart, poisoned_fang, withered_nectar, prismarine_fin, jar_of_hemovibe, burning_skin, opal_crystals, magma_jelly };
     const string enemyDropName[MAX_ENEMY_TYPE] = { "sycophant_heart", "poisoned_fang", "withered_nectar", "prismarine_fin", "jar_of_hemovibe", "burning_skin", "opal_crystals", "magma_jelly" };
@@ -74,8 +84,8 @@ public:
     string getEntityType() const;
     char getEnemyStatus() const;
     int getListDrops(int enemyType) const;
-    string getEntityDropName();
-    int getEntityDrops();
+    string getEntityDropName() const;
+    int getEntityDrops() const;
 
 	virtual bool isAlive() const {
 		return health > 0;

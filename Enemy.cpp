@@ -19,6 +19,7 @@ Enemy::Enemy(std::string type, char status) {
 	}
 	xp = 0;
 	gold = 0;
+	dropAMTID = 0;
 	for (int i = 0; i < MAX_ENEMY_TYPE; i++) {
 		if (type == enemyBank[i]) {
 			enemyType = type;
@@ -30,7 +31,7 @@ Enemy::Enemy(std::string type, char status) {
 			enemyDrops[i] += 1;
 			baseEXP = enemyStats[5][i];
 			chance = enemyStats[6][i];
-			drops = i;
+			dropName = i;
 		}
 	}
 	enemyStatus = status;
@@ -40,16 +41,19 @@ Enemy::Enemy(std::string type, char status) {
 	case 'B':
 		break;
 	case 'E':
+		dropAMTID = 1;
 		health *= static_cast<int>(150 / 100);
 		attack *= static_cast<int>(150 / 100);
 		defense *= static_cast<int>(150 / 100);
 		break;
 	case 'D':
+		dropAMTID = 2;
 		health *= static_cast<int>(220 / 100);
 		attack *= static_cast<int>(175 / 100);
 		defense *= static_cast<int>(175 / 100);
 		break;
 	case 'X':
+		dropAMTID = 3;
 		health *= static_cast<int>(350 / 100);
 		attack *= static_cast<int>(250 / 100);
 		defense *= static_cast<int>(250 / 100);
@@ -76,14 +80,14 @@ void Enemy::calculateLoot(Game* gamePtr)
 	case 'B':
 		xp = static_cast<int>(baseEXP / 100);
 		gold = 3 + currentStage;
-		enemyDrops[drops] = calculateDropChance(0);
+		enemyDrops[dropName] = calculateDropChance(0);
 		return;
 	case 'E':
 		if (enemyType == "Ascendants") {
-			enemyDrops[drops] = calculateDropChance(40);
+			enemyDrops[dropName] = calculateDropChance(40);
 		}
 		else {
-			enemyDrops[drops] = 1;
+			enemyDrops[dropName] = dropAmount[dropName][dropAMTID];
 		}
 		xp = static_cast<int>(baseEXP / 70);
 		baseEXP += 2;
@@ -94,13 +98,13 @@ void Enemy::calculateLoot(Game* gamePtr)
 		xp = static_cast<int>(baseEXP / 35);
 		gold = 10 + currentStage;
 		baseEXP += 3;
-		enemyDrops[drops] = 2;
+		enemyDrops[dropName] = dropAmount[dropName][dropAMTID];
 		return;
 	case 'X':
 		xp = static_cast<int>(baseEXP / 10);
 		baseEXP += 4;
 		gold = 25 + currentStage;
-		enemyDrops[drops] = 5;
+		enemyDrops[dropName] = dropAmount[dropName][dropAMTID];
 		return;
 	}
 }

@@ -50,6 +50,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[11][11] = new Object{ DOOR, 1 ,false };
 
             objects[12][12] = new Object{ SWITCH, 1 ,false };
+            objects[13][12] = new Object{ PRESSUREPLATE, 1 ,false };
 
             objects[13][13] = new Object{ DOOR, 1 ,false };
             objects[14][14] = new Object{ DOOR, 1 ,false };

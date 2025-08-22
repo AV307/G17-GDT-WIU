@@ -279,30 +279,24 @@ void Stage::updateStageArray(Player* player)
             playerYPos = player->getYPos();
         }
 
-        for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+        /*for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
             for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
-                int pressureID = -1;
                 if (objects->getObjectType(x, y) == PRESSUREPLATE) {
-                    objects->setObjectToggle(x, y, false);
-                    pressureID = objects->getObjectId(x, y);
-                }
-                if (objects->getObjectType(x, y) == DOOR && objects->getObjectId(x, y) == pressureID) {
-                    objects->setObjectToggle(x, y, false);
-                }
-            }
-        }
-
-        if (type == PRESSUREPLATE) {
-            objects->setObjectToggle(roomX, roomY, true);
-            int pressureID = objects->getObjectId(roomX, roomY);
-            for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
-                for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
-                    if (objects->getObjectType(x, y) == DOOR && objects->getObjectId(x, y) == pressureID) {
-                        objects->setObjectToggle(x, y, true);
+                    int pressureID = objects->getObjectId(x, y);
+                    int toggle = false;
+                    if (stageArray[x + rooms[0]->getRoomTopLeftY()][y + rooms[0]->getRoomTopLeftX()] != 'B') {
+                        toggle = true;
+                    }
+                    for (int dy = 0; dy < rooms[0]->getRoomHeight(); dy++) {
+                        for (int dx = 0; dx < rooms[0]->getRoomWidth(); dx++) {
+                            if (objects->getObjectType(dx, dy) == DOOR && objects->getObjectId(dx, dy) == pressureID) {
+                                objects->setObjectToggle(dx,dy,toggle);
+                            }
+                        }
                     }
                 }
             }
-        }
+        }*/
 
         if (type == TELEPORTER1 || type == TELEPORTER2) {
             int ID = objects->getObjectId(roomX, roomY);

@@ -112,15 +112,6 @@ void Enemy::calculateLoot(Game* gamePtr)
 //Caleb 250601F
 //Checks if enemy is killed, returns true if does and vice versa
 //Completed
-bool Enemy::killEnemy(Game* game) {
-	if (health <= 0) {
-		calculateLoot(game);
-		return true;
-	}
-	else {
-		return false;
-	}
-}
 
 bool Enemy::isBossDefeated() const
 {
@@ -134,6 +125,17 @@ bool Enemy::isBossDefeated() const
 		else {
 			return false;
 		}
+	}
+}
+
+bool Enemy::killEnemy(Game* game) {
+	if (health <= 0) {
+		isBossDefeated();
+		calculateLoot(game);
+		return true;
+	}
+	else {
+		return false;
 	}
 }
 

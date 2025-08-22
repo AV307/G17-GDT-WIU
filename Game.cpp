@@ -12,7 +12,7 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 //Ang Zhi En 252317H
 //Constructor for Game, creates a stage for the game
 //Incomplete
-Game::Game() 
+Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
     currentStage = 1;
@@ -159,36 +159,6 @@ void Game::doTurn(CombatSystem combatsystem)
 
     plr->updateStats();
 
-	//Benjamin 250572M
-	// Check if the player has pressed 'p' to restart the stage
-    {
-        // Check if a key was pressed
-        if (_kbhit()) {
-            char key = _getch();
-
-            if (key == 'p' || key == 'P') {
-                pauseGame(); // Show pause menu
-                return;
-            }
-        }
-
-        plr->doAction();
-        system("cls");
-        stage->printStage();
-    }
-
-}
-
-//Benjamin 250572M 
-//restarts the stage
-void Game::restartStage(int currentStage)
-{
-	//Checks if the stage still exists using nullptr and deletes it if it does
-    if (stage != nullptr) {
-        delete stage;
-        stage = nullptr;
-    }
-
     // Entering Combat System Check and Trigger
 
     if (plr->getIsInCombat()) {                                                          // If the player enters combat
@@ -213,24 +183,37 @@ void Game::restartStage(int currentStage)
     }
 }
 
-	// Restart the stage where the player is currently at
-    stage = new Stage(this);
+//Benjamin 250572M 
+// Restart the stage
+void Game::restartStage(int currentStage)
+{
+    if (stage != nullptr) {
+        delete stage;
+        stage = nullptr;
+    }
 
-    plr->resetStats();   
-    //resets the position
-    plr->setPosition(0, 0); 
+    stage = new Stage(this, plr);   
 
-    // Print the new stage
+    plr->resetStats();
+    plr->setPosition(0, 0);
+
     stage->printStage();
-	std::cout << "Stage " << currentStage << " has been restarted." << std::endl; //for debugging purposes
+    std::cout << "Stage " << currentStage << " has been restarted." << std::endl;
 }
 
-//Benjamin 250572M
-// Pauses the game and waits for a key press to continue
 
+// Update highest stage reached
+void Game::getHighestStage(int currentStage)
+{
+    if (currentStage > highestStage) {
+        highestStage = currentStage;
+    }
+    std::cout << "Highest Stage Reached: " << highestStage << std::endl;
+}
 
+// Pause game
 void Game::pauseGame() {
-    int choice = 0; // 0 = Resume, 1 = Restart, 2 = Quit
+    int choice = 0;
     char key;
 
     while (true) {
@@ -240,54 +223,28 @@ void Game::pauseGame() {
         std::cout << "|        PAUSED          |\n";
         std::cout << "+------------------------+\n";
 
-        // Resume option
-        SetConsoleTextAttribute(hConsole, (choice == 0) ? 14 : 7); // Yellow for selected
+        SetConsoleTextAttribute(hConsole, (choice == 0) ? 14 : 7);
         std::cout << "| " << (choice == 0 ? "> " : "  ") << "Resume               |\n";
 
-        // Restart stage option
         SetConsoleTextAttribute(hConsole, (choice == 1) ? 14 : 7);
         std::cout << "| " << (choice == 1 ? "> " : "  ") << "Restart Stage        |\n";
 
-        // Quit option
         SetConsoleTextAttribute(hConsole, (choice == 2) ? 14 : 7);
         std::cout << "| " << (choice == 2 ? "> " : "  ") << "Quit                 |\n";
 
-        SetConsoleTextAttribute(hConsole, 7); // Reset color
+        SetConsoleTextAttribute(hConsole, 7);
         std::cout << "+------------------------+\n";
 
         key = _getch();
 
-        if (key == 'w' || key == 'W') {
-            choice = (choice == 0) ? 2 : choice - 1; // move up
-        }
-        else if (key == 's' || key == 'S') {
-            choice = (choice == 2) ? 0 : choice + 1; // move down
-        }
-        else if (key == 13) { // Enter
+        if (key == 'w' || key == 'W') choice = (choice == 0) ? 2 : choice - 1;
+        else if (key == 's' || key == 'S') choice = (choice == 2) ? 0 : choice + 1;
+        else if (key == 13) {
             switch (choice) {
-            case 0: // Resume
-                return;
-            case 1: // Restart Stage
-                restartStage(currentStage);
-                return;
-            case 2: // Quit
-                exit(0);
+            case 0: return;
+            case 1: restartStage(currentStage); return;
+            case 2: exit(0);
             }
         }
     }
 }
-
-//get the highest stage reached by the player
-void Game::getHighestStage(int currentStage)
-{
-	if (currentStage > highestStage) {
-		highestStage = currentStage;
-	}
-	std::cout << "Highest Stage Reached: " << highestStage << std::endl; // for debugging purposes
-}
-
-
-
-
-
-

@@ -180,7 +180,7 @@ void Entity::healing(int health) {
 }
 std::string Entity::getEntityType() const
 {
-    return entityType;
+	return Entity::enemyType;
 }
 
 

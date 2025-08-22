@@ -276,6 +276,31 @@ void Stage::updateStageArray(Player* player)
             playerYPos = player->getYPos();
         }
 
+        for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+            for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                int pressureID = -1;
+                if (objects->getObjectType(x, y) == PRESSUREPLATE) {
+                    objects->setObjectToggle(x, y, false);
+                    pressureID = objects->getObjectId(x, y);
+                }
+                if (objects->getObjectType(x, y) == DOOR && objects->getObjectId(x, y) == pressureID) {
+                    objects->setObjectToggle(x, y, false);
+                }
+            }
+        }
+
+        if (type == PRESSUREPLATE) {
+            objects->setObjectToggle(roomX, roomY, true);
+            int pressureID = objects->getObjectId(roomX, roomY);
+            for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+                for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                    if (objects->getObjectType(x, y) == DOOR && objects->getObjectId(x, y) == pressureID) {
+                        objects->setObjectToggle(x, y, true);
+                    }
+                }
+            }
+        }
+
         if (type == TELEPORTER1 || type == TELEPORTER2) {
             int ID = objects->getObjectId(roomX, roomY);
             if (type == TELEPORTER1) {

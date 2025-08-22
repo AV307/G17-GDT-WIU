@@ -37,6 +37,9 @@ void Room::placeRoomObjects(char** roomArray)
 			case TELEPORTER2:
 				roomArray[y][x] = 'T';
 				break;
+			case PRESSUREPLATE:
+				roomArray[y][x] = 'B';
+				break;
 		}
 		}
 	}

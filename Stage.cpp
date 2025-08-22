@@ -281,25 +281,18 @@ void Stage::updateStageArray(Player* player)
 
         for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
             for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
-                int pressureID = -1;
-                if (objects->getObjectType(x, y) == PRESSUREPLATE) {
-                    objects->setObjectToggle(x, y, false);
-                    pressureID = objects->getObjectId(x, y);
-                }
-                if (objects->getObjectType(x, y) == DOOR && objects->getObjectId(x, y) == pressureID) {
-                    objects->setObjectToggle(x, y, false);
-                }
-            }
-        }
 
-        if (type == PRESSUREPLATE) {
-            objects->setObjectToggle(roomX, roomY, true);
-            int pressureID = objects->getObjectId(roomX, roomY);
-            for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
-                for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
-                    if (objects->getObjectType(x, y) == DOOR && objects->getObjectId(x, y) == pressureID) {
-                        objects->setObjectToggle(x, y, true);
+                if (objects->getObjectType(x, y) == PRESSUREPLATE) {
+                    int pressureID = objects->getObjectId(x, y);
+                    for (int dy = 0; dy < rooms[0]->getRoomHeight(); dy++) {
+                        for (int dx = 0; dx < rooms[0]->getRoomWidth(); dx++) {
+                            if (dx == x )
+                            if (objects->getObjectType(dx, dy) == DOOR && objects->getObjectId(dx, dy) == pressureID) {
+                                objects->setObjectToggle(dx, dy, true);
+                            }
+                        }
                     }
+
                 }
             }
         }

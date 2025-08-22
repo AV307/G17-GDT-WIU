@@ -24,6 +24,9 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
     //add code below for setting up specific shop related parts
 }
 
+
+
+
 //Ang Zhi En 252317H
 //Destructor for ShopRoom, deletes pointers
 //Incomplete

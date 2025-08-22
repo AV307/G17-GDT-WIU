@@ -18,6 +18,7 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
         shopRoomArray[i] = new char[roomWidth];
     }
 
+    roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'S');
     placeRoomObjects(shopRoomArray);
 
     //add code below for setting up specific shop related parts

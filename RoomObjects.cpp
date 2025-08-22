@@ -28,17 +28,6 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
             }
         }
     }
-
-    objects[roomWidth - 11][roomHeight - 14] = new Object{ DOOR, 1 ,false };
-    objects[roomWidth - 11][roomWidth - 13] = new Object{ DOOR, 1 ,false };
-
-    objects[roomWidth - 11][roomWidth - 11] = new Object{ SWITCH, 1 ,false };
-
-    objects[roomWidth - 11][roomWidth - 9] = new Object{ DOOR, 1 ,false };
-    objects[roomWidth - 11][roomWidth - 8] = new Object{ DOOR, 1 ,false };
-
-    objects[roomWidth - 10][roomHeight - 14] = new Object{ TELEPORTER1, 1 ,false };
-    objects[roomWidth - 10][roomWidth - 8] = new Object{ TELEPORTER2, 1 ,false };
 }
 
 RoomObjects::~RoomObjects()
@@ -48,7 +37,7 @@ RoomObjects::~RoomObjects()
 // Ang Zhi En 252317H
 // Add (all) objects into a room after checking what room it is
 // Incomplete
-void RoomObjects::addObjects(int xCoord, int yCoord, ObjectType type, int id, int currentStage, char roomType)
+void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, char roomType)
 {
     // essentially presets for the rooms
     switch (roomType)
@@ -57,6 +46,16 @@ void RoomObjects::addObjects(int xCoord, int yCoord, ObjectType type, int id, in
         switch (currentStage)
         {
         case 1:
+            objects[roomWidth - 11][roomHeight - 14] = new Object{ DOOR, 1 ,false };
+            objects[roomWidth - 11][roomWidth - 13] = new Object{ DOOR, 1 ,false };
+
+            objects[roomWidth - 11][roomWidth - 11] = new Object{ SWITCH, 1 ,false };
+
+            objects[roomWidth - 11][roomWidth - 9] = new Object{ DOOR, 1 ,false };
+            objects[roomWidth - 11][roomWidth - 8] = new Object{ DOOR, 1 ,false };
+
+            objects[roomWidth - 10][roomHeight - 14] = new Object{ TELEPORTER1, 1 ,false };
+            objects[roomWidth - 10][roomWidth - 8] = new Object{ TELEPORTER2, 1 ,false };
             break;
         case 2:
             break;
@@ -83,14 +82,16 @@ void RoomObjects::addObjects(int xCoord, int yCoord, ObjectType type, int id, in
         break;
     case 'P': // portal room
         break;
+    case 'T': // treasure room
+        break;
     }
 
 
-    if (objects[yCoord][xCoord] != nullptr) 
+    /*if (objects[yCoord][xCoord] != nullptr) 
     {
         delete objects[yCoord][xCoord];
     }
-    objects[yCoord][xCoord] = new Object{type, id};
+    objects[yCoord][xCoord] = new Object{type, id};*/
 }
 
 // Ang Zhi En 252317H

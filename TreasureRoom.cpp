@@ -18,6 +18,7 @@ TreasureRoom::TreasureRoom(int currentStage, int roomNumber)
         treasureRoomArray[i] = new char[roomWidth];
     }
 
+    roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'T');
     placeRoomObjects(treasureRoomArray);
 
     //add code for setting up treasure room (chest)

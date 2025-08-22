@@ -18,6 +18,7 @@ BedRoom::BedRoom(int currentStage, int roomNumber)
         bedRoomArray[i] = new char[roomWidth];
     }
 
+    roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'B');
     placeRoomObjects(bedRoomArray);
 }
 

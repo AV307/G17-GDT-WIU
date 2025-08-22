@@ -160,6 +160,7 @@ void Game::doTurn(CombatSystem combatsystem)
     plr->updateStats();
 
     // Entering Combat System Check and Trigger
+    plr->checkCollision(*plr->getCurrentEnemy());
 
     if (plr->getIsInCombat()) {                                                                        // If the player enters combat
         combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                                 // Print the starting screen where all values are at base

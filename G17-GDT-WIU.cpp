@@ -10,7 +10,7 @@ int main()
     CombatSystem CombatSystem;
 
 
-    //CombatSystem.printCombatScreen();
+    
     while (true) {
         game.doTurn(CombatSystem);
     }

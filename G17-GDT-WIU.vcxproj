@@ -142,6 +142,7 @@
     <ClCompile Include="RoomObjects.cpp" />
     <ClCompile Include="ShopRoom.cpp" />
     <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="TradingSystem.cpp" />
     <ClCompile Include="TreasureRoom.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="RoomObjects.h" />
     <ClInclude Include="ShopRoom.h" />
     <ClInclude Include="Stage.h" />
+    <ClInclude Include="TradingSystem.h" />
     <ClInclude Include="TreasureRoom.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>

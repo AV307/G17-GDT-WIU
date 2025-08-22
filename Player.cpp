@@ -224,6 +224,8 @@ void Player::handleInventory(char inputVal)
 		if (menuIndex == 1) {
 			if (equippedWeapon != nullptr) {
 				equippedWeapon->setEquipped(false);
+				//equippedWeapon = weaponry[inventoryIndex];
+				//equippedWeapon->setEquipped(true);
 			}
 			equippedWeapon = weaponry[inventoryIndex];
 			equippedWeapon->setEquipped(true);
@@ -231,6 +233,8 @@ void Player::handleInventory(char inputVal)
 		else if (menuIndex == 2) {
 			if (equippedArmour != nullptr) {
 				equippedArmour->setEquipped(false);
+				//equippedArmour = armoury[inventoryIndex];
+				//equippedArmour->setEquipped(true);
 			}
 			equippedArmour = armoury[inventoryIndex];
 			equippedArmour->setEquipped(true);

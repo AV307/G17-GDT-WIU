@@ -22,7 +22,8 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
             {
                 objects[i][j] = new Object{WALL, -1, false}; // set to wall
             }
-            else {
+            else 
+            {
                 objects[i][j] = nullptr;
             }
         }

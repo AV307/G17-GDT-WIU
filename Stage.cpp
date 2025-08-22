@@ -301,10 +301,6 @@ void Stage::updateStageArray(Player* player)
                                 objects->getObjectId(dx, dy) == pressureID)
                             {
                                 objects->setObjectToggle(dx, dy, toggle);
-
-                                int doorWorldY = dy + rooms[0]->getRoomTopLeftX();
-                                int doorWorldX = dx + rooms[0]->getRoomTopLeftY();
-                                stageArray[doorWorldY][doorWorldX] = toggle ? ' ' : '+';
                             }
                         }
                     }
@@ -362,12 +358,6 @@ void Stage::updateStageArray(Player* player)
                             {
                                 bool doorToggle = objects->getObjectToggle(x, y);
                                 objects->setObjectToggle(x, y, !doorToggle);
-                                if (doorToggle == false) {
-                                    stageArray[y + rooms[0]->getRoomTopLeftX()][x + rooms[0]->getRoomTopLeftY()] = ' ';
-                                }
-                                else {
-                                    stageArray[y + rooms[0]->getRoomTopLeftX()][x + rooms[0]->getRoomTopLeftY()] = '+';
-                                }
                             }
                         }
                     }
@@ -377,6 +367,19 @@ void Stage::updateStageArray(Player* player)
 
                     break;
                 }
+            }
+        }
+    }
+
+    // DOOR RENDER
+
+    for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+        for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+            if (objects->getObjectType(x, y) == DOOR) {
+                bool toggle = objects->getObjectToggle(x, y);
+                int stageX = x + rooms[0]->getRoomTopLeftY();
+                int stageY = y + rooms[0]->getRoomTopLeftX();
+                (toggle) ? stageArray[stageY][stageX] = ' ' : stageArray[stageY][stageX] = '+';
             }
         }
     }

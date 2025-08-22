@@ -161,26 +161,42 @@ void Game::doTurn(CombatSystem combatsystem)
 
     // Entering Combat System Check and Trigger
 
-    if (plr->getIsInCombat()) {                                                          // If the player enters combat
-        char combatKeyPress = _getch();                                                       // To receive player's input during battle
-        combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                   // Print the starting screen where all values are at base
-        while (plr->getIsInCombat()) {                                                   // While the player remains in combat
+    if (plr->getIsInCombat()) {                                                                        // If the player enters combat
+        combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                                 // Print the starting screen where all values are at base
+        while (plr->getIsInCombat()) {                                                                 // While the player remains in combat
+            char combatKeyPress = _getch();                                                            // To receive player's input during battle
             switch (combatKeyPress) {
             case 'f':
-                combatsystem.fightPVE(*plr, *plr->getCurrentEnemy());                    // Activate Fight Function if player presses F
+                combatsystem.fightPVE(*plr, *plr->getCurrentEnemy());                                  // Activate Fight Function if player presses F
                 break;
             case 'i':
-                combatsystem.itemPVE(*plr, *plr->getCurrentEnemy());                     // Activate Item Function if player presses I
+                combatsystem.itemPVE(*plr, *plr->getCurrentEnemy());                                   // Activate Item Function if player presses I
                 break;
             case 'r':
-                combatsystem.runPVE(*plr, *plr->getCurrentEnemy());                      // Activate Run Function if player presses R
+                combatsystem.runPVE(*plr, *plr->getCurrentEnemy());                                    // Activate Run Function if player presses R
                 break;
             default:
-                combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());           // If none are pressed, print back the same screen as if turn never happened
+                combatsystem.setTextDialogue("Invalid input!");
+                break;
             }
-            combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());               // After one action has been carried out, print the updated screen
+            
+            combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                             // Update combat screen
+
+            if (combatsystem.winLoseCondition(*plr, *plr->getCurrentEnemy()) == true) {                // If Player dies or both Player and Enemy die
+                exit(0);                                                                               // Else, do not end the program
+            }
+
+            if (plr->getCombatIsWon()) {                                                               // Once a player has won, then end the combat system
+                plr->setIsInCombat(false);
+                plr->setCombatIsWon(false);
+            }
+                                                                                                       // If none of these conditions are met, continue combat system until one happens
         }
     }
+    
+    // Exiting Combat (Win/Lose Condition)
+
+    
 }
 
 //Benjamin 250572M 

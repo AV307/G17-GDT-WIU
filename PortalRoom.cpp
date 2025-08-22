@@ -19,6 +19,7 @@ PortalRoom::PortalRoom(int currentStage, int roomNumber)
         portalRoomArray[i] = new char[roomWidth];
     }
 
+    roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'P');
     placeRoomObjects(portalRoomArray);
 
     //add code below for setting up specific portal related parts

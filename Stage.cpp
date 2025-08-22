@@ -235,6 +235,9 @@ Stage::~Stage()
     }
 }
 
+//Jayren Choi 250920U
+//Update the stage array (player positions, object changes etc.)
+//Incomplete
 void Stage::updateStageArray(Player* player)
 {
     int playerXPos = player->getXPos();
@@ -334,7 +337,7 @@ void Stage::updateStageArray(Player* player)
 
     {
         if (player->getAction() == "Interact") {
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i <= 3; i++) {
                 int xPos = playerXPos + offsetsX[i];
                 int yPos = playerYPos + offsetsY[i];
 

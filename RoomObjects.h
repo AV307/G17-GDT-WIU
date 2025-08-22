@@ -46,7 +46,7 @@ public:
 	RoomObjects(int roomWidth, int roomHeight);
 	~RoomObjects();
 
-	void addObjects(int xCoord, int yCoord, ObjectType type, int id, int currentStage, char roomType);
+	void addObjects(int roomWidth, int roomHeight, int currentStage, char roomType);
 	void removeObject(int xCoord, int yCoord);
 
 	ObjectType getObjectType(int xCoord, int yCoord) const;

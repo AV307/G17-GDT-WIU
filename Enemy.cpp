@@ -13,7 +13,6 @@ using namespace std;
 
 Enemy::Enemy(std::string type, char status) {
 	//Checks what type of the enemy is (Undead/Animal/Flower ... )
-	srand(static_cast<unsigned int>(time(0)));
 	for (int h = 0; h < MAX_ENEMY_TYPE; h++) {
 		enemyDrops[h] = 0;
 	}
@@ -36,6 +35,7 @@ Enemy::Enemy(std::string type, char status) {
 	}
 	enemyStatus = status;
 	//Checks what status the enemy is (Basic/Elite/Deluxe/Boss)
+	//Enemy with higher status will have higher stats
 	switch (status) {
 
 	case 'B':
@@ -157,6 +157,8 @@ int Enemy::getXP() const
 	return baseEXP;
 }
 
+
+// DRAFT DESIGNS
 // vampire
 //			    \--\           \--\ 
 //               \  \ -----------  \

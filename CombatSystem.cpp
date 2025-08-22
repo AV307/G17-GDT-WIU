@@ -525,12 +525,10 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 // +----------------------------------------------------------------------------------------------+ //
 bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
 	if (player.getHealth() == 0 && specifiedEnemy.getHealth() == 0) {                                              // If Enemy HP is 0 BUT Player HP is 0
-		exit(0);
-		return false;                                                                                              // Boolean returns isPlayerAlive to be false, exit game
+		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
-	else if (player.getHealth() == 0) {                                                                            // If Player HP is 0
-		exit(0);
-		return false;                                                                                              // Boolean returns isPlayerAlive to be false, exit game
+	else if (player.getHealth() == 0) {                                                                            // If Player HP is 0;
+		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
 	else if (specifiedEnemy.getHealth() == 0 && player.getHealth() > 0) {                                          // If Enemy HP is 0 but Player is Alive
 		player.setGold(player.getGold() + specifiedEnemy.getGold());
@@ -541,7 +539,6 @@ bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
 			player.setLvl(player.getLvl() + 1);
 		}
 		static_cast<Player&>(player).setCombatIsWon(true);
-		return true;                                                                                               // Boolean returns isPlayerAlive to be true
 	}
-	return true;
+	return false;
 }

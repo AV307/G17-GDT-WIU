@@ -35,6 +35,7 @@ Enemy::Enemy(std::string type, char status) {
 	}
 	enemyStatus = status;
 	//Checks what status the enemy is (Basic/Elite/Deluxe/Boss)
+	//Enemy with higher status will have higher stats
 	switch (status) {
 
 	case 'B':
@@ -156,6 +157,8 @@ int Enemy::getXP() const
 	return baseEXP;
 }
 
+
+// DRAFT DESIGNS
 // vampire
 //			    \--\           \--\ 
 //               \  \ -----------  \

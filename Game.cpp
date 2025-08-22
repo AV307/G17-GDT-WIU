@@ -161,9 +161,8 @@ void Game::doTurn(CombatSystem combatsystem)
 
     // Entering Combat System Check and Trigger
 
-    char combatKeyPress = _getch();                                                       // To receive player's input during battle
-
     if (plr->getIsInCombat()) {                                                          // If the player enters combat
+        char combatKeyPress = _getch();                                                       // To receive player's input during battle
         combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                   // Print the starting screen where all values are at base
         while (plr->getIsInCombat()) {                                                   // While the player remains in combat
             switch (combatKeyPress) {

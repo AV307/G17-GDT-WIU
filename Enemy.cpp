@@ -115,10 +115,10 @@ void Enemy::calculateLoot(Game* gamePtr)
 
 bool Enemy::isBossDefeated() const
 {
-	if (enemyStatus != 'B') {
+	if (enemyStatus != 'X') {
 		return false;
 	}
-	if (enemyStatus == 'B') {
+	if (enemyStatus == 'X') {
 		if (health <= 0) {
 			return true;
 		}

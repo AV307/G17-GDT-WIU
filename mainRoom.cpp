@@ -19,6 +19,7 @@ mainRoom::mainRoom(int currentStage) {
         mainRoomArray[i] = new char[roomWidth];
     }
 
+    roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'M');
     placeRoomObjects(mainRoomArray);
 
     // more code here to determine and set specifics in the main room, based on curentStage

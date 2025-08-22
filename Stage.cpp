@@ -235,6 +235,9 @@ Stage::~Stage()
     }
 }
 
+//Jayren Choi 250920U
+//Update the stage array (player positions, object changes etc.)
+//Incomplete
 void Stage::updateStageArray(Player* player)
 {
     int playerXPos = player->getXPos();

@@ -9,6 +9,7 @@ private:
     int currentStage = 0;
     int baseEXP = 0;
     int chance = 0;
+    int dropAMTID = 0;
 
 public:
     Enemy(string type, char status);

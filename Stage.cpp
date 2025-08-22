@@ -220,6 +220,7 @@ Stage::Stage(Game* game, Player* player)
     rooms[3] = new PortalRoom(currentStage, 3);
 
     previousTile = ' ';
+	previousObjectType = SPACE;
 
     setStageArray(currentStage, room1, room2, player);
 }
@@ -239,7 +240,7 @@ Stage::~Stage()
 //Update the stage array (player positions, object changes etc.)
 //Incomplete
 void Stage::updateStageArray(Player* player)
-{
+{ 
     int playerXPos = player->getXPos();
     int playerYPos = player->getYPos();
 
@@ -249,6 +250,7 @@ void Stage::updateStageArray(Player* player)
 
     RoomObjects* objects = rooms[0]->getRoomObjects();
     ObjectType type = SPACE;
+    ObjectType previousObjectType2 = previousObjectType;
     bool toggled = false;
 
     int roomX = player->getXPos() - rooms[0]->getRoomTopLeftY();
@@ -264,6 +266,7 @@ void Stage::updateStageArray(Player* player)
     {
         type = objects->getObjectType(roomX, roomY);
         toggled = objects->getObjectToggle(roomX, roomY);
+		std::cout << type << " " << toggled << std::endl;
         //std::cout << roomX << " " << roomY << std::endl;
     }
 
@@ -273,17 +276,31 @@ void Stage::updateStageArray(Player* player)
     {
         bool blocked = false;
 
-        if (type == WALL || (type == DOOR && toggled == false) || type == SWITCH || type == CHEST || stageArray[player->getYPos()][player->getXPos()] == '#') {
+        if (type == WALL || type == BLOCKONPRESSUREPLATE|| (type == DOOR && toggled == false) || type == SWITCH || type == CHEST || stageArray[player->getYPos()][player->getXPos()] == '#') {
             blocked = true;
         }
 
         if (type == MOVEABLEBLOCK) {
-            int newX = player->getXPos() + diffX;
-            int newY = player->getYPos() + diffY;
-            ObjectType tileType = objects->getObjectType(newX, newY);
-            if (tileType == SPACE || tileType == PRESSUREPLATE) {
-                stageArray[newY][newX] = 'M';
+            int newColumn = player->getXPos() + diffX;
+            int newRow = player->getYPos() + diffY;
 
+            int newRoomColumn = newColumn - rooms[0]->getRoomTopLeftY();
+            int newRoomRow = newRow - rooms[0]->getRoomTopLeftX();
+            ObjectType tileType = objects->getObjectType(newRoomColumn, newRoomRow);
+
+            if (tileType == SPACE || tileType == PRESSUREPLATE) {
+                objects->setObjectType(roomX, roomY, SPACE);
+
+                if (tileType == PRESSUREPLATE) {
+                    objects->setObjectType(newRoomColumn, newRoomRow, BLOCKONPRESSUREPLATE);
+                    stageArray[newRow][newColumn] = 'm';
+                    stageArray[roomY + rooms[0]->getRoomTopLeftX()][roomX + rooms[0]->getRoomTopLeftY()] = ' ';
+                }
+                else {
+                    objects->setObjectType(newRoomColumn, newRoomRow, MOVEABLEBLOCK);
+                    stageArray[newRow][newColumn] = 'M';
+                    stageArray[roomY + rooms[0]->getRoomTopLeftX()][roomX + rooms[0]->getRoomTopLeftY()] = ' ';
+                }
             }
             else {
                 blocked = true;
@@ -329,34 +346,25 @@ void Stage::updateStageArray(Player* player)
     }
 
     // PRESSURE PLATE CODE
-    for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+    /*for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
         for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
-            if (objects->getObjectType(x, y) == PRESSUREPLATE) {
+            if (objects->getObjectType(x, y) == BLOCKONPRESSUREPLATE) {
                 int pressureID = objects->getObjectId(x, y);
                 bool toggle = false;
-
-                int worldY = y + rooms[0]->getRoomTopLeftX();
-                int worldX = x + rooms[0]->getRoomTopLeftY();
-
-                if (playerXPos == worldX && playerYPos == worldY) {
-                    toggle = true;
-                }
-                else if (stageArray[worldY][worldX] == 'M') {
-                    toggle = true;
-                }
 
                 for (int dy = 0; dy < rooms[0]->getRoomHeight(); dy++) {
                     for (int dx = 0; dx < rooms[0]->getRoomWidth(); dx++) {
                         if (objects->getObjectType(dx, dy) == DOOR &&
                             objects->getObjectId(dx, dy) == pressureID)
                         {
-                            objects->setObjectToggle(dx, dy, toggle);
+                            objects->setObjectToggle(dx, dy, true);
                         }
                     }
                 }
             }
         }
     }
+    */
 
     // TELEPORTER CODE
     if (type == TELEPORTER1 || type == TELEPORTER2) {

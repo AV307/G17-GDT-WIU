@@ -14,6 +14,7 @@ private:
     Game* game;
 
     char previousTile;
+	ObjectType previousObjectType;
 
     std::random_device rd;
     std::mt19937 gen;

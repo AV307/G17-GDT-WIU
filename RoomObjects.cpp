@@ -53,14 +53,14 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[13][12] = new Object{ PRESSUREPLATE, 2 ,false };
             objects[15][12] = new Object{ MOVEABLEBLOCK, 2 ,false };
 
-            objects[15][11] = new Object{ DOOR, 2 ,false };
+            objects[15][11] = new Object{ DOOR, 2,false };
             objects[16][10] = new Object{ DOOR, 2 ,false };
 
-            objects[13][13] = new Object{ DOOR, 1 ,false };
-            objects[14][14] = new Object{ DOOR, 1 ,false };
+            objects[13][13] = new Object{ DOOR, 1,false };
+            objects[14][14] = new Object{ DOOR, 1,false };
 
-            objects[15][15] = new Object{ TELEPORTER1, 1 ,false };
-            objects[16][16] = new Object{ TELEPORTER2, 1 ,false };
+            objects[15][15] = new Object{ TELEPORTER1, 1,false };
+            objects[16][16] = new Object{ TELEPORTER2, 1,false };
             break;
         case 2:
             break;
@@ -157,5 +157,13 @@ void RoomObjects::setObjectToggle(int column, int row, bool toggle)
     Object* obj = objects[row][column];
     if (obj != nullptr) {
         obj->toggled = toggle;
+    }
+}
+
+void RoomObjects::setObjectType(int column, int row, ObjectType type)
+{
+    Object* obj = objects[row][column];
+    if (obj != nullptr) {
+        obj->type = type;
     }
 }

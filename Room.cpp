@@ -43,7 +43,10 @@ void Room::placeRoomObjects(char** roomArray)
 			case MOVEABLEBLOCK:
 				roomArray[y][x] = 'M';
 				break;
-		}
+			case BLOCKONPRESSUREPLATE:
+				roomArray[y][x] = 'm';
+				break;
+			}
 		}
 	}
 }

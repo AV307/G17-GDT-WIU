@@ -15,6 +15,7 @@ enum ObjectType {
 	LEFTDIRECTIONALDOOR,
 	RIGHTDIRECTIONALDOOR,
 	PRESSUREPLATE,
+	BLOCKONPRESSUREPLATE,
 
 	MOVEABLEBLOCK, // for puzzles
 
@@ -57,5 +58,6 @@ public:
 
 	bool getObjectToggle(int xCoord, int yCoord) const;
 	void setObjectToggle(int xCoord, int yCoord, bool toggle);
+	void setObjectType(int xCoord, int yCoord, ObjectType type);
 };
 

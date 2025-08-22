@@ -23,9 +23,14 @@ private:
 
     int enemiesDefeated;      
     bool solvedPuzzle;        
-    int weaponCount;          
+    int weaponCount;         
 
-    int gold = 0; // starting gold
+    std::string action;
+
+    bool isInCombat;
+    bool isRunning;
+    bool combatIsWon;
+    Entity* currentEnemy;
 
 
     int CRITRate, CRITDMG, strength;
@@ -34,13 +39,23 @@ public:
     Player();
     ~Player();
     void doAction();
-    void checkCollision();
+    void checkCollision(Entity& specifiedEnemy);
     void checkConsumption();
     void handleMovement(char inputVal);
     void handleInventory(char inputVal);
     int getEnemiesDefeated() const;    
     bool hasSolvedPuzzle() const;      
-    int getWeaponCount() const;        
+    int getWeaponCount() const;     
+
+    bool getIsInCombat();
+    void setIsInCombat(bool isInCombat);
+    bool getRun();
+    void setRun(bool isRunning);
+    bool getCombatIsWon();
+    void setCombatIsWon(bool combatIsWon);
+    Entity* getCurrentEnemy();
+    void setCurrentEnemy(Entity* specifiedEnemy);
+
 
     int getInventoryIndex();
     int getMenuIndex();
@@ -50,6 +65,8 @@ public:
 
     bool checkInventoryOpen();
     bool checkKey();
+    
+    std::string getAction();
 
     Item** getWeapons();
     Item** getArmours();

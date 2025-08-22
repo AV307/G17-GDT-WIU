@@ -6,21 +6,22 @@ using namespace std;
 class Game;
 class Enemy : public Entity {
 private:
-    int currentStage;
-    bool bossDefeated;
+    int currentStage = 0;
+    int baseEXP = 0;
+    int chance = 0;
 
 public:
     Enemy(string type, char status);
     ~Enemy();
     bool killEnemy(Game* game);
     bool isBossDefeated() const;
-    int calculateLoot(Game* game);
+    void calculateLoot(Game* game);
+    int calculateDropChance(int mult);
 
     int getHealth() const;
     int getAttack() const;
     int getDefense() const;
-    string getEnemyType() const;
-
+    int getXP() const;
 };
 
 

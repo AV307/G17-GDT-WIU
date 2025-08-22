@@ -1,10 +1,11 @@
 #include "Game.h"
 #include "Item.h"
-#include <conio.h>
+#include "CombatSystem.h"
 
 #include <iostream>
 #include <string>
 #include <windows.h>
+#include <conio.h>
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -16,7 +17,7 @@ Game::Game()
     //set to 3 or 5 to test the boss rooms
     currentStage = 1;
     plr = new Player;
-    stage = new Stage(this);
+    stage = new Stage(this, plr);
     stage->printStage(); //debugging code
 }
 
@@ -35,12 +36,11 @@ int Game::getCurrentStage()
     return currentStage;
 }
 
-
 //Jayren 250920U
 //Does a turn. if inventory is open, gameplay pauses, player movement keys control the inventory menu
-void Game::doTurn()
+void Game::doTurn(CombatSystem combatsystem)
 {
-    plr->doAction();
+    stage->updateStageArray(plr);
 
     system("cls");
 
@@ -188,6 +188,30 @@ void Game::restartStage(int currentStage)
         delete stage;
         stage = nullptr;
     }
+
+    // Entering Combat System Check and Trigger
+
+    if (plr->getIsInCombat()) {                                                          // If the player enters combat
+        char combatKeyPress = _getch();                                                       // To receive player's input during battle
+        combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                   // Print the starting screen where all values are at base
+        while (plr->getIsInCombat()) {                                                   // While the player remains in combat
+            switch (combatKeyPress) {
+            case 'f':
+                combatsystem.fightPVE(*plr, *plr->getCurrentEnemy());                    // Activate Fight Function if player presses F
+                break;
+            case 'i':
+                combatsystem.itemPVE(*plr, *plr->getCurrentEnemy());                     // Activate Item Function if player presses I
+                break;
+            case 'r':
+                combatsystem.runPVE(*plr, *plr->getCurrentEnemy());                      // Activate Run Function if player presses R
+                break;
+            default:
+                combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());           // If none are pressed, print back the same screen as if turn never happened
+            }
+            combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());               // After one action has been carried out, print the updated screen
+        }
+    }
+}
 
 	// Restart the stage where the player is currently at
     stage = new Stage(this);

@@ -1,31 +1,59 @@
 #pragma once
 
 enum ObjectType {
+	//main room
 	SWITCH,
+	DOOR,
 	STEPBUTTON,
-	TELEPORTER,
-	CHEST,
-	LOCKEDDOOR,
+	TELEPORTER1,
+	TELEPORTER2,
+	CHEST, // also treasure room
+	KEYDOOR,
 	TORCH,
-	ONEDIRECTIONALDOOR,
+	TOPDIRECTIONALDOOR,
+	BOTTOMDIRECTIONALDOOR,
+	LEFTDIRECTIONALDOOR,
+	RIGHTDIRECTIONALDOOR,
 	PRESSUREPLATE,
 
+	//bed room
+	BED,
+
+	//shop room
+
+	//portal room
+	PORTAL,
+
+	// general
 	WALL, // for walls 'O'
 	SPACE, // for blank spaces
 };
 
+struct Object
+{
+	ObjectType type;
+	int id;
+	bool toggled;
+};
 
 class RoomObjects
 {
 private:
-	ObjectType** objects;
+	Object*** objects;
+
 
 public:
 	RoomObjects(int roomWidth, int roomHeight);
 	~RoomObjects();
 
-	void addObjects(int currentStage, char roomType);
+	void addObjects(int xCoord, int yCoord, ObjectType type, int id, int currentStage, char roomType);
 	void removeObject(int xCoord, int yCoord);
-	ObjectType getObjectType(int xCoord, int yCoord);
+
+	ObjectType getObjectType(int xCoord, int yCoord) const;
+
+	int getObjectId(int xCoord, int yCoord) const;
+
+	bool getObjectToggle(int xCoord, int yCoord) const;
+	void setObjectToggle(int xCoord, int yCoord, bool toggle);
 };
 

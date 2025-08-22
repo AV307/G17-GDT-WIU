@@ -28,11 +28,17 @@ Player::Player(){
 	equippedWeapon = nullptr;
 	equippedArmour = nullptr;
 
+	isInCombat = false;
+	isRunning = false;
+	combatIsWon = false;
+
 	CRITRate = 25;
 	CRITDMG = 1.5;
 	attack = 15;
 	setXPos(50);
 	setYPos(90);
+
+	action = "Move";
 }
 
 Player::~Player() {
@@ -78,20 +84,56 @@ void Player::doAction() {
 	}
 }
 
-void Player::checkCollision() {
+bool Player::getIsInCombat() {
+	return isInCombat;
+}
+void Player::setIsInCombat(bool isInCombat) {
+	this->isInCombat = isInCombat;
+}
+bool Player::getRun() {
+	return isRunning;
+}
+void Player::setRun(bool isRunning) {
+	this->isRunning = isRunning;
+}
+bool Player::getCombatIsWon() {
+	return combatIsWon;
+}
+void Player::setCombatIsWon(bool combatIsWon) {
+	this->combatIsWon = combatIsWon;
+}
+Entity* Player::getCurrentEnemy() {
+	return currentEnemy;
+}
+void Player::setCurrentEnemy(Entity* enemy) {
+	currentEnemy = enemy;
+}
 
+// +----------------------------------------------------------------------------------------------+ //
+// Function Name: checkCollision
+// Description: Checks collision between Player And Enemy, between Player and other Game Objects
+// Parameter(s): The player and the specific enemy that is (if) involved
+// Return(s): None
+// Function Writer(s): Ethan, Jayren
+// +----------------------------------------------------------------------------------------------+ //
+
+void Player::checkCollision(Entity& specifiedEnemy) {
+	if (this->getXPos() == specifiedEnemy.getXPos() && this->getYPos() == specifiedEnemy.getYPos()) {
+		this->setIsInCombat(true);
+	}
 }
 
 void Player::checkConsumption() {
-
+	
 }
 
-//Caleb 250601F
-//KeyPressed movements for player
+//Jayren 250920U
+//Determines what actions are made from the player input
 void Player::handleMovement(char inputVal)
 {
 	int xPosition = getXPos();
 	int yPosition = getYPos();
+	action = "Move";
 	switch (inputVal) {
 	case'w':
 		setYPos(yPosition - 1);
@@ -104,6 +146,9 @@ void Player::handleMovement(char inputVal)
 		break;
 	case'd':
 		setXPos(xPosition + 1);
+		break;
+	case' ':
+		action = "Interact";
 		break;
 	default:
 		break;
@@ -223,6 +268,11 @@ bool Player::checkInventoryOpen()
 bool Player::checkKey()
 {
 	return hasKey;
+}
+
+std::string Player::getAction()
+{
+	return action;
 }
 
 //Jayren 250920U

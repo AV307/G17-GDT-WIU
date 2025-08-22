@@ -65,6 +65,27 @@ int Entity::getYPos() const
 int Entity::getThresholdXP() {
     return thresholdXP[currentLevel];
 }
+
+string Entity::getEntityType() const {
+    return enemyType;
+}
+
+string Entity::getEntityDropName() {
+    return enemyDropName[drops];
+}
+
+int Entity::getEntityDrops() {
+    return enemyDrops[drops];
+}
+
+char Entity::getEnemyStatus() const {
+    return enemyStatus;
+}
+
+int Entity::getListDrops(int enemyType) const {
+    return enemyDrops[enemyType];
+}
+
 void Entity::setHealth(int hp) { 
     health = hp; 
 }

@@ -5,6 +5,7 @@
 #include "BedRoom.h"
 #include "BossRoom.h"
 #include "PortalRoom.h"
+#include "RoomObjects.h"
 
 #include "Game.h"
 
@@ -14,7 +15,7 @@
 //Ang Zhi En 252317H
 //set the stageArray, fill up stage area with all the rooms that are created for the currentStage
 //Incomplete
-void Stage::setStageArray(int currentStage, char room1, char room2)
+void Stage::setStageArray(int currentStage, char room1, char room2, Player* player)
 {
     // initialize stageArray to spaces
     for (int i{ 0 }; i < 100; i++) {
@@ -154,12 +155,17 @@ void Stage::setStageArray(int currentStage, char room1, char room2)
             stageArray[portalRoomTopLeftX + i][portalRoomTopLeftY + j] = portalRoomArray[i][j];
         }
     }
+
+    int playerXPos = player->getXPos();
+    int playerYPos = player->getYPos();
+
+    stageArray[playerYPos][playerXPos] = 'P';
 }
 
 //Ang Zhi En 252317H
 //Constructor for Stage, uses randomiser to decide on the rooms generated for currentStage
 //Incomplete
-Stage::Stage(Game* game)
+Stage::Stage(Game* game, Player* player)
 	: gen(rd()), dis(1, 3)
 {
     int currentStage{ game->getCurrentStage() };
@@ -170,7 +176,7 @@ Stage::Stage(Game* game)
 
     char room1{};
     char room2{};
-    switch (randomRoom1) 
+    switch (randomRoom1)
     {
     case 1:
         rooms[1] = new ShopRoom(currentStage, 1);
@@ -186,15 +192,15 @@ Stage::Stage(Game* game)
         break;
     }
 
-    if (currentStage == 3 || currentStage == 5) 
+    if (currentStage == 3 || currentStage == 5)
     {
         rooms[2] = new BossRoom(currentStage);
         room2 = 'F';
     }
-    else 
+    else
     {
         int randomRoom2 = dis(gen);
-        switch (randomRoom2) 
+        switch (randomRoom2)
         {
         case 1:
             rooms[2] = new ShopRoom(currentStage, 2);
@@ -213,19 +219,173 @@ Stage::Stage(Game* game)
 
     rooms[3] = new PortalRoom(currentStage, 3);
 
-    setStageArray(currentStage, room1, room2);
+    previousTile = ' ';
+
+    setStageArray(currentStage, room1, room2, player);
 }
 
 //Ang Zhi En 252317H
 //Destructor for stage, delete pointers
 //Incomplete
-Stage::~Stage() 
+Stage::~Stage()
 {
     for (int i{ 0 }; i <= 2; i++)
     {
         delete rooms[i];
     }
 }
+
+void Stage::updateStageArray(Player* player)
+{
+    int playerXPos = player->getXPos();
+    int playerYPos = player->getYPos();
+
+    stageArray[playerYPos][playerXPos] = previousTile;
+
+    player->doAction();
+
+    RoomObjects* objects = rooms[0]->getRoomObjects();
+    ObjectType type = SPACE;
+    bool toggled = false;
+
+    int roomX = player->getXPos() - rooms[0]->getRoomTopLeftY();
+    int roomY = player->getYPos() - rooms[0]->getRoomTopLeftX();
+
+    if (player->getYPos() >= rooms[0]->getRoomTopLeftX() && 
+        player->getYPos() < rooms[0]->getRoomTopLeftX() + rooms[0]->getRoomWidth() &&
+        player->getXPos() >= rooms[0]->getRoomTopLeftY() && 
+        player->getXPos() < rooms[0]->getRoomTopLeftY() + rooms[0]->getRoomHeight()) 
+    {
+        type = objects->getObjectType(roomX, roomY);
+        toggled = objects->getObjectToggle(roomX, roomY);
+        //std::cout << roomX << " " << roomY << std::endl;
+    }
+
+    int offsetsX[4] = { -1,1,0,0 };
+    int offsetsY[4] = { 0,0,-1,1 };
+
+    {
+        bool blocked = false;
+
+        if (type == WALL || (type == DOOR && toggled == false) || type == SWITCH || type == CHEST || stageArray[player->getYPos()][player->getXPos()] == '#') {
+            blocked = true;
+        }
+
+        if (blocked == false) {
+            playerXPos = player->getXPos();
+            playerYPos = player->getYPos();
+        }
+
+        for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+            for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                int pressureID = -1;
+                if (objects->getObjectType(x, y) == PRESSUREPLATE) {
+                    objects->setObjectToggle(x, y, false);
+                    pressureID = objects->getObjectId(x, y);
+                }
+                if (objects->getObjectType(x, y) == DOOR && objects->getObjectId(x, y) == pressureID) {
+                    objects->setObjectToggle(x, y, false);
+                }
+            }
+        }
+
+        if (type == PRESSUREPLATE) {
+            objects->setObjectToggle(roomX, roomY, true);
+            int pressureID = objects->getObjectId(roomX, roomY);
+            for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+                for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                    if (objects->getObjectType(x, y) == DOOR && objects->getObjectId(x, y) == pressureID) {
+                        objects->setObjectToggle(x, y, true);
+                    }
+                }
+            }
+        }
+
+        if (type == TELEPORTER1 || type == TELEPORTER2) {
+            int ID = objects->getObjectId(roomX, roomY);
+            if (type == TELEPORTER1) {
+                for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+                    for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                        if (objects->getObjectType(x, y) == TELEPORTER2 &&
+                            objects->getObjectId(x, y) == ID)
+                        {
+                            playerXPos = x + rooms[0]->getRoomTopLeftY();
+                            playerYPos = y + rooms[0]->getRoomTopLeftX();
+                            break;
+                        }
+                    }
+                }
+            }
+            if (type == TELEPORTER2) {
+                for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+                    for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                        if (objects->getObjectType(x, y) == TELEPORTER1 &&
+                            objects->getObjectId(x, y) == ID)
+                        {
+                            playerXPos = x + rooms[0]->getRoomTopLeftY();
+                            playerYPos = y + rooms[0]->getRoomTopLeftX();
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    {
+        if (player->getAction() == "Interact") {
+            for (int i = 0; i < 3; i++) {
+                int xPos = playerXPos + offsetsX[i];
+                int yPos = playerYPos + offsetsY[i];
+
+                ObjectType interactType = objects->getObjectType(xPos - rooms[0]->getRoomTopLeftY(),yPos - rooms[0]->getRoomTopLeftX());
+
+                switch (interactType) {
+
+                case SWITCH: {
+                    int switchID = objects->getObjectId(xPos - rooms[0]->getRoomTopLeftY(), yPos - rooms[0]->getRoomTopLeftX());
+                    for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+                        for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                            if (objects->getObjectType(x, y) == DOOR &&
+                                objects->getObjectId(x, y) == switchID)
+                            {
+                                bool doorToggle = objects->getObjectToggle(x, y);
+                                objects->setObjectToggle(x, y, !doorToggle);
+                                if (doorToggle == false) {
+                                    stageArray[y + rooms[0]->getRoomTopLeftX()][x + rooms[0]->getRoomTopLeftY()] = ' ';
+                                }
+                                else {
+                                    stageArray[y + rooms[0]->getRoomTopLeftX()][x + rooms[0]->getRoomTopLeftY()] = '+';
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+                case CHEST:
+
+                    break;
+                }
+            }
+        }
+    }
+
+    player->setXPos(playerXPos);
+    player->setYPos(playerYPos);
+
+    previousTile = stageArray[playerYPos][playerXPos];
+
+    stageArray[playerYPos][playerXPos] = 'P';
+}
+
+//bool Stage::checkCollision(int xPos, int yPos, int currentRoom)
+//{
+//    RoomObjects* objects = rooms[currentRoom]->getRoomObjects();
+//    if (objects->getObjectType(xPos - rooms[currentRoom]->getRoomWidth(), yPos- rooms[currentRoom]->getRoomHeight()) != WALL) {
+//        return true;
+//    }
+//    return false;
+//}
 
 //Ang Zhi En 252317H
 //Print out the stage, with the rooms inside
@@ -239,3 +399,4 @@ void Stage::printStage()
         std::cout << std::endl;
     }
 }
+

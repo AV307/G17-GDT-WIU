@@ -1,6 +1,7 @@
 #pragma once
 #include "Stage.h"
 #include "Player.h"
+#include "CombatSystem.h"
 
 class Game
 {
@@ -24,5 +25,6 @@ public:
 
 	void getHighestStage(int currentStage);
 
+    void doTurn(CombatSystem combatsystem);
 };
 

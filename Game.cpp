@@ -183,8 +183,10 @@ void Game::doTurn(CombatSystem combatsystem)
             combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                             // Update combat screen
 
             if (combatsystem.winLoseCondition(*plr, *plr->getCurrentEnemy()) == true) {                // If Player dies or both Player and Enemy die
-                exit(0);                                                                               // Else, do not end the program
-            }
+                plr->setIsInCombat(false);
+                plr->setCombatIsWon(false);
+                restartStage(currentStage);                                                            // Restart the stage
+            }                                                                                          // Else, do not end the program
 
             if (plr->getCombatIsWon()) {                                                               // Once a player has won, then end the combat system
                 plr->setIsInCombat(false);

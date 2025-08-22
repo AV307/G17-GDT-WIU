@@ -10,7 +10,10 @@ enum ObjectType {
 	CHEST, // also treasure room
 	KEYDOOR,
 	TORCH,
-	ONEDIRECTIONALDOOR,
+	TOPDIRECTIONALDOOR,
+	BOTTOMDIRECTIONALDOOR,
+	LEFTDIRECTIONALDOOR,
+	RIGHTDIRECTIONALDOOR,
 	PRESSUREPLATE,
 
 	//bed room
@@ -46,7 +49,6 @@ public:
 	void addObjects(int xCoord, int yCoord, ObjectType type, int id, int currentStage, char roomType);
 	void removeObject(int xCoord, int yCoord);
 
-	Object* getObject(int xCoord, int yCoord) const;
 	ObjectType getObjectType(int xCoord, int yCoord) const;
 
 	int getObjectId(int xCoord, int yCoord) const;

@@ -184,7 +184,7 @@ std::string Entity::getEntityType() const
 }
 
 //Benjamin 250572M
-//Checks the drops in player inventory
+//Manages the enemy drops in player inventory
 Entity::Entity() {
     for (int i = 0; i < 8; i++) {
         drops[i] = 0; // start with none

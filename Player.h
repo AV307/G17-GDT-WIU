@@ -15,6 +15,7 @@ private:
     Item* equippedArmour;
     
     bool inventoryOpen;
+    bool shopOpen;
     bool hasKey;
 
     int menuIndex;

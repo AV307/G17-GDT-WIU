@@ -337,7 +337,7 @@ void Stage::updateStageArray(Player* player)
 
     {
         if (player->getAction() == "Interact") {
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i <= 3; i++) {
                 int xPos = playerXPos + offsetsX[i];
                 int yPos = playerYPos + offsetsY[i];
 

@@ -36,7 +36,7 @@ Player::Player(){
 	CRITDMG = 1.5;
 	attack = 15;
 	setXPos(50);
-	setYPos(90);
+	setYPos(80);
 
 	action = "Move";
 }
@@ -225,15 +225,19 @@ void Player::handleInventory(char inputVal)
 			if (equippedWeapon != nullptr) {
 				equippedWeapon->setEquipped(false);
 			}
-			equippedWeapon = weaponry[inventoryIndex];
-			equippedWeapon->setEquipped(true);
+			if (armoury[inventoryIndex] != nullptr) {
+				equippedWeapon = weaponry[inventoryIndex];
+				equippedWeapon->setEquipped(true);
+			}
 		}
 		else if (menuIndex == 2) {
 			if (equippedArmour != nullptr) {
 				equippedArmour->setEquipped(false);
 			}
-			equippedArmour = armoury[inventoryIndex];
-			equippedArmour->setEquipped(true);
+			if (armoury[inventoryIndex] != nullptr) {
+				equippedArmour = armoury[inventoryIndex];
+				equippedArmour->setEquipped(true);
+			}
 		}
 		break;	
 	default:

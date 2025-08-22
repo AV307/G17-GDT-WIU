@@ -279,7 +279,7 @@ void Stage::updateStageArray(Player* player)
             playerYPos = player->getYPos();
         }
 
-        for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+        /*for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
             for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
                 if (objects->getObjectType(x, y) == PRESSUREPLATE) {
                     int pressureID = objects->getObjectId(x, y);
@@ -296,7 +296,7 @@ void Stage::updateStageArray(Player* player)
                     }
                 }
             }
-        }
+        }*/
 
         if (type == TELEPORTER1 || type == TELEPORTER2) {
             int ID = objects->getObjectId(roomX, roomY);

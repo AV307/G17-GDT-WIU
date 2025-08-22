@@ -281,18 +281,19 @@ void Stage::updateStageArray(Player* player)
 
         for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
             for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
-
                 if (objects->getObjectType(x, y) == PRESSUREPLATE) {
                     int pressureID = objects->getObjectId(x, y);
+                    int toggle = false;
+                    if (stageArray[x + rooms[0]->getRoomTopLeftY()][y + rooms[0]->getRoomTopLeftX()] != 'B') {
+                        toggle = true;
+                    }
                     for (int dy = 0; dy < rooms[0]->getRoomHeight(); dy++) {
                         for (int dx = 0; dx < rooms[0]->getRoomWidth(); dx++) {
-                            if (dx == x )
                             if (objects->getObjectType(dx, dy) == DOOR && objects->getObjectId(dx, dy) == pressureID) {
-                                objects->setObjectToggle(dx, dy, true);
+                                objects->setObjectToggle(dx,dy,toggle);
                             }
                         }
                     }
-
                 }
             }
         }

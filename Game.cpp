@@ -129,8 +129,8 @@ void Game::doTurn(CombatSystem combatsystem)
         else {
             std::cout << "               Player does not have Key" << "              |";
         }
-        std::cout << std::endl;
-        std::cout << "+------------+" << "+------------+" << "+------------+" << "+------------+" << std::endl;
+        std::cout << '\n';
+        std::cout << "+------------+" << "+------------+" << "+------------+" << "+------------+" << '\n';
         std::cout << "+";
         SetConsoleTextAttribute(hConsole, (menuIndex == 1) ? 14 : 7);
         std::cout << "   Weapon   ";
@@ -147,9 +147,9 @@ void Game::doTurn(CombatSystem combatsystem)
         SetConsoleTextAttribute(hConsole, (menuIndex == 4) ? 14 : 7);
         std::cout << "  Artifact  ";
         SetConsoleTextAttribute(hConsole, 7);
-        std::cout << "+" << std::endl;
-        std::cout << "+------------+" << "+------------+" << "+------------+" << "+------------+" << std::endl;
-        std::cout << "+------------------------------------------------------+" << std::endl;
+        std::cout << "+" << '\n';
+        std::cout << "+------------+" << "+------------+" << "+------------+" << "+------------+" << '\n';
+        std::cout << "+------------------------------------------------------+" << '\n';
     }
     else {
         stage->printStage();

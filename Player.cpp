@@ -108,6 +108,12 @@ Entity* Player::getCurrentEnemy() {
 void Player::setCurrentEnemy(Entity* enemy) {
 	currentEnemy = enemy;
 }
+bool Player::getJustLeftCombat() {
+	return justLeftCombat;
+}
+void Player::setJustLeftCombat(bool justLeftCombat) {
+	this->justLeftCombat = justLeftCombat;
+}
 
 // +----------------------------------------------------------------------------------------------+ //
 // Function Name: checkCollision
@@ -118,8 +124,16 @@ void Player::setCurrentEnemy(Entity* enemy) {
 // +----------------------------------------------------------------------------------------------+ //
 
 void Player::checkCollision(Entity& specifiedEnemy) {
-	if (this->getXPos() == specifiedEnemy.getXPos() && this->getYPos() == specifiedEnemy.getYPos()) {
-		this->setIsInCombat(true);
+	if (this->getJustLeftCombat() == false) {
+		if (this->getXPos() == specifiedEnemy.getXPos() && this->getYPos() == specifiedEnemy.getYPos()) {
+			this->setIsInCombat(true);
+			this->setCurrentEnemy(&specifiedEnemy);
+		}
+	}
+	if (this->getJustLeftCombat()) {
+		if (this->getXPos() != specifiedEnemy.getXPos() || this->getYPos() != specifiedEnemy.getYPos()) {
+			this->setJustLeftCombat(false);
+		}
 	}
 }
 

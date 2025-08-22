@@ -53,7 +53,7 @@ void Game::doTurn(CombatSystem combatsystem)
     Item** inventoryMenuArray = nullptr;
 
     if (inventoryOpen == true) {
-        std::cout << "+------------------------------------------------------+" << std::endl;
+        std::cout << "+------------------------------------------------------+" << '\n';
         switch (menuIndex) {
         case 1:
             inventoryMenuArray = plr->getWeapons();
@@ -116,12 +116,12 @@ void Game::doTurn(CombatSystem combatsystem)
             }
 
             SetConsoleTextAttribute(hConsole, 7);
-            std::cout << "|" << std::endl;
+            std::cout << "|" << '\n';
         }
 
         // Inventory Menus
 
-        std::cout << "+------------------------------------------------------+" << std::endl;
+        std::cout << "+------------------------------------------------------+" << '\n';
         std::cout << "| ";
         if (hasKey == true) {
             std::cout << "                   Player Has Key" << "                    |";
@@ -129,8 +129,8 @@ void Game::doTurn(CombatSystem combatsystem)
         else {
             std::cout << "               Player does not have Key" << "              |";
         }
-        std::cout << std::endl;
-        std::cout << "+------------+" << "+------------+" << "+------------+" << "+------------+" << std::endl;
+        std::cout << '\n';
+        std::cout << "+------------+" << "+------------+" << "+------------+" << "+------------+" << '\n';
         std::cout << "+";
         SetConsoleTextAttribute(hConsole, (menuIndex == 1) ? 14 : 7);
         std::cout << "   Weapon   ";
@@ -147,9 +147,9 @@ void Game::doTurn(CombatSystem combatsystem)
         SetConsoleTextAttribute(hConsole, (menuIndex == 4) ? 14 : 7);
         std::cout << "  Artifact  ";
         SetConsoleTextAttribute(hConsole, 7);
-        std::cout << "+" << std::endl;
-        std::cout << "+------------+" << "+------------+" << "+------------+" << "+------------+" << std::endl;
-        std::cout << "+------------------------------------------------------+" << std::endl;
+        std::cout << "+" << '\n';
+        std::cout << "+------------+" << "+------------+" << "+------------+" << "+------------+" << '\n';
+        std::cout << "+------------------------------------------------------+" << '\n';
     }
     else {
         stage->printStage();
@@ -189,6 +189,7 @@ void Game::doTurn(CombatSystem combatsystem)
             if (plr->getCombatIsWon()) {                                                               // Once a player has won, then end the combat system
                 plr->setIsInCombat(false);
                 plr->setCombatIsWon(false);
+                plr->setJustLeftCombat(true);
             }
                                                                                                        // If none of these conditions are met, continue combat system until one happens
         }

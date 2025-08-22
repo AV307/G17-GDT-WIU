@@ -5,10 +5,10 @@
 //Constructor for mainRoom, defines the position and sets up the room
 //Incomplete
 mainRoom::mainRoom(int currentStage) {
-    roomHeight = 60;
-    roomWidth = 60;
-    roomTopLeftX = 40; // x is row
-    roomTopLeftY = 20; // y is col
+    roomHeight = 30;
+    roomWidth = 30;
+    roomTopLeftX = 60; // x is row
+    roomTopLeftY = 35; // y is col
 
     roomObjects = new RoomObjects(roomWidth, roomHeight);
 

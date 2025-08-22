@@ -24,10 +24,12 @@ private:
 
     std::string action;
 
+    // Combat Related
     bool isInCombat;
     bool isRunning;
     bool combatIsWon;
     Entity* currentEnemy;
+    bool justLeftCombat;
 
     int CRITRate, CRITDMG, strength;
 public:
@@ -51,6 +53,8 @@ public:
     void setCombatIsWon(bool combatIsWon);
     Entity* getCurrentEnemy();
     void setCurrentEnemy(Entity* specifiedEnemy);
+    bool getJustLeftCombat();
+    void setJustLeftCombat(bool justLeftCombat);
 
 
     int getInventoryIndex();

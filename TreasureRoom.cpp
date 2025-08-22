@@ -1,4 +1,6 @@
 #include "TreasureRoom.h"
+#include<iostream>
+
 
 //Ang Zhi En 252317H
 //Constructor for TreasureRoom, set position and sets up the room
@@ -42,3 +44,6 @@ char** TreasureRoom::getTreasureRoomArray()
 {
 	return treasureRoomArray;
 }
+
+
+

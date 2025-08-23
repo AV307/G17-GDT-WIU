@@ -7,4 +7,6 @@ Weapon::Weapon()
 
 Weapon::~Weapon()
 {
+
 }
+

@@ -2,6 +2,7 @@
 #include "CombatSystem.h"
 #include <cstdlib>
 #include <iostream>
+#include <conio.h>
 
 int main()
 {
@@ -9,8 +10,7 @@ int main()
     Game game;
     CombatSystem CombatSystem;
 
-
-    //CombatSystem.printCombatScreen();
+    
     while (true) {
         game.doTurn(CombatSystem);
     }

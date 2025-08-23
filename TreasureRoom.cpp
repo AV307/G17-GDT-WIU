@@ -45,5 +45,9 @@ char** TreasureRoom::getTreasureRoomArray()
 	return treasureRoomArray;
 }
 
+void TreasureRoom::openChest(Player* player)
+{
+}
+
 
 

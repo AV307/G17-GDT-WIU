@@ -18,6 +18,7 @@ private:
     Entity* entity;
 
     DropInfo drops[8] = {
+		//basic, //elite, //delux, //boss
         {"Sycophant Heart", 0.25, 1, 2, 3, 5},
         {"Poisoned Fang", 0.25, 1, 3, 5, 5},
         {"Withered Nectar", 0.50, 1, 2, 3, 4},

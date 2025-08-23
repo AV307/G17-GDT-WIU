@@ -160,9 +160,11 @@ void Game::doTurn(CombatSystem combatsystem)
     plr->updateStats();
 
     // Entering Combat System Check and Trigger
+    plr->checkCollision(*plr->getCurrentEnemy());
 
     if (plr->getIsInCombat()) {                                                                        // If the player enters combat
         combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                                 // Print the starting screen where all values are at base
+        combatsystem.setTextDialogue("You've been ambushed!");
         while (plr->getIsInCombat()) {                                                                 // While the player remains in combat
             char combatKeyPress = _getch();                                                            // To receive player's input during battle
             switch (combatKeyPress) {

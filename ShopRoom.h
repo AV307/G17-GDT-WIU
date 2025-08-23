@@ -9,7 +9,7 @@ private:
     char** shopRoomArray;
     Item* shopInventory[10];
     std::string itemNames[4] = { "Sword", "Shield", "Potion", "Bow" };
-    int itemPrices[4] = { 50, 40, 20, 60 }; 
+    int itemPrices[4] = { 50, 40, 20, 60 };
 
 public:
     ShopRoom(int currentStage, int roomNumber);
@@ -18,4 +18,3 @@ public:
 
     void showShopMenu(Player* player);
 };
-

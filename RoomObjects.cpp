@@ -1,4 +1,5 @@
 #include "RoomObjects.h"
+#include <iostream>
 
 // Ang Zhi En 252317H
 // Constructor for roomObjects, creates empty room and creates array for objects
@@ -24,7 +25,7 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
             }
             else 
             {
-                objects[i][j] = nullptr;
+                objects[i][j] = new Object{ SPACE, -1, false };; // set to space
             }
         }
     }

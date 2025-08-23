@@ -220,7 +220,6 @@ Stage::Stage(Game* game, Player* player)
     rooms[3] = new PortalRoom(currentStage, 3);
 
     previousTile = ' ';
-	previousObjectType = SPACE;
 
     setStageArray(currentStage, room1, room2, player);
 }
@@ -250,7 +249,6 @@ void Stage::updateStageArray(Player* player)
 
     RoomObjects* objects = rooms[0]->getRoomObjects();
     ObjectType type = SPACE;
-    ObjectType previousObjectType2 = previousObjectType;
     bool toggled = false;
 
     int roomX = player->getXPos() - rooms[0]->getRoomTopLeftY();
@@ -266,7 +264,6 @@ void Stage::updateStageArray(Player* player)
     {
         type = objects->getObjectType(roomX, roomY);
         toggled = objects->getObjectToggle(roomX, roomY);
-		std::cout << type << " " << toggled << std::endl;
         //std::cout << roomX << " " << roomY << std::endl;
     }
 
@@ -346,7 +343,7 @@ void Stage::updateStageArray(Player* player)
     }
 
     // PRESSURE PLATE CODE
-    /*for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
+    for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
         for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
             if (objects->getObjectType(x, y) == BLOCKONPRESSUREPLATE) {
                 int pressureID = objects->getObjectId(x, y);
@@ -364,7 +361,7 @@ void Stage::updateStageArray(Player* player)
             }
         }
     }
-    */
+    
 
     // TELEPORTER CODE
     if (type == TELEPORTER1 || type == TELEPORTER2) {

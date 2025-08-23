@@ -16,7 +16,9 @@ private:
     
     bool inventoryOpen;
     bool shopOpen;
+
     bool hasKey;
+    bool hasHammer;
 
     int menuIndex;
     int inventoryIndex;
@@ -69,7 +71,6 @@ public:
 	int setPosition(int x, int y);
 
     bool checkInventoryOpen();
-    bool checkKey();
     
     std::string getAction();
 
@@ -93,7 +94,15 @@ public:
     void addItemInventory(const std::string& name);
 
 	void printInventory() const;
+
+    void setKey(bool val);
+    bool checkHasKey() const;
+
+    void setHammer(bool val);
+    bool checkHasHammer() const;
+
     bool checkKey() const;
+
 };
 
 

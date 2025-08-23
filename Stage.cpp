@@ -316,12 +316,15 @@ void Stage::updateStageArray(Player* player)
                 int xPos = playerXPos + offsetsX[i];
                 int yPos = playerYPos + offsetsY[i];
 
-                ObjectType interactType = objects->getObjectType(xPos - rooms[0]->getRoomTopLeftY(),yPos - rooms[0]->getRoomTopLeftX());
+                int roomXPos = xPos - rooms[0]->getRoomTopLeftY();
+                int roomYPos = yPos - rooms[0]->getRoomTopLeftX();
+
+                ObjectType interactType = objects->getObjectType(roomXPos, roomYPos);
 
                 switch (interactType) {
 
                 case SWITCH: {
-                    int switchID = objects->getObjectId(xPos - rooms[0]->getRoomTopLeftY(), yPos - rooms[0]->getRoomTopLeftX());
+                    int switchID = objects->getObjectId(roomXPos, roomYPos);
                     for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
                         for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
                             if (objects->getObjectType(x, y) == DOOR &&
@@ -336,6 +339,15 @@ void Stage::updateStageArray(Player* player)
                 }
                 case CHEST:
 
+                    break;
+                case BREAKABLEWALL:
+                    bool hasHammer = player->checkHasHammer();
+                    if (hasHammer) {
+                        objects->setObjectType(roomXPos, roomYPos, SPACE);
+                        stageArray[yPos][xPos] = ' ';
+                    }
+                    break;
+                default:
                     break;
                 }
             }

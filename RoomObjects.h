@@ -18,6 +18,7 @@ enum ObjectType {
 	BLOCKONPRESSUREPLATE,
 
 	MOVEABLEBLOCK, // for puzzles
+	BREAKABLEWALL,
 
 	//bed room
 	BED,

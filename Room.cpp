@@ -46,6 +46,11 @@ void Room::placeRoomObjects(char** roomArray)
 			case BLOCKONPRESSUREPLATE:
 				roomArray[y][x] = 'm';
 				break;
+			case BREAKABLEWALL:
+				roomArray[y][x] = 'W';
+				break;
+			default:
+				break;
 			}
 		}
 	}

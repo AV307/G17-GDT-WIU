@@ -45,7 +45,8 @@ void Game::doTurn(CombatSystem combatsystem)
     //system("cls");
 
     bool inventoryOpen = plr->checkInventoryOpen();
-    bool hasKey = plr->checkKey();
+    bool hasKey = plr->checkHasKey();
+    bool hasHammer = plr->checkHasHammer();
 
     int menuIndex = plr->getMenuIndex();
     int inventoryIndex = plr->getInventoryIndex();
@@ -128,6 +129,13 @@ void Game::doTurn(CombatSystem combatsystem)
         }
         else {
             std::cout << "               Player does not have Key" << "              |";
+        }
+        std::cout << "| ";
+        if (hasHammer == true) {
+            std::cout << "                Player Has Hammer" << "                    |";
+        }
+        else {
+            std::cout << "            Player does not have Hammer" << "              |";
         }
         std::cout << '\n';
         std::cout << "+------------+" << "+------------+" << "+------------+" << "+------------+" << '\n';

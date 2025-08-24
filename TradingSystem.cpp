@@ -52,6 +52,10 @@ void TradingSystem::tradeDrop(int dropIndex, int choice, string enemyType) {
         player->addWeapon("Sword", goldReward);
         cout << "You received a Sword with power " << goldReward << "!\n";
         break;
+	case 3: // Armour
+		player->addArmour("Shield", goldReward);
+		cout << "You received a Shield with defense " << goldReward << "!\n";
+		break;
     default:
         cout << "Invalid choice.\n";
         return;

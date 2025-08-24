@@ -2,6 +2,7 @@
 #include "Room.h"
 #include "Item.h"
 #include "Player.h"
+#include <conio.h>  
 class ShopRoom :
     public Room
 {

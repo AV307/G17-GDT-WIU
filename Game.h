@@ -2,6 +2,7 @@
 #include "Stage.h"
 #include "Player.h"
 #include "CombatSystem.h"
+#include "ShopRoom.h"
 
 class Game
 {

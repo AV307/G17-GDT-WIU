@@ -49,7 +49,7 @@ void Room::placeRoomObjects(char** roomArray)
 			case BREAKABLEWALL:
 				roomArray[y][x] = 'W';
 				break;
-			case FINALDOOR:
+			case KEYDOOR:
 				roomArray[y][x] = 'D';
 				break;
 			case CHEST:

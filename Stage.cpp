@@ -454,6 +454,10 @@ void Stage::updateStageArray(Player* player)
         }
     }
 
+    if (type == PORTAL) {
+		game->setCurrentStage(game->getCurrentStage() + 1);
+    }
+
     player->setXPos(playerXPos);
     player->setYPos(playerYPos);
 

@@ -42,7 +42,7 @@ void Game::doTurn(CombatSystem combatsystem)
 {
     stage->updateStageArray(plr);
 
-    //system("cls");
+    system("cls");
 
     bool inventoryOpen = plr->checkInventoryOpen();
     bool hasKey = plr->checkHasKey();
@@ -128,7 +128,7 @@ void Game::doTurn(CombatSystem combatsystem)
             std::cout << "                   Player Has Key" << "                    |";
         }
         else {
-            std::cout << "               Player does not have Key" << "              |";
+            std::cout << "               Player does not have Key" << "              |" << '\n';
         }
         std::cout << "| ";
         if (hasHammer == true) {

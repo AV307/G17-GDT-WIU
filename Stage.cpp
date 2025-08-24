@@ -247,25 +247,32 @@ void Stage::updateStageArray(Player* player)
 
     player->doAction();
 
-    RoomObjects* objects = rooms[0]->getRoomObjects();
     ObjectType type = SPACE;
     bool toggled = false;
 
-    int roomX = player->getXPos() - rooms[0]->getRoomTopLeftY();
-    int roomY = player->getYPos() - rooms[0]->getRoomTopLeftX();
+    int size = sizeof(rooms) / sizeof(rooms[0]);
+    int roomIndex = 0;
 
-	int diffX = player->getXPos() - playerXPos;
-	int diffY = player->getYPos() - playerYPos;
-
-    if (player->getYPos() >= rooms[0]->getRoomTopLeftX() && 
-        player->getYPos() < rooms[0]->getRoomTopLeftX() + rooms[0]->getRoomWidth() &&
-        player->getXPos() >= rooms[0]->getRoomTopLeftY() && 
-        player->getXPos() < rooms[0]->getRoomTopLeftY() + rooms[0]->getRoomHeight()) 
-    {
-        type = objects->getObjectType(roomX, roomY);
-        toggled = objects->getObjectToggle(roomX, roomY);
-        //std::cout << roomX << " " << roomY << std::endl;
+    for (int i = 0; i < size; i++) {
+        if (player->getYPos() >= rooms[i]->getRoomTopLeftX() &&
+            player->getYPos() < rooms[i]->getRoomTopLeftX() + rooms[i]->getRoomWidth() &&
+            player->getXPos() >= rooms[i]->getRoomTopLeftY() &&
+            player->getXPos() < rooms[i]->getRoomTopLeftY() + rooms[i]->getRoomHeight())
+        {
+            roomIndex = i;
+        }
     }
+
+    RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
+    int roomX = player->getXPos() - rooms[roomIndex]->getRoomTopLeftY();
+    int roomY = player->getYPos() - rooms[roomIndex]->getRoomTopLeftX();
+
+    type = objects->getObjectType(roomX, roomY);
+    toggled = objects->getObjectToggle(roomX, roomY);
+
+    int diffX = player->getXPos() - playerXPos;
+    int diffY = player->getYPos() - playerYPos;
+
 
     int offsetsX[4] = { -1,1,0,0 };
     int offsetsY[4] = { 0,0,-1,1 };
@@ -284,8 +291,8 @@ void Stage::updateStageArray(Player* player)
             int newColumn = player->getXPos() + diffX;
             int newRow = player->getYPos() + diffY;
 
-            int newRoomColumn = newColumn - rooms[0]->getRoomTopLeftY();
-            int newRoomRow = newRow - rooms[0]->getRoomTopLeftX();
+            int newRoomColumn = newColumn - rooms[roomIndex]->getRoomTopLeftY();
+            int newRoomRow = newRow - rooms[roomIndex]->getRoomTopLeftX();
             ObjectType tileType = objects->getObjectType(newRoomColumn, newRoomRow);
 
             if (tileType == SPACE || tileType == PRESSUREPLATE) {
@@ -294,12 +301,12 @@ void Stage::updateStageArray(Player* player)
                 if (tileType == PRESSUREPLATE) {
                     objects->setObjectType(newRoomColumn, newRoomRow, BLOCKONPRESSUREPLATE);
                     stageArray[newRow][newColumn] = 'm';
-                    stageArray[roomY + rooms[0]->getRoomTopLeftX()][roomX + rooms[0]->getRoomTopLeftY()] = ' ';
+                    stageArray[roomY + rooms[roomIndex]->getRoomTopLeftX()][roomX + rooms[roomIndex]->getRoomTopLeftY()] = ' ';
                 }
                 else {
                     objects->setObjectType(newRoomColumn, newRoomRow, MOVEABLEBLOCK);
                     stageArray[newRow][newColumn] = 'M';
-                    stageArray[roomY + rooms[0]->getRoomTopLeftX()][roomX + rooms[0]->getRoomTopLeftY()] = ' ';
+                    stageArray[roomY + rooms[roomIndex]->getRoomTopLeftX()][roomX + rooms[roomIndex]->getRoomTopLeftY()] = ' ';
                 }
             }
             else {
@@ -319,8 +326,8 @@ void Stage::updateStageArray(Player* player)
                 int xPos = playerXPos + offsetsX[i];
                 int yPos = playerYPos + offsetsY[i];
 
-                int roomXPos = xPos - rooms[0]->getRoomTopLeftY();
-                int roomYPos = yPos - rooms[0]->getRoomTopLeftX();
+                int roomXPos = xPos - rooms[roomIndex]->getRoomTopLeftY();
+                int roomYPos = yPos - rooms[roomIndex]->getRoomTopLeftX();
 
                 ObjectType interactType = objects->getObjectType(roomXPos, roomYPos);
 
@@ -328,8 +335,8 @@ void Stage::updateStageArray(Player* player)
 
                 case SWITCH: {
                     int switchID = objects->getObjectId(roomXPos, roomYPos);
-                    for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
-                        for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+                    for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
+                        for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
                             if (objects->getObjectType(x, y) == DOOR &&
                                 objects->getObjectId(x, y) == switchID)
                             {
@@ -340,9 +347,26 @@ void Stage::updateStageArray(Player* player)
                     }
                     break;
                 }
-                case CHEST:
+                case CHEST: {
+                    std::string itemName = objects->getObjectItemName(roomXPos, roomYPos);
+					char itemType = objects->getObjectItemType(roomXPos, roomYPos);
+
+                    switch (itemType) {
+                    case 'H':
+						player->setHammer(true);
+                        break;
+					case 'K' :
+						player->setKey(true);
+                        break;
+                    case 'A':
+						player->addArtifact(itemName);
+                        break;
+                    }
+                    objects->setObjectType(roomXPos, roomYPos, SPACE);
+                    stageArray[yPos][xPos] = ' ';
 
                     break;
+                }
                 case BREAKABLEWALL: {
                     bool hasHammer = player->checkHasHammer();
                     if (hasHammer) {
@@ -365,8 +389,8 @@ void Stage::updateStageArray(Player* player)
                 int pressureID = objects->getObjectId(x, y);
                 bool toggle = false;
 
-                for (int dy = 0; dy < rooms[0]->getRoomHeight(); dy++) {
-                    for (int dx = 0; dx < rooms[0]->getRoomWidth(); dx++) {
+                for (int dy = 0; dy < rooms[roomIndex]->getRoomHeight(); dy++) {
+                    for (int dx = 0; dx < rooms[roomIndex]->getRoomWidth(); dx++) {
                         if (objects->getObjectType(dx, dy) == DOOR &&
                             objects->getObjectId(dx, dy) == pressureID)
                         {
@@ -388,21 +412,21 @@ void Stage::updateStageArray(Player* player)
                     if (objects->getObjectType(x, y) == TELEPORTER2 &&
                         objects->getObjectId(x, y) == ID)
                     {
-                        playerXPos = x + rooms[0]->getRoomTopLeftY();
-                        playerYPos = y + rooms[0]->getRoomTopLeftX();
+                        playerXPos = x + rooms[roomIndex]->getRoomTopLeftY();
+                        playerYPos = y + rooms[roomIndex]->getRoomTopLeftX();
                         break;
                     }
                 }
             }
         }
         if (type == TELEPORTER2) {
-            for (int y = 0; y < rooms[0]->getRoomHeight(); y++) {
-                for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
+            for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
+                for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
                     if (objects->getObjectType(x, y) == TELEPORTER1 &&
                         objects->getObjectId(x, y) == ID)
                     {
-                        playerXPos = x + rooms[0]->getRoomTopLeftY();
-                        playerYPos = y + rooms[0]->getRoomTopLeftX();
+                        playerXPos = x + rooms[roomIndex]->getRoomTopLeftY();
+                        playerYPos = y + rooms[roomIndex]->getRoomTopLeftX();
                         break;
                     }
                 }
@@ -415,8 +439,8 @@ void Stage::updateStageArray(Player* player)
         for (int x = 0; x < rooms[0]->getRoomWidth(); x++) {
             if (objects->getObjectType(x, y) == DOOR) {
                 bool toggle = objects->getObjectToggle(x, y);
-                int stageX = x + rooms[0]->getRoomTopLeftY();
-                int stageY = y + rooms[0]->getRoomTopLeftX();
+                int stageX = x + rooms[roomIndex]->getRoomTopLeftY();
+                int stageY = y + rooms[roomIndex]->getRoomTopLeftX();
                 (toggle) ? stageArray[stageY][stageX] = ' ' : stageArray[stageY][stageX] = '+';
             }
         }

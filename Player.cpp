@@ -25,7 +25,7 @@ Player::Player(){
 	menuIndex = 1;
 
 	hasKey = false;
-	hasHammer = true;
+	hasHammer = false;
 
 	currentEnemy = new Enemy("Undead", 'B');
 

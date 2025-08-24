@@ -1,8 +1,10 @@
 #pragma once
+#include <string>
 
 enum ObjectType {
 	//main room
 	SWITCH,
+	FINALDOOR,
 	DOOR,
 	STEPBUTTON,
 	TELEPORTER1,
@@ -38,6 +40,10 @@ struct Object
 	ObjectType type;
 	int id;
 	bool toggled;
+
+	// For CHEST
+	std::string itemName;
+	char itemType;
 };
 
 class RoomObjects
@@ -54,10 +60,11 @@ public:
 	void removeObject(int xCoord, int yCoord);
 
 	ObjectType getObjectType(int xCoord, int yCoord) const;
-
 	int getObjectId(int xCoord, int yCoord) const;
-
 	bool getObjectToggle(int xCoord, int yCoord) const;
+	std::string getObjectItemName(int xCoord, int yCoord) const;
+	char getObjectItemType(int xCoord, int yCoord) const;
+
 	void setObjectToggle(int xCoord, int yCoord, bool toggle);
 	void setObjectType(int xCoord, int yCoord, ObjectType type);
 };

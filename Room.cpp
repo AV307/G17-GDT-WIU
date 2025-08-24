@@ -49,6 +49,12 @@ void Room::placeRoomObjects(char** roomArray)
 			case BREAKABLEWALL:
 				roomArray[y][x] = 'W';
 				break;
+			case FINALDOOR:
+				roomArray[y][x] = 'D';
+				break;
+			case CHEST:
+				roomArray[y][x] = 'C';
+				break;
 			default:
 				break;
 			}

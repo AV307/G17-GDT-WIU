@@ -22,6 +22,18 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
     placeRoomObjects(shopRoomArray);
 
     //add code below for setting up specific shop related parts
+    // Initialize shop items (weapons)
+    shopInventory[0] = new Weapon("Sword", 10, 0, 0);
+    shopInventory[1] = new Weapon("Mace", 10, 0, 20);    // 20% crit damage
+    shopInventory[2] = new Weapon("Scythe", 15, 0, 0);
+    shopInventory[3] = new Weapon("Warhammer", 25, 20, 50);  // 20% crit rate, 50% crit damage
+
+    // Set remaining shopInventory slots to nullptr to avoid undefined pointers
+    for (int i = 4; i < 10; i++)
+    {
+        shopInventory[i] = nullptr;
+    }
+
 }
 
 
@@ -88,32 +100,31 @@ void ShopRoom::showShopMenu(Player* player) {
         // Display player gold
         std::cout << "Gold: " << player->getGold() << "\n\n";
 
-        // Display all items with numbers 6–9
-        std::cout << "6. " << itemNames[0] << " (" << itemPrices[0] << " gold)\n";
-        std::cout << "7. " << itemNames[1] << " (" << itemPrices[1] << " gold)\n";
-        std::cout << "8. " << itemNames[2] << " (" << itemPrices[2] << " gold)\n";
-        std::cout << "9. " << itemNames[3] << " (" << itemPrices[3] << " gold)\n";
-        std::cout << "0. Exit Shop\n";
+        // Display shop items dynamically
+        for (int i = 0; i < 10; i++) {
+            if (shopInventory[i] != nullptr) {
+                std::cout << i + 1 << ". "
+                    << shopInventory[i]->getName()
+                    << " (" << shopInventory[i]->getCost() << " gold)\n";
+            }
+        }
+        std::cout << "0. Exit Shop\n\n";
+        std::cout << "Choose item: ";
 
-        std::cout << "\nChoose item: ";
-        key = _getch();                  // wait for single key press
-        choice = static_cast<char>(key); // cast to char for comparison
-        std::cout << choice << "\n";     // echo pressed key
+        key = _getch();
+        choice = static_cast<char>(key);
+        std::cout << choice << "\n";
 
         if (choice == '0') break;
 
-        int index = -1;
-        if (choice == '6') index = 0;
-        else if (choice == '7') index = 1;
-        else if (choice == '8') index = 2;
-        else if (choice == '9') index = 3;
-
-        if (index != -1) {
-            if (player->getGold() >= itemPrices[index]) {
-                player->setGold(player->getGold() - itemPrices[index]);
-                player->addItemInventory(itemNames[index]);
-                std::cout << "You bought a " << itemNames[index]
-                    << " for " << itemPrices[index] << " gold!\n";
+        int index = choice - '1'; // Convert char '1'-'9' to index 0-8
+        if (index >= 0 && index < 10 && shopInventory[index] != nullptr) {
+            Item* item = shopInventory[index];
+            if (player->getGold() >= item->getCost()) {
+                player->setGold(player->getGold() - item->getCost());
+                player->addItemInventory(item);
+                std::cout << "You bought a " << item->getName()
+                    << " for " << item->getCost() << " gold!\n";
             }
             else {
                 std::cout << "Not enough gold!\n";
@@ -123,12 +134,11 @@ void ShopRoom::showShopMenu(Player* player) {
             std::cout << "Invalid choice!\n";
         }
 
-        // Wait for key press before refreshing menu
+        std::cout << "Press any key to continue...";
         int temp = _getch();
-        (void)temp; // avoid compiler warning for unused variable
+        (void)temp;
     }
 
-    // Print inventory after exiting shop
     player->printInventory();
 }
 

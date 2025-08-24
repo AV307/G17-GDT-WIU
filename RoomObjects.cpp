@@ -162,6 +162,7 @@ std::string RoomObjects::getObjectItemName(int column, int row) const
     if (obj != nullptr) {
         return obj->itemName;
     }
+    return " ";
 }
 
 char RoomObjects::getObjectItemType(int column, int row) const
@@ -170,6 +171,7 @@ char RoomObjects::getObjectItemType(int column, int row) const
     if (obj != nullptr) {
         return obj->itemType;
     }
+    return ' ';
 }
 
 //Jayren 250920U

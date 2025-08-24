@@ -4,7 +4,7 @@
 enum ObjectType {
 	//main room
 	SWITCH,
-	FINALDOOR,
+	KEYDOOR,
 	DOOR,
 	STEPBUTTON,
 	TELEPORTER1,

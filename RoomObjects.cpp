@@ -55,7 +55,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[15][12] = new Object{ MOVEABLEBLOCK, 2 ,false, " ", ' ' };
             objects[16][12] = new Object{ BREAKABLEWALL, 2 ,false, " ", ' ' };
 
-            objects[10][12] = new Object{ FINALDOOR, 2 ,false, " ", ' ' };
+            objects[10][12] = new Object{ KEYDOOR, 2 ,false, " ", ' ' };
             objects[10][13] = new Object{ CHEST, 2 ,false, " ", 'H' };
             objects[10][14] = new Object{ CHEST, 2 ,false, " ", 'K' };
             objects[10][15] = new Object{ CHEST, 2 ,false, "Rubber Duck", 'A' };

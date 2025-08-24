@@ -128,8 +128,9 @@ void Game::doTurn(CombatSystem combatsystem)
             std::cout << "                   Player Has Key" << "                    |";
         }
         else {
-            std::cout << "               Player does not have Key" << "              |" << '\n';
+            std::cout << "               Player does not have Key" << "              |";
         }
+		std::cout << '\n';
         std::cout << "| ";
         if (hasHammer == true) {
             std::cout << "                Player Has Hammer" << "                    |";

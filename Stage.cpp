@@ -287,6 +287,29 @@ void Stage::updateStageArray(Player* player)
             blocked = true;
         }
 
+        switch (type) {
+        case TOPDIRECTIONALDOOR:
+            if (diffY != -1) {
+                blocked = true;
+            }
+            break;
+        case BOTTOMDIRECTIONALDOOR:
+            if (diffY != 1) {
+                blocked = true;
+            }
+            break;
+        case LEFTDIRECTIONALDOOR:
+            if (diffX != -1) {
+                blocked = true;
+            }
+            break;
+        case RIGHTDIRECTIONALDOOR:
+            if (diffX != 1) {
+                blocked = true;
+            }
+            break;
+        }
+
         if (type == MOVEABLEBLOCK) {
             int newColumn = player->getXPos() + diffX;
             int newRow = player->getYPos() + diffY;

@@ -55,6 +55,18 @@ void Room::placeRoomObjects(char** roomArray)
 			case CHEST:
 				roomArray[y][x] = 'C';
 				break;
+			case TOPDIRECTIONALDOOR:
+				roomArray[y][x] = '^';
+				break;
+			case BOTTOMDIRECTIONALDOOR:
+				roomArray[y][x] = 'v';
+				break;
+			case LEFTDIRECTIONALDOOR:
+				roomArray[y][x] = '<';
+				break;
+			case RIGHTDIRECTIONALDOOR:
+				roomArray[y][x] = '>';
+				break;
 			default:
 				break;
 			}

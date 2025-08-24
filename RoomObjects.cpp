@@ -68,6 +68,11 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
 
             objects[15][15] = new Object{ TELEPORTER1, 1,false, " ", ' ' };
             objects[16][16] = new Object{ TELEPORTER2, 1,false, " ", ' ' };
+
+            objects[24][15] = new Object{ TOPDIRECTIONALDOOR, 2 ,false, " ", ' ' };
+            objects[24][13] = new Object{ BOTTOMDIRECTIONALDOOR, 2 ,false, " ", ' ' };
+            objects[24][11] = new Object{ LEFTDIRECTIONALDOOR, 2 ,false, " ", ' ' };
+            objects[24][9] = new Object{ RIGHTDIRECTIONALDOOR, 2 ,false, " ", ' ' };
             break;
         case 2:
             break;

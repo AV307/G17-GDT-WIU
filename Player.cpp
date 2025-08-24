@@ -146,6 +146,10 @@ void Player::checkCollision(Entity& specifiedEnemy) {
 	}
 }
 
+bool Player::checkSkillTreeOpen() {
+
+}
+
 void Player::checkConsumption() {
 	
 }

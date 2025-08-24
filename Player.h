@@ -62,6 +62,7 @@ public:
     void setCurrentEnemy(Entity* specifiedEnemy);
     bool getJustLeftCombat();
     void setJustLeftCombat(bool justLeftCombat);
+    bool checkSkillTreeOpen();
 
 
     int getInventoryIndex();

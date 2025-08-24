@@ -273,7 +273,10 @@ void Stage::updateStageArray(Player* player)
     {
         bool blocked = false;
 
-        if (type == WALL || type == BLOCKONPRESSUREPLATE|| (type == DOOR && toggled == false) || type == SWITCH || type == CHEST || stageArray[player->getYPos()][player->getXPos()] == '#') {
+        if (type == WALL || type == BLOCKONPRESSUREPLATE|| (type == DOOR && toggled == false) || 
+            type == SWITCH || type == CHEST || type == BREAKABLEWALL ||
+            stageArray[player->getYPos()][player->getXPos()] == '#') 
+        {
             blocked = true;
         }
 
@@ -340,13 +343,14 @@ void Stage::updateStageArray(Player* player)
                 case CHEST:
 
                     break;
-                case BREAKABLEWALL:
+                case BREAKABLEWALL: {
                     bool hasHammer = player->checkHasHammer();
                     if (hasHammer) {
                         objects->setObjectType(roomXPos, roomYPos, SPACE);
                         stageArray[yPos][xPos] = ' ';
                     }
                     break;
+                }
                 default:
                     break;
                 }

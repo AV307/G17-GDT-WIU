@@ -81,7 +81,7 @@ void Player::doAction() {
 	}
 	if (input == '6') {
 		if (shopOpen) {
-			shopOpen == false;
+			shopOpen = false;
 		}
 	}
 

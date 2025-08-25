@@ -15,7 +15,7 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
-    currentStage = 1;
+    currentStage = 2;
     plr = new Player;
     stage = new Stage(this, plr);
     stage->printStage(); //debugging code
@@ -42,7 +42,7 @@ void Game::doTurn(CombatSystem combatsystem)
 {
     stage->updateStageArray(plr);
 
-    //system("cls");
+    system("cls");
 
     bool inventoryOpen = plr->checkInventoryOpen();
     bool hasKey = plr->checkHasKey();

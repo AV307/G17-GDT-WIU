@@ -153,13 +153,13 @@ void ShopRoom::showShopMenu(Player* player) {
 //  --------------------------------------------------------------------------------------------------
 //  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 //  ||                                                                                              ||
-//  ||                                                                                              ||
-//  ||                                                                                              ||
-//  ||                                                                                              ||
-//  ||                                                                                              ||
-//  ||                                                                                              ||
-//  ||                                                                                              ||
-//  ||                                                                                              ||
+//  ||   Item 1      Cost     Stats                                                                 ||
+//  ||   Item 2      Cost     Stats                                                                 ||
+//  ||   Item 3      Cost     Stats                                                                 ||
+//  ||   Item 4      Cost     Stats                                                                 ||
+//  ||   Item 5      Cost     Stats                                                                 ||
+//  ||   Item 6      Cost     Stats                                                                 ||
+//  ||   Item 7      Cost     Stats                                                                 ||
 //  ||                                                                                              ||
 //  ||                                                                                              ||              
 //  ||                                                                                              ||

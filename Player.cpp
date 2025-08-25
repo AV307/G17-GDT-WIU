@@ -28,7 +28,7 @@ Player::Player(){
 	hasKey = false;
 	hasHammer = false;
 
-	currentEnemy = new Enemy("Undead", 'B');
+	currentEnemy = new Entity;
 
 	equippedWeapon = nullptr;
 	equippedArmour = nullptr;
@@ -41,8 +41,8 @@ Player::Player(){
 	CRITRate = 25;
 	CRITDMG = 1.5;
 	attack = 15;
-	setXPos(50);
-	setYPos(80);
+	setXPos(39);
+	setYPos(86);
 
 	action = "Move";
 }
@@ -314,10 +314,10 @@ bool Player::checkInventoryOpen()
 	return inventoryOpen;
 }
 
-bool Player::checkShopOpen() const
-{
-	return shopOpen;
-}
+//bool Player::checkShopOpen() const
+//{
+//	return shopOpen;
+//}
 //Jayren 250920U
 //returns hasKey to check if the player has found a key
 bool Player::checkHasKey() const
@@ -593,18 +593,18 @@ int Player::getWeaponCount() const {
 	return weaponCount;
 }
 
-void Player::printShopInventory() const{
-	std::cout << "\n--------------------------------------------------------------------------------------------------\n";
-	std::cout << "\n--------------------------------------------------------------------------------------------------\n";
-	std::cout << "\nvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\n";
-	for (int r = 0; r < 15; r++) {
-		std::cout << "||                                                                                                ||\n";
-	}                                                            
-	std::cout << "\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n";
-	std::cout << "\n==================================================================================================\n";
-	std::cout << "\n= --------------------- ------------------------ ------------------------ ---------------------- =\n";
-	std::cout << "\n= |      Armour       | |        Weapon        | |        Potion        | |      Artifact      | =\n";
-	std::cout << "\n= --------------------- ------------------------ ------------------------ ---------------------- =\n";
-	std::cout << "\n==================================================================================================\n";
-    std::cout << "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
-}
+//string Player::printShopInventory() const{
+//	std::cout << "\n--------------------------------------------------------------------------------------------------\n";
+//	std::cout << "\n--------------------------------------------------------------------------------------------------\n";
+//	std::cout << "\nvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\n";
+//	for (int r = 0; r < 15; r++) {
+//		std::cout << "||                                                                                                ||\n";
+//	}                                                            
+//	std::cout << "\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n";
+//	std::cout << "\n==================================================================================================\n";
+//	std::cout << "\n= --------------------- ------------------------ ------------------------ ---------------------- =\n";
+//	std::cout << "\n= |      Armour       | |        Weapon        | |        Potion        | |      Artifact      | =\n";
+//	std::cout << "\n= --------------------- ------------------------ ------------------------ ---------------------- =\n";
+//	std::cout << "\n==================================================================================================\n";
+//    std::cout << "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+//}

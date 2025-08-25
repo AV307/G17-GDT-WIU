@@ -344,6 +344,10 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[9][1] = new Object{ TELEPORTER2, 2, false, " ", ' ' };
             break;
         case 3:
+            for (int i = 1; i < 30; i++) {
+                objects[20][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+            objects[20][1] = new Object{ TORCH, 1, false, " ", ' ' };
             break;
         case 4:
             break;

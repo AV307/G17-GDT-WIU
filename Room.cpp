@@ -67,6 +67,9 @@ void Room::placeRoomObjects(char** roomArray)
 			case RIGHTDIRECTIONALDOOR:
 				roomArray[y][x] = '>';
 				break;
+			case TORCH:
+				roomArray[y][x] = '!';
+				break;
 			default:
 				break;
 			}

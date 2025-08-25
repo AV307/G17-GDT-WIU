@@ -6,6 +6,7 @@
 
 #include "Entity.h"
 #include "Stage.h"
+#include "Item.h"
 
 using namespace std;
 
@@ -496,7 +497,40 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 // +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
+	bool openInventory = static_cast<Player&>(player).checkInventoryOpen();
 
+	Item** inventoryMenuArray = nullptr;
+
+	switch (static_cast<Player&>(player).getMenuIndex()) {
+	case 1:
+		inventoryMenuArray = static_cast<Player&>(player).getWeapons();
+		break;
+	case 2:
+		inventoryMenuArray = static_cast<Player&>(player).getArmours();
+		break;
+	case 3:
+		inventoryMenuArray = static_cast<Player&>(player).getConsumables();
+		break;
+	case 4:
+		inventoryMenuArray = static_cast<Player&>(player).getArtifacts();
+		break;
+	default:
+		inventoryMenuArray = static_cast<Player&>(player).getWeapons();
+		break;
+	}
+
+	int index = static_cast<Player&>(player).getInventoryIndex();
+	Item* chosen = inventoryMenuArray[index];
+
+	if (chosen == nullptr) {
+		return;
+	}
+
+	std::string itemName = chosen->getName();
+
+	if (itemName == "") {
+
+	}
 }
 
 

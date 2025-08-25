@@ -83,9 +83,16 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[14][7] = new Object{ WALL, -1, false, " ", ' ' };
             objects[14][8] = new Object{ WALL, -1, false, " ", ' ' };
 
-            objects[23][9] = new Object{ WALL, -1, false, " ", ' ' };
-            for (int i = 4; i < 23; i++) {
-                objects[23][10] = new Object{ WALL, -1, false, " ", ' ' };
+            for (int i = 9; i < 20; i++) {
+                objects[23][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 4; i < 24; i++) {
+                objects[i][10] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 4; i < 24; i++) {
+                objects[i][18] = new Object{ WALL, -1, false, " ", ' ' };
             }
             break;
         case 2:

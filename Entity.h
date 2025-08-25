@@ -92,6 +92,7 @@ public:
     int getListDrops(int enemyType) const;
     string getEntityDropName() const;
     int getEntityDrops() const;
+	string printShopInventory() const;
 
 	virtual bool isAlive() const {
 		return health > 0;

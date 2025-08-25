@@ -127,6 +127,7 @@
     <ClCompile Include="BedRoom.cpp" />
     <ClCompile Include="BossRoom.cpp" />
     <ClCompile Include="CombatSystem.cpp" />
+    <ClCompile Include="CorridorRoom.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="G17-GDT-WIU.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="BedRoom.h" />
     <ClInclude Include="BossRoom.h" />
     <ClInclude Include="CombatSystem.h" />
+    <ClInclude Include="CorridorRoom.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />

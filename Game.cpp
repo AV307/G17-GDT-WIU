@@ -71,6 +71,23 @@ void Game::doTurn(CombatSystem combatsystem)
         default:
             break;
         }
+        //Benjamin 250572M
+        //opens shop menu if player is not in combat and presses 'P'
+        if (!plr->getIsInCombat()) {
+            char keyPress = _getch();
+
+            switch (tolower(keyPress)) {
+            case 'p': {
+                // open the shop
+                ShopRoom shop(currentStage, 0);
+                shop.showShopMenu(plr);
+                break;
+            }
+            case 'r':
+                restartStage(currentStage);
+                break;
+            }
+        }
 
         // Inventory Items
 
@@ -201,14 +218,14 @@ void Game::doTurn(CombatSystem combatsystem)
 
             if (plr->getCombatIsWon()) {                                                               // Once a player has won, then end the combat system
                 plr->setIsInCombat(false);
-                plr->setCombatIsWon(false);
-                plr->setJustLeftCombat(true);
+                plr->setCombatIsWon(false);                                                            // Reset Player won state
+                plr->setJustLeftCombat(true);                                                          // Give player invulnerability state until moving away
             }
                                                                                                        // If none of these conditions are met, continue combat system until one happens
         }
     }
     
-    // Exiting Combat (Win/Lose Condition)
+  
 
     
 }

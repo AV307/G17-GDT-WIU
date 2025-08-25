@@ -7,6 +7,7 @@
 #include "Entity.h"
 #include "Stage.h"
 #include "Item.h"
+#include "Potion.h"
 
 using namespace std;
 
@@ -528,8 +529,9 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 
 	std::string itemName = chosen->getName();
 
-	if (itemName == "") {
-
+	if (itemName == "Heal Potion") {
+		player.setHealth(player.getHealth() + static_cast<Potion*>(chosen)->getHeal());
+		setTextDialogue("Used Heal Potion (+" + to_string(static_cast<Potion*>(chosen)->getHeal()) + " HP)");
 	}
 }
 

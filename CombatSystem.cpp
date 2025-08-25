@@ -435,13 +435,20 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
 			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                            // If DEF <= ATK, Entity Final Damage is given value
 
-			if (specifiedEnemy.getHealth() > 0) {
-				if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-					player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
+				if (specifiedEnemy.getHealth() > 0) {
+					if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
+						player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+					}
+					else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
+						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
+					}
 				}
-				else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-					player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
-				}
+			}
+			else {
+				static_cast<Enemy&>(specifiedEnemy).setSleepState(false);
+				enemyDamage = 0;
+				enemyCritDamage = 0;
 			}
 			turnsInBattle++;
 		}
@@ -450,13 +457,20 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
 			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                        // If DEF <= ATK, Entity Final Damage is given value
 
-			if (specifiedEnemy.getHealth() > 0) {
-				if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-					player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
+				if (specifiedEnemy.getHealth() > 0) {
+					if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
+						player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+					}
+					else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
+						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
+					}
 				}
-				else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-					player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
-				}
+			}
+			else {
+				static_cast<Enemy&>(specifiedEnemy).setSleepState(false);
+				enemyDamage = 0;
+				enemyCritDamage = 0;
 			}
 			turnsInBattle++;
 		}
@@ -529,41 +543,58 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 
 	std::string itemName = chosen->getName();
 	
-	if (itemName == "Sword") {
-		player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
-		setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+	if (itemName == "Sword" || itemName == "Mace" || itemName == "Scythe" || itemName == "Warhammer") {
+		Weapon* newWeapon = static_cast<Weapon*>(chosen);
+
+		if (static_cast<Player&>(player).getCurrentWeapon() != nullptr) {
+			player.setAttack(player.getAttack() - static_cast<Player&>(player).getCurrentWeapon()->getAttackVal());
+		}
+
+		if (itemName == "Sword") {
+			player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+		}
+		else if (itemName == "Mace") {
+			player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+		}
+		else if (itemName == "Scythe") {
+			player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+		}
+		else if (itemName == "Warhammer") {
+			player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+		}
 	}
-	else if (itemName == "Mace") {
-		player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
-		setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
-	}
-	else if (itemName == "Scythe") {
-		player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
-		setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
-	}
-	else if (itemName == "Warhammer") {
-		player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
-		setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
-	}
-	else if (itemName == "Heal Potion") {
+
+	if (itemName == "Heal Potion") {
 		player.setHealth(player.getHealth() + static_cast<Potion*>(chosen)->getHeal());
 		setTextDialogue("Used " + itemName + " (+" + to_string(static_cast<Potion*>(chosen)->getHeal()) + " HP)");
 		chosen->consume();
+		delete chosen;
+		inventoryMenuArray[index] = nullptr;
 	}
 	else if (itemName == "Strength Potion") {
 		player.setAttack(player.getAttack() + static_cast<Potion*>(chosen)->getAttackVal());
 		setTextDialogue("Used " + itemName + " (+" + to_string(static_cast<Potion*>(chosen)->getAttackVal()) + " ATK)");
 		chosen->consume();
+		delete chosen;
+		inventoryMenuArray[index] = nullptr;
 	}
 	else if (itemName == "Weakening Potion") {
 		specifiedEnemy.setAttack(specifiedEnemy.getAttack() - static_cast<Potion*>(chosen)->getAttackVal());
 		setTextDialogue("Used " + itemName + " (-" + to_string(static_cast<Potion*>(chosen)->getAttackVal()) + " Enemy ATK)");
 		chosen->consume();
+		delete chosen;
+		inventoryMenuArray[index] = nullptr;
 	}
 	else if (itemName == "Sleep Potion") {
-		// bool for sleepState
+		static_cast<Enemy&>(specifiedEnemy).setSleepState(true);
 		setTextDialogue("Used " + itemName + ". Enemy is asleep for the next turn");
 		chosen->consume();
+		delete chosen;
+		inventoryMenuArray[index] = nullptr;
 	}
 }
 
@@ -589,25 +620,40 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 	case 'y':                                                                                                            // If player carries on anyway
 		if (consDeterminant == 0) {                                                                                      // 1st consequence
 			player.setHealth(player.getHealth() * 3 / 4);                                                                // Lose 25% of current HP
-			static_cast<Player&>(player).setIsInCombat(false);                                                           // Player exits combat after changes are made
-			static_cast<Player&>(player).setJustLeftCombat(true);                                                        // Player gains invulnerability from entering the fight again
-			static_cast<Player&>(player).setCombatIsWon(false);                                                          // Reset player's win state (precautionary)
+			char carryOn = _getch();
+			setTextDialogue("You ran... but lost something along the way (-25% HP)");
+
+			if (carryOn == 'y') {
+				static_cast<Player&>(player).setIsInCombat(false);                                                           // Player exits combat after changes are made
+				static_cast<Player&>(player).setJustLeftCombat(true);                                                        // Player gains invulnerability from entering the fight again
+				static_cast<Player&>(player).setCombatIsWon(false);                                                          // Reset player's win state (precautionary)
+			}
 		}
 		else if (consDeterminant == 1) {                                                                                 // 2nd consequence
 			player.setXP(player.getXP() * 3 / 4);                                                                        // Lose 25% of current XP
-			static_cast<Player&>(player).setIsInCombat(false);                                                           // Player exits combat after changes are made
-			static_cast<Player&>(player).setJustLeftCombat(true);                                                        // Player gains invulnerability from entering the fight again
-			static_cast<Player&>(player).setCombatIsWon(false);                                                          // Reset player's win state (precautionary)
+			char carryOn = _getch();
+			setTextDialogue("You ran... but lost something along the way (-25% XP)");
+
+			if (carryOn == 'y') {
+				static_cast<Player&>(player).setIsInCombat(false);                                                           // Player exits combat after changes are made
+				static_cast<Player&>(player).setJustLeftCombat(true);                                                        // Player gains invulnerability from entering the fight again
+				static_cast<Player&>(player).setCombatIsWon(false);                                                          // Reset player's win state (precautionary)
+			}
 		}
 		else if (consDeterminant == 2) {                                                                                 // 3rd consequence
 			player.setGold(player.getGold() - 50);                                                                       // Lose 50 Gold
-			static_cast<Player&>(player).setIsInCombat(false);                                                           // Player exits combat after changes are made
-			static_cast<Player&>(player).setJustLeftCombat(true);                                                        // Player gains invulnerability from entering the fight again
-			static_cast<Player&>(player).setCombatIsWon(false);                                                          // Reset player's win state (precautionary)
+			char carryOn = _getch();
+			setTextDialogue("You ran... but lost something along the way (-50 Gold)");
+
+			if (carryOn == 'y') {
+				static_cast<Player&>(player).setIsInCombat(false);                                                           // Player exits combat after changes are made
+				static_cast<Player&>(player).setJustLeftCombat(true);                                                        // Player gains invulnerability from entering the fight again
+				static_cast<Player&>(player).setCombatIsWon(false);                                                          // Reset player's win state (precautionary)
+			}
 		}
 		else {                                                                                                           // Off chance
 			setTextDialogue("Uh oh, you failed to run, the enemy stopped you before you could. Press Y to continue");    // Player fails to run, getting "dragged" back to fight
-			int carryOn = _getch();                                                                                       // To receive player input as a move to next dialogue function
+			char carryOn = _getch();                                                                                     // To receive player input as a move to next dialogue function
 			switch (carryOn) {
 			case 'y':
 				int retaliateDeterminant = rand() % 2;
@@ -622,10 +668,12 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 					player.setHealth(player.getHealth() * 8 / 10);                                                       // Player loses 20% of current HP from colliding
 					static_cast<Player&>(player).setIsInCombat(true);                                                    // Player stays in combat
 				}
+				break;
 			}
 		}
 	case 'n':                                                                                                            // If player backs out from running
 		setTextDialogue("You snapped out of it, kept your head in the game");                                            // Let's them stay in the game
+		break;
 	}
 }
 

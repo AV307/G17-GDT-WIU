@@ -1,10 +1,13 @@
 #include "mainRoom.h"
+#include "Enemy.h"
 #include "Game.h"
 
 //Ang Zhi En 252317H
 //Constructor for mainRoom, defines the position and sets up the room
 //Incomplete
 mainRoom::mainRoom(int currentStage) {
+
+
     roomHeight = 30;
     roomWidth = 30;
     roomTopLeftX = 60; // x is row
@@ -21,7 +24,6 @@ mainRoom::mainRoom(int currentStage) {
 
     roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'M');
     placeRoomObjects(mainRoomArray);
-
     // more code here to determine and set specifics in the main room, based on curentStage
     switch (currentStage) 
     {

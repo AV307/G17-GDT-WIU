@@ -32,8 +32,10 @@ Player::Player(){
 	equippedArmour = nullptr;
 	currentEnemy = new Enemy("Undead", 'B');
 	isInCombat = false;
-	isRunning = false;
+	isRunning = false; // remove later
 	combatIsWon = false;
+
+	currentWeapon = nullptr;
 
 	CRITRate = 25;
 	CRITDMG = 1.5;
@@ -142,7 +144,7 @@ void Player::setJustLeftCombat(bool justLeftCombat) {
 // Description: Checks collision between Player And Enemy, between Player and other Game Objects
 // Parameter(s): The player and the specific enemy that is (if) involved
 // Return(s): None
-// Function Writer(s): Ethan, Jayren
+// Function Writer(s): Ethan
 // +----------------------------------------------------------------------------------------------+ //
 
 void Player::checkCollision(Entity& specifiedEnemy) {
@@ -161,6 +163,14 @@ void Player::checkCollision(Entity& specifiedEnemy) {
 
 bool Player::checkSkillTreeOpen() {
 	return skillTreeOpen;
+}
+
+Weapon* Player::getCurrentWeapon() {
+	return currentWeapon;
+}
+
+void Player::setCurrentWeapon(Weapon* weapon) {
+	currentWeapon = weapon;
 }
 
 void Player::checkConsumption() {

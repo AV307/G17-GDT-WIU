@@ -179,7 +179,7 @@ void Player::setSkillTreeOpen(bool skillTreeOpen) {
 	this->skillTreeOpen = skillTreeOpen;
 }
 int Player::getStatPoints() {
-	return skillTreeOpen;
+	return statPoints;
 }
 void Player::setStatPoints(int statPoints) {
 	this->statPoints = statPoints;

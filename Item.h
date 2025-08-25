@@ -9,6 +9,9 @@ protected:
 	bool equipped;
 	std::string name;
 	std::string type;
+
+	bool consumable;
+	bool consumed;
 public:
 	Item();
 	Item(const std::string& n, const std::string& t, int c);
@@ -20,6 +23,10 @@ public:
 	std::string getType() { return type; }
 	std::string getName() const;
 	bool isEquipped() const;
+
+	void consume();
+	bool isConsumable();
+	bool isConsumed();
 
 	void setName(std::string itemName);
 	void setEquipped(bool equip);

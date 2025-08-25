@@ -7,6 +7,7 @@
 #include "Entity.h"
 #include "Stage.h"
 #include "Item.h"
+#include "Potion.h"
 
 using namespace std;
 
@@ -527,9 +528,42 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 	}
 
 	std::string itemName = chosen->getName();
-
-	if (itemName == "") {
-
+	
+	if (itemName == "Sword") {
+		player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
+		setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+	}
+	else if (itemName == "Mace") {
+		player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
+		setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+	}
+	else if (itemName == "Scythe") {
+		player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
+		setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+	}
+	else if (itemName == "Warhammer") {
+		player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
+		setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+	}
+	else if (itemName == "Heal Potion") {
+		player.setHealth(player.getHealth() + static_cast<Potion*>(chosen)->getHeal());
+		setTextDialogue("Used " + itemName + " (+" + to_string(static_cast<Potion*>(chosen)->getHeal()) + " HP)");
+		chosen->consume();
+	}
+	else if (itemName == "Strength Potion") {
+		player.setAttack(player.getAttack() + static_cast<Potion*>(chosen)->getAttackVal());
+		setTextDialogue("Used " + itemName + " (+" + to_string(static_cast<Potion*>(chosen)->getAttackVal()) + " ATK)");
+		chosen->consume();
+	}
+	else if (itemName == "Weakening Potion") {
+		specifiedEnemy.setAttack(specifiedEnemy.getAttack() - static_cast<Potion*>(chosen)->getAttackVal());
+		setTextDialogue("Used " + itemName + " (-" + to_string(static_cast<Potion*>(chosen)->getAttackVal()) + " Enemy ATK)");
+		chosen->consume();
+	}
+	else if (itemName == "Sleep Potion") {
+		// bool for sleepState
+		setTextDialogue("Used " + itemName + ". Enemy is asleep for the next turn");
+		chosen->consume();
 	}
 }
 

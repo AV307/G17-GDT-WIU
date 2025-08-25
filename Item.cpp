@@ -64,3 +64,16 @@ bool Item::isEquipped() const
 {
 	return equipped;
 }
+
+void Item::consume() {
+	if (consumable) {
+		consumed = true;
+	}
+}
+
+bool Item::isConsumable() {
+	return consumable;
+}
+bool Item::isConsumed() {
+	return consumed;
+}

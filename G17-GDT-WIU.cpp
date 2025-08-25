@@ -9,7 +9,7 @@ int main()
     srand(static_cast<unsigned int>(time(0)));
     Game game;
     CombatSystem CombatSystem;
-
+    Player player;
     
     while (true) {
         game.doTurn(CombatSystem);

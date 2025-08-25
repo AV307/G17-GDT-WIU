@@ -11,8 +11,7 @@
 //Completed
 using namespace std;
 
-Enemy::Enemy(std::string type, char status, Game* gPtr) {
-	currentStage = gPtr->getCurrentStage();
+Enemy::Enemy(std::string type, char status) {
 	//Checks what type of the enemy is (Undead/Animal/Flower ... )
 	for (int h = 0; h < MAX_ENEMY_TYPE; h++) {
 		enemyDrops[h] = 0;
@@ -23,11 +22,11 @@ Enemy::Enemy(std::string type, char status, Game* gPtr) {
 	for (int i = 0; i < MAX_ENEMY_TYPE; i++) {
 		if (type == enemyBank[i]) {
 			enemyType = type;
-			health = enemyStats[0][i] + 5*(currentStage - 1);
-			attack = enemyStats[1][i] + 3*(currentStage - 1);
-			defense = enemyStats[2][i] + 3*(currentStage - 1);
+			health = enemyStats[0][i];
+			attack = enemyStats[1][i];
+			defense = enemyStats[2][i];
 			CRITRate = enemyStats[3][i];
-			CRITDMG = enemyStats[4][i] + 2*(currentStage - 1);
+			CRITDMG = enemyStats[4][i];
 			enemyDrops[i] += 1;
 			baseEXP = enemyStats[5][i];
 			chance = enemyStats[6][i];

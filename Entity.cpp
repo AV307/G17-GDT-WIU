@@ -74,6 +74,9 @@ string Entity::getEntityDropName() const {
     return enemyDropName[dropName];
 }
 
+//string Entity::printShopInventory() const {
+//
+//}
 int Entity::getEntityDrops() const {
     return enemyDrops[dropName];
 }

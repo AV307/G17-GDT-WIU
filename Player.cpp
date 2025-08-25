@@ -28,12 +28,9 @@ Player::Player(){
 	hasKey = false;
 	hasHammer = false;
 
-	currentEnemy = new Entity;
-
 	equippedWeapon = nullptr;
 	equippedArmour = nullptr;
-
-	currentEnemy = new Entity;
+	currentEnemy = new Enemy("Undead", 'B');
 	isInCombat = false;
 	isRunning = false;
 	combatIsWon = false;
@@ -94,7 +91,7 @@ void Player::doAction() {
 		handleInventory(input);
 	}
 	else if (shopOpen) {
-		printShopInventory();
+		/*printShopInventory();*/
 	}
 	else {
 		handleMovement(input);

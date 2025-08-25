@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+#include <cstdlib>
 #include<string>
 using namespace std;
 
@@ -13,9 +14,9 @@ private:
     int chance = 0;
     int dropAMTID = 0;
     bool sleepState;
-    static bool enemyArray[28][28];
     bool enemyArray[28][28] = { false };
     int enemyXR, enemyYR;
+
 
 public:
     Enemy(string type, char status);

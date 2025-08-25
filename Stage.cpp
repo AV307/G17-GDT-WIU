@@ -231,6 +231,7 @@ Stage::Stage(Game* game, Player* player)
     }
 
     rooms[3] = new PortalRoom(currentStage, 3);
+    rooms[4] = new CorridorRoom(currentStage, 4);
 
     previousTile = ' ';
 

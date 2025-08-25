@@ -104,12 +104,12 @@ void Room::setRoomLocation(int roomNumber)
 	switch (roomNumber)
 	{
 	case 1:
-		roomTopLeftX = 10;
-		roomTopLeftY = 20;
+		roomTopLeftX = 30;
+		roomTopLeftY = 10;
 		break;
 	case 2:
-		roomTopLeftX = 10;
-		roomTopLeftY = 60;
+		roomTopLeftX = 30;
+		roomTopLeftY = 70;
 		break;
 	}
 }

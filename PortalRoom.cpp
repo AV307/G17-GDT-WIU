@@ -7,10 +7,10 @@ PortalRoom::PortalRoom(int currentStage, int roomNumber)
 {
     roomHeight = 11;
     roomWidth = 11;
-    roomTopLeftX = 0;
+    roomTopLeftX = 15;
     roomTopLeftY = 45;
 
-    roomObjects = new RoomObjects(roomWidth, roomHeight);
+    roomObjects = new RoomObjects(false, roomTopLeftY, roomWidth, roomHeight);
 
     // dynamically allocate shopRoomArray
     portalRoomArray = new char* [roomHeight];

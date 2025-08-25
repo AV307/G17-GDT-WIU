@@ -52,7 +52,7 @@ private:
 
 
 public:
-	RoomObjects(int roomWidth, int roomHeight);
+	RoomObjects(bool openSide, int roomColumn, int roomWidth, int roomHeight);
 	~RoomObjects();
 
 	void addObjects(int roomWidth, int roomHeight, int currentStage, char roomType);

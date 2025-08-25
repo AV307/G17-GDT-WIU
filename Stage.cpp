@@ -579,11 +579,6 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
 
         for (int y = playerPosY - dist; y <= playerPosY + dist; y++) {
             for (int x = playerPosX - dist; x <= playerPosX + dist; x++) {
-                if (y < 0 || y >= 100 || x < 0 || x >= 100) {
-                    std::cout << ' ';
-                    continue;
-                }
-
                 bool visible = false;
 
                 if (x == playerPosX && y == playerPosY) {

@@ -140,6 +140,7 @@ void ShopRoom::showShopMenu(Player* player) {
     }
 
     player->printInventory();
+
 }
 
 

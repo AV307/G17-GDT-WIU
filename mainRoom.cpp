@@ -5,6 +5,8 @@
 //Constructor for mainRoom, defines the position and sets up the room
 //Incomplete
 mainRoom::mainRoom(int currentStage) {
+
+
     roomHeight = 30;
     roomWidth = 30;
     roomTopLeftX = 60; // x is row

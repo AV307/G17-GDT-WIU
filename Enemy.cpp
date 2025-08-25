@@ -1,15 +1,33 @@
 ﻿#include "Entity.h"
 #include "Enemy.h"
 #include "Game.h"
+#include "Player.h"
 #include <cstdlib>
 #include <random>
 #include <iostream>
 #include <string>
 
-//Caleb 250601F
-//4 arrays to store enemy types for its corresponding statistics
-//Completed
 using namespace std;
+string newPos;
+pair<int, int> Enemy::enemyPos(int enemyXPair, int enemyYPair) {  
+	enemyArray[enemyXPair][enemyYPair] = true;						// paring is a function that returns a pair of values can be both bool or int or string etc.
+	return make_pair(enemyXPair, enemyYPair);
+};
+
+bool Enemy::isEnemyThere(Player* player, int checkX, int checkY) {
+	pair<int, int> enemyPosPair = enemyPos(checkX, checkY);
+	if (player != nullptr) {
+		if (player->getXPos() == enemyPosPair.first && player->getYPos() == enemyPosPair.second) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+}
 
 Enemy::Enemy(std::string type, char status) {
 	//Checks what type of the enemy is (Undead/Animal/Flower ... )
@@ -59,6 +77,8 @@ Enemy::Enemy(std::string type, char status) {
 		defense *= static_cast<int>(250 / 100);
 		break;
 	}
+
+	enemyPos(12, 3);
 }
 Enemy::~Enemy() {}
 
@@ -158,7 +178,6 @@ int Enemy::getXP() const
 {
 	return baseEXP;
 }
-
 
 // DRAFT DESIGNS
 // vampire

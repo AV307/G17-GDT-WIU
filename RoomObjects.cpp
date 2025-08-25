@@ -229,6 +229,119 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
             break;
         case 2:
+            // VERTICAL WALLS
+
+            for (int i = 16; i < 30;i++) {
+                objects[i][6] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 23; i < 30; i++) {
+                objects[i][12] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 13; i < 20; i++) {
+                objects[i][9] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 11; i < 17; i++) {
+                objects[i][12] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 14; i++) {
+                objects[i][8] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 11; i < 16; i++) {
+                objects[i][13] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 11; i < 16; i++) {
+                objects[i][14] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 11; i < 16; i++) {
+                objects[i][22] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 11; i < 16; i++) {
+                objects[i][27] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 5; i < 9; i++) {
+                objects[i][6] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 21; i < 24; i++) {
+                objects[i][14] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+			// HORIZONTAL WALLS
+
+            for (int i = 0; i < 7; i++) {
+                objects[21][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 7; i++) {
+                objects[16][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 7; i < 9; i++) {
+                objects[19][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 7; i < 12; i++) {
+                objects[23][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 10; i < 12; i++) {
+                objects[16][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 13; i < 30; i++) {
+                objects[15][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 9; i < 28; i++) {
+                objects[11][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 9; i < 30; i++) {
+                objects[7][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 8; i++) {
+                objects[8][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 8; i++) {
+                objects[13][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 3; i++) {
+                objects[14][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 15; i < 17; i++) {
+                objects[14][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 20; i < 22; i++) {
+                objects[12][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 19; i < 22; i++) {
+                objects[14][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            objects[12][18] = new Object{ WALL, -1, false, " ", ' ' };
+            objects[5][7] = new Object{ WALL, -1, false, " ", ' ' };
+
+            // OBJECTS
+
+            objects[15][1] = new Object{ TELEPORTER1, 1, false, " ", ' ' };
+            objects[28][7] = new Object{ TELEPORTER2, 1, false, " ", ' ' };
+
+            objects[13][10] = new Object{ TELEPORTER1, 2, false, " ", ' ' };
+            objects[9][1] = new Object{ TELEPORTER2, 2, false, " ", ' ' };
             break;
         case 3:
             break;

@@ -144,7 +144,7 @@ void Player::setJustLeftCombat(bool justLeftCombat) {
 // Description: Checks collision between Player And Enemy, between Player and other Game Objects
 // Parameter(s): The player and the specific enemy that is (if) involved
 // Return(s): None
-// Function Writer(s): Ethan, Jayren
+// Function Writer(s): Ethan
 // +----------------------------------------------------------------------------------------------+ //
 
 void Player::checkCollision(Entity& specifiedEnemy) {

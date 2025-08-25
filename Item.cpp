@@ -2,12 +2,13 @@
 
 Item::Item()
 {
-	attack = 0;
-	defense = 0;
-	cost = 0;
-	equipped = false;
-	name = "blank";
 }
+
+Item::Item(const std::string& n, const std::string& t, int c)
+	: name(n), type(t), cost(c) {
+}
+
+
 
 Item::~Item()
 {

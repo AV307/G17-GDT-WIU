@@ -93,7 +93,11 @@ public:
     void addItemInventory(const std::string& name);
 
 	void printInventory() const;
+	void handleShopInventory(char inputVal);
+	void printShopInventory() const;
     bool checkKey() const;
+
+	bool checkShopOpen() const;
 };
 
 

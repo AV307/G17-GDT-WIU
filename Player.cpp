@@ -21,6 +21,7 @@ Player::Player(){
 	}
 
 	inventoryOpen = false;
+	shopOpen = false;
 	inventoryIndex = 0;
 	menuIndex = 1;
 	hasKey = false;
@@ -28,6 +29,7 @@ Player::Player(){
 	equippedWeapon = nullptr;
 	equippedArmour = nullptr;
 
+	currentEnemy = new Entity;
 	isInCombat = false;
 	isRunning = false;
 	combatIsWon = false;
@@ -68,21 +70,27 @@ void Player::doAction() {
 	char input = _getch();
 
 	if (input == 'e') {
-		if (inventoryOpen == false) {
+		if (!inventoryOpen) {
 			inventoryOpen = true;
 		}
 		else {
 			inventoryOpen = false;
 		}
 	}
-	if (input == '6') {
-		if (shopOpen) {
-			shopOpen == false;
+	if (input == '7') {
+		if (!shopOpen) {
+			shopOpen = true;
+		}
+		else {
+			shopOpen = false;
 		}
 	}
 
-	if (inventoryOpen == true) {
+	if (inventoryOpen) {
 		handleInventory(input);
+	}
+	else if (shopOpen) {
+		printShopInventory();
 	}
 	else {
 		handleMovement(input);
@@ -290,6 +298,10 @@ bool Player::checkInventoryOpen()
 	return inventoryOpen;
 }
 
+bool Player::checkShopOpen() const
+{
+	return shopOpen;
+}
 //Jayren 250920U
 //returns hasKey to check if the player has found a key
 bool Player::checkKey()
@@ -516,4 +528,20 @@ bool Player::hasSolvedPuzzle() const {
 
 int Player::getWeaponCount() const {
 	return weaponCount;
+}
+
+void Player::printShopInventory() const{
+	std::cout << "\n--------------------------------------------------------------------------------------------------\n";
+	std::cout << "\n--------------------------------------------------------------------------------------------------\n";
+	std::cout << "\nvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\n";
+	for (int r = 0; r < 15; r++) {
+		std::cout << "||                                                                                                ||\n";
+	}                                                            
+	std::cout << "\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n";
+	std::cout << "\n==================================================================================================\n";
+	std::cout << "\n= --------------------- ------------------------ ------------------------ ---------------------- =\n";
+	std::cout << "\n= |      Armour       | |        Weapon        | |        Potion        | |      Artifact      | =\n";
+	std::cout << "\n= --------------------- ------------------------ ------------------------ ---------------------- =\n";
+	std::cout << "\n==================================================================================================\n";
+    std::cout << "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
 }

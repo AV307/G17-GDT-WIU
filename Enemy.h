@@ -12,7 +12,7 @@ private:
     int dropAMTID = 0;
 
 public:
-    Enemy(string type, char status);
+    Enemy(string type, char status, Game* gPtr);
     ~Enemy();
     bool killEnemy(Game* game);
     bool isBossDefeated() const;

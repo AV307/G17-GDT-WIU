@@ -435,13 +435,20 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
 			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                            // If DEF <= ATK, Entity Final Damage is given value
 
-			if (specifiedEnemy.getHealth() > 0) {
-				if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-					player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
+				if (specifiedEnemy.getHealth() > 0) {
+					if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
+						player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+					}
+					else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
+						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
+					}
 				}
-				else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-					player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
-				}
+			}
+			else {
+				static_cast<Enemy&>(specifiedEnemy).setSleepState(false);
+				enemyDamage = 0;
+				enemyCritDamage = 0;
 			}
 			turnsInBattle++;
 		}
@@ -450,13 +457,20 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
 			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                        // If DEF <= ATK, Entity Final Damage is given value
 
-			if (specifiedEnemy.getHealth() > 0) {
-				if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-					player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
+				if (specifiedEnemy.getHealth() > 0) {
+					if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
+						player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+					}
+					else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
+						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
+					}
 				}
-				else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-					player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
-				}
+			}
+			else {
+				static_cast<Enemy&>(specifiedEnemy).setSleepState(false);
+				enemyDamage = 0;
+				enemyCritDamage = 0;
 			}
 			turnsInBattle++;
 		}
@@ -561,7 +575,7 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 		chosen->consume();
 	}
 	else if (itemName == "Sleep Potion") {
-		// bool for sleepState
+		static_cast<Enemy&>(specifiedEnemy).setSleepState(true);
 		setTextDialogue("Used " + itemName + ". Enemy is asleep for the next turn");
 		chosen->consume();
 	}

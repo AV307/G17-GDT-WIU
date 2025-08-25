@@ -12,6 +12,7 @@
 using namespace std;
 
 Enemy::Enemy(std::string type, char status) {
+	sleepState = false;
 	//Checks what type of the enemy is (Undead/Animal/Flower ... )
 	for (int h = 0; h < MAX_ENEMY_TYPE; h++) {
 		enemyDrops[h] = 0;
@@ -194,3 +195,11 @@ int Enemy::getXP() const
 //          ||                 |
 //          ||    o    >     o |
 //          \|_________________|
+
+bool Enemy::getSleepState() {
+	return sleepState;
+}
+
+void Enemy::setSleepState(bool sleepState) {
+	this->sleepState = sleepState;
+}

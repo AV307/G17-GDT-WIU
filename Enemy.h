@@ -10,6 +10,7 @@ private:
     int baseEXP = 0;
     int chance = 0;
     int dropAMTID = 0;
+    bool sleepState;
 
 public:
     Enemy(string type, char status);
@@ -18,6 +19,9 @@ public:
     bool isBossDefeated() const;
     void calculateLoot(Game* game);
     int calculateDropChance(int mult);
+
+    bool getSleepState();
+    void setSleepState(bool sleepState);
 
     int getHealth() const;
     int getAttack() const;

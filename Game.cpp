@@ -168,6 +168,7 @@ void Game::doTurn(CombatSystem combatsystem)
 
     plr->updateStats();
 
+
     // Entering Combat System Check and Trigger
     plr->checkCollision(*plr->getCurrentEnemy());
 

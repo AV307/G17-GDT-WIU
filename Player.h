@@ -37,6 +37,8 @@ private:
     Entity* currentEnemy;
     bool justLeftCombat;
 
+    bool skillTreeOpen;
+
 
     int CRITRate, CRITDMG, strength;
 public:

@@ -37,6 +37,8 @@ Player::Player(){
 
 	currentWeapon = nullptr;
 
+	statPoints = 0;
+
 	CRITRate = 25;
 	CRITDMG = 1.5;
 	attack = 15;
@@ -161,16 +163,17 @@ void Player::checkCollision(Entity& specifiedEnemy) {
 	}
 }
 
-bool Player::checkSkillTreeOpen() {
-	return skillTreeOpen;
-}
-
 Weapon* Player::getCurrentWeapon() {
 	return currentWeapon;
 }
 
 void Player::setCurrentWeapon(Weapon* weapon) {
 	currentWeapon = weapon;
+}
+
+// Skill Tree Related
+bool Player::checkSkillTreeOpen() {
+	return skillTreeOpen;
 }
 
 void Player::checkConsumption() {

@@ -526,9 +526,6 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 	case 3:
 		inventoryMenuArray = static_cast<Player&>(player).getConsumables();
 		break;
-	case 4:
-		inventoryMenuArray = static_cast<Player&>(player).getArtifacts();
-		break;
 	default:
 		inventoryMenuArray = static_cast<Player&>(player).getWeapons();
 		break;

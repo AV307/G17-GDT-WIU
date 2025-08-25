@@ -189,6 +189,17 @@ void Game::doTurn(CombatSystem combatsystem)
     // Entering Combat System Check and Trigger
     plr->checkCollision(*plr->getCurrentEnemy());
 
+    if (plr->checkSkillTreeOpen()) {
+        int HPStat, ATKStat, DEFStat, AvailablePts;
+        std::cout << "// +---------------------------------------------------+ //" << std::endl;
+        std::cout << "// + HP Stats:                                         + //" << std::endl;
+        std::cout << "// + ATK Stats:                                        + //" << std::endl;
+        std::cout << "// + DEF Stats:                                        + //" << std::endl;
+        std::cout << "// +---------------------------------------------------+ //" << std::endl;
+        std::cout << "// + Available Points:                                 + //" << std::endl;
+        std::cout << "// +---------------------------------------------------+ //" << std::endl;
+    }
+
     if (plr->getIsInCombat()) {                                                                        // If the player enters combat
         combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                                 // Print the starting screen where all values are at base
         combatsystem.setTextDialogue("You've been ambushed!");

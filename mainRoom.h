@@ -7,6 +7,7 @@ class mainRoom :
 {
 private:
     char** mainRoomArray;
+
 public:
     mainRoom(int currentStage);
     ~mainRoom();

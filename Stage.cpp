@@ -274,12 +274,15 @@ void Stage::updateStageArray(Player* player)
             player->getXPos() < rooms[i]->getRoomTopLeftY() + rooms[i]->getRoomHeight())
         {
             roomIndex = i;
+            break;
         }
     }
 
     RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
     int roomX = player->getXPos() - rooms[roomIndex]->getRoomTopLeftY();
     int roomY = player->getYPos() - rooms[roomIndex]->getRoomTopLeftX();
+
+	std::cout << "Room X: " << roomX << " Room Y: " << roomY << std::endl; // Debugging line to check room coordinates
 
     type = objects->getObjectType(roomX, roomY);
     toggled = objects->getObjectToggle(roomX, roomY);
@@ -520,4 +523,6 @@ void Stage::printStage()
         std::cout << '\n';
     }
 }
+
+
 

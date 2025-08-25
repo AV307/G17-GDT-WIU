@@ -4,6 +4,8 @@
 using namespace std;
 
 class Game;
+class Player;
+
 class Enemy : public Entity {
 private:
     int currentStage = 0;
@@ -11,6 +13,7 @@ private:
     int chance = 0;
     int dropAMTID = 0;
     bool sleepState;
+    static bool enemyArray[28][28];
 
 public:
     Enemy(string type, char status);
@@ -19,6 +22,8 @@ public:
     bool isBossDefeated() const;
     void calculateLoot(Game* game);
     int calculateDropChance(int mult);
+    bool isEnemyThere(Player* player, int checkX, int checkY);
+    pair<int, int> enemyPos(int enemyX, int enemyY);
 
     bool getSleepState();
     void setSleepState(bool sleepState);

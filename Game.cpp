@@ -42,7 +42,7 @@ void Game::doTurn(CombatSystem combatsystem)
 {
     stage->updateStageArray(plr);
 
-    system("cls");
+    //system("cls");
 
     bool inventoryOpen = plr->checkInventoryOpen();
     bool hasKey = plr->checkHasKey();

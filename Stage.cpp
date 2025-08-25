@@ -524,5 +524,25 @@ void Stage::printStage()
     }
 }
 
+void Stage::printStageWithFOV(Player* player) {
+    int px = player->getXPos();
+    int py = player->getYPos();
+    int radius = 5;
+
+    for (int i = 0; i < 100; i++) {
+        for (int j = 0; j < 100; j++) {
+            int dx = j - px;
+            int dy = i - py;
+            if (dx * dx + dy * dy <= radius * radius) {
+                std::cout << stageArray[i][j];
+            }
+            else {
+                std::cout << ' ';
+            }
+        }
+        std::cout << '\n';
+    }
+}
+
 
 

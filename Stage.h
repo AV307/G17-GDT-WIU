@@ -28,6 +28,7 @@ public:
     void updateStageArray(Player* player);
     //bool checkCollision(int xPos, int yPos, int currentRoom);
 
+	void printStageWithFOV(Player* player);
     //debug
     void printStage();
 };

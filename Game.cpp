@@ -186,9 +186,8 @@ void Game::doTurn(CombatSystem combatsystem)
     plr->updateStats();
 
 
-    // Entering Combat System Check and Trigger
-    plr->checkCollision(*plr->getCurrentEnemy());
-
+    
+    // Skill Tree Function
     if (plr->checkSkillTreeOpen()) {
         int HPStat, ATKStat, DEFStat, AvailablePts;
         HPStat = 0;
@@ -210,16 +209,19 @@ void Game::doTurn(CombatSystem combatsystem)
             case '1':
                 HPStat++;
                 AvailablePts--;
+                plr->setStatPoints(AvailablePts);
                 plr->setHealth(plr->getHealth() + 10);
                 break;
             case '2':
                 ATKStat++;
                 AvailablePts--;
+                plr->setStatPoints(AvailablePts);
                 plr->setAttack(plr->getAttack() + 5);
                 break;
             case '3':
                 DEFStat++;
                 AvailablePts--;
+                plr->setStatPoints(AvailablePts);
                 plr->setDefense(plr->getDefense() + 5);
                 break;
             default:
@@ -227,8 +229,10 @@ void Game::doTurn(CombatSystem combatsystem)
                 break;
             }
         }
-        plr->setStatPoints(AvailablePts);
     }
+
+    // Entering Combat System Check and Trigger
+    plr->checkCollision(*plr->getCurrentEnemy());
 
     if (plr->getIsInCombat()) {                                                                        // If the player enters combat
         combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                                 // Print the starting screen where all values are at base

@@ -37,7 +37,7 @@ Player::Player(){
 
 	currentWeapon = nullptr;
 
-	statPoints = 0;
+	statPoints = 10;
 
 	CRITRate = 25;
 	CRITDMG = 1.5;

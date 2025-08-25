@@ -1,4 +1,5 @@
 #include "mainRoom.h"
+#include "Enemy.h"
 #include "Game.h"
 
 //Ang Zhi En 252317H
@@ -23,7 +24,6 @@ mainRoom::mainRoom(int currentStage) {
 
     roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'M');
     placeRoomObjects(mainRoomArray);
-
     // more code here to determine and set specifics in the main room, based on curentStage
     switch (currentStage) 
     {

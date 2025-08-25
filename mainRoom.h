@@ -1,5 +1,6 @@
 #pragma once
 #include "Room.h"
+#include "Enemy.h"
 
 class Game;
 class mainRoom :

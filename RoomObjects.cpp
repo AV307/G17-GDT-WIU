@@ -83,7 +83,102 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[14][7] = new Object{ WALL, -1, false, " ", ' ' };
             objects[14][8] = new Object{ WALL, -1, false, " ", ' ' };
 
-            //objects[26][8] = new Object{ WALL, -1, false, " ", ' ' };
+            for (int i = 9; i < 20; i++) {
+                objects[23][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 24; i++) {
+                objects[i][10] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 4; i < 24; i++) {
+                objects[i][18] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 23; i < 30; i++) {
+                objects[i][12] = new Object{ WALL, -1, false, " ", ' ' };
+			}
+
+            for (int i = 9; i < 12; i++) {
+                objects[26][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 23; i < 30; i++) {
+                objects[i][19] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 19; i < 25; i++) {
+                objects[24][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 10; i < 19; i++) {
+                objects[18][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 10; i < 19; i++) {
+                objects[4][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 19; i < 30; i++) {
+                objects[16][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 19; i < 30; i++) {
+                objects[14][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 4; i++) {
+                objects[i][26] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 26; i < 30; i++) {
+                objects[4][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 9; i++) {
+                objects[7][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 6; i++) {
+                objects[10][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 6; i < 13; i++) {
+                objects[i][21] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 10; i < 15; i++) {
+                objects[i][24] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 25; i < 27; i++) {
+                objects[11][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 12; i < 14; i++) {
+                objects[i][26] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 22; i < 30; i++) {
+                objects[8][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 22; i < 28; i++) {
+                objects[6][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            objects[13][7] = new Object{ TELEPORTER1, 1, false, " ", ' ' };
+            objects[24][9] = new Object{ TELEPORTER2, 1, false, " ", ' ' };
+
+            objects[15][19] = new Object{ TELEPORTER1, 3, false, " ", ' ' };
+            objects[1][27] = new Object{ TELEPORTER2, 3, false, " ", ' ' };
+
+            objects[13][25] = new Object{ TELEPORTER1, 4, false, " ", ' ' };
+            objects[17][26] = new Object{ TELEPORTER2, 4, false, " ", ' ' };
+
+            objects[22][9] = new Object{ CHEST, -1, false, " ", 'H' };
+            objects[2][1] = new Object{ CHEST, -1, false, " ", 'K' };
+            objects[12][1] = new Object{ CHEST, -1, false, "Art", 'A' };
             break;
         case 2:
             break;

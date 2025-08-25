@@ -4,7 +4,7 @@
 // Ang Zhi En 252317H
 // Constructor for roomObjects, creates empty room and creates array for objects
 // Incomplete
-RoomObjects::RoomObjects(int roomWidth, int roomHeight)
+RoomObjects::RoomObjects(bool openSide, int roomColumn, int roomWidth, int roomHeight)
 {
     objects = new Object** [roomHeight];
     for (int i = 0; i < roomHeight; i++) {
@@ -29,6 +29,24 @@ RoomObjects::RoomObjects(int roomWidth, int roomHeight)
             }
         }
     }
+
+    if (openSide)
+    {
+        if (roomColumn > 40)
+        {
+            // left wall gap
+            for (int i = roomHeight / 2 - 2; i <= roomHeight / 2 + 1; i++) {
+                objects[i][0] = new Object{ SPACE, -1, false, " ", ' ' };
+            }
+        }
+        else
+        {
+            // right wall gap
+            for (int i = roomHeight / 2 - 2; i <= roomHeight / 2 + 1; i++) {
+                objects[i][roomWidth - 1] = new Object{ SPACE, -1, false, " ", ' ' };
+            }
+        }
+    }
 }
 
 RoomObjects::~RoomObjects()
@@ -50,7 +68,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             for (int i = 19; i < 29; i++) {
                 objects[i][8] = new Object{ WALL, -1, false, " ", ' ' };
             }
-            for (int i = 2; i < 8;i++) {
+            for (int i = 2; i < 8; i++) {
                 objects[19][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
             for (int i = 14; i < 19; i++) {
@@ -95,6 +113,27 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
     case 'T': // treasure room
         break;
     case 'C': // corridor room
+        // creates empty room with SPACE
+        for (int i = 0; i < roomHeight; i++) {
+            for (int j = 0; j < roomWidth; j++) {
+                objects[i][j] = new Object{ SPACE, -1, false, " ", ' ' };
+            }
+        }
+
+        // Create walls
+        for (int i = 0; i < roomWidth; i++) {
+            if (i < 18 || i >= 23) {
+                objects[11][i] = new Object{ WALL, -1, false, " ", ' ' };
+                objects[16][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+        }
+
+        for (int i = 0; i < roomHeight; i++) {
+            if (i < 12 || i >= 16) {
+                objects[i][17] = new Object{ WALL, -1, false, " ", ' ' };
+                objects[i][23] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+        }
         break;
     }
 

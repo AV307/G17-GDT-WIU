@@ -10,7 +10,7 @@ BossRoom::BossRoom(int currentStage)
     roomTopLeftX = 10;
     roomTopLeftY = 60;
 
-    roomObjects = new RoomObjects(roomWidth, roomHeight);
+    roomObjects = new RoomObjects(true, roomTopLeftY, roomWidth, roomHeight);
 
     // dynamically allocate bossRoomArray
     bossRoomArray = new char* [roomHeight];

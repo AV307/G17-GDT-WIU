@@ -5,11 +5,12 @@
 //Incomplete
 CorridorRoom::CorridorRoom(int currentStage, int roomNumber)
 {
-    roomHeight = 2; // to be set after room location decided
-    roomWidth = 2;
-    setRoomLocation(roomNumber);
+    roomHeight = 34; // to be set after room location decided
+    roomWidth = 40;
+    roomTopLeftX = 26;
+    roomTopLeftY = 30;
 
-    roomObjects = new RoomObjects(roomWidth, roomHeight);
+    roomObjects = new RoomObjects(false, roomTopLeftY, roomWidth, roomHeight);
 
     // dynamically allocate corridorRoomArray
     corridorRoomArray = new char* [roomHeight];

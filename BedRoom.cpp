@@ -9,7 +9,7 @@ BedRoom::BedRoom(int currentStage, int roomNumber)
     roomWidth = 20;
     setRoomLocation(roomNumber);
 
-    roomObjects = new RoomObjects(roomWidth, roomHeight);
+    roomObjects = new RoomObjects(true, roomTopLeftY, roomWidth, roomHeight);
 
     // dynamically allocate bedRoomArray
     bedRoomArray = new char* [roomHeight];

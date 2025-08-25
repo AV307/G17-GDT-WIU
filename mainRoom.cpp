@@ -10,7 +10,7 @@ mainRoom::mainRoom(int currentStage) {
     roomTopLeftX = 60; // x is row
     roomTopLeftY = 35; // y is col
 
-    roomObjects = new RoomObjects(roomWidth, roomHeight);
+    roomObjects = new RoomObjects(false, roomTopLeftY, roomWidth, roomHeight);
 
     // dynamically allocate mainRoomArray
     mainRoomArray = new char* [roomHeight];

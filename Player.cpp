@@ -175,6 +175,15 @@ void Player::setCurrentWeapon(Weapon* weapon) {
 bool Player::checkSkillTreeOpen() {
 	return skillTreeOpen;
 }
+void Player::setSkillTreeOpen(bool skillTreeOpen) {
+	this->skillTreeOpen = skillTreeOpen;
+}
+int Player::getStatPoints() {
+	return skillTreeOpen;
+}
+void Player::setStatPoints(int statPoints) {
+	this->statPoints = statPoints;
+}
 
 void Player::checkConsumption() {
 	

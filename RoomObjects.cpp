@@ -47,32 +47,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
         switch (currentStage)
         {
         case 1:
-            objects[10][10] = new Object{ DOOR, 1 ,false, " ", ' ' };
-            objects[11][11] = new Object{ DOOR, 1 ,false, " ", ' ' };
-
-            objects[12][12] = new Object{ SWITCH, 1 ,false, " ", ' ' };
-            objects[13][12] = new Object{ PRESSUREPLATE, 2 ,false, " ", ' ' };
-            objects[15][12] = new Object{ MOVEABLEBLOCK, 2 ,false, " ", ' ' };
-            objects[16][12] = new Object{ BREAKABLEWALL, 2 ,false, " ", ' ' };
-
-            objects[10][12] = new Object{ KEYDOOR, 2 ,false, " ", ' ' };
-            objects[10][13] = new Object{ CHEST, 2 ,false, " ", 'H' };
-            objects[10][14] = new Object{ CHEST, 2 ,false, " ", 'K' };
-            objects[10][15] = new Object{ CHEST, 2 ,false, "Rubber Duck", 'A' };
-
-            objects[15][11] = new Object{ DOOR, 2,false, " ", ' ' };
-            objects[16][10] = new Object{ DOOR, 2 ,false, " ", ' ' };
-
-            objects[13][13] = new Object{ DOOR, 1,false, " ", ' ' };
-            objects[14][14] = new Object{ DOOR, 1,false, " ", ' ' };
-
-            objects[15][15] = new Object{ TELEPORTER1, 1,false, " ", ' ' };
-            objects[16][16] = new Object{ TELEPORTER2, 1,false, " ", ' ' };
-
-            objects[24][15] = new Object{ TOPDIRECTIONALDOOR, 2 ,false, " ", ' ' };
-            objects[24][13] = new Object{ BOTTOMDIRECTIONALDOOR, 2 ,false, " ", ' ' };
-            objects[24][11] = new Object{ LEFTDIRECTIONALDOOR, 2 ,false, " ", ' ' };
-            objects[24][9] = new Object{ RIGHTDIRECTIONALDOOR, 2 ,false, " ", ' ' };
+			objects[29][7] = new Object{ WALL, -1, false, " ", ' ' };
             break;
         case 2:
             break;

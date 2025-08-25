@@ -40,7 +40,36 @@ void Room::placeRoomObjects(char** roomArray)
 			case PRESSUREPLATE:
 				roomArray[y][x] = 'B';
 				break;
-		}
+			case MOVEABLEBLOCK:
+				roomArray[y][x] = 'M';
+				break;
+			case BLOCKONPRESSUREPLATE:
+				roomArray[y][x] = 'm';
+				break;
+			case BREAKABLEWALL:
+				roomArray[y][x] = 'W';
+				break;
+			case KEYDOOR:
+				roomArray[y][x] = 'D';
+				break;
+			case CHEST:
+				roomArray[y][x] = 'C';
+				break;
+			case TOPDIRECTIONALDOOR:
+				roomArray[y][x] = '^';
+				break;
+			case BOTTOMDIRECTIONALDOOR:
+				roomArray[y][x] = 'v';
+				break;
+			case LEFTDIRECTIONALDOOR:
+				roomArray[y][x] = '<';
+				break;
+			case RIGHTDIRECTIONALDOOR:
+				roomArray[y][x] = '>';
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }

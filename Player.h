@@ -16,7 +16,9 @@ private:
     
     bool inventoryOpen;
     bool shopOpen;
+
     bool hasKey;
+    bool hasHammer;
 
     int menuIndex;
     int inventoryIndex;
@@ -60,6 +62,7 @@ public:
     void setCurrentEnemy(Entity* specifiedEnemy);
     bool getJustLeftCombat();
     void setJustLeftCombat(bool justLeftCombat);
+    bool checkSkillTreeOpen();
 
 
     int getInventoryIndex();
@@ -69,7 +72,6 @@ public:
 	int setPosition(int x, int y);
 
     bool checkInventoryOpen();
-    bool checkKey();
     
     std::string getAction();
 
@@ -93,11 +95,15 @@ public:
     void addItemInventory(const std::string& name);
 
 	void printInventory() const;
-	void handleShopInventory(char inputVal);
-	void printShopInventory() const;
+
+    void setKey(bool val);
+    bool checkHasKey() const;
+
+    void setHammer(bool val);
+    bool checkHasHammer() const;
+
     bool checkKey() const;
 
-	bool checkShopOpen() const;
 };
 
 

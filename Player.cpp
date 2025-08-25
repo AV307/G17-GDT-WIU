@@ -24,7 +24,11 @@ Player::Player(){
 	shopOpen = false;
 	inventoryIndex = 0;
 	menuIndex = 1;
+
 	hasKey = false;
+	hasHammer = false;
+
+	currentEnemy = new Enemy("Undead", 'B');
 
 	equippedWeapon = nullptr;
 	equippedArmour = nullptr;
@@ -77,9 +81,9 @@ void Player::doAction() {
 			inventoryOpen = false;
 		}
 	}
-	if (input == '7') {
-		if (!shopOpen) {
-			shopOpen = true;
+	if (input == '6') {
+		if (shopOpen) {
+			shopOpen = false;
 		}
 		else {
 			shopOpen = false;
@@ -148,6 +152,10 @@ void Player::checkCollision(Entity& specifiedEnemy) {
 			this->setJustLeftCombat(false);
 		}
 	}
+}
+
+bool Player::checkSkillTreeOpen() {
+
 }
 
 void Player::checkConsumption() {
@@ -304,7 +312,7 @@ bool Player::checkShopOpen() const
 }
 //Jayren 250920U
 //returns hasKey to check if the player has found a key
-bool Player::checkKey()
+bool Player::checkHasKey() const
 {
 	return hasKey;
 }
@@ -503,6 +511,21 @@ void Player::printInventory() const {
 	}
 
 	std::cout << "=======================\n";
+}
+
+void Player::setKey(bool val)
+{
+	hasKey = val;
+}
+
+void Player::setHammer(bool val)
+{
+	hasHammer = val;
+}
+
+bool Player::checkHasHammer() const
+{
+	return hasHammer;
 }
 
 //Benjamin 250572M

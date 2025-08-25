@@ -42,10 +42,11 @@ void Game::doTurn(CombatSystem combatsystem)
 {
     stage->updateStageArray(plr);
 
-    //system("cls");
+    system("cls");
 
     bool inventoryOpen = plr->checkInventoryOpen();
-    bool hasKey = plr->checkKey();
+    bool hasKey = plr->checkHasKey();
+    bool hasHammer = plr->checkHasHammer();
 
     int menuIndex = plr->getMenuIndex();
     int inventoryIndex = plr->getInventoryIndex();
@@ -129,6 +130,14 @@ void Game::doTurn(CombatSystem combatsystem)
         else {
             std::cout << "               Player does not have Key" << "              |";
         }
+		std::cout << '\n';
+        std::cout << "| ";
+        if (hasHammer == true) {
+            std::cout << "                Player Has Hammer" << "                    |";
+        }
+        else {
+            std::cout << "            Player does not have Hammer" << "              |";
+        }
         std::cout << '\n';
         std::cout << "+------------+" << "+------------+" << "+------------+" << "+------------+" << '\n';
         std::cout << "+";
@@ -192,14 +201,14 @@ void Game::doTurn(CombatSystem combatsystem)
 
             if (plr->getCombatIsWon()) {                                                               // Once a player has won, then end the combat system
                 plr->setIsInCombat(false);
-                plr->setCombatIsWon(false);
-                plr->setJustLeftCombat(true);
+                plr->setCombatIsWon(false);                                                            // Reset Player won state
+                plr->setJustLeftCombat(true);                                                          // Give player invulnerability state until moving away
             }
                                                                                                        // If none of these conditions are met, continue combat system until one happens
         }
     }
     
-    // Exiting Combat (Win/Lose Condition)
+  
 
     
 }

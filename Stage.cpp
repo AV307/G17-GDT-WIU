@@ -5,6 +5,7 @@
 #include "BedRoom.h"
 #include "BossRoom.h"
 #include "PortalRoom.h"
+#include "CorridorRoom.h"
 #include "RoomObjects.h"
 
 #include "Game.h"
@@ -153,6 +154,18 @@ void Stage::setStageArray(int currentStage, char room1, char room2, Player* play
         for (int j{ 0 }; j < rooms[3]->getRoomWidth(); j++)
         {
             stageArray[portalRoomTopLeftX + i][portalRoomTopLeftY + j] = portalRoomArray[i][j];
+        }
+    }
+
+    // set the corridorRoom into the stage
+    char** corridorRoomArray = static_cast<CorridorRoom*>(rooms[4])->getCorridorRoomArray();
+    int corridorRoomTopLeftX = rooms[4]->getRoomTopLeftX();
+    int corridorRoomTopLeftY = rooms[4]->getRoomTopLeftY();
+    for (int i{ 0 }; i < rooms[4]->getRoomHeight(); i++)
+    {
+        for (int j{ 0 }; j < rooms[4]->getRoomWidth(); j++)
+        {
+            stageArray[corridorRoomTopLeftX + i][corridorRoomTopLeftY + j] = corridorRoomArray[i][j];
         }
     }
 

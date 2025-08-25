@@ -71,6 +71,23 @@ void Game::doTurn(CombatSystem combatsystem)
         default:
             break;
         }
+        //Benjamin 250572M
+        //opens shop menu if player is not in combat and presses 'P'
+        if (!plr->getIsInCombat()) {
+            char keyPress = _getch();
+
+            switch (tolower(keyPress)) {
+            case 'p': {
+                // open the shop
+                ShopRoom shop(currentStage, 0);
+                shop.showShopMenu(plr);
+                break;
+            }
+            case 'r':
+                restartStage(currentStage);
+                break;
+            }
+        }
 
         // Inventory Items
 

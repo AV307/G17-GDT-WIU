@@ -82,7 +82,8 @@ public:
     Item** getConsumables();
     Item** getArtifacts();
 
-    void addWeapon(std::string Name, int attackVal);
+    //void addWeapon(std::string Name, int attackVal, int critRate, int critDamage);
+    void addWeapon(const std::string& Name, int attackVal, int critRate, int critDamage);
     void removeWeapon(int index);
 
     void addArmour(std::string Name, int defenseVal);
@@ -94,7 +95,8 @@ public:
     void addArtifact(std::string Name);
 
     void updateStats();
-    void addItemInventory(const std::string& name);
+    bool hasWeapon(const std::string& weaponName) const;
+    void addItemInventory(Item* item);
 
 	void printInventory() const;
 

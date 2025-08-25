@@ -13,7 +13,6 @@ private:
     int chance = 0;
     int dropAMTID = 0;
     bool sleepState;
-    static bool enemyArray[28][28];
     bool enemyArray[28][28] = { false };
     int enemyXR, enemyYR;
 

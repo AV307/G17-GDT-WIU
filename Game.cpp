@@ -191,13 +191,43 @@ void Game::doTurn(CombatSystem combatsystem)
 
     if (plr->checkSkillTreeOpen()) {
         int HPStat, ATKStat, DEFStat, AvailablePts;
-        std::cout << "// +---------------------------------------------------+ //" << std::endl;
-        std::cout << "// + HP Stats:                                         + //" << std::endl;
-        std::cout << "// + ATK Stats:                                        + //" << std::endl;
-        std::cout << "// + DEF Stats:                                        + //" << std::endl;
-        std::cout << "// +---------------------------------------------------+ //" << std::endl;
-        std::cout << "// + Available Points:                                 + //" << std::endl;
-        std::cout << "// +---------------------------------------------------+ //" << std::endl;
+        HPStat = 0;
+        ATKStat = 0;
+        DEFStat = 0;
+        AvailablePts = plr->getStatPoints();
+
+        while (plr->checkSkillTreeOpen() && AvailablePts > 0) {
+            std::cout << "// +---------------------------------------------------+ //" << std::endl;
+            std::cout << "// + HP Stats: " << HPStat << std::endl;
+            std::cout << "// + ATK Stats: " << ATKStat << std::endl;
+            std::cout << "// + DEF Stats: " << DEFStat << std::endl;
+            std::cout << "// +---------------------------------------------------+ //" << std::endl;
+            std::cout << "// + Available Points: " << AvailablePts << std::endl;
+            std::cout << "// +---------------------------------------------------+ //" << std::endl;
+
+            int choice = _getch();
+            switch (choice) {
+            case '1':
+                HPStat++;
+                AvailablePts--;
+                plr->setHealth(plr->getHealth() + 10);
+                break;
+            case '2':
+                ATKStat++;
+                AvailablePts--;
+                plr->setAttack(plr->getAttack() + 5);
+                break;
+            case '3':
+                DEFStat++;
+                AvailablePts--;
+                plr->setDefense(plr->getDefense() + 5);
+                break;
+            default:
+                plr->setSkillTreeOpen(false);
+                break;
+            }
+        }
+        plr->setStatPoints(AvailablePts);
     }
 
     if (plr->getIsInCombat()) {                                                                        // If the player enters combat

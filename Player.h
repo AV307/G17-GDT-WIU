@@ -72,8 +72,9 @@ public:
     void setCurrentWeapon(Weapon* weapon);
 
     bool checkSkillTreeOpen();
+    void setSkillTreeOpen(bool skillTreeOpen);
     int getStatPoints();
-
+    void setStatPoints(int statPoints);
 
 
     int getInventoryIndex();

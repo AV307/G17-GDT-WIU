@@ -543,23 +543,32 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 
 	std::string itemName = chosen->getName();
 	
-	if (itemName == "Sword") {
-		player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
-		setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+	if (itemName == "Sword" || itemName == "Mace" || itemName == "Scythe" || itemName == "Warhammer") {
+		Weapon* newWeapon = static_cast<Weapon*>(chosen);
+
+		if (static_cast<Player&>(player).getCurrentWeapon() != nullptr) {
+			player.setAttack(player.getAttack() - static_cast<Player&>(player).getCurrentWeapon()->getAttackVal());
+		}
+
+		if (itemName == "Sword") {
+			player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+		}
+		else if (itemName == "Mace") {
+			player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+		}
+		else if (itemName == "Scythe") {
+			player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+		}
+		else if (itemName == "Warhammer") {
+			player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+		}
 	}
-	else if (itemName == "Mace") {
-		player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
-		setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
-	}
-	else if (itemName == "Scythe") {
-		player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
-		setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
-	}
-	else if (itemName == "Warhammer") {
-		player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
-		setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
-	}
-	else if (itemName == "Heal Potion") {
+
+	if (itemName == "Heal Potion") {
 		player.setHealth(player.getHealth() + static_cast<Potion*>(chosen)->getHeal());
 		setTextDialogue("Used " + itemName + " (+" + to_string(static_cast<Potion*>(chosen)->getHeal()) + " HP)");
 		chosen->consume();

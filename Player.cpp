@@ -32,8 +32,10 @@ Player::Player(){
 	equippedArmour = nullptr;
 	currentEnemy = new Enemy("Undead", 'B');
 	isInCombat = false;
-	isRunning = false;
+	isRunning = false; // remove later
 	combatIsWon = false;
+
+	currentWeapon = nullptr;
 
 	CRITRate = 25;
 	CRITDMG = 1.5;
@@ -161,6 +163,14 @@ void Player::checkCollision(Entity& specifiedEnemy) {
 
 bool Player::checkSkillTreeOpen() {
 	return skillTreeOpen;
+}
+
+Weapon* Player::getCurrentWeapon() {
+	return currentWeapon;
+}
+
+void Player::setCurrentWeapon(Weapon* weapon) {
+	currentWeapon = weapon;
 }
 
 void Player::checkConsumption() {

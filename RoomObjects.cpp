@@ -101,6 +101,8 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
         break;
     case 'T': // treasure room
         break;
+    case 'C': // corridor room
+        break;
     }
 
 

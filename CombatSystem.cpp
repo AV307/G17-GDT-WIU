@@ -513,8 +513,8 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 
 void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 	setTextDialogue("You're attempting to run, but you won't go unnoticed. Press Y/N to confirm");                       // Alerts player of their current action, also telling them there are consequences
-	char confirm = _getch();                                                                                              // Receive player's confirmation on whether to run or not
-	int consDeterminant = rand() % 4;                                                                                // 3 random consequences may happen + 1 off chance
+	char confirm = _getch();                                                                                             // Receive player's confirmation on whether to run or not
+	int consDeterminant = rand() % 4;                                                                                    // 3 random consequences may happen + 1 off chance
 
 
 	switch (confirm) {

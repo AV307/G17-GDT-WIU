@@ -1,4 +1,5 @@
 #include "ShopRoom.h"
+#include "Player.h"
 
 //Ang Zhi En 252317H
 //Constructor for ShopRoom, defines position and sets up room
@@ -21,19 +22,22 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
     roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'S');
     placeRoomObjects(shopRoomArray);
 
-    //add code below for setting up specific shop related parts
+    //Benjamin 250572M 
     // Initialize shop items (weapons)
     shopInventory[0] = new Weapon("Sword", 10, 0, 0);
-    shopInventory[1] = new Weapon("Mace", 10, 0, 20);    // 20% crit damage
+    shopInventory[1] = new Weapon("Mace", 10, 0, 20);
     shopInventory[2] = new Weapon("Scythe", 15, 0, 0);
-    shopInventory[3] = new Weapon("Warhammer", 25, 20, 50);  // 20% crit rate, 50% crit damage
+    shopInventory[3] = new Weapon("Warhammer", 25, 20, 50);
+
+    shopInventory[4] = new Item("Heal Potion", "Buff", 30);           // price 30 gold
+    shopInventory[5] = new Item("Strength Potion", "Buff", 25);       // price 25 gold
+    shopInventory[6] = new Item("Weakening Potion", "Debuff", 20);    // price 20 gold
+    shopInventory[7] = new Item("Sleep Potion", "Debuff", 40);        // price 40 gold
+    shopInventory[8] = new Item("Key", "Key", 30);                     // price 30 gold
 
     // Set remaining shopInventory slots to nullptr to avoid undefined pointers
-    for (int i = 4; i < 10; i++)
-    {
+    for (int i = 9; i < 20; i++)
         shopInventory[i] = nullptr;
-    }
-
 }
 
 
@@ -153,13 +157,13 @@ void ShopRoom::showShopMenu(Player* player) {
 //  --------------------------------------------------------------------------------------------------
 //  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 //  ||                                                                                              ||
-//  ||   Item 1      Cost     Stats                                                                 ||
-//  ||   Item 2      Cost     Stats                                                                 ||
-//  ||   Item 3      Cost     Stats                                                                 ||
-//  ||   Item 4      Cost     Stats                                                                 ||
-//  ||   Item 5      Cost     Stats                                                                 ||
-//  ||   Item 6      Cost     Stats                                                                 ||
-//  ||   Item 7      Cost     Stats                                                                 ||
+//  ||                                                                                              ||
+//  ||                                                                                              ||
+//  ||                                                                                              ||
+//  ||                                                                                              ||
+//  ||                                                                                              ||
+//  ||                                                                                              ||
+//  ||                                                                                              ||
 //  ||                                                                                              ||
 //  ||                                                                                              ||              
 //  ||                                                                                              ||

@@ -86,6 +86,14 @@ void Player::doAction() {
 			shopOpen = false;
 		}
 	}
+	if (input == '/') {
+		if (skillTreeOpen == false) {
+			skillTreeOpen = true;
+		}
+		else {
+			skillTreeOpen = false;
+		}
+	}
 
 	if (inventoryOpen) {
 		handleInventory(input);
@@ -152,7 +160,7 @@ void Player::checkCollision(Entity& specifiedEnemy) {
 }
 
 bool Player::checkSkillTreeOpen() {
-	return false;
+	return skillTreeOpen;
 }
 
 void Player::checkConsumption() {

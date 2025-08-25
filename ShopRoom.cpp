@@ -33,7 +33,7 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
     shopInventory[5] = new Item("Strength Potion", "Buff", 25);       // price 25 gold
     shopInventory[6] = new Item("Weakening Potion", "Debuff", 20);    // price 20 gold
     shopInventory[7] = new Item("Sleep Potion", "Debuff", 40);        // price 40 gold
-    shopInventory[8] = new Item("Key", "Key", 30);                     // price 0, essential item
+    shopInventory[8] = new Item("Key", "Key", 30);                     // price 30 gold
 
     // Set remaining shopInventory slots to nullptr to avoid undefined pointers
     for (int i = 9; i < 20; i++)

@@ -223,3 +223,11 @@ int Enemy::getEnemyYR() const {
 //          ||                 |
 //          ||    o    >     o |
 //          \|_________________|
+
+bool Enemy::getSleepState() {
+	return sleepState;
+}
+
+void Enemy::setSleepState(bool sleepState) {
+	this->sleepState = sleepState;
+}

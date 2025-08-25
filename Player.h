@@ -26,7 +26,7 @@ private:
 
     int enemiesDefeated;      
     bool solvedPuzzle;        
-    int weaponCount;         
+    int weaponCount;
 
     std::string action;
 
@@ -36,6 +36,8 @@ private:
     bool combatIsWon;
     Entity* currentEnemy;
     bool justLeftCombat;
+
+    Weapon* currentWeapon;
 
     bool skillTreeOpen;
 
@@ -65,6 +67,9 @@ public:
     bool getJustLeftCombat();
     void setJustLeftCombat(bool justLeftCombat);
     bool checkSkillTreeOpen();
+
+    Weapon* getCurrentWeapon();
+    void setCurrentWeapon(Weapon* weapon);
 
 
     int getInventoryIndex();

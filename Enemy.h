@@ -12,6 +12,8 @@ private:
     int baseEXP = 0;
     int chance = 0;
     int dropAMTID = 0;
+    bool sleepState;
+    static bool enemyArray[28][28];
     bool enemyArray[28][28] = { false };
     int enemyXR, enemyYR;
 
@@ -24,6 +26,9 @@ public:
     int calculateDropChance(int mult);
     bool isEnemyThere(Player* player);
     pair<int, int> enemyPos(int enemyX, int enemyY);
+
+    bool getSleepState();
+    void setSleepState(bool sleepState);
 
     int getHealth() const;
     int getAttack() const;

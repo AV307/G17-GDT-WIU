@@ -10,7 +10,7 @@ class Stage
 {
 private:
     char stageArray[100][100];
-    Room* rooms[4];
+    Room* rooms[5];
     Game* game;
 
     char previousTile;

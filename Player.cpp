@@ -41,8 +41,8 @@ Player::Player(){
 	CRITRate = 25;
 	CRITDMG = 1.5;
 	attack = 15;
-	setXPos(50);
-	setYPos(80);
+	setXPos(39);
+	setYPos(86);
 
 	action = "Move";
 }
@@ -217,7 +217,7 @@ void Player::handleInventory(char inputVal)
 		break;
 	case'f':
 		if (menuIndex == 1) {
-			addWeapon("Sword", 5);
+			addWeapon("Sword", 5, 0, 0);
 		}
 		if (menuIndex == 2) {
 			addArmour("Chestplate", 5);
@@ -348,22 +348,20 @@ Item** Player::getArtifacts()
 	return artifacts;
 }
 
-
-
-void Player::addWeapon(std::string Name, int attackVal)
+//Benjamin 250572M
+//Added critRate and critDamage as default parameters
+void Player::addWeapon(const std::string& Name, int attackVal, int critRate = 0, int critDamage = 0)
 {
-	for (int i = 0; i < 9; i++) {
+	for (int i = 0; i < 10; i++) {
 		if (weaponry[i] == nullptr) {
-			Weapon* weapon = new Weapon;
-			weapon->setName(Name);
-			weapon->setAttackVal(attackVal);
-			weapon->setDefenseVal(0);
+			Weapon* weapon = new Weapon(Name, attackVal, critRate, critDamage);
 			weapon->setEquipped(false);
 			weaponry[i] = weapon;
 			break;
 		}
 	}
 }
+
 
 void Player::removeWeapon(int index)
 {
@@ -455,23 +453,57 @@ void Player::updateStats()
 	setDefense(defense + armourDefenseBonus);
 }
 
-
 //Benjamin 250572M
 //Shop items
-void Player::addItemInventory(const std::string& name) {
-	if (name == "Sword") {
+// checks if the player has a specific weapon in their inventory
+bool Player::hasWeapon(const std::string& weaponName) const {
+	for (int i = 0; i < 10; i++) {
+		if (weaponry[i] != nullptr && weaponry[i]->getName() == weaponName) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void Player::addItemInventory(Item* item) {
+	if (item == nullptr) return;
+
+	std::string itemName = item->getName();  // get the actual name of the Item object
+
+	if (itemName == "Sword") {
 		addWeapon("Sword", 10);
 	}
-	else if (name == "Shield") {
+	else if (itemName == "Shield") {
 		addArmour("Shield", 5);
 	}
-	else if (name == "Potion") {
+	else if (itemName == "Chestplate") {
+		addArmour("Chestplate", 10);
+	}
+	else if (itemName == "Artifact") {
+		addArtifact("Artifact");
+	}
+	else if (itemName == "Key") {
+		addArtifact("Key");
+		setKey(true);
+	}
+	else if (itemName == "Hammer") {
+		addArtifact("Hammer");
+		setHammer(true);
+	}
+	else if (itemName == "Elixir") {
+		addConsumable("Elixir", 0, 0, 50); //heal 50
+	}
+	else if (itemName == "Super Potion") {
+		addConsumable("Super Potion", 0, 0, 100); // heal 100
+	}
+	else if (itemName == "Potion") {
 		addConsumable("Potion", 0, 0, 20); // heal 20
 	}
-	else if (name == "Bow") {
+	else if (itemName == "Bow") {
 		addWeapon("Bow", 7);
 	}
 }
+
 
 //Benjamin 250572M
 // loops through the player's inventory. Prints the player's inventory, including weapons, armour, consumables, and artifacts
@@ -540,7 +572,7 @@ bool Player::checkKey() const {
 }
 
 
-//Benjamim 250572M
+//Benjamin 250572M
 int Player::getEnemiesDefeated() const {
 	return enemiesDefeated;
 }

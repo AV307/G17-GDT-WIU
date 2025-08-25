@@ -572,21 +572,29 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 		player.setHealth(player.getHealth() + static_cast<Potion*>(chosen)->getHeal());
 		setTextDialogue("Used " + itemName + " (+" + to_string(static_cast<Potion*>(chosen)->getHeal()) + " HP)");
 		chosen->consume();
+		delete chosen;
+		inventoryMenuArray[index] = nullptr;
 	}
 	else if (itemName == "Strength Potion") {
 		player.setAttack(player.getAttack() + static_cast<Potion*>(chosen)->getAttackVal());
 		setTextDialogue("Used " + itemName + " (+" + to_string(static_cast<Potion*>(chosen)->getAttackVal()) + " ATK)");
 		chosen->consume();
+		delete chosen;
+		inventoryMenuArray[index] = nullptr;
 	}
 	else if (itemName == "Weakening Potion") {
 		specifiedEnemy.setAttack(specifiedEnemy.getAttack() - static_cast<Potion*>(chosen)->getAttackVal());
 		setTextDialogue("Used " + itemName + " (-" + to_string(static_cast<Potion*>(chosen)->getAttackVal()) + " Enemy ATK)");
 		chosen->consume();
+		delete chosen;
+		inventoryMenuArray[index] = nullptr;
 	}
 	else if (itemName == "Sleep Potion") {
 		static_cast<Enemy&>(specifiedEnemy).setSleepState(true);
 		setTextDialogue("Used " + itemName + ". Enemy is asleep for the next turn");
 		chosen->consume();
+		delete chosen;
+		inventoryMenuArray[index] = nullptr;
 	}
 }
 
@@ -630,7 +638,7 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 		}
 		else {                                                                                                           // Off chance
 			setTextDialogue("Uh oh, you failed to run, the enemy stopped you before you could. Press Y to continue");    // Player fails to run, getting "dragged" back to fight
-			int carryOn = _getch();                                                                                       // To receive player input as a move to next dialogue function
+			int carryOn = _getch();                                                                                      // To receive player input as a move to next dialogue function
 			switch (carryOn) {
 			case 'y':
 				int retaliateDeterminant = rand() % 2;

@@ -403,11 +403,13 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
             break;
         case 3:
-            for (int i = 1; i < 30; i++) {
+            for (int i = 2; i < 30; i++) {
                 objects[20][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
             objects[19][2] = new Object{ SWITCH, 1, false, " ", ' ' };
-            objects[21][2] = new Object{ MEGATORCH, 1, false, " ", ' ' };
+            objects[21][4] = new Object{ MEGATORCH, 1, false, " ", ' ' };
+
+            objects[0][15] = new Object{ SPACE, -1, false, " ", ' ' };
             break;
         case 4:
             break;

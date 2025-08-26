@@ -2,6 +2,8 @@
 #include "Entity.h"
 #include "Item.h"
 #include "Weapon.h"
+#include "Armour.h"
+
 class Player : public Entity
 {
 private:
@@ -38,6 +40,7 @@ private:
     bool justLeftCombat;
 
     Weapon* currentWeapon;
+    Armour* currentArmour;
 
     bool skillTreeOpen;
     int statPoints;
@@ -70,6 +73,8 @@ public:
 
     Weapon* getCurrentWeapon();
     void setCurrentWeapon(Weapon* weapon);
+    Armour* getCurrentArmour();
+    void setCurrentArmour(Armour* armour);
 
     bool checkSkillTreeOpen();
     void setSkillTreeOpen(bool skillTreeOpen);

@@ -166,9 +166,14 @@ void Player::checkCollision(Entity& specifiedEnemy) {
 Weapon* Player::getCurrentWeapon() {
 	return currentWeapon;
 }
-
 void Player::setCurrentWeapon(Weapon* weapon) {
 	currentWeapon = weapon;
+}
+Armour* Player::getCurrentArmour() {
+	return currentArmour;
+}
+void Player::setCurrentArmour(Armour* armour) {
+	currentArmour = armour;
 }
 
 // Skill Tree Related

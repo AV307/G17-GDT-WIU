@@ -8,6 +8,7 @@
 #include "Stage.h"
 #include "Item.h"
 #include "Potion.h"
+#include "Armour.h"
 
 using namespace std;
 
@@ -540,28 +541,48 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 
 	std::string itemName = chosen->getName();
 	
+	if (itemName == "ArmourL" || itemName == "ArmourM" || itemName == "ArmourH") {
+		Armour* newArmour = static_cast<Armour*>(chosen);
+
+		if (static_cast<Player&>(player).getCurrentArmour() != nullptr) {
+			player.setDefense(player.getDefense() - static_cast<Player&>(player).getCurrentArmour()->getDefenseVal());
+		}
+
+		static_cast<Player&>(player).setCurrentArmour(newArmour);
+		player.setDefense(player.getDefense() + newArmour->getDefenseVal());
+
+		setTextDialogue("Switched to " + itemName + " (+" + to_string(newArmour->getDefenseVal()) + " DEF)");
+	}
 	if (itemName == "Sword" || itemName == "Mace" || itemName == "Scythe" || itemName == "Warhammer") {
 		Weapon* newWeapon = static_cast<Weapon*>(chosen);
 
 		if (static_cast<Player&>(player).getCurrentWeapon() != nullptr) {
 			player.setAttack(player.getAttack() - static_cast<Player&>(player).getCurrentWeapon()->getAttackVal());
+			player.setCritRate(player.getCRITRate() - static_cast<Player&>(player).getCurrentWeapon()->getCritRateVal());
+			player.setCritDMG(player.getCRITDMG() - static_cast<Player&>(player).getCurrentWeapon()->getCritDMGVal());
 		}
 
+		static_cast<Player&>(player).setCurrentWeapon(newWeapon);
+
 		if (itemName == "Sword") {
-			player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
-			setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+			player.setAttack(player.getAttack() + newWeapon->getAttackVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(newWeapon->getAttackVal()) + " ATK)");
 		}
 		else if (itemName == "Mace") {
-			player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
-			setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+			player.setAttack(player.getAttack() + newWeapon->getAttackVal());
+			player.setCritRate(player.getCRITRate() + newWeapon->getCritRateVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(newWeapon->getAttackVal()) + " ATK, +" + to_string(newWeapon->getCritRateVal()) + " % Crit Rate)");
 		}
 		else if (itemName == "Scythe") {
-			player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
-			setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+			player.setAttack(player.getAttack() + newWeapon->getAttackVal());
+			player.setCritDMG(player.getCRITDMG() + newWeapon->getCritDMGVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(newWeapon->getAttackVal()) + " ATK, +" + to_string(newWeapon->getCritDMGVal()) + " % Crit DMG)");
 		}
 		else if (itemName == "Warhammer") {
-			player.setAttack(player.getAttack() + static_cast<Weapon*>(chosen)->getAttackVal());
-			setTextDialogue("Switched to " + itemName + " (+" + to_string(static_cast<Weapon*>(chosen)->getAttackVal()) + " ATK)");
+			player.setAttack(player.getAttack() + newWeapon->getAttackVal());
+			player.setCritRate(player.getCRITRate() + newWeapon->getCritRateVal());
+			player.setCritDMG(player.getCRITDMG() + newWeapon->getCritDMGVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(newWeapon->getAttackVal()) + " ATK, +" + to_string(newWeapon->getCritRateVal()) + " % Crit Rate, +" + to_string(newWeapon->getCritDMGVal()) + " % Crit DMG)");
 		}
 	}
 

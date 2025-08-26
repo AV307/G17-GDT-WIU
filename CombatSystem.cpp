@@ -413,10 +413,10 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// (200 * 0.5) * 2     |      (ATK * DEF) * CRITDMG   =   200 Final Damage       |
 
 	// Damage Calculations
-	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                // If Player Doesn't Crit
-	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                            // If Player Does Crit
-	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                       // If Enemy Doesn't Crit
-	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                     // If Enemy Does Crit
+	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                       // If Player Doesn't Crit
+	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                             // If Player Does Crit
+	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                        // If Enemy Doesn't Crit
+	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                      // If Enemy Does Crit
 
 	if (playerDamage < 0) {
 		playerDamage = 0;
@@ -434,15 +434,15 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// "Fight" Logic
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                            // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                             // If DEF <= ATK, Entity Final Damage is given value
 
 			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
 				if (specifiedEnemy.getHealth() > 0) {
 					if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-						player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(player.getHealth() - (enemyDamage));                                                                                  // If DEF <= ATK, Entity Final Damage is given value
 					}
 					else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                              // If DEF <= ATK, Entity Final Damage is given value
 					}
 				}
 			}
@@ -456,15 +456,15 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	}
 	else if (critPlayerDeterminant <= player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                        // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                         // If DEF <= ATK, Entity Final Damage is given value
 
 			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
 				if (specifiedEnemy.getHealth() > 0) {
 					if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-						player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(player.getHealth() - (enemyDamage));                                                                                  // If DEF <= ATK, Entity Final Damage is given value
 					}
 					else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                              // If DEF <= ATK, Entity Final Damage is given value
 					}
 				}
 			}
@@ -513,57 +513,65 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 // +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
-	bool openInventory = static_cast<Player&>(player).checkInventoryOpen();                         // may or may not use for UI purposes
+	bool openInventory = static_cast<Player&>(player).checkInventoryOpen();                                                   // may or may not use for UI purposes
 
-	Item** inventoryMenuArray = nullptr;                                                            // Create a double pointer currently pointing to nullptr
-	int menuIndex = _getch();                                                                       // Receive player's input
+	Item** inventoryMenuArray = nullptr;                                                                                      // Create a double pointer currently pointing to nullptr
+	int menuIndex = _getch();                                                                                                 // Receive player's input
 
-	switch (menuIndex) {                                                                            // Based on Player's input
-	case '1':                                                                                       // If '1'
-		inventoryMenuArray = static_cast<Player&>(player).getWeapons();                             // Open Weapons Category, double pointer points to an array of pointers
+	switch (menuIndex) {                                                                                                      // Based on Player's input
+	case '1':                                                                                                                 // If '1'
+		inventoryMenuArray = static_cast<Player&>(player).getWeapons();                                                       // Open Weapons Category, double pointer points to an array of pointers
 		break;
-	case '2':                                                                                       // If '2'
-		inventoryMenuArray = static_cast<Player&>(player).getArmours();                             // Open Armours Category, double pointer points to an array of pointers
+	case '2':                                                                                                                 // If '2'
+		inventoryMenuArray = static_cast<Player&>(player).getArmours();                                                       // Open Armours Category, double pointer points to an array of pointers
 		break;
-	case '3':                                                                                       // If '3'
-		inventoryMenuArray = static_cast<Player&>(player).getConsumables();                         // Open Consumable (Potions) Category, double pointer points to an array of pointers
+	case '3':                                                                                                                 // If '3'
+		inventoryMenuArray = static_cast<Player&>(player).getConsumables();                                                   // Open Consumable (Potions) Category, double pointer points to an array of pointers
 		break;
-	default:                                                                                        // If no valid input was given
-		inventoryMenuArray = static_cast<Player&>(player).getWeapons();                             // Open Weapons Category, double pointer points to an array of pointers
+	default:                                                                                                                  // If no valid input was given
+		inventoryMenuArray = static_cast<Player&>(player).getWeapons();                                                       // Open Weapons Category, double pointer points to an array of pointers
 		break;
 	}
 
-	int itemIndex = _getch() - '0';                                                                 // Receive index of the Player's inventory in the chosen category in int instead of char
-	Item* chosen = inventoryMenuArray[itemIndex];                                                   // To choose the item based on the index of the item in the inventory
+	int itemIndex = _getch() - '0';                                                                                           // Receive index of the Player's inventory in the chosen category in int instead of char
+	Item* chosen = inventoryMenuArray[itemIndex];                                                                             // To choose the item based on the index of the item in the inventory
 
-	if (chosen == nullptr) {                                                                        // If nothing was chosen/selected slot was empty
-		return;                                                                                     // Close this function (move back to combat screen, skip turn?)
+	if (chosen == nullptr) {                                                                                                  // If nothing was chosen/selected slot was empty
+		return;                                                                                                               // Close this function (move back to combat screen, skip turn?)
 	}
 
-	std::string itemName = chosen->getName();                                                       // Store the item's name into a variable for use based on what was chosen
+	std::string itemName = chosen->getName();                                                                                 // Store the item's name into a variable for use based on what was chosen
 	
-	if (itemName == "ArmourL" || itemName == "ArmourM" || itemName == "ArmourH") {
-		Armour* newArmour = static_cast<Armour*>(chosen);
+	if (itemName == "ArmourL" || itemName == "ArmourM" || itemName == "ArmourH") {                                            // If Item is from the Armour Category
+		Armour* newArmour = static_cast<Armour*>(chosen);                                                                     // Set the new armour to be what has been chosen by the player
 
-		if (static_cast<Player&>(player).getCurrentArmour() != nullptr) {
-			player.setDefense(player.getDefense() - static_cast<Player&>(player).getCurrentArmour()->getDefenseVal());
+		if (static_cast<Player&>(player).getCurrentArmour() != nullptr) {                                                     // If there is an armour currently equipped
+			player.setDefense(player.getDefense() - static_cast<Player&>(player).getCurrentArmour()->getDefenseVal());        // Remove that current armour's DEF bonus
 		}
 
-		static_cast<Player&>(player).setCurrentArmour(newArmour);
-		player.setDefense(player.getDefense() + newArmour->getDefenseVal());
+		static_cast<Player&>(player).setCurrentArmour(newArmour);                                                             // Set the player's current armour to be the new armour based on chosen by the player for future use
+		player.setDefense(player.getDefense() + newArmour->getDefenseVal());                                                  // Based on what the new armour is from chosen, increase the player's DEF by the new armour's bonus
 
 		setTextDialogue("Switched to " + itemName + " (+" + to_string(newArmour->getDefenseVal()) + " DEF)");
 	}
-	if (itemName == "Sword" || itemName == "Mace" || itemName == "Scythe" || itemName == "Warhammer") {
-		Weapon* newWeapon = static_cast<Weapon*>(chosen);
+	if (itemName == "Sword" || itemName == "Mace" || itemName == "Scythe" || itemName == "Warhammer") {                       // If Item is from Weapon Category
+		Weapon* newWeapon = static_cast<Weapon*>(chosen);                                                                     // Set the new weapon to be what has been chosen by the player
 
-		if (static_cast<Player&>(player).getCurrentWeapon() != nullptr) {
-			player.setAttack(player.getAttack() - static_cast<Player&>(player).getCurrentWeapon()->getAttackVal());
-			player.setCritRate(player.getCRITRate() - static_cast<Player&>(player).getCurrentWeapon()->getCritRateVal());
-			player.setCritDMG(player.getCRITDMG() - static_cast<Player&>(player).getCurrentWeapon()->getCritDamageVal());
+		if (static_cast<Player&>(player).getCurrentWeapon() != nullptr) {                                                     // If there a weapon currently equipped
+			player.setAttack(player.getAttack() - static_cast<Player&>(player).getCurrentWeapon()->getAttackVal());           // Remove that current weapon's ATK bonus
+			player.setCritRate(player.getCRITRate() - static_cast<Player&>(player).getCurrentWeapon()->getCritRateVal());     // Remove that current weapon's Crit Rate bonus
+			player.setCritDMG(player.getCRITDMG() - static_cast<Player&>(player).getCurrentWeapon()->getCritDamageVal());     // Remove that current weapon's Crit DMG bonus
 		}
 
-		static_cast<Player&>(player).setCurrentWeapon(newWeapon);
+		static_cast<Player&>(player).setCurrentWeapon(newWeapon);                                                             // Set the player's current weapon to be the new weapon based on chosen by player for future use
+
+		// Based on the item's name from what has been chosen
+		// If the weapon chosen is a Sword/Mace/Scythe/Warhammer:
+		// Calculations in order:
+		// Player's New ATK = Player's Current ATK + Weapon's ATK Bonus   |                               No Crit Rate Bonuses                                 |   No Crit DMG Bonuses
+		// Player's New ATK = Player's Current ATK + Weapon's ATK Bonus   |   Player's New Crit Rate = Player's Current Crit Rate + Weapon's Crit Rate Bonus   |   No Crit DMG Bonuses
+		// Player's New ATK = Player's Current ATK + Weapon's ATK Bonus   |                               No Crit Rate Bonuses                                 |   Player's New Crit DMG = Player's Current Crit DMG + Weapon's Crit DMG Bonus
+		// Player's New ATK = Player's Current ATK + Weapon's ATK Bonus   |   Player's New Crit Rate = Player's Current Crit Rate + Weapon's Crit Rate Bonus   |   Player's New Crit DMG = Player's Current Crit DMG + Weapon's Crit DMG Bonus
 
 		if (itemName == "Sword") {
 			player.setAttack(player.getAttack() + newWeapon->getAttackVal());
@@ -586,6 +594,15 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 			setTextDialogue("Switched to " + itemName + " (+" + to_string(newWeapon->getAttackVal()) + " ATK, +" + to_string(newWeapon->getCritRateVal()) + " % Crit Rate, +" + to_string(newWeapon->getCritDamageVal()) + " % Crit DMG)");
 		}
 	}
+
+	// Based on the item's name from what has been chosen
+	// If the consumable chosen is a Heal/Strength/Weakening/Sleep:
+	// Effects to happen:
+	// Player's New HP = Player's Current HP + Heal Potion's Healing Effect Value           |   Consume   |   Delete and Free Inventory Slot
+	// Player's New ATK = Player's Current ATK + Strength Potion's Buffing Effect Value     |   Consume   |   Delete and Free Inventory Slot
+	// Enemy's New ATK = Enemy's Current ATK - Weakening Potion's Debuffing Effect Value    |   Consume   |   Delete and Free Inventory Slot
+	// Alters whether the enemy attacks when player Fight's in the next turn                |   Consume   |   Delete and Free Inventory Slot
+
 	if (itemName == "Heal Potion") {
 		player.setHealth(player.getHealth() + static_cast<Potion*>(chosen)->getHeal());
 		setTextDialogue("Used " + itemName + " (+" + to_string(static_cast<Potion*>(chosen)->getHeal()) + " HP)");
@@ -638,8 +655,8 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 	case 'y':                                                                                                            // If player carries on anyway
 		if (consDeterminant == 0) {                                                                                      // 1st consequence
 			player.setHealth(player.getHealth() * 3 / 4);                                                                // Lose 25% of current HP
-			char carryOn = _getch();
 			setTextDialogue("You ran... but lost something along the way (-25% HP). Press Y to continue");
+			char carryOn = _getch();
 
 			if (carryOn == 'y') {
 				static_cast<Player&>(player).setIsInCombat(false);                                                       // Player exits combat after changes are made
@@ -649,8 +666,8 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 		}
 		else if (consDeterminant == 1) {                                                                                 // 2nd consequence
 			player.setXP(player.getXP() * 3 / 4);                                                                        // Lose 25% of current XP
-			char carryOn = _getch();
 			setTextDialogue("You ran... but lost something along the way (-25% XP). Press Y to continue");
+			char carryOn = _getch();
 
 			if (carryOn == 'y') {
 				static_cast<Player&>(player).setIsInCombat(false);                                                       // Player exits combat after changes are made
@@ -660,8 +677,8 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 		}
 		else if (consDeterminant == 2) {                                                                                 // 3rd consequence
 			player.setGold(player.getGold() - 50);                                                                       // Lose 50 Gold
-			char carryOn = _getch();
 			setTextDialogue("You ran... but lost something along the way (-50 Gold). Press Y to continue");
+			char carryOn = _getch();
 
 			if (carryOn == 'y') {
 				static_cast<Player&>(player).setIsInCombat(false);                                                       // Player exits combat after changes are made
@@ -689,6 +706,7 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 				break;
 			}
 		}
+		break;
 	case 'n':                                                                                                            // If player backs out from running
 		setTextDialogue("You snapped out of it, kept your head in the game");                                            // Let's them stay in the game
 		break;

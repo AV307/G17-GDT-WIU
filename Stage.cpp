@@ -23,7 +23,7 @@ void Stage::setStageArray(int currentStage, char room1, char room2, Player* play
     // initialize stageArray to spaces
     for (int i{ 0 }; i < 100; i++) {
         for (int j{ 0 }; j < 100; j++) {
-            stageArray[i][j] = '-'; //debugging purposes set to '-', will be space when done
+            stageArray[i][j] = ' ';
         }
     }
 
@@ -254,7 +254,7 @@ Stage::~Stage()
 //Jayren Choi 250920U
 //Update the stage array (player positions, object changes etc.)
 //Incomplete
-void Stage::updateStageArray(Player* player)
+void Stage::updateStageArray(Player* player, Game* game)
 { 
     int playerXPos = player->getXPos();
     int playerYPos = player->getYPos();
@@ -284,13 +284,6 @@ void Stage::updateStageArray(Player* player)
         RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
         int roomX = player->getXPos() - rooms[roomIndex]->getRoomTopLeftY();
         int roomY = player->getYPos() - rooms[roomIndex]->getRoomTopLeftX();
-
-        std::cout << "Player (" << player->getXPos() << "," << player->getYPos()
-            << ") in room " << roomIndex
-            << " TL=(" << rooms[roomIndex]->getRoomTopLeftY()
-            << "," << rooms[roomIndex]->getRoomTopLeftX()
-            << ") size=" << rooms[roomIndex]->getRoomWidth()
-            << "x" << rooms[roomIndex]->getRoomHeight() << "\n";
 
         type = objects->getObjectType(roomX, roomY);
         toggled = objects->getObjectToggle(roomX, roomY);
@@ -447,6 +440,10 @@ void Stage::updateStageArray(Player* player)
             }
         }
 
+        if (type == PORTAL) {
+			game->advanceStage();
+        }
+
         // PRESSURE PLATE CODE
         for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
             for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
@@ -518,6 +515,24 @@ void Stage::updateStageArray(Player* player)
 
         stageArray[playerYPos][playerXPos] = 'P';
     }
+    else {
+        bool blocked = false;
+        if (stageArray[player->getYPos()][player->getXPos()] == '#') {
+            blocked = true;
+        }
+
+        if (blocked == false) {
+            playerXPos = player->getXPos();
+            playerYPos = player->getYPos();
+        }
+
+        player->setXPos(playerXPos);
+        player->setYPos(playerYPos);
+
+        previousTile = stageArray[playerYPos][playerXPos];
+
+        stageArray[playerYPos][playerXPos] = 'P';
+    }
 }
 
 //bool Stage::checkCollision(int xPos, int yPos, int currentRoom)
@@ -566,8 +581,10 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
     RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
 
     if (currentStage != 3) {
-        for (int y = playerPosY - 5; y <= playerPosY + 5; y++) {
-            for (int x = playerPosX - 10; x <= playerPosX + 10; x++) {
+        std::cout << " ------------------------------- " << "\n";
+        for (int y = playerPosY - 7; y <= playerPosY + 7; y++) {
+            std::cout << '|';
+            for (int x = playerPosX - 15; x <= playerPosX + 15; x++) {
                 if (y < 0 || y >= 100 || x < 0 || x >= 100) {
                     std::cout << ' ';
                 }
@@ -577,8 +594,10 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
                     SetConsoleTextAttribute(hConsole, 7);
                 }
             }
+            std::cout << '|';
             std::cout << '\n';
         }
+        std::cout << " ------------------------------- " << "\n";
     }
     else {
         int torchDist = 5;
@@ -597,8 +616,10 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
             }
         }
 
+        std::cout << " ------------------------------- " << "\n";
         for (int y = playerPosY - dist; y <= playerPosY + dist; y++) {
             for (int x = playerPosX - dist; x <= playerPosX + dist; x++) {
+                std::cout << '|';
                 bool visible = false;
                 for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
                     for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
@@ -639,8 +660,10 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
                     std::cout << ' ';
                 }
             }
+            std::cout << '|';
             std::cout << '\n';
         }
+        std::cout << " ------------------------------- " << "\n";
     }
 }
 

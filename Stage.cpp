@@ -548,8 +548,8 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
     RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
 
     if (currentStage != 3) {
-        for (int y = playerPosY - dist; y <= playerPosY + dist; y++) {
-            for (int x = playerPosX - dist; x <= playerPosX + dist; x++) {
+        for (int y = playerPosY - 5; y <= playerPosY + 5; y++) {
+            for (int x = playerPosX - 10; x <= playerPosX + 10; x++) {
                 if (y < 0 || y >= 100 || x < 0 || x >= 100) {
                     std::cout << ' ';
                 }

@@ -297,6 +297,13 @@ void Game::restartStage(int currentStage)
 void Game::advanceStage()
 {
     currentStage++;
+
+    if (stage != nullptr) {
+        delete stage;
+        stage = nullptr;
+    }
+
+    stage = new Stage(this, plr);
 }
 
 

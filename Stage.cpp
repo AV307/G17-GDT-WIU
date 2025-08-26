@@ -663,7 +663,7 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
             std::cout << '|';
             std::cout << '\n';
         }
+        std::cout << " ------------------------------- " << "\n";
     }
-    std::cout << " ------------------------------- " << "\n";
 }
 

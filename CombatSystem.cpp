@@ -618,7 +618,7 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 		if (consDeterminant == 0) {                                                                                      // 1st consequence
 			player.setHealth(player.getHealth() * 3 / 4);                                                                // Lose 25% of current HP
 			char carryOn = _getch();
-			setTextDialogue("You ran... but lost something along the way (-25% HP)");
+			setTextDialogue("You ran... but lost something along the way (-25% HP). Press Y to continue");
 
 			if (carryOn == 'y') {
 				static_cast<Player&>(player).setIsInCombat(false);                                                           // Player exits combat after changes are made
@@ -629,7 +629,7 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 		else if (consDeterminant == 1) {                                                                                 // 2nd consequence
 			player.setXP(player.getXP() * 3 / 4);                                                                        // Lose 25% of current XP
 			char carryOn = _getch();
-			setTextDialogue("You ran... but lost something along the way (-25% XP)");
+			setTextDialogue("You ran... but lost something along the way (-25% XP). Press Y to continue");
 
 			if (carryOn == 'y') {
 				static_cast<Player&>(player).setIsInCombat(false);                                                           // Player exits combat after changes are made
@@ -640,7 +640,7 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 		else if (consDeterminant == 2) {                                                                                 // 3rd consequence
 			player.setGold(player.getGold() - 50);                                                                       // Lose 50 Gold
 			char carryOn = _getch();
-			setTextDialogue("You ran... but lost something along the way (-50 Gold)");
+			setTextDialogue("You ran... but lost something along the way (-50 Gold). Press Y to continue");
 
 			if (carryOn == 'y') {
 				static_cast<Player&>(player).setIsInCombat(false);                                                           // Player exits combat after changes are made

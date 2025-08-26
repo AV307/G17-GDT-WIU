@@ -178,7 +178,7 @@ void Game::doTurn(CombatSystem combatsystem)
         std::cout << "+------------------------------------------------------+" << '\n';
     }
     else {
-        stage->printStage();
+        stage->printStageWithFOV(plr, currentStage);
     }
 
     SetConsoleTextAttribute(hConsole, 7);

@@ -282,8 +282,6 @@ void Stage::updateStageArray(Player* player)
     int roomX = player->getXPos() - rooms[roomIndex]->getRoomTopLeftY();
     int roomY = player->getYPos() - rooms[roomIndex]->getRoomTopLeftX();
 
-	std::cout << "Room X: " << roomX << " Room Y: " << roomY << std::endl; // Debugging line to check room coordinates
-
     type = objects->getObjectType(roomX, roomY);
     toggled = objects->getObjectToggle(roomX, roomY);
 
@@ -423,6 +421,10 @@ void Stage::updateStageArray(Player* player)
                     }
                     break;
                 }
+                case TORCH: {
+                    objects->setObjectToggle(roomXPos, roomYPos, true);
+                    break;
+				}
                 default:
                     break;
                 }
@@ -521,6 +523,93 @@ void Stage::printStage()
             std::cout << stageArray[i][j];
         }
         std::cout << '\n';
+    }
+}
+
+void Stage::printStageWithFOV(Player* player, int currentStage) {
+    int playerPosX = player->getXPos();
+    int playerPosY = player->getYPos();
+    int dist = 5;
+
+    int size = sizeof(rooms) / sizeof(rooms[0]);
+    int roomIndex = 0;
+
+    for (int i = 0; i < size; i++) {
+        if (player->getYPos() >= rooms[i]->getRoomTopLeftX() &&
+            player->getYPos() < rooms[i]->getRoomTopLeftX() + rooms[i]->getRoomWidth() &&
+            player->getXPos() >= rooms[i]->getRoomTopLeftY() &&
+            player->getXPos() < rooms[i]->getRoomTopLeftY() + rooms[i]->getRoomHeight())
+        {
+            roomIndex = i;
+            break;
+        }
+    }
+
+    RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
+
+    if (currentStage != 3) {
+        for (int y = playerPosY - 5; y <= playerPosY + 5; y++) {
+            for (int x = playerPosX - 10; x <= playerPosX + 10; x++) {
+                if (y < 0 || y >= 100 || x < 0 || x >= 100) {
+                    std::cout << ' ';
+                }
+                else {
+                    std::cout << stageArray[y][x];
+                }
+            }
+            std::cout << '\n';
+        }
+    }
+    else {
+        int torchDist = 5;
+
+        int torchX[30];
+        int torchY[30];
+        int torchCount = 0;
+
+        for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
+            for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
+                if (objects->getObjectType(x, y) == TORCH && objects->getObjectToggle(x, y)) {
+                    torchX[torchCount] = x + rooms[roomIndex]->getRoomTopLeftY();
+                    torchY[torchCount] = y + rooms[roomIndex]->getRoomTopLeftX();
+                    torchCount++;
+                }
+            }
+        }
+
+        for (int y = playerPosY - dist; y <= playerPosY + dist; y++) {
+            for (int x = playerPosX - dist; x <= playerPosX + dist; x++) {
+                bool visible = false;
+
+                if (x == playerPosX && y == playerPosY) {
+                    visible = true;
+                }
+
+                for (int i = 0; i < torchCount && !visible; i++) {
+                    if (x == torchX[i] && y == torchY[i]) {
+                        visible = true;
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < torchCount && !visible; i++) {
+                    int newX = x - torchX[i];
+                    int newY = y - torchY[i];
+                    if (newX * newX + newY * newY <= torchDist * torchDist) {
+                        visible = true;
+                        break;
+                    }
+                }
+
+                if (visible) {
+                    std::cout << stageArray[y][x];
+                }
+                else {
+                    std::cout << ' ';
+                }
+            }
+            std::cout << '\n';
+        }
     }
 }
 

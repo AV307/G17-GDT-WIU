@@ -12,6 +12,8 @@
 
 #include <random>
 #include <iostream>
+#include <windows.h>
+
 
 //Ang Zhi En 252317H
 //set the stageArray, fill up stage area with all the rooms that are created for the currentStage
@@ -296,7 +298,8 @@ void Stage::updateStageArray(Player* player)
         bool blocked = false;
 
         if (type == WALL || type == BLOCKONPRESSUREPLATE|| (type == DOOR && toggled == false) || 
-			type == SWITCH || type == CHEST || type == BREAKABLEWALL || type == KEYDOOR || type == TORCH ||
+			type == SWITCH || type == CHEST || type == BREAKABLEWALL || type == KEYDOOR ||
+            type == TORCH || type == MEGATORCH ||
             stageArray[player->getYPos()][player->getXPos()] == '#') 
         {
             blocked = true;
@@ -425,6 +428,10 @@ void Stage::updateStageArray(Player* player)
                     objects->setObjectToggle(roomXPos, roomYPos, true);
                     break;
 				}
+				case MEGATORCH: {
+                    objects->setObjectToggle(roomXPos, roomYPos, true);
+                    break;
+                }
                 default:
                     break;
                 }
@@ -527,6 +534,8 @@ void Stage::printStage()
 }
 
 void Stage::printStageWithFOV(Player* player, int currentStage) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
     int playerPosX = player->getXPos();
     int playerPosY = player->getYPos();
     int dist = 5;
@@ -554,7 +563,9 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
                     std::cout << ' ';
                 }
                 else {
+                    SetConsoleTextAttribute(hConsole, (stageArray[y][x] == 'P') ? 10 : 7);
                     std::cout << stageArray[y][x];
+                    SetConsoleTextAttribute(hConsole, 7);
                 }
             }
             std::cout << '\n';
@@ -580,6 +591,13 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
         for (int y = playerPosY - dist; y <= playerPosY + dist; y++) {
             for (int x = playerPosX - dist; x <= playerPosX + dist; x++) {
                 bool visible = false;
+                for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
+                    for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
+                        if (objects->getObjectType(x, y) == MEGATORCH && objects->getObjectToggle(x, y)) {
+                            visible = true;
+                        }
+                    }
+                }
 
                 if (x == playerPosX && y == playerPosY) {
                     visible = true;
@@ -601,8 +619,12 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
                     }
                 }
 
+                if (objects)
+
                 if (visible) {
+                    SetConsoleTextAttribute(hConsole, (stageArray[y][x] == 'P') ? 10 : 7);
                     std::cout << stageArray[y][x];
+                    SetConsoleTextAttribute(hConsole, 7);
                 }
                 else {
                     std::cout << ' ';

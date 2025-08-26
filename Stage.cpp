@@ -207,7 +207,7 @@ Stage::Stage(Game* game, Player* player)
 
     if (currentStage == 3 || currentStage == 5)
     {
-        rooms[2] = new BossRoom(currentStage);
+        rooms[2] = new BossRoom(currentStage, 2);
         room2 = 'F';
     }
     else

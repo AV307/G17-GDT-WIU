@@ -6,7 +6,7 @@ class BossRoom :
 private:
     char** bossRoomArray;
 public:
-    BossRoom(int currentStage);
+    BossRoom(int currentStage, int roomNumber);
     ~BossRoom();
     char** getBossRoomArray();
 };

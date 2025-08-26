@@ -3,7 +3,6 @@
 #include "Game.h"
 #include "Player.h"
 #include <cstdlib>
-#include <random>
 #include <iostream>
 #include <string>
 
@@ -68,8 +67,7 @@ Enemy::Enemy(string type, char status) {
 	enemyPos(enemyYR, enemyXR);
 }
 
-bool Enemy::isEnemyThere(Player* player) {
-	std::cout << "Enemy encountered!\n";
+bool Enemy::isEnemyThere(Player* player) {;
 	pair<int, int> enemyPosPair = enemyPos(enemyYR, enemyXR);
 	if (player != nullptr) {
 		if (player->getYPos() == enemyPosPair.first && player->getXPos() == enemyPosPair.second) {

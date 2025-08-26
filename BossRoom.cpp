@@ -3,12 +3,11 @@
 //Ang Zhi En 252317H
 //Constructor for BossRoom, defines the position and sets up the room
 //Incomplete
-BossRoom::BossRoom(int currentStage)
+BossRoom::BossRoom(int currentStage, int roomNumber)
 {
-    roomHeight = 30;
-    roomWidth = 30;
-    roomTopLeftX = 10;
-    roomTopLeftY = 60;
+    roomHeight = 20;
+    roomWidth = 20;
+    setRoomLocation(roomNumber);
 
     roomObjects = new RoomObjects(true, roomTopLeftY, roomWidth, roomHeight);
 

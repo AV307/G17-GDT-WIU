@@ -274,6 +274,9 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             for (int i = 21; i < 24; i++) {
                 objects[i][14] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
+            objects[27][27] = new Object{ WALL, -1, false, " ", ' ' };
+            objects[26][27] = new Object{ WALL, -1, false, " ", ' ' };
 			// HORIZONTAL WALLS
 
             for (int i = 0; i < 7; i++) {
@@ -340,10 +343,71 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[15][1] = new Object{ TELEPORTER1, 1, false, " ", ' ' };
             objects[28][7] = new Object{ TELEPORTER2, 1, false, " ", ' ' };
 
-            objects[13][10] = new Object{ TELEPORTER1, 2, false, " ", ' ' };
+            objects[13][11] = new Object{ TELEPORTER1, 2, false, " ", ' ' };
             objects[9][1] = new Object{ TELEPORTER2, 2, false, " ", ' ' };
+
+            objects[21][3] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[13][3] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[12][15] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[12][19] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[13][17] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
+
+            objects[18][6] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[6][8] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[12][16] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[26][12] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[12][17] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
+
+            objects[23][9] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[14][18] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
+
+            objects[9][8] = new Object{ LEFTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[15][9] = new Object{ LEFTDIRECTIONALDOOR, -1, false, " ", ' ' };
+
+            objects[14][17] = new Object{ LEFTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[13][16] = new Object{ LEFTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[13][15] = new Object{ LEFTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[13][18] = new Object{ LEFTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[13][19] = new Object{ LEFTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[13][20] = new Object{ LEFTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[13][21] = new Object{ LEFTDIRECTIONALDOOR, -1, false, " ", ' ' };
+
+            objects[12][25] = new Object{ CHEST, -1, false, " ", 'H' };
+            objects[9][15] = new Object{ CHEST, -1, false, " ", 'K' };
+            objects[3][4] = new Object{ CHEST, -1, false, "Art2", 'A' };
+
+            objects[8][7] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
+            objects[13][22] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
+            objects[11][17] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
+
+            objects[12][11] = new Object{ SWITCH, 1, false, " ", ' ' };
+            objects[15][2] = new Object{ DOOR, 1, false, " ", ' ' };
+
+            objects[16][18] = new Object{ PRESSUREPLATE, 2, false, " ", ' ' };
+            objects[23][13] = new Object{ DOOR, 2, false, " ", ' ' };
+
+            objects[16][13] = new Object{ PRESSUREPLATE, 3, false, " ", ' ' };
+            objects[28][27] = new Object{ DOOR, 3, false, " ", ' ' };
+
+            objects[22][7] = new Object{ PRESSUREPLATE, 4, false, " ", ' ' };
+            objects[15][25] = new Object{ DOOR, 4, false, " ", ' ' };
+
+            objects[16][28] = new Object{ PRESSUREPLATE, 5, false, " ", ' ' };
+            objects[8][3] = new Object{ DOOR, 5, false, " ", ' ' };
+
+            objects[16][14] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[22][13] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[22][12] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[26][28] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+
+            objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
             break;
         case 3:
+            for (int i = 1; i < 30; i++) {
+                objects[20][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+            objects[19][2] = new Object{ SWITCH, 1, false, " ", ' ' };
+            objects[21][2] = new Object{ MEGATORCH, 1, false, " ", ' ' };
             break;
         case 4:
             break;

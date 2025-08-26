@@ -8,7 +8,7 @@ Weapon::Weapon() : critRate(0), critDamage(0) {}
 Weapon::Weapon(const std::string& name, int atk, int critRate, int critDamage)
 {
 	this->name = name;
-	attack = atk;
+	this->attack = atk;
 	this->critRate = critRate;
 	this->critDamage = critDamage;
 }
@@ -18,14 +18,17 @@ Weapon::~Weapon()
 
 }
 
+int Weapon::getAttack() const {
+	return attack;
+}
 int Weapon::getCritRate() const
 {
-	return 0;
+	return critRate;
 }
 
 int Weapon::getCritDamage() const
 {
-	return 0;
+	return critDamage;
 }
 
 

@@ -172,7 +172,7 @@ void Player::setCurrentWeapon(Weapon* weapon) {
 Armour* Player::getCurrentArmour() {
 	return currentArmour;
 }
-void Player::setCurrentWeapon(Armour* armour) {
+void Player::setCurrentArmour(Armour* armour) {
 	currentArmour = armour;
 }
 

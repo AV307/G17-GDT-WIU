@@ -281,8 +281,9 @@ void Stage::updateStageArray(Player* player)
     }
 
     RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
-    int roomX = player->getXPos() - rooms[roomIndex]->getRoomTopLeftY();
-    int roomY = player->getYPos() - rooms[roomIndex]->getRoomTopLeftX();
+    int roomX = abs(player->getXPos() - rooms[roomIndex]->getRoomTopLeftY());
+    int roomY = abs(player->getYPos() - rooms[roomIndex]->getRoomTopLeftX());
+	std::cout << "RoomX: " << roomX << " RoomY: " << roomY << std::endl; //debugging code
 
     type = objects->getObjectType(roomX, roomY);
     toggled = objects->getObjectToggle(roomX, roomY);

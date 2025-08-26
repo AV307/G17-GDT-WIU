@@ -2,6 +2,8 @@
 #include "Entity.h"
 #include "Item.h"
 #include "Weapon.h"
+#include "Armour.h"
+
 class Player : public Entity
 {
 private:

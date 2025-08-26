@@ -513,33 +513,34 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 // +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
-	bool openInventory = static_cast<Player&>(player).checkInventoryOpen();
+	bool openInventory = static_cast<Player&>(player).checkInventoryOpen();                         // may or may not use for UI purposes
 
-	Item** inventoryMenuArray = nullptr;
+	Item** inventoryMenuArray = nullptr;                                                            // Create a double pointer currently pointing to nullptr
+	int menuIndex = _getch();                                                                       // Receive player's input
 
-	switch (static_cast<Player&>(player).getMenuIndex()) {
-	case 1:
-		inventoryMenuArray = static_cast<Player&>(player).getWeapons();
+	switch (menuIndex) {                                                                            // Based on Player's input
+	case '1':                                                                                       // If '1'
+		inventoryMenuArray = static_cast<Player&>(player).getWeapons();                             // Open Weapons Category, double pointer points to an array of pointers
 		break;
-	case 2:
-		inventoryMenuArray = static_cast<Player&>(player).getArmours();
+	case '2':                                                                                       // If '2'
+		inventoryMenuArray = static_cast<Player&>(player).getArmours();                             // Open Armours Category, double pointer points to an array of pointers
 		break;
-	case 3:
-		inventoryMenuArray = static_cast<Player&>(player).getConsumables();
+	case '3':                                                                                       // If '3'
+		inventoryMenuArray = static_cast<Player&>(player).getConsumables();                         // Open Consumable (Potions) Category, double pointer points to an array of pointers
 		break;
-	default:
-		inventoryMenuArray = static_cast<Player&>(player).getWeapons();
+	default:                                                                                        // If no valid input was given
+		inventoryMenuArray = static_cast<Player&>(player).getWeapons();                             // Open Weapons Category, double pointer points to an array of pointers
 		break;
 	}
 
-	int index = static_cast<Player&>(player).getInventoryIndex();
-	Item* chosen = inventoryMenuArray[index];
+	int itemIndex = _getch() - '0';                                                                 // Receive index of the Player's inventory in the chosen category in int instead of char
+	Item* chosen = inventoryMenuArray[itemIndex];                                                   // To choose the item based on the index of the item in the inventory
 
-	if (chosen == nullptr) {
-		return;
+	if (chosen == nullptr) {                                                                        // If nothing was chosen/selected slot was empty
+		return;                                                                                     // Close this function (move back to combat screen, skip turn?)
 	}
 
-	std::string itemName = chosen->getName();
+	std::string itemName = chosen->getName();                                                       // Store the item's name into a variable for use based on what was chosen
 	
 	if (itemName == "ArmourL" || itemName == "ArmourM" || itemName == "ArmourH") {
 		Armour* newArmour = static_cast<Armour*>(chosen);
@@ -559,7 +560,7 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 		if (static_cast<Player&>(player).getCurrentWeapon() != nullptr) {
 			player.setAttack(player.getAttack() - static_cast<Player&>(player).getCurrentWeapon()->getAttackVal());
 			player.setCritRate(player.getCRITRate() - static_cast<Player&>(player).getCurrentWeapon()->getCritRateVal());
-			player.setCritDMG(player.getCRITDMG() - static_cast<Player&>(player).getCurrentWeapon()->getCritDMGVal());
+			player.setCritDMG(player.getCRITDMG() - static_cast<Player&>(player).getCurrentWeapon()->getCritDamageVal());
 		}
 
 		static_cast<Player&>(player).setCurrentWeapon(newWeapon);
@@ -575,44 +576,43 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 		}
 		else if (itemName == "Scythe") {
 			player.setAttack(player.getAttack() + newWeapon->getAttackVal());
-			player.setCritDMG(player.getCRITDMG() + newWeapon->getCritDMGVal());
-			setTextDialogue("Switched to " + itemName + " (+" + to_string(newWeapon->getAttackVal()) + " ATK, +" + to_string(newWeapon->getCritDMGVal()) + " % Crit DMG)");
+			player.setCritDMG(player.getCRITDMG() + newWeapon->getCritDamageVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(newWeapon->getAttackVal()) + " ATK, +" + to_string(newWeapon->getCritDamageVal()) + " % Crit DMG)");
 		}
 		else if (itemName == "Warhammer") {
 			player.setAttack(player.getAttack() + newWeapon->getAttackVal());
 			player.setCritRate(player.getCRITRate() + newWeapon->getCritRateVal());
-			player.setCritDMG(player.getCRITDMG() + newWeapon->getCritDMGVal());
-			setTextDialogue("Switched to " + itemName + " (+" + to_string(newWeapon->getAttackVal()) + " ATK, +" + to_string(newWeapon->getCritRateVal()) + " % Crit Rate, +" + to_string(newWeapon->getCritDMGVal()) + " % Crit DMG)");
+			player.setCritDMG(player.getCRITDMG() + newWeapon->getCritDamageVal());
+			setTextDialogue("Switched to " + itemName + " (+" + to_string(newWeapon->getAttackVal()) + " ATK, +" + to_string(newWeapon->getCritRateVal()) + " % Crit Rate, +" + to_string(newWeapon->getCritDamageVal()) + " % Crit DMG)");
 		}
 	}
-
 	if (itemName == "Heal Potion") {
 		player.setHealth(player.getHealth() + static_cast<Potion*>(chosen)->getHeal());
 		setTextDialogue("Used " + itemName + " (+" + to_string(static_cast<Potion*>(chosen)->getHeal()) + " HP)");
 		chosen->consume();
 		delete chosen;
-		inventoryMenuArray[index] = nullptr;
+		inventoryMenuArray[itemIndex] = nullptr;
 	}
 	else if (itemName == "Strength Potion") {
 		player.setAttack(player.getAttack() + static_cast<Potion*>(chosen)->getAttackVal());
 		setTextDialogue("Used " + itemName + " (+" + to_string(static_cast<Potion*>(chosen)->getAttackVal()) + " ATK)");
 		chosen->consume();
 		delete chosen;
-		inventoryMenuArray[index] = nullptr;
+		inventoryMenuArray[itemIndex] = nullptr;
 	}
 	else if (itemName == "Weakening Potion") {
 		specifiedEnemy.setAttack(specifiedEnemy.getAttack() - static_cast<Potion*>(chosen)->getAttackVal());
 		setTextDialogue("Used " + itemName + " (-" + to_string(static_cast<Potion*>(chosen)->getAttackVal()) + " Enemy ATK)");
 		chosen->consume();
 		delete chosen;
-		inventoryMenuArray[index] = nullptr;
+		inventoryMenuArray[itemIndex] = nullptr;
 	}
 	else if (itemName == "Sleep Potion") {
 		static_cast<Enemy&>(specifiedEnemy).setSleepState(true);
 		setTextDialogue("Used " + itemName + ". Enemy is asleep for the next turn");
 		chosen->consume();
 		delete chosen;
-		inventoryMenuArray[index] = nullptr;
+		inventoryMenuArray[itemIndex] = nullptr;
 	}
 }
 
@@ -642,9 +642,9 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 			setTextDialogue("You ran... but lost something along the way (-25% HP). Press Y to continue");
 
 			if (carryOn == 'y') {
-				static_cast<Player&>(player).setIsInCombat(false);                                                           // Player exits combat after changes are made
-				static_cast<Player&>(player).setJustLeftCombat(true);                                                        // Player gains invulnerability from entering the fight again
-				static_cast<Player&>(player).setCombatIsWon(false);                                                          // Reset player's win state (precautionary)
+				static_cast<Player&>(player).setIsInCombat(false);                                                       // Player exits combat after changes are made
+				static_cast<Player&>(player).setJustLeftCombat(true);                                                    // Player gains invulnerability from entering the fight again
+				static_cast<Player&>(player).setCombatIsWon(false);                                                      // Reset player's win state (precautionary)
 			}
 		}
 		else if (consDeterminant == 1) {                                                                                 // 2nd consequence
@@ -653,9 +653,9 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 			setTextDialogue("You ran... but lost something along the way (-25% XP). Press Y to continue");
 
 			if (carryOn == 'y') {
-				static_cast<Player&>(player).setIsInCombat(false);                                                           // Player exits combat after changes are made
-				static_cast<Player&>(player).setJustLeftCombat(true);                                                        // Player gains invulnerability from entering the fight again
-				static_cast<Player&>(player).setCombatIsWon(false);                                                          // Reset player's win state (precautionary)
+				static_cast<Player&>(player).setIsInCombat(false);                                                       // Player exits combat after changes are made
+				static_cast<Player&>(player).setJustLeftCombat(true);                                                    // Player gains invulnerability from entering the fight again
+				static_cast<Player&>(player).setCombatIsWon(false);                                                      // Reset player's win state (precautionary)
 			}
 		}
 		else if (consDeterminant == 2) {                                                                                 // 3rd consequence
@@ -664,9 +664,9 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 			setTextDialogue("You ran... but lost something along the way (-50 Gold). Press Y to continue");
 
 			if (carryOn == 'y') {
-				static_cast<Player&>(player).setIsInCombat(false);                                                           // Player exits combat after changes are made
-				static_cast<Player&>(player).setJustLeftCombat(true);                                                        // Player gains invulnerability from entering the fight again
-				static_cast<Player&>(player).setCombatIsWon(false);                                                          // Reset player's win state (precautionary)
+				static_cast<Player&>(player).setIsInCombat(false);                                                       // Player exits combat after changes are made
+				static_cast<Player&>(player).setJustLeftCombat(true);                                                    // Player gains invulnerability from entering the fight again
+				static_cast<Player&>(player).setCombatIsWon(false);                                                      // Reset player's win state (precautionary)
 			}
 		}
 		else {                                                                                                           // Off chance

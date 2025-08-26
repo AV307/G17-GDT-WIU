@@ -1,6 +1,9 @@
 #include "ShopRoom.h"
 #include "Player.h"
+#include <windows.h>
 #include <conio.h>
+
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 //Ang Zhi En 252317H
 //Constructor for ShopRoom, defines position and sets up room
@@ -74,6 +77,7 @@ void ShopRoom::showShopMenu(Player* player) {
     char choice;
     const string itemSelection[4] = {"Armour", "Weapon", "Potion", "Artifact"};
     string currentSelection = itemSelection[0];
+    SetConsoleTextAttribute(hConsole, 7);
 
     while (true) {
         system("cls");  // clear console
@@ -100,7 +104,15 @@ void ShopRoom::showShopMenu(Player* player) {
             "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
             "==================================================================================================\n"
             "= --------------------- ------------------------ ------------------------ ---------------------- =\n"
-            "= |      " << itemSelection[0] << "       | |        " << itemSelection[1] <<  "        | |        " << itemSelection[2] << "        | |      " << itemSelection[3] << "      | =\n"
+            "= |      "
+            << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[0]) ? 14 : 7) << 
+            "       | |        " 
+            << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[1]) ? 14 : 7) <<
+            "        | |        " 
+            << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[2]) ? 14 : 7) <<
+            "        | |      "
+            << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[0]) ? 14 : 7) <<
+            "      | =\n"
             "= --------------------- ------------------------ ------------------------ ---------------------- =\n"
             "==================================================================================================\n"
             "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";

@@ -18,15 +18,15 @@ Weapon::~Weapon()
 
 }
 
-int Weapon::getAttack() const {
+int Weapon::getAttackVal() const {
 	return attack;
 }
-int Weapon::getCritRate() const
+int Weapon::getCritRateVal() const
 {
 	return critRate;
 }
 
-int Weapon::getCritDamage() const
+int Weapon::getCritDamageVal() const
 {
 	return critDamage;
 }

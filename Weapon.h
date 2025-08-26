@@ -13,8 +13,8 @@ public:
     ~Weapon();
 
     // Optional: getters/setters if needed
-    int getAttack() const;
-    int getCritRate() const;
-    int getCritDamage() const;
+    int getAttackVal() const;
+    int getCritRateVal() const;
+    int getCritDamageVal() const;
 };
 

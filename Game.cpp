@@ -15,7 +15,7 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
-    currentStage = 2;
+    currentStage = 1;
     plr = new Player;
     stage = new Stage(this, plr);
     stage->printStage(); //debugging code
@@ -40,7 +40,7 @@ int Game::getCurrentStage()
 //Does a turn. if inventory is open, gameplay pauses, player movement keys control the inventory menu
 void Game::doTurn(CombatSystem combatsystem)
 {
-    stage->updateStageArray(plr);
+    stage->updateStageArray(plr, this);
 
     system("cls");
 

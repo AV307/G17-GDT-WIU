@@ -254,7 +254,7 @@ Stage::~Stage()
 //Jayren Choi 250920U
 //Update the stage array (player positions, object changes etc.)
 //Incomplete
-void Stage::updateStageArray(Player* player)
+void Stage::updateStageArray(Player* player, Game* game)
 { 
     int playerXPos = player->getXPos();
     int playerYPos = player->getYPos();
@@ -616,8 +616,10 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
             }
         }
 
+        std::cout << " ------------------------------- " << "\n";
         for (int y = playerPosY - dist; y <= playerPosY + dist; y++) {
             for (int x = playerPosX - dist; x <= playerPosX + dist; x++) {
+                std::cout << '|';
                 bool visible = false;
                 for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
                     for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
@@ -658,8 +660,10 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
                     std::cout << ' ';
                 }
             }
+            std::cout << '|';
             std::cout << '\n';
         }
     }
+    std::cout << " ------------------------------- " << "\n";
 }
 

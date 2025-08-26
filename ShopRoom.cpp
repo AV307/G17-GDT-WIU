@@ -70,98 +70,98 @@ char** ShopRoom::getShopRoomArray()
 
 
 
-//Benjamin 250572M
-//Displays the shop menu with items and prices
-void ShopRoom::showShopMenu(Player* player) {
-    int key;        // store _getch() safely in int
-    char choice;
-    const string itemSelection[4] = {"Armour", "Weapon", "Potion", "Artifact"};
-    string currentSelection = itemSelection[0];
-    SetConsoleTextAttribute(hConsole, 7);
+    //Benjamin 250572M
+    //Displays the shop menu with items and prices
+    void ShopRoom::showShopMenu(Player* player) {
+        int key;        // store _getch() safely in int
+        char choice;
+        const string itemSelection[4] = {"Armour", "Weapon", "Potion", "Artifact"};
+        string currentSelection = itemSelection[0];
+        SetConsoleTextAttribute(hConsole, 7);
 
-    while (true) {
-        system("cls");  // clear console
+        while (true) {
+            system("cls");  // clear console
 
-        // ===== ASCII Shop Frame =====
-        std::cout <<
-            "--------------------------------------------------------------------------------------------------\n"
-            "--------------------------------------------------------------------------------------------------\n"
-            "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "||                                                                                              ||\n"
-            "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
-            "==================================================================================================\n"
-            "= --------------------- ------------------------ ------------------------ ---------------------- =\n"
-            "= |      "
-            << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[0]) ? 14 : 7) << 
-            "       | |        " 
-            << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[1]) ? 14 : 7) <<
-            "        | |        " 
-            << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[2]) ? 14 : 7) <<
-            "        | |      "
-            << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[0]) ? 14 : 7) <<
-            "      | =\n"
-            "= --------------------- ------------------------ ------------------------ ---------------------- =\n"
-            "==================================================================================================\n"
-            "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
+            // ===== ASCII Shop Frame =====
+            std::cout <<
+                "--------------------------------------------------------------------------------------------------\n"
+                "--------------------------------------------------------------------------------------------------\n"
+                "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "||                                                                                              ||\n"
+                "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
+                "==================================================================================================\n"
+                "= --------------------- ------------------------ ------------------------ ---------------------- =\n"
+                "= |      "
+                << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[0]) ? 14 : 7) << 
+                "       | |        " 
+                << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[1]) ? 14 : 7) <<
+                "        | |        " 
+                << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[2]) ? 14 : 7) <<
+                "        | |      "
+                << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[0]) ? 14 : 7) <<
+                "      | =\n"
+                "= --------------------- ------------------------ ------------------------ ---------------------- =\n"
+                "==================================================================================================\n"
+                "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
 
-        // Display player gold
-        std::cout << "Gold: " << player->getGold() << "\n\n";
+            // Display player gold
+            std::cout << "Gold: " << player->getGold() << "\n\n";
 
-        // Display shop items dynamically
-        for (int i = 0; i < 10; i++) {
-            if (shopInventory[i] != nullptr) {
-                std::cout << i + 1 << ". "
-                    << shopInventory[i]->getName()
-                    << " (" << shopInventory[i]->getCost() << " gold)\n";
+            // Display shop items dynamically
+            for (int i = 0; i < 10; i++) {
+                if (shopInventory[i] != nullptr) {
+                    std::cout << i + 1 << ". "
+                        << shopInventory[i]->getName()
+                        << " (" << shopInventory[i]->getCost() << " gold)\n";
+                }
             }
-        }
-        std::cout << "0. Exit Shop\n\n";
-        std::cout << "Choose item: ";
+            std::cout << "0. Exit Shop\n\n";
+            std::cout << "Choose item: ";
 
-        key = _getch();
-        choice = static_cast<char>(key);
-        std::cout << choice << "\n";
+            key = _getch();
+            choice = static_cast<char>(key);
+            std::cout << choice << "\n";
 
-        if (choice == '0') break;
+            if (choice == '0') break;
 
-        int index = choice - '1'; // Convert char '1'-'9' to index 0-8
-        if (index >= 0 && index < 10 && shopInventory[index] != nullptr) {
-            Item* item = shopInventory[index];
-            if (player->getGold() >= item->getCost()) {
-                player->setGold(player->getGold() - item->getCost());
-                player->addItemInventory(item);
-                std::cout << "You bought a " << item->getName()
-                    << " for " << item->getCost() << " gold!\n";
+            int index = choice - '1'; // Convert char '1'-'9' to index 0-8
+            if (index >= 0 && index < 10 && shopInventory[index] != nullptr) {
+                Item* item = shopInventory[index];
+                if (player->getGold() >= item->getCost()) {
+                    player->setGold(player->getGold() - item->getCost());
+                    player->addItemInventory(item);
+                    std::cout << "You bought a " << item->getName()
+                        << " for " << item->getCost() << " gold!\n";
+                }
+                else {
+                    std::cout << "Not enough gold!\n";
+                }
             }
             else {
-                std::cout << "Not enough gold!\n";
+                std::cout << "Invalid choice!\n";
             }
-        }
-        else {
-            std::cout << "Invalid choice!\n";
+
+            std::cout << "Press any key to continue...";
+            int temp = _getch();
+            (void)temp;
         }
 
-        std::cout << "Press any key to continue...";
-        int temp = _getch();
-        (void)temp;
+        player->printInventory();
+
     }
-
-    player->printInventory();
-
-}
 
 
 

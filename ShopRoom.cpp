@@ -135,8 +135,8 @@ char** ShopRoom::getShopRoomArray()
             choice = static_cast<char>(key);
             std::cout << choice << "\n";
 
-            if (choice == '0') break;
-
+            if (choice == '0') return;
+            currentSelection = itemSelection[choice - 1];
             int index = choice - '1'; // Convert char '1'-'9' to index 0-8
             if (index >= 0 && index < 10 && shopInventory[index] != nullptr) {
                 Item* item = shopInventory[index];

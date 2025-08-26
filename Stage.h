@@ -25,11 +25,10 @@ public:
 
     Stage(Game* game, Player* player);
     ~Stage();
-    void updateStageArray(Player* player);
+    void updateStageArray(Player* player, Game* game);
     //bool checkCollision(int xPos, int yPos, int currentRoom);
 
 	void printStageWithFOV(Player* player, int currentStage);
-    bool hasLineOfSight(int x0, int y0, int x1, int y1);
     //debug
     void printStage();
 };

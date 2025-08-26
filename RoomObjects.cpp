@@ -274,6 +274,9 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             for (int i = 21; i < 24; i++) {
                 objects[i][14] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
+            objects[27][27] = new Object{ WALL, -1, false, " ", ' ' };
+            objects[26][27] = new Object{ WALL, -1, false, " ", ' ' };
 			// HORIZONTAL WALLS
 
             for (int i = 0; i < 7; i++) {
@@ -376,6 +379,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[8][7] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
             objects[13][22] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
             objects[11][17] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
+            objects[25][28] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
 
             objects[12][11] = new Object{ SWITCH, 1, false, " ", ' ' };
             objects[15][2] = new Object{ DOOR, 1, false, " ", ' ' };
@@ -384,7 +388,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[23][13] = new Object{ DOOR, 2, false, " ", ' ' };
 
             objects[16][13] = new Object{ PRESSUREPLATE, 3, false, " ", ' ' };
-            objects[25][28] = new Object{ DOOR, 3, false, " ", ' ' };
+            objects[28][27] = new Object{ DOOR, 3, false, " ", ' ' };
 
             objects[22][7] = new Object{ PRESSUREPLATE, 4, false, " ", ' ' };
             objects[15][25] = new Object{ DOOR, 4, false, " ", ' ' };

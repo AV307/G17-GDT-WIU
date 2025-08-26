@@ -577,7 +577,9 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
     RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
 
     if (currentStage != 3) {
-        for (int y = playerPosY - 8; y <= playerPosY + 8; y++) {
+        std::cout << " ------------------------------- " << "\n";
+        for (int y = playerPosY - 7; y <= playerPosY + 7; y++) {
+            std::cout << '|';
             for (int x = playerPosX - 15; x <= playerPosX + 15; x++) {
                 if (y < 0 || y >= 100 || x < 0 || x >= 100) {
                     std::cout << ' ';
@@ -588,8 +590,10 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
                     SetConsoleTextAttribute(hConsole, 7);
                 }
             }
+            std::cout << '|';
             std::cout << '\n';
         }
+        std::cout << " ------------------------------- " << "\n";
     }
     else {
         int torchDist = 5;

@@ -40,6 +40,7 @@ private:
     Weapon* currentWeapon;
 
     bool skillTreeOpen;
+    int statPoints;
 
 
     int CRITRate, CRITDMG, strength;
@@ -66,10 +67,14 @@ public:
     void setCurrentEnemy(Entity* specifiedEnemy);
     bool getJustLeftCombat();
     void setJustLeftCombat(bool justLeftCombat);
-    bool checkSkillTreeOpen();
 
     Weapon* getCurrentWeapon();
     void setCurrentWeapon(Weapon* weapon);
+
+    bool checkSkillTreeOpen();
+    void setSkillTreeOpen(bool skillTreeOpen);
+    int getStatPoints();
+    void setStatPoints(int statPoints);
 
 
     int getInventoryIndex();

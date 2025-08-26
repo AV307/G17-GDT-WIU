@@ -186,6 +186,51 @@ void Game::doTurn(CombatSystem combatsystem)
     plr->updateStats();
 
 
+    
+    // Skill Tree Function
+    if (plr->checkSkillTreeOpen()) {
+        int HPStat, ATKStat, DEFStat, AvailablePts;
+        HPStat = 0;
+        ATKStat = 0;
+        DEFStat = 0;
+        AvailablePts = plr->getStatPoints();
+
+        while (plr->checkSkillTreeOpen() && AvailablePts > 0) {
+            std::cout << "// +---------------------------------------------------+ //" << std::endl;
+            std::cout << "// + HP Stats: " << HPStat << std::endl;
+            std::cout << "// + ATK Stats: " << ATKStat << std::endl;
+            std::cout << "// + DEF Stats: " << DEFStat << std::endl;
+            std::cout << "// +---------------------------------------------------+ //" << std::endl;
+            std::cout << "// + Available Points: " << AvailablePts << std::endl;
+            std::cout << "// +---------------------------------------------------+ //" << std::endl;
+
+            int choice = _getch();
+            switch (choice) {
+            case '1':
+                HPStat++;
+                AvailablePts--;
+                plr->setStatPoints(AvailablePts);
+                plr->setHealth(plr->getHealth() + 10);
+                break;
+            case '2':
+                ATKStat++;
+                AvailablePts--;
+                plr->setStatPoints(AvailablePts);
+                plr->setAttack(plr->getAttack() + 5);
+                break;
+            case '3':
+                DEFStat++;
+                AvailablePts--;
+                plr->setStatPoints(AvailablePts);
+                plr->setDefense(plr->getDefense() + 5);
+                break;
+            default:
+                plr->setSkillTreeOpen(false);
+                break;
+            }
+        }
+    }
+
     // Entering Combat System Check and Trigger
     plr->checkCollision(*plr->getCurrentEnemy());
 

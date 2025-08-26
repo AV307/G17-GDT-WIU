@@ -296,7 +296,7 @@ void Stage::updateStageArray(Player* player)
         bool blocked = false;
 
         if (type == WALL || type == BLOCKONPRESSUREPLATE|| (type == DOOR && toggled == false) || 
-			type == SWITCH || type == CHEST || type == BREAKABLEWALL || type == KEYDOOR ||
+			type == SWITCH || type == CHEST || type == BREAKABLEWALL || type == KEYDOOR || type == TORCH ||
             stageArray[player->getYPos()][player->getXPos()] == '#') 
         {
             blocked = true;
@@ -595,7 +595,7 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
                 for (int i = 0; i < torchCount && !visible; i++) {
                     int newX = x - torchX[i];
                     int newY = y - torchY[i];
-                    if (newX * newX + newY * newY <= torchDist * torchDist) {
+                    if (newX <= torchDist && newY <= torchDist) {
                         visible = true;
                         break;
                     }
@@ -612,6 +612,4 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
         }
     }
 }
-
-
 

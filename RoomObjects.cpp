@@ -347,7 +347,8 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             for (int i = 1; i < 30; i++) {
                 objects[20][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
-            objects[20][1] = new Object{ TORCH, 1, false, " ", ' ' };
+            objects[19][2] = new Object{ SWITCH, 1, false, " ", ' ' };
+            objects[21][2] = new Object{ TORCH, 1, false, " ", ' ' };
             break;
         case 4:
             break;

@@ -68,7 +68,7 @@ void Room::placeRoomObjects(char** roomArray)
 				roomArray[y][x] = '>';
 				break;
 			case TORCH:
-				roomArray[y][x] = '!';
+				roomArray[y][x] = 'i';
 				break;
 			default:
 				break;

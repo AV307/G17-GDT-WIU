@@ -189,13 +189,13 @@ void Game::doTurn(CombatSystem combatsystem)
     
     // Skill Tree Function
     if (plr->checkSkillTreeOpen()) {
-        int HPStat, ATKStat, DEFStat, AvailablePts;
-        HPStat = 0;
-        ATKStat = 0;
-        DEFStat = 0;
-        AvailablePts = plr->getStatPoints();
+        int HPStat, ATKStat, DEFStat, AvailablePts;                                                          // Declare variables
+        HPStat = 0;                                                                                          // Initialise
+        ATKStat = 0;                                                                                         // Initialise
+        DEFStat = 0;                                                                                         // Initialise
+        AvailablePts = plr->getStatPoints();                                                                 // Initialise variable with how many Stat Points the player has
 
-        while (plr->checkSkillTreeOpen() && AvailablePts > 0) {
+        while (plr->checkSkillTreeOpen() && AvailablePts > 0) {                                              // If the Skill Tree has been opened and the player has at least 1 Stat Point, then print the UI
             std::cout << "// +---------------------------------------------------+ //" << std::endl;
             std::cout << "// + HP Stats: " << HPStat << std::endl;
             std::cout << "// + ATK Stats: " << ATKStat << std::endl;
@@ -204,28 +204,28 @@ void Game::doTurn(CombatSystem combatsystem)
             std::cout << "// + Available Points: " << AvailablePts << std::endl;
             std::cout << "// +---------------------------------------------------+ //" << std::endl;
 
-            int choice = _getch();
+            int choice = _getch();                                                                           // Get player's input to decide where to put the Stat Point
             switch (choice) {
             case '1':
                 HPStat++;
                 AvailablePts--;
                 plr->setStatPoints(AvailablePts);
-                plr->setHealth(plr->getHealth() + 10);
+                plr->setHealth(plr->getHealth() + 10);                                                       // Player HP + 10 for every Stat Point
                 break;
             case '2':
                 ATKStat++;
                 AvailablePts--;
                 plr->setStatPoints(AvailablePts);
-                plr->setAttack(plr->getAttack() + 5);
+                plr->setAttack(plr->getAttack() + 5);                                                        // Player ATK + 5 for every Stat Point
                 break;
             case '3':
                 DEFStat++;
                 AvailablePts--;
                 plr->setStatPoints(AvailablePts);
-                plr->setDefense(plr->getDefense() + 5);
+                plr->setDefense(plr->getDefense() + 5);                                                      // Player DEF + 5 for every Stat Point
                 break;
             default:
-                plr->setSkillTreeOpen(false);
+                plr->setSkillTreeOpen(false);                                                                // Any other key, close the Skill Tree
                 break;
             }
         }

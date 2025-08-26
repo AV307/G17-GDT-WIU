@@ -379,7 +379,6 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[8][7] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
             objects[13][22] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
             objects[11][17] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
-            objects[25][28] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
 
             objects[12][11] = new Object{ SWITCH, 1, false, " ", ' ' };
             objects[15][2] = new Object{ DOOR, 1, false, " ", ' ' };
@@ -408,7 +407,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
                 objects[20][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
             objects[19][2] = new Object{ SWITCH, 1, false, " ", ' ' };
-            objects[21][2] = new Object{ TORCH, 1, false, " ", ' ' };
+            objects[21][2] = new Object{ MEGATORCH, 1, false, " ", ' ' };
             break;
         case 4:
             break;

@@ -294,17 +294,14 @@ void Game::restartStage(int currentStage)
     std::cout << "Stage " << currentStage << " has been restarted." << std::endl;
 }
 
-void Game::advanceStage()
-{
+void Game::advanceStage() {
+    delete stage;
     currentStage++;
-
-    if (stage != nullptr) {
-        delete stage;
-        stage = nullptr;
-    }
-
     stage = new Stage(this, plr);
+    stage->updateStageArray(plr, this);
 }
+
+
 
 
 // Update highest stage reached

@@ -285,13 +285,6 @@ void Stage::updateStageArray(Player* player)
         int roomX = player->getXPos() - rooms[roomIndex]->getRoomTopLeftY();
         int roomY = player->getYPos() - rooms[roomIndex]->getRoomTopLeftX();
 
-        std::cout << "Player (" << player->getXPos() << "," << player->getYPos()
-            << ") in room " << roomIndex
-            << " TL=(" << rooms[roomIndex]->getRoomTopLeftY()
-            << "," << rooms[roomIndex]->getRoomTopLeftX()
-            << ") size=" << rooms[roomIndex]->getRoomWidth()
-            << "x" << rooms[roomIndex]->getRoomHeight() << "\n";
-
         type = objects->getObjectType(roomX, roomY);
         toggled = objects->getObjectToggle(roomX, roomY);
 
@@ -509,6 +502,24 @@ void Stage::updateStageArray(Player* player)
                     (toggle) ? stageArray[stageY][stageX] = ' ' : stageArray[stageY][stageX] = '+';
                 }
             }
+        }
+
+        player->setXPos(playerXPos);
+        player->setYPos(playerYPos);
+
+        previousTile = stageArray[playerYPos][playerXPos];
+
+        stageArray[playerYPos][playerXPos] = 'P';
+    }
+    else {
+        bool blocked = false;
+        if (stageArray[player->getYPos()][player->getXPos()] == '#') {
+            blocked = true;
+        }
+
+        if (blocked == false) {
+            playerXPos = player->getXPos();
+            playerYPos = player->getYPos();
         }
 
         player->setXPos(playerXPos);

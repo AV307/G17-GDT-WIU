@@ -20,12 +20,12 @@ Weapon::~Weapon()
 
 int Weapon::getCritRate() const
 {
-	return 0;
+	return critRate;
 }
 
 int Weapon::getCritDamage() const
 {
-	return 0;
+	return critDamage;
 }
 
 

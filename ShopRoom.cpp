@@ -1,5 +1,6 @@
 #include "ShopRoom.h"
 #include "Player.h"
+#include <conio.h>
 
 //Ang Zhi En 252317H
 //Constructor for ShopRoom, defines position and sets up room
@@ -24,6 +25,7 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
 
     //Benjamin 250572M 
     // Initialize shop items (weapons)
+    // Name, Atk buff, Cr buff, Cd buff;
     shopInventory[0] = new Weapon("Sword", 10, 0, 0);
     shopInventory[1] = new Weapon("Mace", 10, 0, 20);
     shopInventory[2] = new Weapon("Scythe", 15, 0, 0);
@@ -70,6 +72,8 @@ char** ShopRoom::getShopRoomArray()
 void ShopRoom::showShopMenu(Player* player) {
     int key;        // store _getch() safely in int
     char choice;
+    const string itemSelection[4] = {"Armour", "Weapon", "Potion", "Artifact"};
+    string currentSelection = itemSelection[0];
 
     while (true) {
         system("cls");  // clear console
@@ -96,7 +100,7 @@ void ShopRoom::showShopMenu(Player* player) {
             "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
             "==================================================================================================\n"
             "= --------------------- ------------------------ ------------------------ ---------------------- =\n"
-            "= |      Armour       | |        Weapon        | |        Potion        | |      Artifact      | =\n"
+            "= |      " << itemSelection[0] << "       | |        " << itemSelection[1] <<  "        | |        " << itemSelection[2] << "        | |      " << itemSelection[3] << "      | =\n"
             "= --------------------- ------------------------ ------------------------ ---------------------- =\n"
             "==================================================================================================\n"
             "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";

@@ -299,10 +299,26 @@ void Game::advanceStage() {
     currentStage++;
     stage = new Stage(this, plr);
     stage->updateStageArray(plr, this);
+
+    switch (currentStage) {
+    case 1:
+        plr->setPosition(38, 86);
+        break;
+    case 2:
+        plr->setPosition(38, 86);
+        break;
+    case 3:
+        plr->setPosition(38, 86);
+        break;
+    case 4:
+        plr->setPosition(38, 86);
+        break;
+    default:
+        plr->setPosition(38, 86);
+        break;
+    }
+
 }
-
-
-
 
 // Update highest stage reached
 void Game::getHighestStage(int currentStage)

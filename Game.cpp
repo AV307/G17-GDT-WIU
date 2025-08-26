@@ -302,19 +302,24 @@ void Game::advanceStage() {
 
     switch (currentStage) {
     case 1:
-        plr->setPosition(38, 86);
+        plr->setXPos(38);
+        plr->setYPos(86);
         break;
     case 2:
-        plr->setPosition(38, 86);
+        plr->setXPos(38);
+        plr->setYPos(86);
         break;
     case 3:
-        plr->setPosition(38, 86);
+        plr->setXPos(38);
+        plr->setYPos(86);
         break;
     case 4:
-        plr->setPosition(38, 86);
+        plr->setXPos(38);
+        plr->setYPos(86);
         break;
     default:
-        plr->setPosition(38, 86);
+        plr->setXPos(38);
+        plr->setYPos(86);
         break;
     }
 

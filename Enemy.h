@@ -1,7 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include <cstdlib>
-#include<string>
+#include <string>
 using namespace std;
 
 class Game;
@@ -25,7 +25,7 @@ public:
     bool isBossDefeated() const;
     void calculateLoot(Game* game);
     int calculateDropChance(int mult);
-    bool isEnemyThere(Player* player);
+    bool isEnemyThere(Player* player, int xPos, int yPos);
     pair<int, int> enemyPos(int enemyX, int enemyY);
 
     bool getSleepState();
@@ -35,9 +35,11 @@ public:
     int getAttack() const;
     int getDefense() const;
     int getXP() const;
+    string getEnemyType() const;
+    char getEnemyStatus() const;
 
-    int getEnemyXR() const;
-    int getEnemyYR() const;
+    int setEnemyXR(int x) const;
+    int setEnemyYR(int y) const;
 };
 
 

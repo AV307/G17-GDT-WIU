@@ -413,10 +413,10 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// (200 * 0.5) * 2     |      (ATK * DEF) * CRITDMG   =   200 Final Damage       |
 
 	// Damage Calculations
-	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                // If Player Doesn't Crit
-	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                            // If Player Does Crit
-	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                       // If Enemy Doesn't Crit
-	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                     // If Enemy Does Crit
+	int playerDamage = player.getAttack() - specifiedEnemy.getDefense();                                                                                       // If Player Doesn't Crit
+	int playerCritDamage = player.getAttack() * player.getCRITDMG() - specifiedEnemy.getDefense();                                                             // If Player Does Crit
+	int enemyDamage = specifiedEnemy.getAttack() - player.getDefense();                                                                                        // If Enemy Doesn't Crit
+	int enemyCritDamage = specifiedEnemy.getAttack() * specifiedEnemy.getCRITDMG() - player.getDefense();                                                      // If Enemy Does Crit
 
 	if (playerDamage < 0) {
 		playerDamage = 0;
@@ -434,15 +434,15 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// "Fight" Logic
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                            // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                             // If DEF <= ATK, Entity Final Damage is given value
 
 			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
 				if (specifiedEnemy.getHealth() > 0) {
 					if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-						player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(player.getHealth() - (enemyDamage));                                                                                  // If DEF <= ATK, Entity Final Damage is given value
 					}
 					else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                              // If DEF <= ATK, Entity Final Damage is given value
 					}
 				}
 			}
@@ -456,15 +456,15 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	}
 	else if (critPlayerDeterminant <= player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                        // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                         // If DEF <= ATK, Entity Final Damage is given value
 
 			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
 				if (specifiedEnemy.getHealth() > 0) {
 					if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-						player.setHealth(player.getHealth() - (enemyDamage));                                                                                     // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(player.getHealth() - (enemyDamage));                                                                                  // If DEF <= ATK, Entity Final Damage is given value
 					}
 					else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                                 // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                              // If DEF <= ATK, Entity Final Damage is given value
 					}
 				}
 			}
@@ -594,6 +594,15 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 			setTextDialogue("Switched to " + itemName + " (+" + to_string(newWeapon->getAttackVal()) + " ATK, +" + to_string(newWeapon->getCritRateVal()) + " % Crit Rate, +" + to_string(newWeapon->getCritDamageVal()) + " % Crit DMG)");
 		}
 	}
+
+	// Based on the item's name from what has been chosen
+	// If the consumable chosen is a Heal/Strength/Weakening/Sleep:
+	// Effects to happen:
+	// Player's New HP = Player's Current HP + Heal Potion's Healing Effect Value           |   Consume   |   Delete and Free Inventory Slot
+	// Player's New ATK = Player's Current ATK + Strength Potion's Buffing Effect Value     |   Consume   |   Delete and Free Inventory Slot
+	// Enemy's New ATK = Enemy's Current ATK - Weakening Potion's Debuffing Effect Value    |   Consume   |   Delete and Free Inventory Slot
+	// Alters whether the enemy attacks when player Fight's in the next turn                |   Consume   |   Delete and Free Inventory Slot
+
 	if (itemName == "Heal Potion") {
 		player.setHealth(player.getHealth() + static_cast<Potion*>(chosen)->getHeal());
 		setTextDialogue("Used " + itemName + " (+" + to_string(static_cast<Potion*>(chosen)->getHeal()) + " HP)");

@@ -3,7 +3,6 @@
 #include <windows.h>
 #include <conio.h>
 
-HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 //Ang Zhi En 252317H
 //Constructor for ShopRoom, defines position and sets up room
@@ -73,6 +72,7 @@ char** ShopRoom::getShopRoomArray()
     //Benjamin 250572M
     //Displays the shop menu with items and prices
     void ShopRoom::showShopMenu(Player* player) {
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         int key;        // store _getch() safely in int
         char choice;
         const string itemSelection[4] = {"Armour", "Weapon", "Potion", "Artifact"};

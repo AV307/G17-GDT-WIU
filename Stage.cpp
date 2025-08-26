@@ -12,6 +12,8 @@
 
 #include <random>
 #include <iostream>
+#include <windows.h>
+
 
 //Ang Zhi En 252317H
 //set the stageArray, fill up stage area with all the rooms that are created for the currentStage
@@ -527,6 +529,8 @@ void Stage::printStage()
 }
 
 void Stage::printStageWithFOV(Player* player, int currentStage) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
     int playerPosX = player->getXPos();
     int playerPosY = player->getYPos();
     int dist = 5;
@@ -554,7 +558,9 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
                     std::cout << ' ';
                 }
                 else {
+                    SetConsoleTextAttribute(hConsole, (stageArray[y][x] == 'P') ? 1 : 7);
                     std::cout << stageArray[y][x];
+                    SetConsoleTextAttribute(hConsole, 7);
                 }
             }
             std::cout << '\n';
@@ -602,7 +608,9 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
                 }
 
                 if (visible) {
+                    SetConsoleTextAttribute(hConsole, (stageArray[y][x] == 'P') ? 1 : 7);
                     std::cout << stageArray[y][x];
+                    SetConsoleTextAttribute(hConsole, 7);
                 }
                 else {
                     std::cout << ' ';

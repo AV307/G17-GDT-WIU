@@ -15,7 +15,7 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
-    currentStage = 3;
+    currentStage = 2;
     plr = new Player;
     stage = new Stage(this, plr);
     stage->printStage(); //debugging code
@@ -142,10 +142,10 @@ void Game::doTurn(CombatSystem combatsystem)
         std::cout << "+------------------------------------------------------+" << '\n';
         std::cout << "| ";
         if (hasKey == true) {
-            std::cout << "                   Player Has Key" << "                    |";
+            std::cout << "                 Player Has Key" << "                      |";
         }
         else {
-            std::cout << "               Player does not have Key" << "              |";
+            std::cout << "              Player does not have Key" << "               |";
         }
 		std::cout << '\n';
         std::cout << "| ";
@@ -153,7 +153,7 @@ void Game::doTurn(CombatSystem combatsystem)
             std::cout << "                Player Has Hammer" << "                    |";
         }
         else {
-            std::cout << "            Player does not have Hammer" << "              |";
+            std::cout << "             Player does not have Hammer" << "             |";
         }
         std::cout << '\n';
         std::cout << "+------------+" << "+------------+" << "+------------+" << "+------------+" << '\n';

@@ -738,6 +738,7 @@ bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
 		while (player.getXP() > player.getThresholdXP()) {
 			player.setXP(player.getXP() - player.getThresholdXP());
 			player.setLvl(player.getLvl() + 1);
+			static_cast<Player&>(player).setStatPoints(static_cast<Player&>(player).getStatPoints() + 2);
 		}
 		static_cast<Player&>(player).setCombatIsWon(true);
 	}

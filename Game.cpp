@@ -294,6 +294,11 @@ void Game::restartStage(int currentStage)
     std::cout << "Stage " << currentStage << " has been restarted." << std::endl;
 }
 
+void Game::advanceStage()
+{
+    currentStage++;
+}
+
 
 // Update highest stage reached
 void Game::getHighestStage(int currentStage)

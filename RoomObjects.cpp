@@ -431,6 +431,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
         }
         break;
     case 'P': // portal room
+        objects[5][5] = new Object{ PORTAL, -1, false, " ", ' ' };
         break;
     case 'T': // treasure room
         break;

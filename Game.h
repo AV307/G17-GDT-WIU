@@ -19,6 +19,7 @@ public:
     int getCurrentStage();
 
     void restartStage(int currentStage);
+    void advanceStage();
 
 	void pauseGame();
 

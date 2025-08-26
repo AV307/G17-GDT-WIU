@@ -73,6 +73,9 @@ void Room::placeRoomObjects(char** roomArray)
 			case MEGATORCH:
 				roomArray[y][x] = '?';
 				break;
+			case PORTAL:
+				roomArray[y][x] = 'O';
+				break;
 			default:
 				break;
 			}

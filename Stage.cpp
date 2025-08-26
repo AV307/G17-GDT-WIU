@@ -440,6 +440,10 @@ void Stage::updateStageArray(Player* player)
             }
         }
 
+        if (type == PORTAL) {
+			game->advanceStage();
+        }
+
         // PRESSURE PLATE CODE
         for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
             for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {

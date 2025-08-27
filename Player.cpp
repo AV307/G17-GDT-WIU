@@ -25,7 +25,7 @@ Player::Player(){
 	inventoryIndex = 0;
 	menuIndex = 1;
 
-	hasKey = false;
+	hasKey = true;
 	hasHammer = false;
 
 	equippedWeapon = nullptr;
@@ -42,10 +42,11 @@ Player::Player(){
 	CRITRate = 25;
 	CRITDMG = 1.5;
 	attack = 15;
-	setXPos(50);
-	setYPos(73);
 
 	action = "Move";
+
+	setXPos(50);
+	setYPos(25);
 }
 
 Player::~Player() {

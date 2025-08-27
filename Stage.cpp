@@ -445,6 +445,21 @@ void Stage::updateStageArray(Player* player, Game* game)
 
         if (type == PORTAL) {
 			game->advanceStage();
+
+            switch (game->getCurrentStage()) {
+            case 1:
+                player->setXPos(38);
+                player->setYPos(86);
+                break;
+            case 2:
+                player->setXPos(38);
+                player->setYPos(86);
+                break;
+            case 3:
+                player->setXPos(38);
+                player->setYPos(86);
+                break;
+            }
         }
 
         // PRESSURE PLATE CODE

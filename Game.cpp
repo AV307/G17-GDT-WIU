@@ -15,7 +15,7 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
-    currentStage = 3;
+    currentStage = 1;
     plr = new Player;
     stage = new Stage(this, plr);
     stage->printStage(); //debugging code
@@ -295,34 +295,13 @@ void Game::restartStage(int currentStage)
 }
 
 void Game::advanceStage() {
-    delete stage;
     currentStage++;
+    delete stage;
     stage = new Stage(this, plr);
-    stage->updateStageArray(plr, this);
 
-    switch (currentStage) {
-    case 1:
-        plr->setXPos(38);
-        plr->setYPos(86);
-        break;
-    case 2:
-        plr->setXPos(38);
-        plr->setYPos(86);
-        break;
-    case 3:
-        plr->setXPos(38);
-        plr->setYPos(86);
-        break;
-    case 4:
-        plr->setXPos(38);
-        plr->setYPos(86);
-        break;
-    default:
-        plr->setXPos(38);
-        plr->setYPos(86);
-        break;
-    }
+    //system("cls");
 
+    //stage->updateStageArray(plr, this);
 }
 
 // Update highest stage reached

@@ -6,6 +6,7 @@ enum ObjectType {
 	SWITCH,
 	KEYDOOR,
 	DOOR,
+	BOSSDOOR,
 	STEPBUTTON,
 	TELEPORTER1,
 	TELEPORTER2,
@@ -18,6 +19,7 @@ enum ObjectType {
 	RIGHTDIRECTIONALDOOR,
 	PRESSUREPLATE,
 	BLOCKONPRESSUREPLATE,
+	SIGN,
 
 	MOVEABLEBLOCK, // for puzzles
 	BREAKABLEWALL,
@@ -44,6 +46,9 @@ struct Object
 	// For CHEST
 	std::string itemName;
 	char itemType;
+
+	// For SIGN
+	std::string message = " ";
 };
 
 class RoomObjects
@@ -64,6 +69,7 @@ public:
 	bool getObjectToggle(int xCoord, int yCoord) const;
 	std::string getObjectItemName(int xCoord, int yCoord) const;
 	char getObjectItemType(int xCoord, int yCoord) const;
+	std::string getObjectMessage(int xCoord, int yCoord) const;
 
 	void setObjectToggle(int xCoord, int yCoord, bool toggle);
 	void setObjectType(int xCoord, int yCoord, ObjectType type);

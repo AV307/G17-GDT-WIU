@@ -227,6 +227,21 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[28][23] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
 
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
+
+            objects[23][4] = new Object{ SIGN, -1, false, " ", ' ', 
+                "Hey! Welcome to the dungeon!" };
+            objects[21][15] = new Object{ SIGN, -1, false, " ", ' ',
+                "You will find these blocks laying around. Push them onto those buttons on the floor!" };
+            objects[26][15] = new Object{ SIGN, -1, false, " ", ' ',
+                "Levers control doors, interact with them to open and close doors!" };
+            objects[16][15] = new Object{ SIGN, -1, false, " ", ' ',
+                "Teleporters bring you to another location. You will have to find the right path through these teleporters. Third time's the charm!" };
+            objects[2][14] = new Object{ SIGN, -1, false, " ", ' ',
+                "You will need a key to open that door. Try searching the right side." };
+            objects[27][25] = new Object{ SIGN, -1, false, " ", ' ',
+                "You cannot push multiple blocks at a time. Good luck with this small puzzle!" };
+            objects[6][8] = new Object{ SIGN, -1, false, " ", ' ',
+                "Every room has an artifact, something you can collect for achievements. These artifacts will have additional challenges in order to get them." };
             break;
         case 2:
             // VERTICAL WALLS
@@ -755,7 +770,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[24][26] = new Object{ CHEST, -1, false, "Art3", 'A' };
             objects[28][21] = new Object{ CHEST, -1, false, "Rubber Duck", 'A' };
 
-            objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
+            objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' '};
             break;
         case 4:
             break;
@@ -781,10 +796,11 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
 
         for (int i = 3; i < 8; i++)
         {
-            objects[10][i] = new Object{ SPACE, -1, false, " ", ' ' };
+            objects[10][i] = new Object{ BOSSDOOR, -1, false, " ", ' ' };
         }
         break;
     case 'T': // treasure room
+        objects[15][15] = new Object{ CHEST, -1, false, " ", 'I' };
         break;
     case 'C': // corridor room
         // creates empty room with SPACE
@@ -885,6 +901,15 @@ char RoomObjects::getObjectItemType(int column, int row) const
         return obj->itemType;
     }
     return ' ';
+}
+
+std::string RoomObjects::getObjectMessage(int column, int row) const
+{
+    Object* obj = objects[row][column];
+    if (obj != nullptr) {
+        return obj->message;
+    }
+    return " ";
 }
 
 //Jayren 250920U

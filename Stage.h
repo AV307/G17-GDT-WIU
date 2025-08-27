@@ -15,7 +15,10 @@ private:
     Room* rooms[5];
     Game* game;
 
+    bool bossDefeated;
+
     char previousTile;
+    std::string signMessage;
 
     std::random_device rd;
     std::mt19937 gen;
@@ -36,6 +39,8 @@ public:
     Enemy enemyInstance;
     int getRoomX() { return roomX; };
     int getRoomY() { return roomY; };
+
+    void setBossDefeated(bool val);
 };
 
 class EnemyManager {

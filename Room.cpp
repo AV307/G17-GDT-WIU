@@ -76,6 +76,12 @@ void Room::placeRoomObjects(char** roomArray)
 			case PORTAL:
 				roomArray[y][x] = 'O';
 				break;
+			case BOSSDOOR:
+				roomArray[y][x] = 'X';
+				break;
+			case SIGN:
+				roomArray[y][x] = 'S';
+				break;
 			default:
 				break;
 			}

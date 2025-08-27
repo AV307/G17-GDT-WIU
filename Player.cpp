@@ -61,18 +61,6 @@ Player::~Player() {
 	delete equippedArmour;
 }
 
-//Caleb 250601F
-//Check for specific enemy present
-void Player::checkCollision(Enemy* enemyList[], int maxEnemy, mainRoom* room) {
-	for (int w = 0; w < maxEnemy; w++) {
-		if (enemyList[w] && enemyList[w]->isEnemyThere(this, room->getX(), room->getY())){ 
-			std::cout << "Encountered \n";
-			return;
-		}
-		return;
-	}
-}
-
 //Jayren 250920U
 //Checks for player input and gets input key. Determines whether to handle inventory movement or player movement
 void Player::doAction() {
@@ -116,20 +104,30 @@ void Player::doAction() {
 	if (inventoryOpen) {
 		handleInventory(input);
 	}
-	else if (shopOpen) {
-		/*printShopInventory();*/
-	}
+	//else if (shopOpen) {
+	//	/*printShopInventory();*/
+	//}
 	else {
 		handleMovement(input);
-
+		for (int m = 0; m < mainRoom::maxEnemy; m++) {
+			if (Enemy::getInstance().enemy[m] != nullptr) {
+				if (Enemy::getInstance().enemy[m]->isEnemyThere(this, m)) {
+					std::cout << Enemy::getInstance().enemy[m]->isEnemyThere(this, m);
+					currentEnemy = Enemy::getInstance().enemy[m];
+					isInCombat = true;
+				}
+				else {
+					isInCombat = false;
+				}
+			}
+			else if (Enemy::getInstance().enemy[m] == nullptr) {
+				std::cout << "YOUWYREOUR" << std::endl;
+			}
+		}
+		//checkCollision(mainRoom::getEnemyList(), rooms[0]);
 		//Enemy** enemyList = room->getEnemyList();           
 		//int maxEnemy = room->getMaxEnemy();                 
 
-		//for (int c = 0; c < maxEnemy; c++) {
-		//	if (enemyList[c] && this != nullptr) {
-		//		this->checkCollision(room->getEnemyList(), room->getMaxEnemy(), room);
-		//	}
-		//}
 
 	}
 }

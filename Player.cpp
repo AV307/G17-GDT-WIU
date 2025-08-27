@@ -27,7 +27,7 @@ Player::Player(){
 	inventoryIndex = 0;
 	menuIndex = 1;
 
-	hasKey = true;
+	hasKey = false;
 	hasHammer = false;
 
 	equippedWeapon = nullptr;

@@ -189,6 +189,9 @@ void Stage::setStageArray(int currentStage, char room1, char room2, Player* play
     int playerXPos = player->getXPos();
     int playerYPos = player->getYPos();
 
+	player->setHammer(false);
+	player->setKey(false);
+
     stageArray[playerYPos][playerXPos] = 'P';
 }
 

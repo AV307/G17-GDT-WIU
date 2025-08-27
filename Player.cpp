@@ -5,6 +5,8 @@
 #include "Potion.h"
 #include "Entity.h"
 #include "Enemy.h"
+#include "mainRoom.h"
+#include "Stage.h"
 
 #include <Windows.h>
 #include <conio.h>
@@ -59,6 +61,18 @@ Player::~Player() {
 	delete equippedArmour;
 }
 
+//Caleb 250601F
+//Check for specific enemy present
+void Player::checkCollision(Enemy* enemyList[], int maxEnemy, mainRoom* room) {
+	for (int w = 0; w < maxEnemy; w++) {
+		if (enemyList[w] && enemyList[w]->isEnemyThere(this, room->getX(), room->getY())){ 
+			std::cout << "Encountered \n";
+			return;
+		}
+		return;
+	}
+}
+
 //Jayren 250920U
 //Checks for player input and gets input key. Determines whether to handle inventory movement or player movement
 void Player::doAction() {
@@ -107,6 +121,16 @@ void Player::doAction() {
 	}
 	else {
 		handleMovement(input);
+
+		//Enemy** enemyList = room->getEnemyList();           
+		//int maxEnemy = room->getMaxEnemy();                 
+
+		//for (int c = 0; c < maxEnemy; c++) {
+		//	if (enemyList[c] && this != nullptr) {
+		//		this->checkCollision(room->getEnemyList(), room->getMaxEnemy(), room);
+		//	}
+		//}
+
 	}
 }
 

@@ -13,7 +13,7 @@
 using namespace std;
 
 CombatSystem::CombatSystem() {
-	turnsInBattle = 0;
+	textDialogue = "   ";
 }
 
 CombatSystem::~CombatSystem() {
@@ -531,7 +531,6 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 				enemyDamage = 0;
 				enemyCritDamage = 0;
 			}
-			turnsInBattle++;
 		}
 	}
 	else if (critPlayerDeterminant <= player.getCRITRate()) {
@@ -553,7 +552,6 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 				enemyDamage = 0;
 				enemyCritDamage = 0;
 			}
-			turnsInBattle++;
 		}
 	}
 

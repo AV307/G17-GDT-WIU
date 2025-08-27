@@ -371,70 +371,73 @@ void Stage::updateStageArray(Player* player, Game* game)
                     int roomXPos = xPos - rooms[roomIndex]->getRoomTopLeftY();
                     int roomYPos = yPos - rooms[roomIndex]->getRoomTopLeftX();
 
-                    ObjectType interactType = objects->getObjectType(roomXPos, roomYPos);
+                    if (roomXPos >= 0 && roomXPos < rooms[roomIndex]->getRoomWidth() && roomYPos >= 0 && roomYPos < rooms[roomIndex]->getRoomHeight()) {
 
-                    switch (interactType) {
+                        ObjectType interactType = objects->getObjectType(roomXPos, roomYPos);
 
-                    case SWITCH: {
-                        int switchID = objects->getObjectId(roomXPos, roomYPos);
-                        for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
-                            for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
-                                if (objects->getObjectType(x, y) == DOOR &&
-                                    objects->getObjectId(x, y) == switchID)
-                                {
-                                    bool doorToggle = objects->getObjectToggle(x, y);
-                                    objects->setObjectToggle(x, y, !doorToggle);
+                        switch (interactType) {
+
+                        case SWITCH: {
+                            int switchID = objects->getObjectId(roomXPos, roomYPos);
+                            for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
+                                for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
+                                    if (objects->getObjectType(x, y) == DOOR &&
+                                        objects->getObjectId(x, y) == switchID)
+                                    {
+                                        bool doorToggle = objects->getObjectToggle(x, y);
+                                        objects->setObjectToggle(x, y, !doorToggle);
+                                    }
                                 }
                             }
-                        }
-                        break;
-                    }
-                    case CHEST: {
-                        std::string itemName = objects->getObjectItemName(roomXPos, roomYPos);
-                        char itemType = objects->getObjectItemType(roomXPos, roomYPos);
-
-                        switch (itemType) {
-                        case 'H':
-                            player->setHammer(true);
-                            break;
-                        case 'K':
-                            player->setKey(true);
-                            break;
-                        case 'A':
-                            player->addArtifact(itemName);
                             break;
                         }
-                        objects->setObjectType(roomXPos, roomYPos, SPACE);
-                        stageArray[yPos][xPos] = ' ';
+                        case CHEST: {
+                            std::string itemName = objects->getObjectItemName(roomXPos, roomYPos);
+                            char itemType = objects->getObjectItemType(roomXPos, roomYPos);
 
-                        break;
-                    }
-                    case BREAKABLEWALL: {
-                        bool hasHammer = player->checkHasHammer();
-                        if (hasHammer) {
+                            switch (itemType) {
+                            case 'H':
+                                player->setHammer(true);
+                                break;
+                            case 'K':
+                                player->setKey(true);
+                                break;
+                            case 'A':
+                                player->addArtifact(itemName);
+                                break;
+                            }
                             objects->setObjectType(roomXPos, roomYPos, SPACE);
                             stageArray[yPos][xPos] = ' ';
+
+                            break;
                         }
-                        break;
-                    }
-                    case KEYDOOR: {
-                        bool hasKey = player->checkHasKey();
-                        if (hasKey) {
-                            objects->setObjectType(roomXPos, roomYPos, SPACE);
-                            stageArray[yPos][xPos] = ' ';
+                        case BREAKABLEWALL: {
+                            bool hasHammer = player->checkHasHammer();
+                            if (hasHammer) {
+                                objects->setObjectType(roomXPos, roomYPos, SPACE);
+                                stageArray[yPos][xPos] = ' ';
+                            }
+                            break;
                         }
-                        break;
-                    }
-                    case TORCH: {
-                        objects->setObjectToggle(roomXPos, roomYPos, true);
-                        break;
-                    }
-                    case MEGATORCH: {
-                        objects->setObjectToggle(roomXPos, roomYPos, true);
-                        break;
-                    }
-                    default:
-                        break;
+                        case KEYDOOR: {
+                            bool hasKey = player->checkHasKey();
+                            if (hasKey) {
+                                objects->setObjectType(roomXPos, roomYPos, SPACE);
+                                stageArray[yPos][xPos] = ' ';
+                            }
+                            break;
+                        }
+                        case TORCH: {
+                            objects->setObjectToggle(roomXPos, roomYPos, true);
+                            break;
+                        }
+                        case MEGATORCH: {
+                            objects->setObjectToggle(roomXPos, roomYPos, true);
+                            break;
+                        }
+                        default:
+                            break;
+                        }
                     }
                 }
             }
@@ -562,10 +565,9 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
 
     int playerPosX = player->getXPos();
     int playerPosY = player->getYPos();
-    int dist = 5;
 
     int size = sizeof(rooms) / sizeof(rooms[0]);
-    int roomIndex = 0;
+    int roomIndex = -1;
 
     for (int i = 0; i < size; i++) {
         if (player->getYPos() >= rooms[i]->getRoomTopLeftX() &&
@@ -578,9 +580,117 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
         }
     }
 
-    RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
+    if (roomIndex != -1) {
+        RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
 
-    if (currentStage != 3) {
+        if (currentStage != 3) {
+            std::cout << " ------------------------------- " << "\n";
+            for (int y = playerPosY - 7; y <= playerPosY + 7; y++) {
+                std::cout << '|';
+                for (int x = playerPosX - 15; x <= playerPosX + 15; x++) {
+                    if (y < 0 || y >= 100 || x < 0 || x >= 100) {
+                        std::cout << ' ';
+                    }
+                    else {
+                        SetConsoleTextAttribute(hConsole, (stageArray[y][x] == 'P') ? 10 : 7);
+                        std::cout << stageArray[y][x];
+                        SetConsoleTextAttribute(hConsole, 7);
+                    }
+                }
+                std::cout << '|';
+                std::cout << '\n';
+            }
+            std::cout << " ------------------------------- " << "\n";
+        }
+        else {
+            if (roomIndex == 0) {
+                int torchDist = 3;
+
+                int torchX[30];
+                int torchY[30];
+                int torchCount = 0;
+
+                for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
+                    for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
+                        if (objects->getObjectType(x, y) == TORCH && objects->getObjectToggle(x, y)) {
+                            torchX[torchCount] = x + rooms[roomIndex]->getRoomTopLeftY();
+                            torchY[torchCount] = y + rooms[roomIndex]->getRoomTopLeftX();
+                            torchCount++;
+                        }
+                    }
+                }
+
+                std::cout << " ------------------------------- " << "\n";
+                for (int y = playerPosY - 7; y <= playerPosY + 7; y++) {
+                    std::cout << '|';
+                    for (int x = playerPosX - 15; x <= playerPosX + 15; x++) {
+                        bool visible = false;
+                        for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
+                            for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
+                                if (objects->getObjectType(x, y) == MEGATORCH && objects->getObjectToggle(x, y)) {
+                                    visible = true;
+                                }
+                            }
+                        }
+
+                        if (x == playerPosX && y == playerPosY) {
+                            visible = true;
+                        }
+
+                        for (int i = 0; i < torchCount && !visible; i++) {
+                            if (x == torchX[i] && y == torchY[i]) {
+                                visible = true;
+                                break;
+                            }
+                        }
+
+                        for (int i = 0; i < torchCount && !visible; i++) {
+                            int newX = abs(x - torchX[i]);
+                            int newY = abs(y - torchY[i]);
+                            if (newX <= torchDist && newY <= torchDist) {
+                                visible = true;
+                                break;
+                            }
+                        }
+
+                        if (objects)
+
+                            if (visible) {
+                                SetConsoleTextAttribute(hConsole, (stageArray[y][x] == 'P') ? 10 : 7);
+                                std::cout << stageArray[y][x];
+                                SetConsoleTextAttribute(hConsole, 7);
+                            }
+                            else {
+                                std::cout << ' ';
+                            }
+                    }
+                    std::cout << '|';
+                    std::cout << '\n';
+                }
+                std::cout << " ------------------------------- " << "\n";
+            }
+            else {
+                std::cout << " ------------------------------- " << "\n";
+                for (int y = playerPosY - 7; y <= playerPosY + 7; y++) {
+                    std::cout << '|';
+                    for (int x = playerPosX - 15; x <= playerPosX + 15; x++) {
+                        if (y < 0 || y >= 100 || x < 0 || x >= 100) {
+                            std::cout << ' ';
+                        }
+                        else {
+                            SetConsoleTextAttribute(hConsole, (stageArray[y][x] == 'P') ? 10 : 7);
+                            std::cout << stageArray[y][x];
+                            SetConsoleTextAttribute(hConsole, 7);
+                        }
+                    }
+                    std::cout << '|';
+                    std::cout << '\n';
+                }
+                std::cout << " ------------------------------- " << "\n";
+            }
+        }
+    }
+    else {
         std::cout << " ------------------------------- " << "\n";
         for (int y = playerPosY - 7; y <= playerPosY + 7; y++) {
             std::cout << '|';
@@ -592,72 +702,6 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
                     SetConsoleTextAttribute(hConsole, (stageArray[y][x] == 'P') ? 10 : 7);
                     std::cout << stageArray[y][x];
                     SetConsoleTextAttribute(hConsole, 7);
-                }
-            }
-            std::cout << '|';
-            std::cout << '\n';
-        }
-        std::cout << " ------------------------------- " << "\n";
-    }
-    else {
-        int torchDist = 5;
-
-        int torchX[30];
-        int torchY[30];
-        int torchCount = 0;
-
-        for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
-            for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
-                if (objects->getObjectType(x, y) == TORCH && objects->getObjectToggle(x, y)) {
-                    torchX[torchCount] = x + rooms[roomIndex]->getRoomTopLeftY();
-                    torchY[torchCount] = y + rooms[roomIndex]->getRoomTopLeftX();
-                    torchCount++;
-                }
-            }
-        }
-
-        std::cout << " ------------------------------- " << "\n";
-        for (int y = playerPosY - dist; y <= playerPosY + dist; y++) {
-            for (int x = playerPosX - dist; x <= playerPosX + dist; x++) {
-                std::cout << '|';
-                bool visible = false;
-                for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
-                    for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {
-                        if (objects->getObjectType(x, y) == MEGATORCH && objects->getObjectToggle(x, y)) {
-                            visible = true;
-                        }
-                    }
-                }
-
-                if (x == playerPosX && y == playerPosY) {
-                    visible = true;
-                }
-
-                for (int i = 0; i < torchCount && !visible; i++) {
-                    if (x == torchX[i] && y == torchY[i]) {
-                        visible = true;
-                        break;
-                    }
-                }
-
-                for (int i = 0; i < torchCount && !visible; i++) {
-                    int newX = x - torchX[i];
-                    int newY = y - torchY[i];
-                    if (newX <= torchDist && newY <= torchDist) {
-                        visible = true;
-                        break;
-                    }
-                }
-
-                if (objects)
-
-                if (visible) {
-                    SetConsoleTextAttribute(hConsole, (stageArray[y][x] == 'P') ? 10 : 7);
-                    std::cout << stageArray[y][x];
-                    SetConsoleTextAttribute(hConsole, 7);
-                }
-                else {
-                    std::cout << ' ';
                 }
             }
             std::cout << '|';

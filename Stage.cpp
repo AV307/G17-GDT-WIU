@@ -181,15 +181,13 @@ void Stage::setStageArray(int currentStage, char room1, char room2, Player* play
         player->setYPos(86);
         break;
     case 3:
-        player->setXPos(38);
-        player->setYPos(86);
+        player->setXPos(50);
+        player->setYPos(73);
         break;
     }
 
     int playerXPos = player->getXPos();
     int playerYPos = player->getYPos();
-
-	std::cout << playerXPos << " " << playerYPos << std::endl;
 
     stageArray[playerYPos][playerXPos] = 'P';
 }

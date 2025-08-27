@@ -347,26 +347,26 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 			}
 			cout << "Enemy HP: " << currentEnemyHealth;
 			if (specifiedEnemy.getHealth() < 10) {                      // when Enemy Health is 1 digits
-				for (int i = 0; i < 35 - 7 - 13; i++) {
+				for (int i = 0; i < 35 - 17 - 3; i++) {
 					cout << " ";
 				}
 			}
 			else if (specifiedEnemy.getHealth() > 9) {                  // when Enemy Health is 2 digits
-				for (int i = 0; i < 35 - 7 - 13; i++) {
+				for (int i = 0; i < 35 - 17 - 4; i++) {
 					cout << " ";
 				}
 			}
 			else if (specifiedEnemy.getHealth() > 99) {                 // when Enemy Health is 3 digits
-				for (int i = 0; i < 35 - 7 - 15; i++) {
+				for (int i = 0; i < 35 - 17 - 5; i++) {
 					cout << " ";
 				}
 			}
 			else if (specifiedEnemy.getHealth() > 999) {                // when Enemy Health is 4 digits
-				for (int i = 0; i < 35 - 7 - 16; i++) {
+				for (int i = 0; i < 35 - 17 - 6; i++) {
 					cout << " ";
 				}
 			}
-			cout << "+ //" << endl;
+			cout << endl;
 		}
 	}
 	
@@ -522,7 +522,8 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	// "Fight" Logic
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			currentEnemyHealth -= ((playerDamage));                                                                             // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(currentEnemyHealth - (playerDamage));
+			/*currentEnemyHealth -= ((playerDamage));*/                                                                             // If DEF <= ATK, Entity Final Damage is given value
 
 			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
 				if (specifiedEnemy.getHealth() > 0) {

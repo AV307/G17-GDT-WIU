@@ -85,7 +85,7 @@ void Game::printBriefingMenu() {
     cout << "//                                                                                       //" << endl;
     cout << "// Are you ready to conquer the dungeon?                                                 //" << endl;
     cout << "//                                                                                       //" << endl;
-    cout << "//                            [ Double click '0' to continue ]                           //" << endl;
+    cout << "//                                [ Press '0' to continue ]                              //" << endl;
     cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
 }
 

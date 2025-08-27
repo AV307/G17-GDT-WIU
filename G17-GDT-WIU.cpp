@@ -14,19 +14,13 @@ int main()
         char proceed = _getch();
 
         if (proceed == '0') {
-            game.printBriefingMenu();
-            char proceed2 = _getch();
-            if (proceed2 == '0') {
-                while (true) {
-                    game.doTurn(CombatSystem);
-                }
-            }
-            else {
+            do {
                 game.printBriefingMenu();
-            }
-        }
-        else {
-            game.printStartMenu();
+            } while (proceed != '0');
+            
+            while (true) {
+                game.doTurn(CombatSystem);
+            };
         }
     } while (true);
 

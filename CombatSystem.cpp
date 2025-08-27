@@ -128,6 +128,9 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					if (i > 4) {
 						cout << R"(         \|/         )";
 					}
+					for (int j = 0; j < 27; j++) {
+						cout << ' ';
+					}
 				}
 				else if (specifiedEnemy.getEntityType() == "Aquatic") {
 					for (int j = 0; j < 28; j++) {
@@ -152,6 +155,9 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					}
 					if (i == 7) {
 						cout << R"(        """--"     )";
+					}
+					for (int j = 0; j < 28; j++) {
+						cout << ' ';
 					}
 				}
 				else if (specifiedEnemy.getEntityType() == "Vampire") {

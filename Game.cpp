@@ -290,7 +290,7 @@ void Game::doTurn(CombatSystem combatsystem)
     bool awaitingRunConfirm = false;
 
     int playerMayBeInCombat = rand() % 100 + 1;
-    if (playerMayBeInCombat < 101) {                                                                    // Player has 95% chance to avoid combat
+    if (playerMayBeInCombat < 95) {                                                                    // Player has 95% chance to avoid combat
         plr->setIsInCombat(false);
     }
     else {                 

@@ -30,6 +30,7 @@ public:
     //bool checkCollision(int xPos, int yPos, int currentRoom);
 
 	void printStageWithFOV(Player* player, int currentStage);
+    bool playerNearInteractable(Player* player);
     //debug
     void printStage();
     Enemy enemyInstance;

@@ -728,5 +728,58 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
         }
         std::cout << " ------------------------------- " << "\n";
     }
+
+    if (playerNearInteractable(player)) {
+        std::cout << "Press [SPACE] to interact" << "\n";
+    }
 }
 
+bool Stage::playerNearInteractable(Player* player) {
+    int px = player->getXPos();
+    int py = player->getYPos();
+
+    int size = sizeof(rooms) / sizeof(rooms[0]);
+    int roomIndex = -1;
+
+    // Find which room the player is in
+    for (int i = 0; i < size; i++) {
+        if (py >= rooms[i]->getRoomTopLeftX() &&
+            py < rooms[i]->getRoomTopLeftX() + rooms[i]->getRoomHeight() &&
+            px >= rooms[i]->getRoomTopLeftY() &&
+            px < rooms[i]->getRoomTopLeftY() + rooms[i]->getRoomWidth())
+        {
+            roomIndex = i;
+            break;
+        }
+    }
+
+    if (roomIndex == -1) return false;
+
+    RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
+
+    int offsetsX[4] = { -1, 1, 0, 0 };
+    int offsetsY[4] = { 0, 0, -1, 1 };
+
+    for (int i = 0; i < 4; i++) {
+        int nx = px + offsetsX[i];
+        int ny = py + offsetsY[i];
+
+        int roomX = nx - rooms[roomIndex]->getRoomTopLeftY();
+        int roomY = ny - rooms[roomIndex]->getRoomTopLeftX();
+
+        if (roomX < 0 || roomY < 0 ||
+            roomX >= rooms[roomIndex]->getRoomWidth() ||
+            roomY >= rooms[roomIndex]->getRoomHeight())
+        {
+            continue;
+        }
+
+        ObjectType type = objects->getObjectType(roomX, roomY);
+        if (type == SWITCH || type == CHEST || type == BREAKABLEWALL ||
+            type == KEYDOOR || type == TORCH || type == MEGATORCH)
+        {
+            return true;
+        }
+    }
+    return false;
+}

@@ -390,6 +390,87 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 
 
 
+void CombatSystem::printItemPVECategoryScreen() {
+	cout << "// +-----------------------------------------------------+ //" << endl;
+	cout << "// Which category of items would you like to look through? //" << endl;
+	cout << "// +-----------------------------------------------------+ //" << endl;
+	cout << "// 1.     Weapons                                        + //" << endl;
+	cout << "// 2.     Armours                                        + //" << endl;
+	cout << "// 3.     Consumables                                    + //" << endl;
+	cout << "// +-----------------------------------------------------+ //" << endl;
+	cout << "// Please press '1', '2' or '3' to decide the category     //" << endl;
+	cout << "// +-----------------------------------------------------+ //" << endl;
+}
+
+
+
+
+
+void CombatSystem::printItemPVEWeaponsScreen(Entity& player) {
+	cout << "// +-----------------------------------------------------+ //" << endl;
+	cout << "// You are currently looking through the Weapons Category  //" << endl;
+	cout << "// +-----------------------------------------------------+ //" << endl;
+	Item** weaponsList = static_cast<Player&>(player).getWeapons();
+	for (size_t i = 0; i < 9; i++) {
+		if (weaponsList[i] != nullptr) {
+			cout << i << ". " << weaponsList[i]->getName()
+				<< " (+" << weaponsList[i]->getAttackVal()
+				<< " ATK, +" << static_cast<Weapon*>(weaponsList[i])->getCritRateVal()
+				<< "% Crit Rate, +" << static_cast<Weapon*>(weaponsList[i])->getCritDamageVal()
+				<< "% Crit DMG)" << endl;
+		}
+		else {
+			cout << i << ". [Empty]" << endl;
+		}
+	}
+	cout << "// +-----------------------------------------------------+ //" << endl;
+}
+
+
+
+
+
+void CombatSystem::printItemPVEArmoursScreen(Entity& player) {
+	cout << "// +-----------------------------------------------------+ //" << endl;
+	cout << "// You are currently looking through the Armours Category  //" << endl;
+	cout << "// +-----------------------------------------------------+ //" << endl;
+	Item** armoursList = static_cast<Player&>(player).getArmours();
+	for (size_t i = 0; i < 9; i++) {
+		if (armoursList[i] != nullptr) {
+			cout << i << ". " << armoursList[i]->getName()
+				<< " (+" << armoursList[i]->getDefenseVal() << " DEF)" << endl;
+		}
+		else {
+			cout << i << ". [Empty]" << endl;
+		}
+	}
+	cout << "// +-----------------------------------------------------+ //" << endl;
+}
+
+
+
+
+
+void CombatSystem::printItemPVEConsumablesScreen(Entity& player) {
+	cout << "// +-----------------------------------------------------+ //" << endl;
+	cout << "// You are currently looking through the Potions Category  //" << endl;
+	cout << "// +-----------------------------------------------------+ //" << endl;
+	Item** consumablesList = static_cast<Player&>(player).getConsumables();
+	for (size_t i = 0; i < 9; i++) {
+		if (consumablesList[i] != nullptr) {
+			cout << i << ". " << consumablesList[i]->getName() << endl;
+		}
+		else {
+			cout << i << ". [Empty]" << endl;
+		}
+	}
+	cout << "// +-----------------------------------------------------+ //" << endl;
+}
+
+
+
+
+
 // +----------------------------------------------------------------------------------------------+ //
 // Function Name: fightPVE
 // Description: To carry out the "Fight" action between Player and Enemy
@@ -513,27 +594,34 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 // +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
-	bool openInventory = static_cast<Player&>(player).checkInventoryOpen();                                                   // may or may not use for UI purposes
 
+	printItemPVECategoryScreen();
 	Item** inventoryMenuArray = nullptr;                                                                                      // Create a double pointer currently pointing to nullptr
 	int menuIndex = _getch();                                                                                                 // Receive player's input
 
 	switch (menuIndex) {                                                                                                      // Based on Player's input
 	case '1':                                                                                                                 // If '1'
 		inventoryMenuArray = static_cast<Player&>(player).getWeapons();                                                       // Open Weapons Category, double pointer points to an array of pointers
+		printItemPVEWeaponsScreen(player);
 		break;
 	case '2':                                                                                                                 // If '2'
 		inventoryMenuArray = static_cast<Player&>(player).getArmours();                                                       // Open Armours Category, double pointer points to an array of pointers
+		printItemPVEArmoursScreen(player);
 		break;
 	case '3':                                                                                                                 // If '3'
 		inventoryMenuArray = static_cast<Player&>(player).getConsumables();                                                   // Open Consumable (Potions) Category, double pointer points to an array of pointers
+		printItemPVEConsumablesScreen(player);
 		break;
 	default:                                                                                                                  // If no valid input was given
 		inventoryMenuArray = static_cast<Player&>(player).getWeapons();                                                       // Open Weapons Category, double pointer points to an array of pointers
+		printItemPVEWeaponsScreen(player);
 		break;
 	}
 
 	int itemIndex = _getch() - '0';                                                                                           // Receive index of the Player's inventory in the chosen category in int instead of char
+	if (itemIndex < 0 || itemIndex > 9) {
+		return;
+	}
 	Item* chosen = inventoryMenuArray[itemIndex];                                                                             // To choose the item based on the index of the item in the inventory
 
 	if (chosen == nullptr) {                                                                                                  // If nothing was chosen/selected slot was empty

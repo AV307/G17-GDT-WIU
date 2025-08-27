@@ -19,7 +19,6 @@ public:
     int getMaxEnemy();
     int getX() const;
     int getY() const;
-    Enemy** getEnemyList();
-
+    Enemy* getEnemyList(int num); 
 };
 

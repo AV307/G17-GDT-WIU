@@ -1,8 +1,11 @@
 #pragma once
 #include "Entity.h"
+#include "Enemy.h"
+#include "mainRoom.h"
 #include "Item.h"
 #include "Weapon.h"
 #include "Armour.h"
+#include "Stage.h"
 
 class Player : public Entity
 {
@@ -80,6 +83,8 @@ public:
     void setSkillTreeOpen(bool skillTreeOpen);
     int getStatPoints();
     void setStatPoints(int statPoints);
+
+    void checkCollision(Enemy* enemyList[], int maxEnemy, mainRoom* room);
 
 
     int getInventoryIndex();

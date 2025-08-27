@@ -36,6 +36,59 @@ int Game::getCurrentStage()
     return currentStage;
 }
 
+void Game::printStartMenu() {
+    system("cls");
+
+    cout << "// +-------------------------------------------------------------------------------------------------------+ //" << endl;
+    cout << "// +-------------------------------------------------------------------------------------------------------+ //" << endl;
+    cout << "// +-------------------------------------------------------------------------------------------------------+ //" << endl;
+    cout << "//                                                                                                           //" << endl;
+    cout << "//                                        |>>>                     |>>>                                      //" << endl;
+    cout << "//                                        |                        |                                         //" << endl;
+    cout << "//                                    _  _|_  _                _  _|_  _                                     //" << endl;
+    cout << "//                                   |;|_|;|_|;|              |;|_|;|_|;|                                    //" << endl;
+    cout << R"(//                                   \\\\.  .  /              \\\\.  .  /                                    //)" << endl;
+    cout << R"(//                                    \\\\:.  /                \\\\:.  /                                     //)" << endl;
+    cout << "//                                     ||:   |                  ||:   |                                      //" << endl;
+    cout << "//                                     ||:.  |                  ||:.  |                                      //" << endl;
+    cout << "//                                     ||:  .|                  ||:  .|                                      //" << endl;
+    cout << "//                                     ||:   |                  ||:   |                                      //" << endl;
+    cout << "//                                     ||: , |        o         ||: , |                                      //" << endl;
+    cout << "//                                    _||_   |       <|>       _||_   |                                      //" << endl;
+    cout << R"(//               wWw   wWw            `---'`---'     / \       `---'`---'     wWw     wWw                    //)" << endl;
+    cout << "// +_______________________________________________________________________________________________________+ //" << endl;
+    cout << "// +                                                                                                       + //" << endl;
+    cout << "// +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ //" << endl;
+    cout << "// +wwwwwwwwwWwwwwwwWWwwwwWwwwwWwwwwwwwwwwwwwWWwwWwwwWwwwwwwwwwWwwwwwwwWWwwwwwwWwwWwwwWwwwWWwwwwwwwwWwwwwww+ //" << endl;
+    cout << "// +-----------------------------------------[ Press '0' to Start ]----------------------------------------+ //" << endl;
+    cout << "// +-------------------------------------------------------------------------------------------------------+ //" << endl;
+}
+
+void Game::printBriefingMenu() {
+    system("cls");
+
+    cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
+    cout << "// Welcome! You're a dungeon explorer about to start your conquest in this dangerous     //" << endl;
+    cout << "// dungeon ahead of you.                                                                 //" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "// Do beware though, you might not be alone in this journey, sneaky enemies are bound to //" << endl;
+    cout << "// creep up on you somewhere along the way                                               //" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "// Solve puzzles to get out of the room, there are a total of 5 different stages in this //" << endl;
+    cout << "// dungeon. Legend has it, a boss is waiting for you somewhere, but a sacred treasure    //" << endl;
+    cout << "// continues to pique your interest and curiousity                                       //" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "// Find gear in certain rooms and treasures, or purchase them with the shopkeepers       //" << endl;
+    cout << "// that are trapped in the dungeon, they'll be more than happt to assist you             //" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "// Levelling up will allow you to further buff your abilities by awarding you Stat Points//" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "// Are you ready to conquer the dungeon?                                                 //" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "//                                [ Press '0' to continue ]                              //" << endl;
+    cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
+}
+
 //Jayren 250920U
 //Does a turn. if inventory is open, gameplay pauses, player movement keys control the inventory menu
 void Game::doTurn(CombatSystem combatsystem)
@@ -194,6 +247,8 @@ void Game::doTurn(CombatSystem combatsystem)
         AvailablePts = plr->getStatPoints();                                                                 // Initialise variable with how many Stat Points the player has
 
         while (plr->checkSkillTreeOpen() && AvailablePts > 0) {                                              // If the Skill Tree has been opened and the player has at least 1 Stat Point, then print the UI
+            system("cls");
+
             std::cout << "// +---------------------------------------------------+ //" << std::endl;
             std::cout << "// + HP Stats: " << HPStat << std::endl;
             std::cout << "// + ATK Stats: " << ATKStat << std::endl;
@@ -231,21 +286,44 @@ void Game::doTurn(CombatSystem combatsystem)
 
     // Entering Combat System Check and Trigger
     plr->checkCollision(*plr->getCurrentEnemy());
+    bool playerDied = false;
+    bool awaitingRunConfirm = false;
 
     if (plr->getIsInCombat()) {                                                                        // If the player enters combat
-        combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                                 // Print the starting screen where all values are at base
         combatsystem.setTextDialogue("You've been ambushed!");
+        combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                                 // Print the starting screen where all values are at base
+        
         while (plr->getIsInCombat()) {                                                                 // While the player remains in combat
+
             char combatKeyPress = _getch();                                                            // To receive player's input during battle
+
+            if (awaitingRunConfirm) {
+                // Handle Y/N for run confirmation
+                if (combatKeyPress == 'y' || combatKeyPress == 'Y') {
+                    combatsystem.runPVE(*plr, *plr->getCurrentEnemy());
+                }
+                else {
+                    combatsystem.setTextDialogue("You snapped out of it, kept your head in the game.");
+                }
+                awaitingRunConfirm = false; // go back to normal combat
+                combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
+                continue;
+            }
+
             switch (combatKeyPress) {
             case 'f':
                 combatsystem.fightPVE(*plr, *plr->getCurrentEnemy());                                  // Activate Fight Function if player presses F
+                system("cls");
                 break;
             case 'i':
                 combatsystem.itemPVE(*plr, *plr->getCurrentEnemy());                                   // Activate Item Function if player presses I
+                system("cls");
                 break;
             case 'r':
-                combatsystem.runPVE(*plr, *plr->getCurrentEnemy());                                    // Activate Run Function if player presses R
+                combatsystem.setTextDialogue("You're attempting to run, but you won't go unnoticed. Press Y/N to confirm");                       // Alerts player of their current action, also telling them there are consequences
+                combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
+                awaitingRunConfirm = true;
+
                 break;
             default:
                 combatsystem.setTextDialogue("Invalid input!");
@@ -257,7 +335,7 @@ void Game::doTurn(CombatSystem combatsystem)
             if (combatsystem.winLoseCondition(*plr, *plr->getCurrentEnemy()) == true) {                // If Player dies or both Player and Enemy die
                 plr->setIsInCombat(false);
                 plr->setCombatIsWon(false);
-                restartStage(currentStage);                                                            // Restart the stage
+                playerDied = true;                                                                     // Restart the stage
             }                                                                                          // Else, do not end the program
 
             if (plr->getCombatIsWon()) {                                                               // Once a player has won, then end the combat system
@@ -267,6 +345,10 @@ void Game::doTurn(CombatSystem combatsystem)
             }
                                                                                                        // If none of these conditions are met, continue combat system until one happens
         }
+    }
+
+    if (playerDied == true) {
+        restartStage(currentStage);
     }
 }
 

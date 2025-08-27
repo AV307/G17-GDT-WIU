@@ -62,13 +62,20 @@ Enemy::Enemy(string type, char status) {
 		defense *= static_cast<int>(250 / 100);
 		break;
 	}
-	enemyXR = 1;
-	enemyYR = 28;
+	enemyXR = rand() % 27;
+	enemyYR = rand() % 27;
 	enemyPos(enemyYR, enemyXR);
 }
 
-bool Enemy::isEnemyThere(Player* player) {;
-	pair<int, int> enemyPosPair = enemyPos(enemyYR, enemyXR);
+int Enemy::setEnemyXR(int x) const {
+	return x;
+}
+int Enemy::setEnemyYR(int y) const {
+	return y;
+}
+
+bool Enemy::isEnemyThere(Player* player, int xPos, int yPos) {;
+	pair<int, int> enemyPosPair = enemyPos(setEnemyXR(xPos), setEnemyYR(yPos));
 	if (player != nullptr) {
 		if (player->getYPos() == enemyPosPair.first && player->getXPos() == enemyPosPair.second) {
 			std::cout << "Enemy encountered!\n";
@@ -82,7 +89,6 @@ bool Enemy::isEnemyThere(Player* player) {;
 		return false;
 	}
 }
-
 Enemy::~Enemy() {}
 
 //Caleb 250601F
@@ -181,11 +187,11 @@ int Enemy::getXP() const
 {
 	return baseEXP;
 }
-int Enemy::getEnemyXR() const {
-	return enemyXR;
+string Enemy::getEnemyType() const {
+	return enemyType;
 }
-int Enemy::getEnemyYR() const {
-	return enemyYR;
+char Enemy::getEnemyStatus() const {
+	return enemyStatus;
 }
 // DRAFT DESIGNS
 // vampire

@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Item.h"
 #include "CombatSystem.h"
+#include "Stage.h"
 
 #include <iostream>
 #include <string>

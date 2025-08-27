@@ -462,6 +462,7 @@ void Stage::updateStageArray(Player* player, Game* game)
 
         if (type == PORTAL) {
 			game->advanceStage();
+            return;
         }
 
         // PRESSURE PLATE CODE

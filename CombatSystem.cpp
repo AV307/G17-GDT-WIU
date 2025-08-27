@@ -410,7 +410,7 @@ void CombatSystem::printItemPVEWeaponsScreen(Entity& player) {
 	cout << "// You are currently looking through the Weapons Category  //" << endl;
 	cout << "// +-----------------------------------------------------+ //" << endl;
 	Item** weaponsList = static_cast<Player&>(player).getWeapons();
-	for (size_t i = 0; i < 9; i++) {
+	for (int i = 0; i < 9; i++) {
 		if (weaponsList[i] != nullptr) {
 			cout << i << ". " << weaponsList[i]->getName()
 				<< " (+" << weaponsList[i]->getAttackVal()
@@ -434,7 +434,7 @@ void CombatSystem::printItemPVEArmoursScreen(Entity& player) {
 	cout << "// You are currently looking through the Armours Category  //" << endl;
 	cout << "// +-----------------------------------------------------+ //" << endl;
 	Item** armoursList = static_cast<Player&>(player).getArmours();
-	for (size_t i = 0; i < 9; i++) {
+	for (int i = 0; i < 9; i++) {
 		if (armoursList[i] != nullptr) {
 			cout << i << ". " << armoursList[i]->getName()
 				<< " (+" << armoursList[i]->getDefenseVal() << " DEF)" << endl;
@@ -455,7 +455,7 @@ void CombatSystem::printItemPVEConsumablesScreen(Entity& player) {
 	cout << "// You are currently looking through the Potions Category  //" << endl;
 	cout << "// +-----------------------------------------------------+ //" << endl;
 	Item** consumablesList = static_cast<Player&>(player).getConsumables();
-	for (size_t i = 0; i < 9; i++) {
+	for (int i = 0; i < 9; i++) {
 		if (consumablesList[i] != nullptr) {
 			cout << i << ". " << consumablesList[i]->getName() << endl;
 		}

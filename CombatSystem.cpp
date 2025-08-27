@@ -519,19 +519,19 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	
 	currentEnemyHealth = specifiedEnemy.getHealth();
 	currentPlayerHealth = player.getHealth();
+
 	// "Fight" Logic
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(currentEnemyHealth - (playerDamage));
-			/*currentEnemyHealth -= ((playerDamage));*/                                                                             // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(currentEnemyHealth - (playerDamage));                                                                               // If DEF <= ATK, Entity Final Damage is given value
 
 			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
 				if (specifiedEnemy.getHealth() > 0) {
 					if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-						player.setHealth(player.getHealth() - (enemyDamage));                                                                                  // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(currentPlayerHealth - (enemyDamage));                                                                                  // If DEF <= ATK, Entity Final Damage is given value
 					}
 					else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                              // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(currentPlayerHealth - (enemyCritDamage));                                                                              // If DEF <= ATK, Entity Final Damage is given value
 					}
 				}
 			}
@@ -544,15 +544,15 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	}
 	else if (critPlayerDeterminant <= player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                         // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(currentEnemyHealth - (playerCritDamage));                                                                         // If DEF <= ATK, Entity Final Damage is given value
 
 			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
 				if (specifiedEnemy.getHealth() > 0) {
 					if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-						player.setHealth(player.getHealth() - (enemyDamage));                                                                                  // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(currentPlayerHealth - (enemyDamage));                                                                                  // If DEF <= ATK, Entity Final Damage is given value
 					}
 					else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                              // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(currentPlayerHealth - (enemyCritDamage));                                                                              // If DEF <= ATK, Entity Final Damage is given value
 					}
 				}
 			}

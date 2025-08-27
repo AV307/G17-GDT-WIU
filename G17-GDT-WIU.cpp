@@ -9,8 +9,16 @@ int main()
     srand(static_cast<unsigned int>(time(0)));
     Game game;
     CombatSystem CombatSystem;
-    while (true) {
-        game.doTurn(CombatSystem);
+    game.printStartMenu();
+    char proceed = _getch();
+
+    if (proceed == '0') {
+        game.printBriefingMenu();
+        char proceed2 = _getch();
+        if (proceed2 == '0')
+            while (true) {
+                game.doTurn(CombatSystem);
+            }
     }
 
     return 0;

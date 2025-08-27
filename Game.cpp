@@ -36,6 +36,55 @@ int Game::getCurrentStage()
     return currentStage;
 }
 
+void Game::printStartMenu() {
+    cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
+    cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
+    cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "//                              |>>>                     |>>>                            //" << endl;
+    cout << "//                              |                        |                               //" << endl;
+    cout << "//                          _  _|_  _                _  _|_  _                           //" << endl;
+    cout << "//                         |;|_|;|_|;|              |;|_|;|_|;|                          //" << endl;
+    cout << "//                         \\\\.  .  /              \\\\.  .  /                          //" << endl;
+    cout << "//                          \\\\:.  /                \\\\:.  /                           //" << endl;
+    cout << "//                           ||:   |                  ||:   |                            //" << endl;
+    cout << "//                           ||:.  |                  ||:.  |                            //" << endl;
+    cout << "//                           ||:  .|                  ||:  .|                            //" << endl;
+    cout << "//                           ||:   |                  ||:   |                            //" << endl;
+    cout << "//                           ||: , |        o         ||: , |                            //" << endl;
+    cout << "//                          _||_   |       <|>       _||_   |                            //" << endl;
+    cout << "//     wWw   wWw            `---'`---'     / \       `---'`---'     wWw     wWw          //" << endl;
+    cout << "// +___________________________________________________________________________________+ //" << endl;
+    cout << "// +                                                                                   + //" << endl;
+    cout << "// +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ //" << endl;
+    cout << "// +wwwwwwwwwWwwwwwwWWwwwwWwwwwWwwwwwwwwwwwwwWWwwWwwwWwwwwwwwwwWwwwwwwwWWwwwwwwWwwWwwwW+ //" << endl;
+    cout << "// +-------------------------------[ Press '0' to Start ]------------------------------+ //" << endl;
+    cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
+}
+
+void Game::printBriefingMenu() {
+    cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
+    cout << "// Welcome! You're a dungeon explorer about to start your conquest in this dangerous     //" << endl;
+    cout << "// dungeon ahead of you.                                                                 //" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "// Do beware though, you might not be alone in this journey, sneaky enemies are bound to //" << endl;
+    cout << "// creep up on you somewhere along the way                                               //" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "// Solve puzzles to get out of the room, there are a total of 5 different stages in this //" << endl;
+    cout << "// dungeon. Legend has it, a boss is waiting for you somewhere, but a sacred treasure    //" << endl;
+    cout << "// continues to pique your interest and curiousity                                       //" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "// Find gear in certain rooms and treasures, or purchase them with the shopkeepers       //" << endl;
+    cout << "// that are trapped in the dungeon, they'll be more than happt to assist you             //" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "// Levelling up will allow you to further buff your abilities by awarding you Stat Points//" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "// Are you ready to conquer the dungeon?                                                 //" << endl;
+    cout << "//                                                                                       //" << endl;
+    cout << "//                               [ Press '0' to continue ]                               //" << endl;
+    cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
+}
+
 //Jayren 250920U
 //Does a turn. if inventory is open, gameplay pauses, player movement keys control the inventory menu
 void Game::doTurn(CombatSystem combatsystem)

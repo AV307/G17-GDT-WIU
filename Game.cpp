@@ -37,6 +37,8 @@ int Game::getCurrentStage()
 }
 
 void Game::printStartMenu() {
+    system("cls");
+
     cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
     cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
     cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
@@ -45,15 +47,15 @@ void Game::printStartMenu() {
     cout << "//                              |                        |                               //" << endl;
     cout << "//                          _  _|_  _                _  _|_  _                           //" << endl;
     cout << "//                         |;|_|;|_|;|              |;|_|;|_|;|                          //" << endl;
-    cout << "//                         \\\\.  .  /              \\\\.  .  /                          //" << endl;
-    cout << "//                          \\\\:.  /                \\\\:.  /                           //" << endl;
+    cout << R"(//                         \\\\.  .  /              \\\\.  .  /                          //)" << endl;
+    cout << R"(//                          \\\\:.  /                \\\\:.  /                           //)" << endl;
     cout << "//                           ||:   |                  ||:   |                            //" << endl;
     cout << "//                           ||:.  |                  ||:.  |                            //" << endl;
     cout << "//                           ||:  .|                  ||:  .|                            //" << endl;
     cout << "//                           ||:   |                  ||:   |                            //" << endl;
     cout << "//                           ||: , |        o         ||: , |                            //" << endl;
     cout << "//                          _||_   |       <|>       _||_   |                            //" << endl;
-    cout << "//     wWw   wWw            `---'`---'     / \       `---'`---'     wWw     wWw          //" << endl;
+    cout << R"(//     wWw   wWw            `---'`---'     / \       `---'`---'     wWw     wWw          //)" << endl;
     cout << "// +___________________________________________________________________________________+ //" << endl;
     cout << "// +                                                                                   + //" << endl;
     cout << "// +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ //" << endl;
@@ -63,6 +65,8 @@ void Game::printStartMenu() {
 }
 
 void Game::printBriefingMenu() {
+    system("cls");
+
     cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
     cout << "// Welcome! You're a dungeon explorer about to start your conquest in this dangerous     //" << endl;
     cout << "// dungeon ahead of you.                                                                 //" << endl;
@@ -81,7 +85,7 @@ void Game::printBriefingMenu() {
     cout << "//                                                                                       //" << endl;
     cout << "// Are you ready to conquer the dungeon?                                                 //" << endl;
     cout << "//                                                                                       //" << endl;
-    cout << "//                               [ Press '0' to continue ]                               //" << endl;
+    cout << "//                            [ Double click '0' to continue ]                           //" << endl;
     cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
 }
 
@@ -245,6 +249,8 @@ void Game::doTurn(CombatSystem combatsystem)
         AvailablePts = plr->getStatPoints();                                                                 // Initialise variable with how many Stat Points the player has
 
         while (plr->checkSkillTreeOpen() && AvailablePts > 0) {                                              // If the Skill Tree has been opened and the player has at least 1 Stat Point, then print the UI
+            system("cls");
+
             std::cout << "// +---------------------------------------------------+ //" << std::endl;
             std::cout << "// + HP Stats: " << HPStat << std::endl;
             std::cout << "// + ATK Stats: " << ATKStat << std::endl;

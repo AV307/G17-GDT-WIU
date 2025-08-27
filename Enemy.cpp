@@ -2,6 +2,8 @@
 #include "Enemy.h"
 #include "Game.h"
 #include "Player.h"
+#include "Stage.h"
+#include "mainRoom.h"
 #include <cstdlib>
 #include <iostream>
 #include <string>
@@ -9,16 +11,34 @@
 using namespace std;
 string newPos;
 
-pair<int, int> Enemy::enemyPos(int enemyXPair, int enemyYPair) {  
-	enemyArray[enemyYPair][enemyXPair] = true;						// paring is a function that returns a pair of values can be both bool or int or string etc.
-	return make_pair(enemyXPair, enemyYPair);
-};
+//pair<int, int> Enemy::setEnemyPos(int enemyXPair, int enemyYPair) {  
+//	enemyArray[enemyYPair][enemyXPair] = true;						// paring is a function that returns a pair of values can be both bool or int or string etc.
+//	return make_pair(enemyXPair, enemyYPair);
+//};
+Enemy::Enemy() {
 
-Enemy::Enemy(string type, char status) {
-	//Checks what type of the enemy is (Undead/Animal/Flower ... )
+}
+void Enemy::initializeEnemyArraies() {
 	for (int h = 0; h < MAX_ENEMY_TYPE; h++) {
 		enemyDrops[h] = 0;
 	}
+	for (int i = 0; i < emaxEnemy; ++i) {
+		for (int j = 0; j < 2; ++j) {
+			enemyPos[i][j] = 0;
+		}
+	}
+	for (int x = 0; x < emaxEnemy; x++) {
+		enemy[x] = nullptr;
+	}
+
+	for (int y = 0; y < 28; y++) {
+		for (int z = 0; z < 28; z++) {
+			enemyArray[y][z] = false;
+		}
+	}
+}
+Enemy::Enemy(string type, char status) {
+	//Checks what type of the enemy is (Undead/Animal/Flower ... )
 	xp = 0;
 	gold = 0;
 	dropAMTID = 0;
@@ -28,12 +48,16 @@ Enemy::Enemy(string type, char status) {
 			health = enemyStats[0][i];
 			attack = enemyStats[1][i];
 			defense = enemyStats[2][i];
-			CRITRate = enemyStats[3][i];
-			CRITDMG = enemyStats[4][i];
+			//CRITRate = enemyStats[3][i];
+			//CRITDMG = enemyStats[4][i];
+
 			enemyDrops[i] += 1;
 			baseEXP = enemyStats[5][i];
 			chance = enemyStats[6][i];
 			dropName = i;
+
+			CRITRate = critRate[i];
+			CRITDMG = critDMG[i];
 		}
 	}
 	enemyStatus = status;
@@ -58,13 +82,47 @@ Enemy::Enemy(string type, char status) {
 	case 'X':
 		dropAMTID = 2;
 		health *= static_cast<int>(350 / 100);
-		attack *= static_cast<int>(250 / 100);
+		attack *= static_cast<int>(200 / 100);
 		defense *= static_cast<int>(250 / 100);
 		break;
 	}
-	enemyXR = rand() % 27;
-	enemyYR = rand() % 27;
-	enemyPos(enemyYR, enemyXR);
+
+	//enemyXR = rand() % 27;
+	//enemyYR = rand() % 27;
+ //   mainRoom* room = new mainRoom(currentStage); // Create an instance of mainRoom  
+ //   room->getSpecificMainRoomTile(enemyYR, enemyXR); // Use the instance to call the method  
+	//for (int r = 0; r < mainRoom::maxEnemy; r++) {
+	//	enemy[r] = new Enemy(type, status);
+	//	if (room->mainRoomArray[enemyYR][enemyXR] == ' ') {
+	//		enemyPos[r][0] = reinterpret_cast<Enemy*>(enemy[r]->setEnemyXR(enemyXR));
+	//		enemyPos[r][1] = reinterpret_cast<Enemy*>(enemy[r]->setEnemyYR(enemyYR));
+	//		enemyArray[enemyYR][enemyXR] = status;
+	//	}
+	//	else {
+	//		delete enemy[r];
+	//		enemy[r] = nullptr;
+	//	}
+	//}
+    // delete room; // Clean up the dynamically allocated memory
+	//setEnemyPos(enemyYR, enemyXR);
+}
+
+void Enemy::initEnemies(int eX, int eY, int eI) {
+		enemyXR = eX;
+		enemyYR = eY;
+		char status = entityStatus[rand() % 2];
+		enemy[eI] = new Enemy(enemyBank[rand() % 8], status);
+		enemyPos[eI][0] = eX;
+		enemyPos[eI][1] = eY;
+		enemyArray[eY][eX] = true;
+		std::cout << enemyPos[eI][0] << enemyPos[eI][1] << "\n";
+		if (enemy[eI] == nullptr) {
+			std::cerr << "enemy[" << eI << "] is STILL nullptr 😡\n";
+		}
+		else {
+			std::cout << "enemy[" << eI << "] initialized ✅\n";
+		}
+
 }
 
 int Enemy::setEnemyXR(int x) const {
@@ -74,22 +132,28 @@ int Enemy::setEnemyYR(int y) const {
 	return y;
 }
 
-bool Enemy::isEnemyThere(Player* player, int xPos, int yPos) {;
-	pair<int, int> enemyPosPair = enemyPos(setEnemyXR(xPos), setEnemyYR(yPos));
-	if (player != nullptr) {
-		if (player->getYPos() == enemyPosPair.first && player->getXPos() == enemyPosPair.second) {
-			std::cout << "Enemy encountered!\n";
+
+bool Enemy::isEnemyThere(Player* player, int indexE) const {
+	if (player == nullptr) return false;
+	if (indexE < 0 || indexE >= emaxEnemy) return false;
+
+
+	if (player->getXPos() == enemyPos[indexE][0]) {
+		if (player->getYPos() == enemyPos[indexE][1]) {
+			std::cout << "Enemy encountered at (" << enemyXR << ", " << enemyYR << ")\n";
 			return true;
 		}
-		else {
-			return false;
-		}
 	}
-	else {
-		return false;
-	}
+
+	return false;
 }
-Enemy::~Enemy() {}
+
+Enemy& Enemy::getInstance() {
+	static Enemy instance;
+	return instance;
+}
+
+Enemy::~Enemy() {  }
 
 //Caleb 250601F
 //Calculate the chance of the enemy loot based on level, status, and type
@@ -192,6 +256,13 @@ string Enemy::getEnemyType() const {
 }
 char Enemy::getEnemyStatus() const {
 	return enemyStatus;
+}
+
+// enemy.cpp
+Enemy* enemyList[10];
+
+Enemy** getEnemyList() {
+	return enemyList;
 }
 // DRAFT DESIGNS
 // vampire

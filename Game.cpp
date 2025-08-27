@@ -95,7 +95,7 @@ void Game::doTurn(CombatSystem combatsystem)
 {
     stage->updateStageArray(plr, this);
 
-    system("cls");
+    //system("cls");
 
     bool inventoryOpen = plr->checkInventoryOpen();
     bool hasKey = plr->checkHasKey();
@@ -237,7 +237,7 @@ void Game::doTurn(CombatSystem combatsystem)
     SetConsoleTextAttribute(hConsole, 7);
 
     plr->updateStats();
-    
+
     // Skill Tree Function
     if (plr->checkSkillTreeOpen()) {
         int HPStat, ATKStat, DEFStat, AvailablePts;                                                          // Declare variables
@@ -358,10 +358,6 @@ void Game::doTurn(CombatSystem combatsystem)
     if (playerDied == true) {
         restartStage(currentStage);
     }
-    
-  
-
-    
 }
 
 //Benjamin 250572M 
@@ -383,14 +379,10 @@ void Game::restartStage(int currentStage)
 }
 
 void Game::advanceStage() {
-    delete stage;
     currentStage++;
+    delete stage;
     stage = new Stage(this, plr);
-    stage->updateStageArray(plr, this);
 }
-
-
-
 
 // Update highest stage reached
 void Game::getHighestStage(int currentStage)

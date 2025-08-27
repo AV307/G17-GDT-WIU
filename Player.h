@@ -74,6 +74,7 @@ public:
     bool getJustLeftCombat();
     void setJustLeftCombat(bool justLeftCombat);
 
+    Enemy enemyInstance;
     Weapon* getCurrentWeapon();
     void setCurrentWeapon(Weapon* weapon);
     Armour* getCurrentArmour();
@@ -83,9 +84,6 @@ public:
     void setSkillTreeOpen(bool skillTreeOpen);
     int getStatPoints();
     void setStatPoints(int statPoints);
-
-    void checkCollision(Enemy* enemyList[], int maxEnemy, mainRoom* room);
-
 
     int getInventoryIndex();
     int getMenuIndex();

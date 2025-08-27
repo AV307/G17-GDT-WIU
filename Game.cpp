@@ -334,6 +334,7 @@ void Game::doTurn(CombatSystem combatsystem)
 
                 break;
             default:
+                system("cls");
                 combatsystem.setTextDialogue("Invalid input!");
                 break;
             }

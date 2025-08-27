@@ -320,7 +320,7 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 			for (int i = 0; i < 7; i++) {
 				cout << " ";
 			}
-			cout << "Player HP: " << currentPlayerHealth;
+			cout << "Player HP: " << player.getHealth();
 			if (player.getHealth() < 10) {                              // when Player Health is 1 digits
 				for (int i = 0; i < 35 - 7 - 12; i++) {
 					cout << " ";
@@ -345,7 +345,7 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 			for (int i = 0; i < 7; i++) {
 				cout << " ";
 			}
-			cout << "Enemy HP: " << currentEnemyHealth;
+			cout << "Enemy HP: " << specifiedEnemy.getHealth();
 			if (specifiedEnemy.getHealth() < 10) {                      // when Enemy Health is 1 digits
 				for (int i = 0; i < 35 - 17 - 3; i++) {
 					cout << " ";
@@ -516,22 +516,19 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	if (enemyCritDamage < 0) {
 		enemyCritDamage = 0;
 	}
-	
-	currentEnemyHealth = specifiedEnemy.getHealth();
-	currentPlayerHealth = player.getHealth();
 
 	// "Fight" Logic
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(currentEnemyHealth - (playerDamage));                                                                               // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                               // If DEF <= ATK, Entity Final Damage is given value
 
 			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
 				if (specifiedEnemy.getHealth() > 0) {
 					if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-						player.setHealth(currentPlayerHealth - (enemyDamage));                                                                                  // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(player.getHealth() - (enemyDamage));                                                                                  // If DEF <= ATK, Entity Final Damage is given value
 					}
 					else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-						player.setHealth(currentPlayerHealth - (enemyCritDamage));                                                                              // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                              // If DEF <= ATK, Entity Final Damage is given value
 					}
 				}
 			}
@@ -544,15 +541,15 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	}
 	else if (critPlayerDeterminant <= player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(currentEnemyHealth - (playerCritDamage));                                                                         // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerCritDamage));                                                                         // If DEF <= ATK, Entity Final Damage is given value
 
 			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
 				if (specifiedEnemy.getHealth() > 0) {
 					if (critEnemyDeterminant > specifiedEnemy.getCRITRate()) {
-						player.setHealth(currentPlayerHealth - (enemyDamage));                                                                                  // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(player.getHealth() - (enemyDamage));                                                                                  // If DEF <= ATK, Entity Final Damage is given value
 					}
 					else if (critEnemyDeterminant <= specifiedEnemy.getCRITRate()) {
-						player.setHealth(currentPlayerHealth - (enemyCritDamage));                                                                              // If DEF <= ATK, Entity Final Damage is given value
+						player.setHealth(player.getHealth() - (enemyCritDamage));                                                                              // If DEF <= ATK, Entity Final Damage is given value
 					}
 				}
 			}
@@ -828,13 +825,12 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 // Function Writer(s): Ethan
 // +----------------------------------------------------------------------------------------------+ //
 bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
-	if (player.getHealth() <= 0 && currentEnemyHealth <= 0) {     
-		// If Enemy HP is 0 BUT Player HP is 0
+	if (player.getHealth() <= 0 && specifiedEnemy.getHealth() <= 0) {                                              // If Enemy HP is 0 BUT Player HP is 0
+		player.setHealth(100);                                                                                     // Use the setter method to update the player's health
 		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
 	else if (player.getHealth() <= 0) { 
-		currentPlayerHealth = 100;   
-        player.setHealth(currentPlayerHealth); // Use the setter method to update the player's health
+        player.setHealth(100);                                                                                     // Use the setter method to update the player's health
 		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
 	else if (specifiedEnemy.getHealth() == 0 && player.getHealth() > 0) {                                          // If Enemy HP is 0 but Player is Alive

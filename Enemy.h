@@ -30,6 +30,7 @@ public:
     bool isEnemyThere(Player* player, int indexE) const;
     //pair<int, int> setEnemyPos[mainRoom::maxEnemy];
 
+    void resetEnemy();
     bool getSleepState();
     void setSleepState(bool sleepState);
     void initializeEnemyArraies();

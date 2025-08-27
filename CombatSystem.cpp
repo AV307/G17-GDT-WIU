@@ -314,7 +314,7 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 			for (int i = 0; i < 7; i++) {
 				cout << " ";
 			}
-			cout << "Player HP: " << player.getHealth();
+			cout << "Player HP: " << currentPlayerHealth;
 			if (player.getHealth() < 10) {                              // when Player Health is 1 digits
 				for (int i = 0; i < 35 - 7 - 12; i++) {
 					cout << " ";
@@ -339,7 +339,7 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 			for (int i = 0; i < 7; i++) {
 				cout << " ";
 			}
-			cout << "Enemy HP: " << specifiedEnemy.getHealth();
+			cout << "Enemy HP: " << currentEnemyHealth;
 			if (specifiedEnemy.getHealth() < 10) {                      // when Enemy Health is 1 digits
 				for (int i = 0; i < 35 - 7 - 11; i++) {
 					cout << " ";
@@ -511,10 +511,12 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 		enemyCritDamage = 0;
 	}
 	
+	currentEnemyHealth = specifiedEnemy.getHealth();
+	currentPlayerHealth = player.getHealth();
 	// "Fight" Logic
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                             // If DEF <= ATK, Entity Final Damage is given value
+			currentEnemyHealth -= ((playerDamage));                                                                             // If DEF <= ATK, Entity Final Damage is given value
 
 			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
 				if (specifiedEnemy.getHealth() > 0) {
@@ -819,10 +821,13 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 // Function Writer(s): Ethan
 // +----------------------------------------------------------------------------------------------+ //
 bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
-	if (player.getHealth() == 0 && specifiedEnemy.getHealth() == 0) {                                              // If Enemy HP is 0 BUT Player HP is 0
+	if (player.getHealth() <= 0 && currentEnemyHealth <= 0) {     
+		// If Enemy HP is 0 BUT Player HP is 0
 		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
-	else if (player.getHealth() == 0) {                                                                            // If Player HP is 0;
+	else if (player.getHealth() <= 0) { 
+		currentPlayerHealth = 100;   
+        player.setHealth(currentPlayerHealth); // Use the setter method to update the player's health
 		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
 	else if (specifiedEnemy.getHealth() == 0 && player.getHealth() > 0) {                                          // If Enemy HP is 0 but Player is Alive

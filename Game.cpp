@@ -293,7 +293,11 @@ void Game::doTurn(CombatSystem combatsystem)
     if (playerMayBeInCombat < 95) {                                                                    // Player has 95% chance to avoid combat
         plr->setIsInCombat(false);
     }
-    else {                                                                                             // Player has 5% chance to enter combat
+    else {                 
+/*        const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
+        const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };  
+        currentEnemies = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[rand() % 2]);  */     
+        plr->generateEnemy();                                                                   // Player has 5% chance to enter combat
         plr->setIsInCombat(true);
     }
 
@@ -358,6 +362,10 @@ void Game::doTurn(CombatSystem combatsystem)
     if (playerDied == true) {
         restartStage(currentStage);
     }
+}
+
+Entity* Game::getCurrentEnemy() {
+    return currentEnemies;
 }
 
 //Benjamin 250572M 

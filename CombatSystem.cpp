@@ -283,14 +283,13 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 		if (n == 3) { // Text Dialogue Line
 			for (int i = 0; i < 3; i++) {
 				if (i == 0 || i == 2) {
-					cout << "//";
-					for (int j = 0; j < 75; j++) {
+					for (int j = 0; j < 79; j++) {
 						cout << ' ';
 					}
-					cout << "//" << endl;
+					cout << endl;
 				}
 				if (i == 1) {
-					cout << getTextDialogue();
+					cout << getTextDialogue() << endl;
 				}
 			}
 		}
@@ -594,7 +593,7 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 // +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
-
+	system("cls");
 	printItemPVECategoryScreen();
 	Item** inventoryMenuArray = nullptr;                                                                                      // Create a double pointer currently pointing to nullptr
 	int menuIndex = _getch();                                                                                                 // Receive player's input
@@ -602,23 +601,28 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 	switch (menuIndex) {                                                                                                      // Based on Player's input
 	case '1':                                                                                                                 // If '1'
 		inventoryMenuArray = static_cast<Player&>(player).getWeapons();                                                       // Open Weapons Category, double pointer points to an array of pointers
+		system("cls");
 		printItemPVEWeaponsScreen(player);
 		break;
 	case '2':                                                                                                                 // If '2'
 		inventoryMenuArray = static_cast<Player&>(player).getArmours();                                                       // Open Armours Category, double pointer points to an array of pointers
+		system("cls");
 		printItemPVEArmoursScreen(player);
 		break;
 	case '3':                                                                                                                 // If '3'
 		inventoryMenuArray = static_cast<Player&>(player).getConsumables();                                                   // Open Consumable (Potions) Category, double pointer points to an array of pointers
+		system("cls");
 		printItemPVEConsumablesScreen(player);
 		break;
 	default:                                                                                                                  // If no valid input was given
 		inventoryMenuArray = static_cast<Player&>(player).getWeapons();                                                       // Open Weapons Category, double pointer points to an array of pointers
+		system("cls");
 		printItemPVEWeaponsScreen(player);
 		break;
 	}
 
 	int itemIndex = _getch() - '0';                                                                                           // Receive index of the Player's inventory in the chosen category in int instead of char
+	system("cls");
 	if (itemIndex < 0 || itemIndex > 9) {
 		return;
 	}
@@ -734,70 +738,62 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 // +----------------------------------------------------------------------------------------------+ //
 
 void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
-	setTextDialogue("You're attempting to run, but you won't go unnoticed. Press Y/N to confirm");                       // Alerts player of their current action, also telling them there are consequences
-	char confirm = _getch();                                                                                             // Receive player's confirmation on whether to run or not
-	int consDeterminant = rand() % 4;                                                                                    // 3 random consequences may happen + 1 off chance
+	srand(static_cast<unsigned int>(time(0)));
+	int consDeterminant = rand() % 4;                                                                                // 3 random consequences may happen + 1 off chance
 
 
-	switch (confirm) {
-	case 'y':                                                                                                            // If player carries on anyway
-		if (consDeterminant == 0) {                                                                                      // 1st consequence
-			player.setHealth(player.getHealth() * 3 / 4);                                                                // Lose 25% of current HP
-			setTextDialogue("You ran... but lost something along the way (-25% HP). Press Y to continue");
-			char carryOn = _getch();
+	if (consDeterminant == 0) {                                                                                      // 1st consequence
+		player.setHealth(player.getHealth() * 3 / 4);                                                                // Lose 25% of current HP
+		setTextDialogue("You ran... but lost something along the way (-25% HP). Press Y to continue");
+		char carryOn = _getch();
 
-			if (carryOn == 'y') {
-				static_cast<Player&>(player).setIsInCombat(false);                                                       // Player exits combat after changes are made
-				static_cast<Player&>(player).setJustLeftCombat(true);                                                    // Player gains invulnerability from entering the fight again
-				static_cast<Player&>(player).setCombatIsWon(false);                                                      // Reset player's win state (precautionary)
-			}
+		if (carryOn == 'y') {
+			static_cast<Player&>(player).setIsInCombat(false);                                                       // Player exits combat after changes are made
+			static_cast<Player&>(player).setJustLeftCombat(true);                                                    // Player gains invulnerability from entering the fight again
+			static_cast<Player&>(player).setCombatIsWon(false);                                                      // Reset player's win state (precautionary)
 		}
-		else if (consDeterminant == 1) {                                                                                 // 2nd consequence
-			player.setXP(player.getXP() * 3 / 4);                                                                        // Lose 25% of current XP
-			setTextDialogue("You ran... but lost something along the way (-25% XP). Press Y to continue");
-			char carryOn = _getch();
+	}
+	else if (consDeterminant == 1) {                                                                                 // 2nd consequence
+		player.setXP(player.getXP() * 3 / 4);                                                                        // Lose 25% of current XP
+		setTextDialogue("You ran... but lost something along the way (-25% XP). Press Y to continue");
+		char carryOn = _getch();
 
-			if (carryOn == 'y') {
-				static_cast<Player&>(player).setIsInCombat(false);                                                       // Player exits combat after changes are made
-				static_cast<Player&>(player).setJustLeftCombat(true);                                                    // Player gains invulnerability from entering the fight again
-				static_cast<Player&>(player).setCombatIsWon(false);                                                      // Reset player's win state (precautionary)
-			}
+		if (carryOn == 'y') {
+			static_cast<Player&>(player).setIsInCombat(false);                                                       // Player exits combat after changes are made
+			static_cast<Player&>(player).setJustLeftCombat(true);                                                    // Player gains invulnerability from entering the fight again
+			static_cast<Player&>(player).setCombatIsWon(false);                                                      // Reset player's win state (precautionary)
 		}
-		else if (consDeterminant == 2) {                                                                                 // 3rd consequence
-			player.setGold(player.getGold() - 50);                                                                       // Lose 50 Gold
-			setTextDialogue("You ran... but lost something along the way (-50 Gold). Press Y to continue");
-			char carryOn = _getch();
+	}
+	else if (consDeterminant == 2) {                                                                                 // 3rd consequence
+		player.setGold(player.getGold() - 50);                                                                       // Lose 50 Gold
+		setTextDialogue("You ran... but lost something along the way (-50 Gold). Press Y to continue");
+		char carryOn = _getch();
 
-			if (carryOn == 'y') {
-				static_cast<Player&>(player).setIsInCombat(false);                                                       // Player exits combat after changes are made
-				static_cast<Player&>(player).setJustLeftCombat(true);                                                    // Player gains invulnerability from entering the fight again
-				static_cast<Player&>(player).setCombatIsWon(false);                                                      // Reset player's win state (precautionary)
-			}
+		if (carryOn == 'y') {
+			static_cast<Player&>(player).setIsInCombat(false);                                                       // Player exits combat after changes are made
+			static_cast<Player&>(player).setJustLeftCombat(true);                                                    // Player gains invulnerability from entering the fight again
+			static_cast<Player&>(player).setCombatIsWon(false);                                                      // Reset player's win state (precautionary)
 		}
-		else {                                                                                                           // Off chance
-			setTextDialogue("Uh oh, you failed to run, the enemy stopped you before you could. Press Y to continue");    // Player fails to run, getting "dragged" back to fight
-			char carryOn = _getch();                                                                                     // To receive player input as a move to next dialogue function
-			switch (carryOn) {
-			case 'y':
-				int retaliateDeterminant = rand() % 2;
-				if (retaliateDeterminant == 0) {
-					setTextDialogue("You struggled, pushing the enemy away from you, sending them against the wall!");
-					player.setHealth(player.getHealth() * 9 / 10);                                                       // Player loses 10% of current HP from struggling
-					specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack() * 7 / 10);                  // Enemies receives 70% of Player's ATK
-					static_cast<Player&>(player).setIsInCombat(true);                                                    // Player stays in combat
-				}
-				else {
-					setTextDialogue("The enemy grabbed you by the next, sending you against the wall");
-					player.setHealth(player.getHealth() * 8 / 10);                                                       // Player loses 20% of current HP from colliding
-					static_cast<Player&>(player).setIsInCombat(true);                                                    // Player stays in combat
-				}
-				break;
+	}
+	else {                                                                                                           // Off chance
+		setTextDialogue("Uh oh, you failed to run, the enemy stopped you before you could. Press Y to continue");    // Player fails to run, getting "dragged" back to fight
+		char carryOn = _getch();                                                                                     // To receive player input as a move to next dialogue function
+		switch (carryOn) {
+		case 'y':
+			int retaliateDeterminant = rand() % 2;
+			if (retaliateDeterminant == 0) {
+				setTextDialogue("You struggled, pushing the enemy away from you, sending them against the wall! Press F, I or R to continue depending on your action");
+				player.setHealth(player.getHealth() * 9 / 10);                                                       // Player loses 10% of current HP from struggling
+				specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack() * 7 / 10);                  // Enemies receives 70% of Player's ATK
+				static_cast<Player&>(player).setIsInCombat(true);                                                    // Player stays in combat
 			}
+			else if (retaliateDeterminant == 1) {
+				setTextDialogue("The enemy grabbed you by the neck, sending you against the wall. Press F, I or R to continue depending on your action");
+				player.setHealth(player.getHealth() * 8 / 10);                                                       // Player loses 20% of current HP from colliding
+				static_cast<Player&>(player).setIsInCombat(true);                                                    // Player stays in combat
+			}
+			break;
 		}
-		break;
-	case 'n':                                                                                                            // If player backs out from running
-		setTextDialogue("You snapped out of it, kept your head in the game");                                            // Let's them stay in the game
-		break;
 	}
 }
 

@@ -39,29 +39,29 @@ int Game::getCurrentStage()
 void Game::printStartMenu() {
     system("cls");
 
-    cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
-    cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
-    cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
-    cout << "//                                                                                       //" << endl;
-    cout << "//                              |>>>                     |>>>                            //" << endl;
-    cout << "//                              |                        |                               //" << endl;
-    cout << "//                          _  _|_  _                _  _|_  _                           //" << endl;
-    cout << "//                         |;|_|;|_|;|              |;|_|;|_|;|                          //" << endl;
-    cout << R"(//                         \\\\.  .  /              \\\\.  .  /                          //)" << endl;
-    cout << R"(//                          \\\\:.  /                \\\\:.  /                           //)" << endl;
-    cout << "//                           ||:   |                  ||:   |                            //" << endl;
-    cout << "//                           ||:.  |                  ||:.  |                            //" << endl;
-    cout << "//                           ||:  .|                  ||:  .|                            //" << endl;
-    cout << "//                           ||:   |                  ||:   |                            //" << endl;
-    cout << "//                           ||: , |        o         ||: , |                            //" << endl;
-    cout << "//                          _||_   |       <|>       _||_   |                            //" << endl;
-    cout << R"(//     wWw   wWw            `---'`---'     / \       `---'`---'     wWw     wWw          //)" << endl;
-    cout << "// +___________________________________________________________________________________+ //" << endl;
-    cout << "// +                                                                                   + //" << endl;
-    cout << "// +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ //" << endl;
-    cout << "// +wwwwwwwwwWwwwwwwWWwwwwWwwwwWwwwwwwwwwwwwwWWwwWwwwWwwwwwwwwwWwwwwwwwWWwwwwwwWwwWwwwW+ //" << endl;
-    cout << "// +-------------------------------[ Press '0' to Start ]------------------------------+ //" << endl;
-    cout << "// +-----------------------------------------------------------------------------------+ //" << endl;
+    cout << "// +-------------------------------------------------------------------------------------------------------+ //" << endl;
+    cout << "// +-------------------------------------------------------------------------------------------------------+ //" << endl;
+    cout << "// +-------------------------------------------------------------------------------------------------------+ //" << endl;
+    cout << "//                                                                                                           //" << endl;
+    cout << "//                                        |>>>                     |>>>                                      //" << endl;
+    cout << "//                                        |                        |                                         //" << endl;
+    cout << "//                                    _  _|_  _                _  _|_  _                                     //" << endl;
+    cout << "//                                   |;|_|;|_|;|              |;|_|;|_|;|                                    //" << endl;
+    cout << R"(//                                   \\\\.  .  /              \\\\.  .  /                                    //)" << endl;
+    cout << R"(//                                    \\\\:.  /                \\\\:.  /                                     //)" << endl;
+    cout << "//                                     ||:   |                  ||:   |                                      //" << endl;
+    cout << "//                                     ||:.  |                  ||:.  |                                      //" << endl;
+    cout << "//                                     ||:  .|                  ||:  .|                                      //" << endl;
+    cout << "//                                     ||:   |                  ||:   |                                      //" << endl;
+    cout << "//                                     ||: , |        o         ||: , |                                      //" << endl;
+    cout << "//                                    _||_   |       <|>       _||_   |                                      //" << endl;
+    cout << R"(//               wWw   wWw            `---'`---'     / \       `---'`---'     wWw     wWw                    //)" << endl;
+    cout << "// +_______________________________________________________________________________________________________+ //" << endl;
+    cout << "// +                                                                                                       + //" << endl;
+    cout << "// +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ //" << endl;
+    cout << "// +wwwwwwwwwWwwwwwwWWwwwwWwwwwWwwwwwwwwwwwwwWWwwWwwwWwwwwwwwwwWwwwwwwwWWwwwwwwWwwWwwwWwwwWWwwwwwwwwWwwwwww+ //" << endl;
+    cout << "// +-----------------------------------------[ Press '0' to Start ]----------------------------------------+ //" << endl;
+    cout << "// +-------------------------------------------------------------------------------------------------------+ //" << endl;
 }
 
 void Game::printBriefingMenu() {
@@ -237,8 +237,6 @@ void Game::doTurn(CombatSystem combatsystem)
     SetConsoleTextAttribute(hConsole, 7);
 
     plr->updateStats();
-
-
     
     // Skill Tree Function
     if (plr->checkSkillTreeOpen()) {
@@ -288,21 +286,44 @@ void Game::doTurn(CombatSystem combatsystem)
 
     // Entering Combat System Check and Trigger
     plr->checkCollision(*plr->getCurrentEnemy());
+    bool playerDied = false;
+    bool awaitingRunConfirm = false;
 
     if (plr->getIsInCombat()) {                                                                        // If the player enters combat
-        combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                                 // Print the starting screen where all values are at base
         combatsystem.setTextDialogue("You've been ambushed!");
+        combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                                 // Print the starting screen where all values are at base
+        
         while (plr->getIsInCombat()) {                                                                 // While the player remains in combat
+
             char combatKeyPress = _getch();                                                            // To receive player's input during battle
+
+            if (awaitingRunConfirm) {
+                // Handle Y/N for run confirmation
+                if (combatKeyPress == 'y' || combatKeyPress == 'Y') {
+                    combatsystem.runPVE(*plr, *plr->getCurrentEnemy());
+                }
+                else {
+                    combatsystem.setTextDialogue("You snapped out of it, kept your head in the game.");
+                }
+                awaitingRunConfirm = false; // go back to normal combat
+                combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
+                continue;
+            }
+
             switch (combatKeyPress) {
             case 'f':
                 combatsystem.fightPVE(*plr, *plr->getCurrentEnemy());                                  // Activate Fight Function if player presses F
+                system("cls");
                 break;
             case 'i':
                 combatsystem.itemPVE(*plr, *plr->getCurrentEnemy());                                   // Activate Item Function if player presses I
+                system("cls");
                 break;
             case 'r':
-                combatsystem.runPVE(*plr, *plr->getCurrentEnemy());                                    // Activate Run Function if player presses R
+                combatsystem.setTextDialogue("You're attempting to run, but you won't go unnoticed. Press Y/N to confirm");                       // Alerts player of their current action, also telling them there are consequences
+                combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
+                awaitingRunConfirm = true;
+
                 break;
             default:
                 combatsystem.setTextDialogue("Invalid input!");
@@ -314,7 +335,7 @@ void Game::doTurn(CombatSystem combatsystem)
             if (combatsystem.winLoseCondition(*plr, *plr->getCurrentEnemy()) == true) {                // If Player dies or both Player and Enemy die
                 plr->setIsInCombat(false);
                 plr->setCombatIsWon(false);
-                restartStage(currentStage);                                                            // Restart the stage
+                playerDied = true;                                                                     // Restart the stage
             }                                                                                          // Else, do not end the program
 
             if (plr->getCombatIsWon()) {                                                               // Once a player has won, then end the combat system
@@ -324,6 +345,10 @@ void Game::doTurn(CombatSystem combatsystem)
             }
                                                                                                        // If none of these conditions are met, continue combat system until one happens
         }
+    }
+
+    if (playerDied == true) {
+        restartStage(currentStage);
     }
     
   

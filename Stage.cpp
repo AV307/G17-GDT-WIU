@@ -171,8 +171,25 @@ void Stage::setStageArray(int currentStage, char room1, char room2, Player* play
         }
     }
 
+    switch (currentStage) {
+    case 1:
+        player->setXPos(38);
+        player->setYPos(86);
+        break;
+    case 2:
+        player->setXPos(38);
+        player->setYPos(86);
+        break;
+    case 3:
+        player->setXPos(38);
+        player->setYPos(86);
+        break;
+    }
+
     int playerXPos = player->getXPos();
     int playerYPos = player->getYPos();
+
+	std::cout << playerXPos << " " << playerYPos << std::endl;
 
     stageArray[playerYPos][playerXPos] = 'P';
 }
@@ -445,21 +462,6 @@ void Stage::updateStageArray(Player* player, Game* game)
 
         if (type == PORTAL) {
 			game->advanceStage();
-
-            switch (game->getCurrentStage()) {
-            case 1:
-                player->setXPos(38);
-                player->setYPos(86);
-                break;
-            case 2:
-                player->setXPos(38);
-                player->setYPos(86);
-                break;
-            case 3:
-                player->setXPos(38);
-                player->setYPos(86);
-                break;
-            }
         }
 
         // PRESSURE PLATE CODE

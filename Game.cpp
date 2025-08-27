@@ -42,7 +42,7 @@ void Game::doTurn(CombatSystem combatsystem)
 {
     stage->updateStageArray(plr, this);
 
-    system("cls");
+    //system("cls");
 
     bool inventoryOpen = plr->checkInventoryOpen();
     bool hasKey = plr->checkHasKey();
@@ -299,9 +299,8 @@ void Game::advanceStage() {
     delete stage;
     stage = new Stage(this, plr);
 
-    //system("cls");
-
-    //stage->updateStageArray(plr, this);
+    stage->updateStageArray(plr, this);
+    stage->printStageWithFOV(plr, currentStage);
 }
 
 // Update highest stage reached

@@ -638,6 +638,12 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 		if (static_cast<Player&>(player).getCurrentArmour() != nullptr) {                                                     // If there is an armour currently equipped
 			player.setDefense(player.getDefense() - static_cast<Player&>(player).getCurrentArmour()->getDefenseVal());        // Remove that current armour's DEF bonus
 		}
+		if (static_cast<Player&>(player).getCurrentArmour() != nullptr) {
+			inventoryMenuArray[itemIndex] = static_cast<Player&>(player).getCurrentArmour();
+		}
+		else {
+			inventoryMenuArray[itemIndex] = nullptr;
+		}
 
 		static_cast<Player&>(player).setCurrentArmour(newArmour);                                                             // Set the player's current armour to be the new armour based on chosen by the player for future use
 		player.setDefense(player.getDefense() + newArmour->getDefenseVal());                                                  // Based on what the new armour is from chosen, increase the player's DEF by the new armour's bonus
@@ -651,6 +657,12 @@ void CombatSystem::itemPVE(Entity& player, Entity& specifiedEnemy) {
 			player.setAttack(player.getAttack() - static_cast<Player&>(player).getCurrentWeapon()->getAttackVal());           // Remove that current weapon's ATK bonus
 			player.setCritRate(player.getCRITRate() - static_cast<Player&>(player).getCurrentWeapon()->getCritRateVal());     // Remove that current weapon's Crit Rate bonus
 			player.setCritDMG(player.getCRITDMG() - static_cast<Player&>(player).getCurrentWeapon()->getCritDamageVal());     // Remove that current weapon's Crit DMG bonus
+		}
+		if (static_cast<Player&>(player).getCurrentWeapon() != nullptr) {
+			inventoryMenuArray[itemIndex] = static_cast<Player&>(player).getCurrentWeapon();
+		}
+		else {
+			inventoryMenuArray[itemIndex] = nullptr;
 		}
 
 		static_cast<Player&>(player).setCurrentWeapon(newWeapon);                                                             // Set the player's current weapon to be the new weapon based on chosen by player for future use

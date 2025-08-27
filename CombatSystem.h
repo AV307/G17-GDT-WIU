@@ -5,6 +5,8 @@
 class CombatSystem {
 private:
 	std::string textDialogue;
+	int currentEnemyHealth = 100;
+	int currentPlayerHealth = 100;
 
 public:
 	CombatSystem();

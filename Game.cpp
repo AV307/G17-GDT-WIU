@@ -290,14 +290,21 @@ void Game::doTurn(CombatSystem combatsystem)
     bool awaitingRunConfirm = false;
 
     int playerMayBeInCombat = rand() % 100 + 1;
-    if (playerMayBeInCombat < 95) {                                                                    // Player has 95% chance to avoid combat
+    if (playerMayBeInCombat < 101) {                                                                    // Player has 95% chance to avoid combat
         plr->setIsInCombat(false);
     }
-    else {                                                                                             // Player has 5% chance to enter combat
+    else {                 
+/*        const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
+        const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };  
+        currentEnemies = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[rand() % 2]);  */     
+        plr->generateEnemy();                                                                   // Player has 5% chance to enter combat
         plr->setIsInCombat(true);
     }
 
-    if (plr->getIsInCombat()) {                                                                        // If the player enters combat
+    if (plr->getIsInCombat()) {
+        // If the player enters combat
+        system("cls");
+
         combatsystem.setTextDialogue("You've been ambushed!");
         combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                                 // Print the starting screen where all values are at base
         
@@ -313,6 +320,8 @@ void Game::doTurn(CombatSystem combatsystem)
                 else {
                     combatsystem.setTextDialogue("You snapped out of it, kept your head in the game.");
                 }
+
+                system("cls");
                 awaitingRunConfirm = false; // go back to normal combat
                 combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
                 continue;
@@ -328,6 +337,7 @@ void Game::doTurn(CombatSystem combatsystem)
                 system("cls");
                 break;
             case 'r':
+                system("cls");
                 combatsystem.setTextDialogue("You're attempting to run, but you won't go unnoticed. Press Y/N to confirm");                       // Alerts player of their current action, also telling them there are consequences
                 combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
                 awaitingRunConfirm = true;
@@ -339,6 +349,7 @@ void Game::doTurn(CombatSystem combatsystem)
                 break;
             }
             
+            system("cls");
             combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                             // Update combat screen
 
             if (combatsystem.winLoseCondition(*plr, *plr->getCurrentEnemy()) == true) {                // If Player dies or both Player and Enemy die
@@ -352,13 +363,16 @@ void Game::doTurn(CombatSystem combatsystem)
                 plr->setCombatIsWon(false);                                                            // Reset Player won state
                 plr->setJustLeftCombat(true);                                                          // Give player invulnerability state until moving away
             }
-                                                                                                       // If none of these conditions are met, continue combat system until one happens
         }
     }
 
     if (playerDied == true) {
         restartStage(currentStage);
     }
+}
+
+Entity* Game::getCurrentEnemy() {
+    return currentEnemies;
 }
 
 //Benjamin 250572M 

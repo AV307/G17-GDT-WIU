@@ -15,7 +15,10 @@ private:
     Room* rooms[5];
     Game* game;
 
+    bool bossDefeated;
+
     char previousTile;
+    std::string signMessage;
 
     std::random_device rd;
     std::mt19937 gen;
@@ -30,11 +33,14 @@ public:
     //bool checkCollision(int xPos, int yPos, int currentRoom);
 
 	void printStageWithFOV(Player* player, int currentStage);
+    bool playerNearInteractable(Player* player);
     //debug
     void printStage();
     Enemy enemyInstance;
     int getRoomX() { return roomX; };
     int getRoomY() { return roomY; };
+
+    void setBossDefeated(bool val);
 };
 
 class EnemyManager {

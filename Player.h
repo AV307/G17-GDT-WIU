@@ -39,7 +39,6 @@ private:
     bool isInCombat;
     bool isRunning;
     bool combatIsWon;
-    Entity* currentEnemy;
     bool justLeftCombat;
 
     Weapon* currentWeapon;
@@ -63,6 +62,7 @@ public:
     bool hasSolvedPuzzle() const;      
     int getWeaponCount() const;     
 
+    void generateEnemy();
     bool getIsInCombat();
     void setIsInCombat(bool isInCombat);
     bool getRun();
@@ -73,7 +73,7 @@ public:
     void setCurrentEnemy(Entity* specifiedEnemy);
     bool getJustLeftCombat();
     void setJustLeftCombat(bool justLeftCombat);
-
+    Entity* currentEnemy;
     Enemy enemyInstance;
     Weapon* getCurrentWeapon();
     void setCurrentWeapon(Weapon* weapon);

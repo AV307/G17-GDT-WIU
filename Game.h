@@ -16,6 +16,8 @@ public:
     Game();
     ~Game();
 
+    Entity* currentEnemies;
+	Entity* getCurrentEnemy();
     int getCurrentStage();
 
     void printStartMenu();

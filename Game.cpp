@@ -289,6 +289,14 @@ void Game::doTurn(CombatSystem combatsystem)
     bool playerDied = false;
     bool awaitingRunConfirm = false;
 
+    int playerMayBeInCombat = rand() % 100 + 1;
+    if (playerMayBeInCombat < 95) {                                                                    // Player has 95% chance to avoid combat
+        plr->setIsInCombat(false);
+    }
+    else {                                                                                             // Player has 5% chance to enter combat
+        plr->setIsInCombat(true);
+    }
+
     if (plr->getIsInCombat()) {                                                                        // If the player enters combat
         combatsystem.setTextDialogue("You've been ambushed!");
         combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                                 // Print the starting screen where all values are at base

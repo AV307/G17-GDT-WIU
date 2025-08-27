@@ -7,7 +7,7 @@
 #include "PortalRoom.h"
 #include "CorridorRoom.h"
 #include "RoomObjects.h"
-
+#include "Enemy.h"
 #include "Game.h"
 
 #include <random>
@@ -278,7 +278,7 @@ void Stage::updateStageArray(Player* player, Game* game)
     int playerYPos = player->getYPos();
 
     stageArray[playerYPos][playerXPos] = previousTile;
-
+ 
     player->doAction();
 
     ObjectType type = SPACE;
@@ -300,8 +300,8 @@ void Stage::updateStageArray(Player* player, Game* game)
 
     if (roomIndex != -1) {
         RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
-        int roomX = player->getXPos() - rooms[roomIndex]->getRoomTopLeftY();
-        int roomY = player->getYPos() - rooms[roomIndex]->getRoomTopLeftX();
+        roomX = player->getXPos() - rooms[roomIndex]->getRoomTopLeftY();
+        roomY = player->getYPos() - rooms[roomIndex]->getRoomTopLeftX();
 
         type = objects->getObjectType(roomX, roomY);
         toggled = objects->getObjectToggle(roomX, roomY);

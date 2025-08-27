@@ -25,24 +25,42 @@ mainRoom::mainRoom(int currentStage) {
     roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'M');
     placeRoomObjects(mainRoomArray);
 
-    const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
-    const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };
-    for (int r = 0; r < maxEnemy; r++) {
-        string setEnemyType = theEnemyBank[(rand() % 8)];
-        char setEnemyStatus = theEnemyStatus[(rand() % 3)];
-        setX = rand() % 27;
-        setY = rand() % 27;
-        if (mainRoomArray[setY][setX] == ' ') {
-            enemy[r] = new Enemy(setEnemyType, setEnemyStatus);
-            enemy[r]->setEnemyXR(setX);
-            enemy[r]->setEnemyYR(setY);
-            mainRoomArray[setY][setX] = setEnemyStatus;
+    for (int g = 0; g < maxEnemy; g++) {
+        int randX = rand() % 27;
+        int randY = rand() % 27;
+        if (mainRoomArray[randX][randY] == ' ') {
+            Enemy::getInstance().initEnemies(randY, randX, g);
+            //mainRoomArray[randY][randX] = ' ';
         }
         else {
-            delete enemy[r];
-            enemy[r] = nullptr;
+            g--;
         }
     }
+
+    //const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
+    //const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };
+    //int enemyPos[maxEnemy][2];
+    //for (int e = 0; e < maxEnemy-1; e++) {
+    //    for (int e2 = 0; e2 <= 1; e2++) {
+    //        enemyPos[e][e2] = 0;
+    //    }
+    //}
+    //for (int r = 0; r < maxEnemy; r++) {
+    //    string setEnemyType = enemyInstance.getEnemyType();
+    //    char setEnemyStatus = enemyInstance.getEnemyStatus();
+    //    setX = rand() % 27;
+    //    setY = rand() % 27;
+    //    enemy[r] = new Enemy(setEnemyType, setEnemyStatus);
+    //    if (mainRoomArray[enemyInstance.getYPos()][enemyInstance.getXPos()] == ' ') {
+    //        enemyPos[r][0] = enemy[r]->setEnemyXR(enemyInstance.getXPos());
+    //        enemyPos[r][1] = enemy[r]->setEnemyYR(enemyInstance.getYPos());
+    //        mainRoomArray[enemyInstance.getYPos()][enemyInstance.getXPos()] = setEnemyStatus;
+    //    }
+    //    else {
+    //        delete enemy[r];
+    //        enemy[r] = nullptr;
+    //    }
+    //}
     // more code here to determine and set specifics in the main room, based on currentStage
     switch (currentStage) 
     {
@@ -76,6 +94,13 @@ int mainRoom::getX() const {
 int mainRoom::getY() const {
     return setY;
 }
-Enemy** mainRoom::getEnemyList() {
-    return enemy;
+Enemy* mainRoom::getEnemyList(int num) {
+    if (num >= 0 && num < maxEnemy) {
+        return enemy[num];
+    }
+    return nullptr;
+
+}
+char mainRoom::getSpecificMainRoomTile(int y, int x) {
+    return mainRoomArray[y][x];
 }

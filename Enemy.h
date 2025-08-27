@@ -14,23 +14,26 @@ private:
     int chance = 0;
     int dropAMTID = 0;
     bool sleepState;
-    bool enemyArray[28][28] = { false };
+    bool enemyArray[28][28];
     int enemyXR, enemyYR;
-
+    char entityStatus[4] = { 'B','E','D','X' };
+    //pair<int, int> enemyPositions[50];
 
 public:
+    Enemy();
     Enemy(string type, char status);
     ~Enemy();
     bool killEnemy(Game* game);
     bool isBossDefeated() const;
     void calculateLoot(Game* game);
     int calculateDropChance(int mult);
-    bool isEnemyThere(Player* player, int xPos, int yPos);
-    pair<int, int> enemyPos(int enemyX, int enemyY);
+    bool isEnemyThere(Player* player, int indexE) const;
+    //pair<int, int> setEnemyPos[mainRoom::maxEnemy];
 
     bool getSleepState();
     void setSleepState(bool sleepState);
-
+    void initializeEnemyArraies();
+    void initEnemies(int eX, int eY, int eI);
     int getHealth() const;
     int getAttack() const;
     int getDefense() const;
@@ -38,8 +41,17 @@ public:
     string getEnemyType() const;
     char getEnemyStatus() const;
 
+    static const int emaxEnemy = 50;
+
+    Enemy* enemy[emaxEnemy];
+    int enemyPos[emaxEnemy][2];
+    Enemy** getEnemyPos();
+    //Enemy** getEnemyArray();
     int setEnemyXR(int x) const;
     int setEnemyYR(int y) const;
+    //air<int, int> enemyPositions[emaxEnemy];
+    static Enemy& getInstance(); 
+
 };
 
 

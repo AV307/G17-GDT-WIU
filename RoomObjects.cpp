@@ -403,13 +403,73 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
             break;
         case 3:
-            for (int i = 2; i < 30; i++) {
-                objects[20][i] = new Object{ WALL, -1, false, " ", ' ' };
-            }
-            objects[19][2] = new Object{ SWITCH, 1, false, " ", ' ' };
-            objects[21][4] = new Object{ MEGATORCH, 1, false, " ", ' ' };
+            // VERTICAL WALLS
 
-            objects[0][15] = new Object{ SPACE, -1, false, " ", ' ' };
+            for (int i = 24; i < 29; i++) {
+                objects[i][3] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 16; i < 29; i++) {
+                objects[i][6] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 10; i < 29; i++) {
+                objects[i][12] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 10; i < 29; i++) {
+                objects[i][18] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 16; i < 24; i++) {
+                objects[i][10] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 23; i < 29; i++) {
+                objects[i][25] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 4; i < 12; i++) {
+                objects[i][5] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 4; i < 12; i++) {
+                objects[i][13] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 4; i < 9; i++) {
+                objects[i][10] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 4; i++) {
+                objects[i][11] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 4; i < 8; i++) {
+                objects[i][21] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 2; i < 5; i++) {
+                objects[i][22] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 8; i++) {
+                objects[i][24] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 7; i < 12; i++) {
+                objects[i][23] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 7; i < 11; i++) {
+                objects[i][25] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 7; i < 10; i++) {
+                objects[i][27] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
             break;
         case 4:
             break;

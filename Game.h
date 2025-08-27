@@ -18,6 +18,9 @@ public:
 
     int getCurrentStage();
 
+    void printStartMenu();
+    void printBriefingMenu();
+
     void restartStage(int currentStage);
     void advanceStage();
 

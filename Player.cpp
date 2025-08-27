@@ -44,10 +44,11 @@ Player::Player(){
 	CRITRate = 25;
 	CRITDMG = 1.5;
 	attack = 15;
-	setXPos(39);
-	setYPos(86);
 
 	action = "Move";
+
+	setXPos(50);
+	setYPos(25);
 }
 
 Player::~Player() {

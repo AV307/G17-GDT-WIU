@@ -30,7 +30,7 @@ mainRoom::mainRoom(int currentStage) {
         int randY = rand() % 27;
         if (mainRoomArray[randX][randY] == ' ') {
             Enemy::getInstance().initEnemies(randY, randX, g);
-            mainRoomArray[randY][randX] = 'E';
+            //mainRoomArray[randY][randX] = ' ';
         }
         else {
             g--;

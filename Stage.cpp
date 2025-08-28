@@ -552,8 +552,10 @@ void Stage::updateStageArray(Player* player, Game* game)
             int roomXPos = playerXPos - rooms[roomIndex]->getRoomTopLeftY();
             int roomYPos = playerYPos - rooms[roomIndex]->getRoomTopLeftX();
 
-            objects->setObjectType(roomXPos, roomYPos, SPACE);
-            stageArray[playerYPos][playerXPos] = ' ';
+            if (player->getCurrentEnemy()->getHealth() < 0) {
+                objects->setObjectType(roomXPos, roomYPos, SPACE);
+                stageArray[playerYPos][playerXPos] = ' ';
+            }
             return;
         }
 

@@ -189,7 +189,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
 
             objects[22][9] = new Object{ CHEST, -1, false, " ", 'H' };
             objects[2][1] = new Object{ CHEST, -1, false, " ", 'K' };
-            objects[11][1] = new Object{ CHEST, -1, false, "Art", 'A' };
+            objects[11][1] = new Object{ CHEST, -1, false, "Rubber Duck", 'A' };
 
             objects[24][12] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
             objects[4][14] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
@@ -1140,7 +1140,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
 
             objects[28][2] = new Object{ CHEST, -1, false, " ", 'H' };
             objects[5][12] = new Object{ CHEST, -1, false, " ", 'K' };
-            objects[24][26] = new Object{ CHEST, -1, false, "Art3", 'A' };
+            objects[24][26] = new Object{ CHEST, -1, false, "Rubber Duck", 'A' };
             objects[28][21] = new Object{ CHEST, -1, false, "Rubber Duck", 'A' };
 
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };

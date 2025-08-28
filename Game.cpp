@@ -122,7 +122,7 @@ void Game::doTurn(CombatSystem combatsystem)
                 }
             }
         }
-        if (rubberDuckyCount > 2) {
+        if (rubberDuckyCount > 4) {
             cout << "// +---------------------------------------------------------------------------------------------------+ //" << endl;
             cout << "// + You escaped, but something feels off... quickly, you noticed a light coming out of your backpack. + //" << endl;
             cout << "// +                   Upon opening it, the rubber duckies emitted a blinding light.                   + //" << endl;

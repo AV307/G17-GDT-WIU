@@ -899,16 +899,16 @@ bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
 		static_cast<Enemy&>(specifiedEnemy).calculateLoot();
 		player.setXP(player.getXP() + specifiedEnemy.getXP());
 		player.setGold(player.getGold() + specifiedEnemy.getGold());
-        delete &specifiedEnemy; // Ensure specifiedEnemy is a pointer to a complete object type before deletion
+        delete &specifiedEnemy;                                                                                    // Ensure specifiedEnemy is a pointer to a complete object type before deletion
 
 		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
 	else if (player.getHealth() <= 0) { 
         player.setHealth(100);                                                                                     // Use the setter method to update the player's health
-		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
+		return true;                                                                                               
 	}
 	else if (specifiedEnemy.getHealth() == 0 && player.getHealth() > 0) {   
-		specifiedEnemy.setHealth(initialHp);													// If Enemy HP is 0 but Player is Alive
+		specifiedEnemy.setHealth(initialHp);													                   // If Enemy HP is 0 but Player is Alive
 		player.setGold(player.getGold() + specifiedEnemy.getGold());
 		player.setXP(player.getXP() + specifiedEnemy.getXP());
 		//specifiedEnemy.resetEnemy();

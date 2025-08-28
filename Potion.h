@@ -9,6 +9,7 @@ private:
 
 public:
 	Potion();
+	Potion(char selectBuff);
 	~Potion();
 
 	void setAttackVal(int val);

@@ -1,10 +1,28 @@
 #include "Potion.h"
 
-Potion::Potion()
-{
+Potion::Potion(){
 	attackBuff = 0;
 	defenseBuff = 0;
 	heal = 0;
+}
+
+Potion::Potion(char selectBuff)
+{
+	if (selectBuff == 'A')
+	{
+		attackBuff = 5;
+	}
+	else if (selectBuff == 'D')
+	{
+		defenseBuff = 5;
+	}
+	else if (selectBuff == 'H')
+	{
+		heal = 10;
+	}
+	else {
+		return;
+	}
 }
 
 Potion::~Potion()

@@ -312,19 +312,19 @@ void Game::doTurn(CombatSystem combatsystem)
                 HPStat++;
                 AvailablePts--;
                 plr->setStatPoints(AvailablePts);
-                plr->setHealth(plr->getHealth() + 10);                                                       // Player HP + 10 for every Stat Point
+                plr->setHealth(plr->getHealth() + 5);                                                        // Player HP + 5 for every Stat Point
                 break;
             case '2':
                 ATKStat++;
                 AvailablePts--;
                 plr->setStatPoints(AvailablePts);
-                plr->setAttack(plr->getAttack() + 5);                                                        // Player ATK + 5 for every Stat Point
+                plr->setAttack(plr->getAttack() + 2);                                                        // Player ATK + 2 for every Stat Point
                 break;
             case '3':
                 DEFStat++;
                 AvailablePts--;
                 plr->setStatPoints(AvailablePts);
-                plr->setDefense(plr->getDefense() + 5);                                                      // Player DEF + 5 for every Stat Point
+                plr->setDefense(plr->getDefense() + 2);                                                      // Player DEF + 2 for every Stat Point
                 break;
             default:
                 plr->setSkillTreeOpen(false);                                                                // Any other key, close the Skill Tree
@@ -395,7 +395,6 @@ void Game::doTurn(CombatSystem combatsystem)
             
             system("cls");
             combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                             // Update combat screen
-            combatsystem.winLoseCondition(*plr, *plr->getCurrentEnemy());
 
             if (combatsystem.winLoseCondition(*plr, *plr->getCurrentEnemy()) == true) {                // If Player dies or both Player and Enemy die
                 plr->setIsInCombat(false);
@@ -412,6 +411,23 @@ void Game::doTurn(CombatSystem combatsystem)
     }
 
     if (playerDied == true) {
+        system("cls");
+        int randomHelpMessage = rand() % 3;
+        cout << "// +-----------------------------------------------------------------------------+ //" << endl;
+        cout << "// +                                                                             + //" << endl;
+        cout << "// +               You died! Press any key to restart the stage!                 + //" << endl;
+        cout << "// +                                                                             + //" << endl;
+        if (randomHelpMessage == 0) {
+            cout << "// +       Next time try running when you're outclassed, come back stronger      + //" << endl;
+        }
+        else if (randomHelpMessage == 1) {
+            cout << "// +              Uhh, today might just not be your day, try again?              + //" << endl;
+        }
+        else {
+            cout << "// +       You hear the calls of those who lost before you, keep going!          + //" << endl;
+        }
+        cout << "// +                                                                             + //" << endl;
+        cout << "// +-----------------------------------------------------------------------------+ //" << endl;
         restartStage(currentStage);
     }
 }

@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Item.h"
 #include "CombatSystem.h"
+#include "Stage.h"
 
 #include <iostream>
 #include <string>
@@ -97,6 +98,7 @@ void Game::doTurn(CombatSystem combatsystem)
 
     system("cls");
 
+    bool pauseOpen = plr->checkPauseOpen();
     bool inventoryOpen = plr->checkInventoryOpen();
     bool shopOpen = plr->checkShopOpen();
 
@@ -107,9 +109,11 @@ void Game::doTurn(CombatSystem combatsystem)
     int inventoryIndex = plr->getInventoryIndex();
 
     Item** inventoryMenuArray = nullptr;
-
-
-    if (inventoryOpen == true) {
+    if (pauseOpen)
+    {
+        pauseGame();
+    }
+    else if (inventoryOpen == true) {
         std::cout << "+------------------------------------------------------+" << '\n';
         switch (menuIndex) {
         case 1:
@@ -295,10 +299,14 @@ void Game::doTurn(CombatSystem combatsystem)
     bool awaitingRunConfirm = false;
 
     int playerMayBeInCombat = rand() % 100 + 1;
-    if (playerMayBeInCombat < 101) {                                                                    // Player has 95% chance to avoid combat
+    if (playerMayBeInCombat < 95) {                                                                    // Player has 95% chance to avoid combat
         plr->setIsInCombat(false);
     }
-    else {                                                                                             // Player has 5% chance to enter combat
+    else {                 
+/*        const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
+        const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };  
+        currentEnemies = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[rand() % 2]);  */     
+        plr->generateEnemy();                                                                   // Player has 5% chance to enter combat
         plr->setIsInCombat(true);
     }
 
@@ -345,6 +353,7 @@ void Game::doTurn(CombatSystem combatsystem)
 
                 break;
             default:
+                system("cls");
                 combatsystem.setTextDialogue("Invalid input!");
                 break;
             }
@@ -369,6 +378,10 @@ void Game::doTurn(CombatSystem combatsystem)
     if (playerDied == true) {
         restartStage(currentStage);
     }
+}
+
+Entity* Game::getCurrentEnemy() {
+    return currentEnemies;
 }
 
 //Benjamin 250572M 
@@ -409,7 +422,7 @@ void Game::pauseGame() {
     int choice = 0;
     char key;
 
-    while (true) {
+    while (plr->checkPauseOpen()) {
         system("cls");
 
         std::cout << "+------------------------+\n";
@@ -434,7 +447,11 @@ void Game::pauseGame() {
         else if (key == 's' || key == 'S') choice = (choice == 2) ? 0 : choice + 1;
         else if (key == 13) {
             switch (choice) {
-            case 0: return;
+            case 0:
+                system("cls");
+                stage->printStageWithFOV(plr, currentStage);
+                plr->setPauseOpen(false);
+                return;
             case 1: restartStage(currentStage); return;
             case 2: exit(0);
             }

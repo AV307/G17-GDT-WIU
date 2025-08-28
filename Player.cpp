@@ -50,7 +50,11 @@ Player::Player(){
 	setXPos(50);
 	setYPos(25);
 }
-
+void Player::generateEnemy() {
+	const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
+	const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };
+	currentEnemy = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[rand() % 2]);
+}
 Player::~Player() {
 	for (int i = 0; i < 10; i++) {
 		delete armoury[i];
@@ -85,6 +89,9 @@ void Player::doAction() {
 			inventoryOpen = false;
 		}
 	}
+	if (input == 'p') {
+		pauseOpen = true;
+	}
 	if (input == '6') {
 		if (shopOpen) {
 			shopOpen = false;
@@ -110,21 +117,21 @@ void Player::doAction() {
 	//}
 	else {
 		handleMovement(input);
-		for (int m = 0; m < mainRoom::maxEnemy; m++) {
-			if (Enemy::getInstance().enemy[m] != nullptr) {
-				if (Enemy::getInstance().enemy[m]->isEnemyThere(this, m)) {
-					std::cout << Enemy::getInstance().enemy[m]->isEnemyThere(this, m);
-					currentEnemy = Enemy::getInstance().enemy[m];
-					isInCombat = true;
-				}
-				else {
-					isInCombat = false;
-				}
-			}
-			else if (Enemy::getInstance().enemy[m] == nullptr) {
-				std::cout << "YOUWYREOUR" << std::endl;
-			}
-		}
+		//for (int m = 0; m < mainRoom::maxEnemy; m++) {
+		//	if (Enemy::getInstance().enemy[m] != nullptr) {
+		//		if (Enemy::getInstance().enemy[m]->isEnemyThere(this, m)) {
+		//			std::cout << Enemy::getInstance().enemy[m]->isEnemyThere(this, m);
+		//			currentEnemy = Enemy::getInstance().enemy[m];
+		//			isInCombat = true;
+		//		}
+		//		else {
+		//			isInCombat = false;
+		//		}
+		//	}
+		//	else if (Enemy::getInstance().enemy[m] == nullptr) {
+		//		std::cout << "YOUWYREOUR" << std::endl;
+		//	}
+		//}
 		//checkCollision(mainRoom::getEnemyList(), rooms[0]);
 		//Enemy** enemyList = room->getEnemyList();           
 		//int maxEnemy = room->getMaxEnemy();                 
@@ -357,6 +364,16 @@ int Player::setPosition(int x, int y)
 bool Player::checkInventoryOpen()
 {
 	return inventoryOpen;
+}
+
+bool Player::checkPauseOpen()
+{
+	return pauseOpen;
+}
+
+void Player::setPauseOpen(bool pause)
+{
+	pauseOpen = pause;
 }
 
 //bool Player::checkShopOpen() const

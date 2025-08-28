@@ -128,6 +128,9 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					if (i > 4) {
 						cout << R"(         \|/         )";
 					}
+					for (int j = 0; j < 27; j++) {
+						cout << ' ';
+					}
 				}
 				else if (specifiedEnemy.getEntityType() == "Aquatic") {
 					for (int j = 0; j < 28; j++) {
@@ -152,6 +155,9 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					}
 					if (i == 7) {
 						cout << R"(        """--"     )";
+					}
+					for (int j = 0; j < 28; j++) {
+						cout << ' ';
 					}
 				}
 				else if (specifiedEnemy.getEntityType() == "Vampire") {
@@ -341,26 +347,26 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 			}
 			cout << "Enemy HP: " << specifiedEnemy.getHealth();
 			if (specifiedEnemy.getHealth() < 10) {                      // when Enemy Health is 1 digits
-				for (int i = 0; i < 35 - 7 - 11; i++) {
+				for (int i = 0; i < 35 - 17 - 3; i++) {
 					cout << " ";
 				}
 			}
 			else if (specifiedEnemy.getHealth() > 9) {                  // when Enemy Health is 2 digits
-				for (int i = 0; i < 35 - 7 - 12; i++) {
+				for (int i = 0; i < 35 - 17 - 4; i++) {
 					cout << " ";
 				}
 			}
 			else if (specifiedEnemy.getHealth() > 99) {                 // when Enemy Health is 3 digits
-				for (int i = 0; i < 35 - 7 - 13; i++) {
+				for (int i = 0; i < 35 - 17 - 5; i++) {
 					cout << " ";
 				}
 			}
 			else if (specifiedEnemy.getHealth() > 999) {                // when Enemy Health is 4 digits
-				for (int i = 0; i < 35 - 7 - 14; i++) {
+				for (int i = 0; i < 35 - 17 - 6; i++) {
 					cout << " ";
 				}
 			}
-			cout << "+ //" << endl;
+			cout << endl;
 		}
 	}
 	
@@ -510,11 +516,11 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	if (enemyCritDamage < 0) {
 		enemyCritDamage = 0;
 	}
-	
+
 	// "Fight" Logic
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                             // If DEF <= ATK, Entity Final Damage is given value
+			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                               // If DEF <= ATK, Entity Final Damage is given value
 
 			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
 				if (specifiedEnemy.getHealth() > 0) {
@@ -819,10 +825,12 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 // Function Writer(s): Ethan
 // +----------------------------------------------------------------------------------------------+ //
 bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
-	if (player.getHealth() == 0 && specifiedEnemy.getHealth() == 0) {                                              // If Enemy HP is 0 BUT Player HP is 0
+	if (player.getHealth() <= 0 && specifiedEnemy.getHealth() <= 0) {                                              // If Enemy HP is 0 BUT Player HP is 0
+		player.setHealth(100);                                                                                     // Use the setter method to update the player's health
 		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
-	else if (player.getHealth() == 0) {                                                                            // If Player HP is 0;
+	else if (player.getHealth() <= 0) { 
+        player.setHealth(100);                                                                                     // Use the setter method to update the player's health
 		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
 	else if (specifiedEnemy.getHealth() == 0 && player.getHealth() > 0) {                                          // If Enemy HP is 0 but Player is Alive

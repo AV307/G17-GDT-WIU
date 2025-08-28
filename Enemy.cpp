@@ -115,12 +115,12 @@ void Enemy::initEnemies(int eX, int eY, int eI) {
 		enemyPos[eI][0] = eX;
 		enemyPos[eI][1] = eY;
 		enemyArray[eY][eX] = true;
-		std::cout << enemyPos[eI][0] << enemyPos[eI][1] << "\n";
+		//std::cout << enemyPos[eI][0] << enemyPos[eI][1] << "\n";
 		if (enemy[eI] == nullptr) {
-			std::cerr << "enemy[" << eI << "] is STILL nullptr 😡\n";
+			//std::cerr << "enemy[" << eI << "] is STILL nullptr 😡\n";
 		}
 		else {
-			std::cout << "enemy[" << eI << "] initialized ✅\n";
+			//std::cout << "enemy[" << eI << "] initialized ✅\n";
 		}
 
 }
@@ -132,6 +132,12 @@ int Enemy::setEnemyYR(int y) const {
 	return y;
 }
 
+void Enemy::resetEnemy() {
+	for (int r = 0; r < emaxEnemy; r++) {
+		delete enemy[r];
+		enemy[r] = nullptr;
+	}
+}
 
 bool Enemy::isEnemyThere(Player* player, int indexE) const {
 	if (player == nullptr) return false;

@@ -102,6 +102,9 @@ void Player::doAction() {
 			inventoryOpen = false;
 		}
 	}
+	if (input == 'p') {
+		pauseOpen = true;
+	}
 	if (input == '6') {
 		if (shopOpen) {
 			shopOpen = false;
@@ -145,8 +148,6 @@ void Player::doAction() {
 		//checkCollision(mainRoom::getEnemyList(), rooms[0]);
 		//Enemy** enemyList = room->getEnemyList();           
 		//int maxEnemy = room->getMaxEnemy();                 
-
-
 	}
 }
 
@@ -378,6 +379,16 @@ bool Player::checkInventoryOpen()
 	return inventoryOpen;
 }
 
+bool Player::checkPauseOpen()
+{
+	return pauseOpen;
+}
+
+void Player::setPauseOpen(bool pause)
+{
+	pauseOpen = pause;
+}
+
 //bool Player::checkShopOpen() const
 //{
 //	return shopOpen;
@@ -418,6 +429,17 @@ Item** Player::getConsumables()
 Item** Player::getArtifacts()
 {
 	return artifacts;
+}
+
+void Player::setShopOpen(bool val)
+{
+	shopOpen = val;
+	inventoryOpen = false;
+}
+
+bool Player::checkShopOpen() const
+{
+	return shopOpen;
 }
 
 //Benjamin 250572M

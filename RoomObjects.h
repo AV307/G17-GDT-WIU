@@ -28,6 +28,7 @@ enum ObjectType {
 	BED,
 
 	//shop room
+	SHOPKEEPER,
 
 	//portal room
 	PORTAL,

@@ -12,7 +12,7 @@ protected:
 	RoomObjects* roomObjects;
 public:
 	Room();
-	~Room();
+	virtual ~Room();
 
 	void placeRoomObjects(char** roomArray);
 

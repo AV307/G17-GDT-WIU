@@ -391,7 +391,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
 
             objects[12][25] = new Object{ CHEST, -1, false, " ", 'H' };
             objects[9][15] = new Object{ CHEST, -1, false, " ", 'K' };
-            objects[3][4] = new Object{ CHEST, -1, false, "Art2", 'A' };
+            objects[3][4] = new Object{ CHEST, -1, false, "Rubber Duck", 'A' };
 
             objects[8][7] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
             objects[13][22] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
@@ -420,13 +420,11 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
 
             objects[23][3] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 1" };
+                "Hey look, it's a one directional door, maybe like, walk through it or something" };
             objects[19][3] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 2" };
-            objects[26][8] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 3" };
+                "Hey look, it's a different direction, I'm sure you can figure this out" };
             objects[9][17] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 4" };
+                "Wow you did it, I wonder why I'm helping you" };
             break;
         case 3:
             // VERTICAL WALLS

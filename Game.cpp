@@ -210,23 +210,23 @@ void Game::doTurn(CombatSystem combatsystem)
                 if (inventoryMenuArray[i]->isEquipped() == true) {
                     std::cout << " [Equipped]";
                 }
-                int nameLength = inventoryMenuArray[i]->getName().length();
-                int numLength = std::to_string(i + 1).length();
-                int attackLength = std::to_string(inventoryMenuArray[i]->getAttackVal()).length();
-                int defenseLength = std::to_string(inventoryMenuArray[i]->getDefenseVal()).length();
+                size_t nameLength = inventoryMenuArray[i]->getName().length();
+                size_t numLength = std::to_string(i + 1).length();
+                size_t attackLength = std::to_string(inventoryMenuArray[i]->getAttackVal()).length();
+                size_t defenseLength = std::to_string(inventoryMenuArray[i]->getDefenseVal()).length();
                 int equipLength = 0;
                 (inventoryMenuArray[i]->isEquipped() == true) ? equipLength = 11 : equipLength = 0;
                 (inventoryMenuArray[i]->getAttackVal() == 0) ? attackLength = 0 : attackLength += 10;
                 (inventoryMenuArray[i]->getDefenseVal() == 0) ? defenseLength = 0 : defenseLength += 11;
 
-                int remainingSpaces = 54 - (nameLength + numLength + equipLength + attackLength + defenseLength + 2);
+                size_t remainingSpaces = 54 - (nameLength + numLength + equipLength + attackLength + defenseLength + 2);
                 for (int j = 0; j < remainingSpaces; j++) {
                     std::cout << " ";
                 }
             }
             else {
                 std::cout << "Empty";
-                int numLength = std::to_string(i + 1).length();
+                size_t numLength = std::to_string(i + 1).length();
 
                 for (int j = 0; j < (52 - numLength - 5); j++) {
                     std::cout << " ";

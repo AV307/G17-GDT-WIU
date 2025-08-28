@@ -908,7 +908,7 @@ bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
 		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
 	else if (specifiedEnemy.getHealth() == 0 && player.getHealth() > 0) {   
-		specifiedEnemy.setHealth(initialHp);													// If Enemy HP is 0 but Player is Alive
+		specifiedEnemy.setHealth(initialHp);													                   // If Enemy HP is 0 but Player is Alive
 		player.setGold(player.getGold() + specifiedEnemy.getGold());
 		player.setXP(player.getXP() + specifiedEnemy.getXP());
 		//specifiedEnemy.resetEnemy();

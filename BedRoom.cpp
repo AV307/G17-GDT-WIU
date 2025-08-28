@@ -2,7 +2,6 @@
 
 //Ang Zhi En 252317H
 //Constructor for bedRoom, defines the position and sets up the room
-//Incomplete
 BedRoom::BedRoom(int currentStage, int roomNumber)
 {
     roomHeight = 20;
@@ -24,7 +23,6 @@ BedRoom::BedRoom(int currentStage, int roomNumber)
 
 //Ang Zhi En 252317H
 //Destructor for bedRoom, deletes pointers
-//Incomplete
 BedRoom::~BedRoom()
 {
     // deallocate bedRoomArray

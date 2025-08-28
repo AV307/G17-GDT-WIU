@@ -12,7 +12,6 @@ Room::~Room()
 
 //Jayren Choi 250920U
 //Place the objects into the room
-//Incomplete
 void Room::placeRoomObjects(char** roomArray)
 {
 	for (int x = 0; x < roomWidth; x++) {
@@ -122,7 +121,6 @@ int Room::getRoomWidth()
 
 //Ang Zhi En 252317H
 //Setter for location of the room in the stage based on whether it is room 1 or 2
-//Incomplete
 void Room::setRoomLocation(int roomNumber)
 {
 	switch (roomNumber)

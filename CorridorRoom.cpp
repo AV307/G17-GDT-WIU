@@ -2,7 +2,6 @@
 
 //Ang Zhi En 252317H
 //Constructor for corridorRoom, defines the position and sets up the room
-//Incomplete
 CorridorRoom::CorridorRoom(int currentStage, int roomNumber)
 {
     roomHeight = 34; // to be set after room location decided
@@ -25,7 +24,6 @@ CorridorRoom::CorridorRoom(int currentStage, int roomNumber)
 
 //Ang Zhi En 252317H
 //Destructor for corridorRoom, deletes pointers
-//Incomplete
 CorridorRoom::~CorridorRoom()
 {
     // deallocate corridorRoomArray

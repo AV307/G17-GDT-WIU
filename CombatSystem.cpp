@@ -576,7 +576,6 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	}
 
 	// "Fight" Logic
-	initialHp = specifiedEnemy.getHealth();
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
             specifiedEnemy.setHealth(specifiedEnemy.getHealth() - playerDamage);                                                                               // If DEF <= ATK, Entity Final Damage is given value
@@ -911,7 +910,6 @@ bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
 		return true;                                                                                               
 	}
 	else if (specifiedEnemy.getHealth() == 0 && player.getHealth() > 0) {   
-		specifiedEnemy.setHealth(initialHp);													                   // If Enemy HP is 0 but Player is Alive
 		player.setGold(player.getGold() + specifiedEnemy.getGold());
 		player.setXP(player.getXP() + specifiedEnemy.getXP());
 		//specifiedEnemy.resetEnemy();

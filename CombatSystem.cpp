@@ -893,7 +893,8 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
 	if (player.getHealth() <= 0 && specifiedEnemy.getHealth() <= 0) {                                              // If Enemy HP is 0 BUT Player HP is 0
 		player.setHealth(100);   
-		
+		player.setXP(player.getXP() + specifiedEnemy.getXP());
+		player.setGold(player.getGold() + specifiedEnemy.getGold());
         delete &specifiedEnemy; // Ensure specifiedEnemy is a pointer to a complete object type before deletion
 
 		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game

@@ -798,13 +798,13 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 		case 'y':
 			int retaliateDeterminant = rand() % 2;
 			if (retaliateDeterminant == 0) {
-				setTextDialogue("You struggled, pushing the enemy away from you, sending them against the wall! Press F, I or R to continue depending on your action");
+				setTextDialogue("You struggled, pushing the enemy away from you, sending them against the wall!");
 				player.setHealth(player.getHealth() * 9 / 10);                                                       // Player loses 10% of current HP from struggling
 				specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack() * 7 / 10);                  // Enemies receives 70% of Player's ATK
 				static_cast<Player&>(player).setIsInCombat(true);                                                    // Player stays in combat
 			}
 			else if (retaliateDeterminant == 1) {
-				setTextDialogue("The enemy grabbed you by the neck, sending you against the wall. Press F, I or R to continue depending on your action");
+				setTextDialogue("The enemy grabbed you by the neck, sending you against the wall");
 				player.setHealth(player.getHealth() * 8 / 10);                                                       // Player loses 20% of current HP from colliding
 				static_cast<Player&>(player).setIsInCombat(true);                                                    // Player stays in combat
 			}

@@ -88,39 +88,39 @@ char** ShopRoom::getShopRoomArray()
             system("cls");  // clear console
 
             // ===== ASCII Shop Frame =====
-            std::cout <<
-                "--------------------------------------------------------------------------------------------------\n"
-                "--------------------------------------------------------------------------------------------------\n"
-                "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "||                                                                                              ||\n"
-                "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
-                "==================================================================================================\n"
-                "= --------------------- ------------------------ ------------------------ ---------------------- =\n"
-                "= |      "
-                << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[0]) ? 14 : 7) << 
-                "       | |        " 
-                << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[1]) ? 14 : 7) <<
-                "        | |        " 
-                << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[2]) ? 14 : 7) <<
-                "        | |      "
-                << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[0]) ? 14 : 7) <<
-                "      | =\n"
-                "= --------------------- ------------------------ ------------------------ ---------------------- =\n"
-                "==================================================================================================\n"
-                "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
+            //std::cout <<
+            //    "--------------------------------------------------------------------------------------------------\n"
+            //    "--------------------------------------------------------------------------------------------------\n"
+            //    "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "||                                                                                              ||\n"
+            //    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"
+            //    "==================================================================================================\n"
+            //    "= --------------------- ------------------------ ------------------------ ---------------------- =\n"
+            //    "= |      "
+            //    << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[0]) ? 14 : 7) << 
+            //    "       | |        " 
+            //    << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[1]) ? 14 : 7) <<
+            //    "        | |        " 
+            //    << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[2]) ? 14 : 7) <<
+            //    "        | |      "
+            //    << SetConsoleTextAttribute(hConsole, (currentSelection == itemSelection[0]) ? 14 : 7) <<
+            //    "      | =\n"
+            //    "= --------------------- ------------------------ ------------------------ ---------------------- =\n"
+            //    "==================================================================================================\n"
+            //    "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
 
             // Display player gold
             std::cout << "Gold: " << player->getGold() << "\n\n";
@@ -144,8 +144,12 @@ char** ShopRoom::getShopRoomArray()
                 player->setShopOpen(false);
                 return;
             };
-            currentSelection = itemSelection[choice - 1];
-            int index = choice - '1'; // Convert char '1'-'9' to index 0-8
+
+            /*currentSelection = itemSelection[choice];*/
+      
+
+            int index = choice - 1; 
+            // Convert char '1'-'9' to index 0-8
             if (index >= 0 && index < 10 && shopInventory[index] != nullptr) {
                 Item* item = shopInventory[index];
                 if (player->getGold() >= item->getCost()) {

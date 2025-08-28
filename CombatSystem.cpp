@@ -904,7 +904,7 @@ bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
 		player.setXP(player.getXP() + specifiedEnemy.getXP());
 		player.setGold(player.getGold() + specifiedEnemy.getGold());
         delete &specifiedEnemy;                                                                                    // Ensure specifiedEnemy is a pointer to a complete object type before deletion
-
+		&specifiedEnemy = nullptr;                                                                                  // Set specifiedEnemy to nullptr after deletion to avoid dangling pointer issues
 		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
 	else if (player.getHealth() <= 0) { 

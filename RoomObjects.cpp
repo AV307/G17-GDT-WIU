@@ -228,7 +228,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
 
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
 
-            objects[23][4] = new Object{ SIGN, -1, false, " ", ' ', 
+            objects[23][4] = new Object{ SIGN, -1, false, " ", ' ',
                 "Hey! Welcome to the dungeon!" };
             objects[21][15] = new Object{ SIGN, -1, false, " ", ' ',
                 "You will find these blocks laying around. Push them onto those buttons on the floor!" };
@@ -779,8 +779,10 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
         }
         break;
     case 'B': // bed room
+        objects[10][10] = new Object{ BED, -1, false, " ", ' ' };
         break;
     case 'S': // shop room
+        objects[10][10] = new Object{ SHOPKEEPER, -1, false, " ", ' ' };
         break;
     case 'F': // boss room
         switch (currentStage)
@@ -800,7 +802,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
         }
         break;
     case 'T': // treasure room
-        objects[15][15] = new Object{ CHEST, -1, false, " ", 'I' };
+        objects[10][10] = new Object{ CHEST, -1, false, " ", 'I' };
         break;
     case 'C': // corridor room
         // creates empty room with SPACE

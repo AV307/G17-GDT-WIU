@@ -82,6 +82,12 @@ void Room::placeRoomObjects(char** roomArray)
 			case SIGN:
 				roomArray[y][x] = 'S';
 				break;
+			case SHOPKEEPER:
+				roomArray[y][x] = '$';
+				break;
+			case BED:
+				roomArray[y][x] = 'H';
+				break;
 			default:
 				break;
 			}

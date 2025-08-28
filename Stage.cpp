@@ -190,6 +190,10 @@ void Stage::setStageArray(int currentStage, char room1, char room2, Player* play
         player->setXPos(50);
         player->setYPos(73);
         break;
+    case 5:
+        player->setXPos(75);
+        player->setYPos(40);
+        break;
     }
 
     int playerXPos = player->getXPos();
@@ -238,7 +242,7 @@ Stage::Stage(Game* game, Player* player)
     }
     else
     {
-        int randomRoom2 = dis(gen);
+        /*int randomRoom2 = dis(gen);
         switch (randomRoom2)
         {
         case 1:
@@ -253,8 +257,12 @@ Stage::Stage(Game* game, Player* player)
             rooms[2] = new BedRoom(currentStage, 2);
             room2 = 'B';
             break;
-        }
+        }*/
+
+        rooms[2] = new ShopRoom(currentStage, 2);
+        room2 = 'S';
     }
+
 
     rooms[3] = new PortalRoom(currentStage, 3);
     rooms[4] = new CorridorRoom(currentStage, 4);

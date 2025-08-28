@@ -63,6 +63,7 @@ public:
     bool hasSolvedPuzzle() const;      
     int getWeaponCount() const;     
 
+    void randomizeEnemyEncounter();
     void generateEnemy();
     bool getIsInCombat();
     void setIsInCombat(bool isInCombat);

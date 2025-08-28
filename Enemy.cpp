@@ -65,6 +65,8 @@ Enemy::Enemy(string type, char status) {
 	//Enemy with higher status will have higher stats
 	switch (enemyStatus) {
 
+	case 'N':
+		break;
 	case 'B':
 		health = health*static_cast<int>(75 / 100);
 		attack = attack*static_cast<int>(50 / 100);

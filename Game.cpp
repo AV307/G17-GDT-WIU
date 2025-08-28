@@ -297,19 +297,6 @@ void Game::doTurn(CombatSystem combatsystem)
     plr->checkCollision(*plr->getCurrentEnemy());
     bool playerDied = false;
     bool awaitingRunConfirm = false;
-    int cooldown = 0;
-
-    int playerMayBeInCombat = rand() % 100 + 1;
-    cooldown++;
-
-        if (playerMayBeInCombat >= 99-cooldown) {  // 5% chance to enter combat
-            cooldown = 0;
-            plr->generateEnemy();
-            plr->setIsInCombat(true);
-        }
-        else {
-            plr->setIsInCombat(false);
-        }
 
     if (plr->getIsInCombat()) {
         // If the player enters combat

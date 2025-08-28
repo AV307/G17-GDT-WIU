@@ -51,6 +51,24 @@ Player::Player(){
 	setXPos(50);
 	setYPos(25);
 }
+
+void Player::randomizeEnemyEncounter() {
+	// Entering Combat System Check and Trigger
+	int cooldown = 0;
+
+	int playerMayBeInCombat = rand() % 100 + 1;
+	cooldown++;
+
+	if (playerMayBeInCombat >= 99 - cooldown) {  // 5% chance to enter combat
+		cooldown = 0;
+		this->generateEnemy();
+		this->setIsInCombat(true);
+	}
+	else {
+		this->setIsInCombat(false);
+	}
+}
+
 void Player::generateEnemy() {  
     const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };  
     const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };  
@@ -246,15 +264,19 @@ void Player::handleMovement(char inputVal)
 	action = "Move";
 	switch (inputVal) {
 	case'w':
+		randomizeEnemyEncounter();
 		setYPos(yPosition - 1);
 		break;
 	case'a':
+		randomizeEnemyEncounter();
 		setXPos(xPosition - 1);
 		break;
 	case's':
+		randomizeEnemyEncounter();
 		setYPos(yPosition + 1);
 		break;
 	case'd':
+		randomizeEnemyEncounter();
 		setXPos(xPosition + 1);
 		break;
 	case' ':

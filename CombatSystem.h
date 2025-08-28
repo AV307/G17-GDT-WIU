@@ -7,7 +7,6 @@ private:
 	std::string textDialogue;
 
 public:
-	int initialHp;
 	CombatSystem();
 	~CombatSystem();
 

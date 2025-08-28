@@ -2,7 +2,6 @@
 
 //Ang Zhi En 252317H
 //Constructor for BossRoom, defines the position and sets up the room
-//Incomplete
 BossRoom::BossRoom(int currentStage, int roomNumber)
 {
     roomHeight = 20;
@@ -20,16 +19,10 @@ BossRoom::BossRoom(int currentStage, int roomNumber)
 
     roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'F');
     placeRoomObjects(bossRoomArray);
-
-    // boss selection will depend on whether stage 3 or 5, getting harder
-    switch (currentStage)
-    {
-    }
 }
 
 //Ang Zhi En 252317H
 //Destructor for BossRoom, deletes pointers
-//Incomplete
 BossRoom::~BossRoom()
 {
     // deallocate bossRoomArray

@@ -6,7 +6,6 @@
 
 //Ang Zhi En 252317H
 //Constructor for ShopRoom, defines position and sets up room
-//Incomplete
 ShopRoom::ShopRoom(int currentStage, int roomNumber)
 {
     roomHeight = 20;
@@ -44,7 +43,7 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
     shopInventory[8] = new Item("Key", "Key", 30);                     // price 30 gold
 
     // Set remaining shopInventory slots to nullptr to avoid undefined pointers
-    for (int i = 9; i < 20; i++) {
+    for (int i{ 9 }; i < 20; i++) {
         shopInventory[i] = nullptr;
     }
 }
@@ -54,7 +53,6 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
 
 //Ang Zhi En 252317H
 //Destructor for ShopRoom, deletes pointers
-//Incomplete
 ShopRoom::~ShopRoom()
 {
     // deallocate shopRoomArray

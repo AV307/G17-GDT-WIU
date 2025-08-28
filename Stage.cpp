@@ -188,7 +188,7 @@ void Stage::setStageArray(int currentStage, char room1, char room2, Player* play
         break;
     case 4:
         player->setXPos(50);
-        player->setYPos(53);
+        player->setYPos(73);
         break;
     case 5:
         player->setXPos(75);

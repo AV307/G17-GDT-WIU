@@ -156,9 +156,9 @@ int Enemy::calculateDropChance(int mult) {
 //Caleb 250601F
 //Calculate enemy loot based on level, status, and type
 //Completed
-void Enemy::calculateLoot(Game* gamePtr)
+void Enemy::calculateLoot()
 {
-	currentStage = gamePtr->getCurrentStage(); 
+	currentStage = 1; 
 
 	switch (enemyStatus) {
 	case 'B':
@@ -215,7 +215,7 @@ bool Enemy::isBossDefeated() const
 bool Enemy::killEnemy(Game* game) {
 	if (health <= 0) {
 		isBossDefeated();
-		calculateLoot(game);
+		calculateLoot();
 		delete this;
 		return true;
 	}

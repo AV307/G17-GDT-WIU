@@ -15,7 +15,7 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
-    currentStage = 1;
+    currentStage = 4;
     plr = new Player;
     stage = new Stage(this, plr);
     //stage->printStage();
@@ -405,7 +405,12 @@ void Game::doTurn(CombatSystem combatsystem)
             if (plr->getCombatIsWon()) {                                                               // Once a player has won, then end the combat system
                 plr->setIsInCombat(false);
                 plr->setCombatIsWon(false);                                                            // Reset Player won state
-                plr->setJustLeftCombat(true);                                                          // Give player invulnerability state until moving away
+                plr->setJustLeftCombat(true);   
+
+                Entity* defeatedEnemy = plr->getCurrentEnemy();
+                if (((Enemy*)defeatedEnemy)->getEnemyStatus() == 'S') {
+					stage->setBossDefeated(true);
+                }
             }
         }
     }
@@ -460,6 +465,7 @@ void Game::advanceStage() {
     delete stage;
     stage = nullptr;
     stage = new Stage(this, plr);
+    stage->setBossDefeated(false);
 }
 
 // Update highest stage reached

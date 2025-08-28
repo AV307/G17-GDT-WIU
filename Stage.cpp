@@ -215,7 +215,7 @@ Stage::Stage(Game* game, Player* player)
 
     char room1{};
     char room2{};
-    /*switch (randomRoom1)
+    switch (randomRoom1)
     {
     case 1:
         rooms[1] = new ShopRoom(currentStage, 1);
@@ -229,11 +229,9 @@ Stage::Stage(Game* game, Player* player)
         rooms[1] = new BedRoom(currentStage, 1);
         room1 = 'B';
         break;
-    }*/
-    rooms[1] = new TreasureRoom(currentStage, 1);
-    room1 = 'T';
+    }
 
-    if (currentStage == 3 || currentStage == 5)
+    if (currentStage == 3 || currentStage == 4)
     {
         rooms[2] = new BossRoom(currentStage, 2);
         room2 = 'F';
@@ -315,8 +313,8 @@ void Stage::updateStageArray(Player* player, Game* game)
 
     if (roomIndex != -1) {
         RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
-        roomX = player->getXPos() - rooms[roomIndex]->getRoomTopLeftY();
-        roomY = player->getYPos() - rooms[roomIndex]->getRoomTopLeftX();
+        int roomX = player->getXPos() - rooms[roomIndex]->getRoomTopLeftY();
+        int roomY = player->getYPos() - rooms[roomIndex]->getRoomTopLeftX();
 
         type = objects->getObjectType(roomX, roomY);
         toggled = objects->getObjectToggle(roomX, roomY);
@@ -540,8 +538,14 @@ void Stage::updateStageArray(Player* player, Game* game)
         }
 
         if (type == BOSS) {
-            player->generateEnemy();
+            player->generateEnemy('S');
             player->setIsInCombat(true);
+
+            int roomXPos = playerXPos - rooms[roomIndex]->getRoomTopLeftY();
+            int roomYPos = playerYPos - rooms[roomIndex]->getRoomTopLeftX();
+
+            objects->setObjectType(roomXPos, roomYPos, SPACE);
+            stageArray[playerYPos][playerXPos] = ' ';
             return;
         }
 

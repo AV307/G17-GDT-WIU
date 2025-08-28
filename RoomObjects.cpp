@@ -574,9 +574,27 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[22][14] = new Object{ WALL, -1, false, " ", ' ' };
             objects[21][13] = new Object{ WALL, -1, false, " ", ' ' };
 
+            objects[11][24] = new Object{ WALL, -1, false, " ", ' ' };
+
             // OBJECTS
 
+            objects[28][15] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[27][3] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
             objects[25][21] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[18][2] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[18][4] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[18][6] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[18][7] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[19][7] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[20][7] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[16][7] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[16][5] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[16][7] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[17][5] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[17][6] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+
+            objects[14][28] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[12][23] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
 
             objects[24][21] = new Object{ TELEPORTER1, 1, false, " ", ' ' };
             objects[25][27] = new Object{ TELEPORTER2, 1, false, " ", ' ' };
@@ -670,7 +688,11 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[10][23] = new Object{ PRESSUREPLATE, 18, false, " ", ' ' };
             objects[8][24] = new Object{ DOOR, 18, false, " ", ' ' };
 
-            objects[0][2] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
+            objects[23][2] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
+            objects[22][12] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
+            objects[6][13] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
+            objects[10][24] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
+            objects[7][4] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
 
 			objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
             break;

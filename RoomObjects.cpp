@@ -3,7 +3,6 @@
 
 // Ang Zhi En 252317H
 // Constructor for roomObjects, creates empty room and creates array for objects
-// Incomplete
 RoomObjects::RoomObjects(bool openSide, int roomColumn, int roomWidth, int roomHeight)
 {
     objects = new Object** [roomHeight];
@@ -55,7 +54,6 @@ RoomObjects::~RoomObjects()
 
 // Ang Zhi En 252317H
 // Add (all) objects into a room after checking what room it is
-// Incomplete
 void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, char roomType)
 {
     // essentially presets for the rooms
@@ -1245,7 +1243,6 @@ ObjectType RoomObjects::getObjectType(int column, int row) const
         return object->type;
     }
 
-    // might change this code later if we use SPACE instead of nullptr in roomobject constructor
     return SPACE;
 }
 

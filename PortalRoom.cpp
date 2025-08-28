@@ -2,7 +2,6 @@
 
 //Ang Zhi En 252317H
 //Constructor for PortalRoom, defines position and sets up room
-//Incomplete
 PortalRoom::PortalRoom(int currentStage, int roomNumber)
 {
     roomHeight = 11;
@@ -27,7 +26,6 @@ PortalRoom::PortalRoom(int currentStage, int roomNumber)
 
 //Ang Zhi En 252317H
 //Destructor for portalRoom, deletes pointers
-//Incomplete
 PortalRoom::~PortalRoom()
 {
     // deallocate portalRoomArray

@@ -4,7 +4,6 @@
 
 //Ang Zhi En 252317H
 //Constructor for mainRoom, defines the position and sets up the room
-//Incomplete
 mainRoom::mainRoom(int currentStage) {
 
     srand(static_cast<unsigned int>(time(0)));
@@ -69,7 +68,6 @@ mainRoom::mainRoom(int currentStage) {
 
 //Ang Zhi En 252317H
 //Destructor for mainRoom, deletes all created pointers
-//Incomplete
 mainRoom::~mainRoom() {
     // deallocate mainRoomArray
     for (int i{ 0 }; i < roomHeight; i++) 

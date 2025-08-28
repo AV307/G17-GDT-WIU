@@ -11,7 +11,6 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 //Ang Zhi En 252317H
 //Constructor for Game, creates a stage for the game
-//Incomplete
 Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
@@ -23,7 +22,6 @@ Game::Game()
 
 //Ang Zhi En 252317H
 //Destructor for Game, delete pointers
-//Incomplete
 Game::~Game() {
     delete stage;
     delete plr;
@@ -463,6 +461,8 @@ void Game::restartStage(int currentStage)
     }
 }
 
+// Ang Zhi En 252317H
+// Function that sends player into next stage
 void Game::advanceStage() {
     currentStage++;
     delete stage;

@@ -4,7 +4,6 @@
 
 //Ang Zhi En 252317H
 //Constructor for TreasureRoom, set position and sets up the room
-//Incomplete
 TreasureRoom::TreasureRoom(int currentStage, int roomNumber)
 {
     roomHeight = 20;
@@ -28,7 +27,6 @@ TreasureRoom::TreasureRoom(int currentStage, int roomNumber)
 
 //Ang Zhi En 252317H
 //Destructor for TreasureRoom, deletes pointers
-//Incomplete
 TreasureRoom::~TreasureRoom() {
     // deallocate treasureRoomArray
     for (int i{ 0 }; i < roomHeight; i++)

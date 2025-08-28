@@ -16,10 +16,9 @@
 
 
 Stage::Stage() {}
+
 //Ang Zhi En 252317H
 //set the stageArray, fill up stage area with all the rooms that are created for the currentStage
-//Incomplete
-
 void Stage::setStageArray(int currentStage, char room1, char room2, Player* player)
 {
     // initialize stageArray to spaces
@@ -207,7 +206,6 @@ void Stage::setStageArray(int currentStage, char room1, char room2, Player* play
 
 //Ang Zhi En 252317H
 //Constructor for Stage, uses randomiser to decide on the rooms generated for currentStage
-//Incomplete
 Stage::Stage(Game* game, Player* player)
     : gen(rd()), dis(1, 3)
 {
@@ -279,7 +277,6 @@ Stage::Stage(Game* game, Player* player)
 
 //Ang Zhi En 252317H
 //Destructor for stage, delete pointers
-//Incomplete
 Stage::~Stage()
 {
     for (int i{ 0 }; i <= 2; i++)

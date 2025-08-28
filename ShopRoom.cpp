@@ -6,7 +6,6 @@
 
 //Ang Zhi En 252317H
 //Constructor for ShopRoom, defines position and sets up room
-//Incomplete
 ShopRoom::ShopRoom(int currentStage, int roomNumber)
 {
     roomHeight = 20;
@@ -54,7 +53,6 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
 
 //Ang Zhi En 252317H
 //Destructor for ShopRoom, deletes pointers
-//Incomplete
 ShopRoom::~ShopRoom()
 {
     // deallocate shopRoomArray

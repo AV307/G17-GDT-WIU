@@ -159,6 +159,8 @@ int Enemy::calculateDropChance(int mult) {
 void Enemy::calculateLoot()
 {
 	currentStage = 1; 
+	xp = 10;
+	gold = 5;
 
 	switch (enemyStatus) {
 	case 'B':

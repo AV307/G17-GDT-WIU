@@ -645,6 +645,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[9][9] = new Object{ SWITCH, 11, false, " ", ' ' };
             objects[2][28] = new Object{ DOOR, 11, false, " ", ' ' };
 
+            objects[10][10] = new Object{ WALL, -1, false, " ", ' ' };
             break;
         case 4:
             // VERTICAL WALLS

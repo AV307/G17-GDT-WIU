@@ -27,6 +27,7 @@ public:
 	int roomX, roomY;
     void setStageArray(int currentStage, char room1, char room2, Player* player);
 
+	Stage();
     Stage(Game* game, Player* player);
     ~Stage();
     void updateStageArray(Player* player, Game* game);

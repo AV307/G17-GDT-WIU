@@ -7,7 +7,6 @@
 class Game
 {
 private:
-    Stage* stage;
     int currentStage;
 	int highestStage;
     Player* plr;
@@ -16,6 +15,7 @@ public:
     Game();
     ~Game();
 
+    Stage* stage;
     Entity* currentEnemies;
 	Entity* getCurrentEnemy();
     int getCurrentStage();

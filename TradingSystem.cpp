@@ -1,4 +1,5 @@
 #include "TradingSystem.h"
+#include "Entity.h"
 #include <iostream>
 using namespace std;
 

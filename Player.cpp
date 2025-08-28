@@ -13,6 +13,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <random>
+#include "Game.h"
 
 Player::Player(){
 	for (int i = 0; i < 10; i++) {
@@ -50,10 +51,22 @@ Player::Player(){
 	setXPos(50);
 	setYPos(25);
 }
-void Player::generateEnemy() {
-	const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
-	const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };
-	currentEnemy = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[rand() % 2]);
+void Player::generateEnemy() {  
+    const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };  
+    const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };  
+	int enemySpawnChance = rand() % 100 + 1;
+	if (enemySpawnChance < 50) {
+		currentEnemy = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[0]);
+	}
+	else if (enemySpawnChance < 75) {
+		currentEnemy = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[1]);
+	}
+	else if (enemySpawnChance < 95) {
+		currentEnemy = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[2]);
+	}
+	else if (enemySpawnChance < 100) {
+		currentEnemy = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[3]);
+	}
 }
 Player::~Player() {
 	for (int i = 0; i < 10; i++) {

@@ -1,7 +1,6 @@
 #include "Game.h"
 #include "Item.h"
 #include "CombatSystem.h"
-#include "Stage.h"
 
 #include <iostream>
 #include <string>
@@ -16,7 +15,7 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
-    currentStage = 1;
+    currentStage = 4;
     plr = new Player;
     stage = new Stage(this, plr);
     stage->printStage(); //debugging code
@@ -296,7 +295,6 @@ void Game::doTurn(CombatSystem combatsystem)
     // Entering Combat System Check and Trigger
     plr->checkCollision(*plr->getCurrentEnemy());
     bool playerDied = false;
-    bool awaitingRunConfirm = false;
 
     if (plr->getIsInCombat()) {
         // If the player enters combat
@@ -308,24 +306,7 @@ void Game::doTurn(CombatSystem combatsystem)
         while (plr->getIsInCombat()) {                                                                 // While the player remains in combat
 
             char combatKeyPress = _getch();                                                            // To receive player's input during battle
-        
 
-            //if (awaitingRunConfirm) {
-            //    // Handle Y/N for run confirmation
-            //    if (combatKeyPress == 'y' || combatKeyPress == 'Y') {
-            //        combatsystem.runPVE(*plr, *plr->getCurrentEnemy());
-            //    }
-            //    else {
-            //        combatsystem.setTextDialogue("You snapped out of it, kept your head in the game.");
-            //    }
-
-            //    system("cls");
-            //    awaitingRunConfirm = false; // go back to normal combat
-            //    combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
-            //    continue;
-            //}
-
-            
             switch (combatKeyPress) {
             case 'f':
                 combatsystem.fightPVE(*plr, *plr->getCurrentEnemy());                                  // Activate Fight Function if player presses F
@@ -344,6 +325,7 @@ void Game::doTurn(CombatSystem combatsystem)
 
                 char confirm = _getch();
 
+               
                 if (confirm == 'y' || confirm == 'Y') {
                     combatsystem.runPVE(*plr, *plr->getCurrentEnemy());
 
@@ -355,6 +337,7 @@ void Game::doTurn(CombatSystem combatsystem)
                 else {
                     continue;
                 }
+                
             
 
                 system("cls");
@@ -388,6 +371,27 @@ void Game::doTurn(CombatSystem combatsystem)
 
     if (playerDied == true) {
         restartStage(currentStage);
+    }
+
+    if (plr->getCombatIsWon() == true) { // if player has beaten all 5 stages (change)
+        cout << "// +-----------------------------------------+ //" << endl;
+        cout << "// + You escaped, but something feels off... + //" << endl;
+        cout << "// +---------[Press '0' to continue]---------+ //" << endl;
+        char confirm = _getch();
+
+        if (confirm == '0') {
+            cout << "// +                                                                            + //" << endl;
+            cout << "// +   #####      #####        #     #    #               #   #    ##     #     + //" << endl;
+            cout << "// +  #     #    #     #       #     #     #             #    #    # #    #     + //" << endl;
+            cout << "// +  #          #             #     #      #     #     #     #    #  #   #     + //" << endl;
+            cout << "// +  #    ###   #    ###      #     #       #   # #   #      #    #   #  #     + //" << endl;
+            cout << "// +  #     #    #     #       #     #        # #   # #       #    #    # #     + //" << endl;
+            cout << "// +   #####      #####         #####          #     #        #    #     ##     + //" << endl;
+            cout << "// +                                                                            + //" << endl;
+        }
+        else {
+            return;
+        }
     }
 }
 

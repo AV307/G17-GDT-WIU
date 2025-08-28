@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "Weapon.h"
 
 //Benjamin 250572M
 //default constructor + parameterised constructor + getters + setters

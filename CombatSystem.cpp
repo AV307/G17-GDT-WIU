@@ -824,8 +824,7 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 		setTextDialogue("You can't run away from a boss fight unfortunately...");																												// If Enemy is Null Type, Player can always run away without consequence
 		return;
 	}
-
-	if (specifiedEnemy.getEnemyStatus() != 'S') {
+	if (specifiedEnemy.getEnemyStatus() != 'X') {
 		if (consDeterminant == 0) {                                                                                      // 1st consequence
 			player.setHealth(player.getHealth() * 3 / 4);                                                                // Lose 25% of current HP
 			setTextDialogue("You ran... but lost something along the way (-25% HP). Press Y to continue");

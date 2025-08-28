@@ -88,6 +88,9 @@ void Room::placeRoomObjects(char** roomArray)
 			case BED:
 				roomArray[y][x] = 'H';
 				break;
+			case BOSS:
+				roomArray[y][x] = '@';
+				break;
 			default:
 				break;
 			}

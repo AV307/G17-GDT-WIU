@@ -15,10 +15,10 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
-    currentStage = 5;
+    currentStage = 1;
     plr = new Player;
     stage = new Stage(this, plr);
-    stage->printStage();
+    //stage->printStage();
 }
 
 //Ang Zhi En 252317H
@@ -450,7 +450,8 @@ void Game::restartStage(int currentStage)
     plr->resetStats();
     plr->setPosition(0, 0);
 
-    stage->printStage();
+    system("cls");
+    stage->printStageWithFOV(plr, currentStage);
     std::cout << "Stage " << currentStage << " has been restarted." << std::endl;
 }
 

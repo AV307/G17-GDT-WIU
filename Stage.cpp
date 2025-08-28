@@ -224,7 +224,7 @@ Stage::Stage(Game* game, Player* player)
         room1 = 'B';
         break;
     }*/
-    rooms[1] = new ShopRoom(currentStage, 1);
+    rooms[1] = new TreasureRoom(currentStage, 1);
     room1 = 'T';
 
     if (currentStage == 3 || currentStage == 5)

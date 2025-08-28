@@ -152,11 +152,13 @@ void Game::doTurn(CombatSystem combatsystem)
             SetConsoleTextAttribute(hConsole, (inventoryIndex == i) ? 14 : 7);
             if (inventoryMenuArray[i] != nullptr) {
                 std::cout << inventoryMenuArray[i]->getName();
+                std::cout << inventoryMenuArray[i]->getAttackVal();
                 if (inventoryMenuArray[i]->getAttackVal() != 0) {
                     std::cout << " (";
                     std::cout << inventoryMenuArray[i]->getAttackVal();
                     std::cout << " Attack)";
                 }
+                std::cout << inventoryMenuArray[i]->getDefenseVal();
                 if (inventoryMenuArray[i]->getDefenseVal() != 0) {
                     std::cout << " (";
                     std::cout << inventoryMenuArray[i]->getDefenseVal();

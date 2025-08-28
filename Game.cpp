@@ -18,6 +18,7 @@ Game::Game()
     currentStage = 1;
     plr = new Player;
     stage = new Stage(this, plr);
+    endGame = false;
     //stage->printStage();
 }
 

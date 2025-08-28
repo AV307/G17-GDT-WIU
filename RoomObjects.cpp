@@ -242,8 +242,6 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
                 "You cannot push multiple blocks at a time. Good luck with this small puzzle!" };
             objects[6][8] = new Object{ SIGN, -1, false, " ", ' ',
                 "Every room has an artifact, something you can collect for achievements. These artifacts will have additional challenges in order to get them." };
-
-            objects[23][3] = new Object{ CHEST, -1, false, " ", 'I' };
             break;
         case 2:
             // VERTICAL WALLS

@@ -61,7 +61,7 @@ void Player::randomizeEnemyEncounter() {
 
 	if (playerMayBeInCombat >= 101) {  // 1% chance to enter combat
 		cooldown = 0;
-		this->generateEnemy();
+		this->generateEnemy(' ');
 		this->setIsInCombat(true);
 	}
 	else {
@@ -69,22 +69,27 @@ void Player::randomizeEnemyEncounter() {
 	}
 }
 
-void Player::generateEnemy() {
+void Player::generateEnemy(char status) {
 		const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
 		const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };
 		int enemySpawnChance = rand() % 100 + 1;
 		char randomEnemyStatus = ' ';
-		if (enemySpawnChance < 50) {
-			randomEnemyStatus = 'B';
+		if (status == ' ') {
+			if (enemySpawnChance < 50) {
+				randomEnemyStatus = 'B';
+			}
+			else if (enemySpawnChance < 75) {
+				randomEnemyStatus = 'E';
+			}
+			else if (enemySpawnChance < 95) {
+				randomEnemyStatus = 'D';
+			}
+			else if (enemySpawnChance < 100) {
+				randomEnemyStatus = 'X';
+			}
 		}
-		else if (enemySpawnChance < 75) {
-			randomEnemyStatus = 'E';
-		}
-		else if (enemySpawnChance < 95) {
-			randomEnemyStatus = 'D';
-		}
-		else if (enemySpawnChance < 100) {
-			randomEnemyStatus = 'X';
+		else {
+			randomEnemyStatus = status;
 		}
 		currentEnemy = new Enemy(theEnemyBank[rand() % 8], randomEnemyStatus);
 	}
@@ -291,21 +296,6 @@ void Player::handleInventory(char inputVal)
 		if (menuIndex < 4) {
 			menuIndex++;
 		}
-		break;
-	case'f':
-		if (menuIndex == 1) {
-			addWeapon("Sword", 5, 0, 0);
-		}
-		if (menuIndex == 2) {
-			addArmour("Chestplate", 5);
-		}
-		if (menuIndex == 3) {
-			addConsumable("Potion", 5, 5, 5);
-		}
-		if (menuIndex == 4) {
-			addArtifact("Artifact");
-		}
-		std::cout << "hi";
 		break;
 	case'g':
 		if (menuIndex == 1) {

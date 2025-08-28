@@ -540,7 +540,8 @@ void Stage::updateStageArray(Player* player, Game* game)
         }
 
         if (type == BOSS) {
-
+            player->generateEnemy();
+            player->setIsInCombat(true);
             return;
         }
 

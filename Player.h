@@ -64,7 +64,7 @@ public:
     int getWeaponCount() const;     
 
     void randomizeEnemyEncounter();
-    void generateEnemy();
+    void generateEnemy(char status);
     bool getIsInCombat();
     void setIsInCombat(bool isInCombat);
     bool getRun();

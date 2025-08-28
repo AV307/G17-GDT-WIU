@@ -65,270 +65,185 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
         switch (currentStage)
         {
         case 1:
-            // Walls
             for (int i = 19; i < 29; i++) {
-                if (objects[i][8] != nullptr) delete objects[i][8];
                 objects[i][8] = new Object{ WALL, -1, false, " ", ' ' };
             }
-
             for (int i = 2; i < 8; i++) {
-                if (objects[19][i] != nullptr) delete objects[19][i];
                 objects[19][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
-
             for (int i = 14; i < 19; i++) {
-                if (objects[i][3] != nullptr) delete objects[i][3];
                 objects[i][3] = new Object{ WALL, -1, false, " ", ' ' };
             }
-
             for (int i = 1; i < 11; i++) {
-                if (objects[12][i] != nullptr) delete objects[12][i];
                 objects[12][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
-
             for (int i = 13; i < 18; i++) {
-                if (objects[i][6] != nullptr) delete objects[i][6];
                 objects[i][6] = new Object{ WALL, -1, false, " ", ' ' };
             }
-
-            if (objects[14][7] != nullptr) delete objects[14][7];
             objects[14][7] = new Object{ WALL, -1, false, " ", ' ' };
-
-            if (objects[14][8] != nullptr) delete objects[14][8];
             objects[14][8] = new Object{ WALL, -1, false, " ", ' ' };
 
             for (int i = 9; i < 20; i++) {
-                if (objects[23][i] != nullptr) delete objects[23][i];
                 objects[23][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 0; i < 24; i++) {
-                if (objects[i][10] != nullptr) delete objects[i][10];
                 objects[i][10] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 4; i < 24; i++) {
-                if (objects[i][18] != nullptr) delete objects[i][18];
                 objects[i][18] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 23; i < 30; i++) {
-                if (objects[i][12] != nullptr) delete objects[i][12];
                 objects[i][12] = new Object{ WALL, -1, false, " ", ' ' };
-            }
+			}
 
             for (int i = 9; i < 12; i++) {
-                if (objects[26][i] != nullptr) delete objects[26][i];
                 objects[26][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 23; i < 30; i++) {
-                if (objects[i][19] != nullptr) delete objects[i][19];
                 objects[i][19] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 19; i < 25; i++) {
-                if (objects[24][i] != nullptr) delete objects[24][i];
                 objects[24][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 10; i < 19; i++) {
-                if (objects[18][i] != nullptr) delete objects[18][i];
                 objects[18][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 10; i < 19; i++) {
-                if (objects[4][i] != nullptr) delete objects[4][i];
                 objects[4][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 19; i < 30; i++) {
-                if (objects[16][i] != nullptr) delete objects[16][i];
                 objects[16][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 19; i < 30; i++) {
-                if (objects[14][i] != nullptr) delete objects[14][i];
                 objects[14][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 0; i < 4; i++) {
-                if (objects[i][26] != nullptr) delete objects[i][26];
                 objects[i][26] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 26; i < 30; i++) {
-                if (objects[4][i] != nullptr) delete objects[4][i];
                 objects[4][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 0; i < 9; i++) {
-                if (objects[7][i] != nullptr) delete objects[7][i];
                 objects[7][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 0; i < 6; i++) {
-                if (objects[10][i] != nullptr) delete objects[10][i];
                 objects[10][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 6; i < 13; i++) {
-                if (objects[i][21] != nullptr) delete objects[i][21];
                 objects[i][21] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 10; i < 15; i++) {
-                if (objects[i][24] != nullptr) delete objects[i][24];
                 objects[i][24] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 25; i < 27; i++) {
-                if (objects[11][i] != nullptr) delete objects[11][i];
                 objects[11][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 12; i < 14; i++) {
-                if (objects[i][26] != nullptr) delete objects[i][26];
                 objects[i][26] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 22; i < 30; i++) {
-                if (objects[8][i] != nullptr) delete objects[8][i];
                 objects[8][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             for (int i = 22; i < 28; i++) {
-                if (objects[6][i] != nullptr) delete objects[6][i];
                 objects[6][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
-            // Teleporters
-            if (objects[13][7] != nullptr) delete objects[13][7];
             objects[13][7] = new Object{ TELEPORTER1, 1, false, " ", ' ' };
-
-            if (objects[24][9] != nullptr) delete objects[24][9];
             objects[24][9] = new Object{ TELEPORTER2, 1, false, " ", ' ' };
 
-            if (objects[17][11] != nullptr) delete objects[17][11];
             objects[17][11] = new Object{ TELEPORTER1, 2, false, " ", ' ' };
-
             for (int i = 11; i < 18; i++) {
-                for (int r = 8; r <= 11; r++) {
-                    if (objects[r][i] != nullptr) delete objects[r][i];
-                    objects[r][i] = new Object{ TELEPORTER2, 2, false, " ", ' ' };
-                }
+                objects[8][i] = new Object{ TELEPORTER2, 2, false, " ", ' ' };
+                objects[9][i] = new Object{ TELEPORTER2, 2, false, " ", ' ' };
+                objects[10][i] = new Object{ TELEPORTER2, 2, false, " ", ' ' };
+                objects[11][i] = new Object{ TELEPORTER2, 2, false, " ", ' ' };
             }
-
             for (int i = 8; i < 12; i++) {
-                if (objects[i][13] != nullptr) delete objects[i][13];
                 objects[i][13] = new Object{ TELEPORTER1, -1, false, " ", ' ' };
             }
 
-            if (objects[15][19] != nullptr) delete objects[15][19];
             objects[15][19] = new Object{ TELEPORTER1, 3, false, " ", ' ' };
-
-            if (objects[1][27] != nullptr) delete objects[1][27];
             objects[1][27] = new Object{ TELEPORTER2, 3, false, " ", ' ' };
 
-            if (objects[13][25] != nullptr) delete objects[13][25];
             objects[13][25] = new Object{ TELEPORTER1, 4, false, " ", ' ' };
-
-            if (objects[17][26] != nullptr) delete objects[17][26];
             objects[17][26] = new Object{ TELEPORTER2, 4, false, " ", ' ' };
 
-            // Chests
-            if (objects[22][9] != nullptr) delete objects[22][9];
             objects[22][9] = new Object{ CHEST, -1, false, " ", 'H' };
-
-            if (objects[2][1] != nullptr) delete objects[2][1];
             objects[2][1] = new Object{ CHEST, -1, false, " ", 'K' };
-
-            if (objects[11][1] != nullptr) delete objects[11][1];
             objects[11][1] = new Object{ CHEST, -1, false, "Art", 'A' };
 
-            // Breakable walls
-            if (objects[24][12] != nullptr) delete objects[24][12];
             objects[24][12] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
-
-            if (objects[4][14] != nullptr) delete objects[4][14];
             objects[4][14] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
-
-            if (objects[14][21] != nullptr) delete objects[14][21];
             objects[14][21] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
-
-            if (objects[27][8] != nullptr) delete objects[27][8];
             objects[27][8] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
 
-            // Switches
-            if (objects[25][18] != nullptr) delete objects[25][18];
             objects[25][18] = new Object{ SWITCH, 1, false, " ", ' ' };
-
-            if (objects[3][28] != nullptr) delete objects[3][28];
             objects[3][28] = new Object{ SWITCH, 3, false, " ", ' ' };
-
-            if (objects[28][9] != nullptr) delete objects[28][9];
             objects[28][9] = new Object{ SWITCH, 5, false, " ", ' ' };
 
-            // Doors
-            if (objects[23][15] != nullptr) delete objects[23][15];
             objects[23][15] = new Object{ DOOR, 1, false, " ", ' ' };
-
-            if (objects[18][15] != nullptr) delete objects[18][15];
             objects[18][15] = new Object{ DOOR, 2, false, " ", ' ' };
-
-            if (objects[13][24] != nullptr) delete objects[13][24];
             objects[13][24] = new Object{ DOOR, 3, false, " ", ' ' };
-
-            if (objects[2][10] != nullptr) delete objects[2][10];
             objects[2][10] = new Object{ DOOR, 4, false, " ", ' ' };
-
-            if (objects[11][5] != nullptr) delete objects[11][5];
             objects[11][5] = new Object{ DOOR, 5, false, " ", ' ' };
 
-            // Pressure plates
-            if (objects[19][11] != nullptr) delete objects[19][11];
             objects[19][11] = new Object{ PRESSUREPLATE, 2, false, " ", ' ' };
-
-            if (objects[26][20] != nullptr) delete objects[26][20];
             objects[26][20] = new Object{ PRESSUREPLATE, 4, false, " ", ' ' };
 
-            // Moveable blocks
-            int moveBlocks[][2] = {
-                {19,16}, {25,20}, {27,20}, {28,20}, {25,21}, {26,21}, {28,21},
-                {27,22}, {26,22}, {28,22}, {26,23}, {28,23}
-            };
+            objects[19][16] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
 
-            for (auto& b : moveBlocks) {
-                if (objects[b[0]][b[1]] != nullptr) delete objects[b[0]][b[1]];
-                objects[b[0]][b[1]] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
-            }
+            objects[25][20] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[27][20] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[28][20] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
 
-            // Key door
-            if (objects[0][15] != nullptr) delete objects[0][15];
+            objects[25][21] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[26][21] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[28][21] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+
+            objects[27][22] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[26][22] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[28][22] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+
+            objects[26][23] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            objects[28][23] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
 
-            // Signs
-            if (objects[23][4] != nullptr) delete objects[23][4];
-            objects[23][4] = new Object{ SIGN, -1, false, " ", ' ', "Hey! Welcome to the dungeon!" };
+            objects[23][4] = new Object{ SIGN, -1, false, " ", ' ',
+                "Hey! Welcome to the dungeon!" };
+            objects[21][15] = new Object{ SIGN, -1, false, " ", ' ',
+                "You will find these blocks laying around. Push them onto those buttons on the floor!" };
+            objects[26][15] = new Object{ SIGN, -1, false, " ", ' ',
+                "Levers control doors, interact with them to open and close doors!" };
+            objects[16][15] = new Object{ SIGN, -1, false, " ", ' ',
+                "Teleporters bring you to another location. You will have to find the right path through these teleporters. Third time's the charm!" };
+            objects[2][14] = new Object{ SIGN, -1, false, " ", ' ',
+                "You will need a key to open that door. Try searching the right side." };
+            objects[27][25] = new Object{ SIGN, -1, false, " ", ' ',
+                "You cannot push multiple blocks at a time. Good luck with this small puzzle!" };
+            objects[6][8] = new Object{ SIGN, -1, false, " ", ' ',
+                "Every room has an artifact, something you can collect for achievements. These artifacts will have additional challenges in order to get them." };
 
-            if (objects[21][15] != nullptr) delete objects[21][15];
-            objects[21][15] = new Object{ SIGN, -1, false, " ", ' ', "You will find these blocks laying around. Push them onto those buttons on the floor!" };
-
-            if (objects[26][15] != nullptr) delete objects[26][15];
-            objects[26][15] = new Object{ SIGN, -1, false, " ", ' ', "Levers control doors, interact with them to open and close doors!" };
-
-            if (objects[16][15] != nullptr) delete objects[16][15];
-            objects[16][15] = new Object{ SIGN, -1, false, " ", ' ', "Teleporters bring you to another location. You will have to find the right path through these teleporters. Third time's the charm!" };
-
-            if (objects[2][14] != nullptr) delete objects[2][14];
-            objects[2][14] = new Object{ SIGN, -1, false, " ", ' ', "You will need a key to open that door. Try searching the right side." };
-
-            if (objects[27][25] != nullptr) delete objects[27][25];
-            objects[27][25] = new Object{ SIGN, -1, false, " ", ' ', "You cannot push multiple blocks at a time. Good luck with this small puzzle!" };
-
-            if (objects[6][8] != nullptr) delete objects[6][8];
-            objects[6][8] = new Object{ SIGN, -1, false, " ", ' ', "Every room has an artifact, something you can collect for achievements. These artifacts will have additional challenges in order to get them." };
-
+            objects[23][3] = new Object{ CHEST, -1, false, " ", 'I' };
             break;
         case 2:
             // VERTICAL WALLS

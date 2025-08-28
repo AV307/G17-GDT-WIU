@@ -312,7 +312,7 @@ void Game::doTurn(CombatSystem combatsystem)
                 HPStat++;
                 AvailablePts--;
                 plr->setStatPoints(AvailablePts);
-                plr->setHealth(plr->getHealth() + 5);                                                        // Player HP + 5 for every Stat Point
+                plr->setHealth(plr->getHealth() - 10);                                                        // Player HP + 5 for every Stat Point
                 break;
             case '2':
                 ATKStat++;
@@ -411,23 +411,6 @@ void Game::doTurn(CombatSystem combatsystem)
     }
 
     if (playerDied == true) {
-        system("cls");
-        int randomHelpMessage = rand() % 3;
-        cout << "// +-----------------------------------------------------------------------------+ //" << endl;
-        cout << "// +                                                                             + //" << endl;
-        cout << "// +               You died! Press any key to restart the stage!                 + //" << endl;
-        cout << "// +                                                                             + //" << endl;
-        if (randomHelpMessage == 0) {
-            cout << "// +       Next time try running when you're outclassed, come back stronger      + //" << endl;
-        }
-        else if (randomHelpMessage == 1) {
-            cout << "// +              Uhh, today might just not be your day, try again?              + //" << endl;
-        }
-        else {
-            cout << "// +       You hear the calls of those who lost before you, keep going!          + //" << endl;
-        }
-        cout << "// +                                                                             + //" << endl;
-        cout << "// +-----------------------------------------------------------------------------+ //" << endl;
         restartStage(currentStage);
     }
 }
@@ -451,6 +434,22 @@ void Game::restartStage(int currentStage)
     plr->setPosition(0, 0);
 
     system("cls");
+    int randomHelpMessage = rand() % 3;
+    cout << "// +-----------------------------------------------------------------------------+ //" << endl;
+    cout << "// +                                                                             + //" << endl;
+    cout << "// +               You died! Press any key to restart the stage!                 + //" << endl;
+    cout << "// +                                                                             + //" << endl;
+    if (randomHelpMessage == 0) {
+        cout << "// +       Next time try running when you're outclassed, come back stronger      + //" << endl;
+    }
+    else if (randomHelpMessage == 1) {
+        cout << "// +              Uhh, today might just not be your day, try again?              + //" << endl;
+    }
+    else {
+        cout << "// +       You hear the calls of those who lost before you, keep going!          + //" << endl;
+    }
+    cout << "// +                                                                             + //" << endl;
+    cout << "// +-----------------------------------------------------------------------------+ //" << endl;
     stage->printStageWithFOV(plr, currentStage);
     std::cout << "Stage " << currentStage << " has been restarted." << std::endl;
 }

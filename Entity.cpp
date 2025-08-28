@@ -17,6 +17,11 @@ Entity::Entity(int hp, int atk, int dmg, int def, int exp, int g, int lvl, int c
     yPos = 0;
 }
 
+void Entity::resetEnemy() {   
+    delete this; 
+    this->enemyType = "None";  
+    this->enemyStatus = ' '; 
+}
 int Entity::getHealth() const { 
     return health; 
 }

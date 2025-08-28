@@ -61,16 +61,15 @@ Enemy::Enemy(string type, char status) {
 		}
 	}
 	enemyStatus = status;
-	//Checks what status the enemy is (Basic/Elite/Deluxe/Boss)
-	//Enemy with higher status will have higher stats
-	switch (enemyStatus) {
+
+	switch (status) {
 
 	case 'N':
 		break;
 	case 'B':
-		health = health*static_cast<int>(75 / 100);
-		attack = attack*static_cast<int>(50 / 100);
-		defense = defense*static_cast<int>(60 / 100);
+		health = health/2;
+		attack = attack/2;
+		defense = defense/3;
 		break;
 	case 'E':
 		dropAMTID = 0;
@@ -91,25 +90,6 @@ Enemy::Enemy(string type, char status) {
 		defense = defense*static_cast<int>(120 / 100);
 		break;
 	}
-
-	//enemyXR = rand() % 27;
-	//enemyYR = rand() % 27;
- //   mainRoom* room = new mainRoom(currentStage); // Create an instance of mainRoom  
- //   room->getSpecificMainRoomTile(enemyYR, enemyXR); // Use the instance to call the method  
-	//for (int r = 0; r < mainRoom::maxEnemy; r++) {
-	//	enemy[r] = new Enemy(type, status);
-	//	if (room->mainRoomArray[enemyYR][enemyXR] == ' ') {
-	//		enemyPos[r][0] = reinterpret_cast<Enemy*>(enemy[r]->setEnemyXR(enemyXR));
-	//		enemyPos[r][1] = reinterpret_cast<Enemy*>(enemy[r]->setEnemyYR(enemyYR));
-	//		enemyArray[enemyYR][enemyXR] = status;
-	//	}
-	//	else {
-	//		delete enemy[r];
-	//		enemy[r] = nullptr;
-	//	}
-	//}
-    // delete room; // Clean up the dynamically allocated memory
-	//setEnemyPos(enemyYR, enemyXR);
 }
 
 void Enemy::initEnemies(int eX, int eY, int eI) {
@@ -137,12 +117,12 @@ int Enemy::setEnemyYR(int y) const {
 	return y;
 }
 
-void Enemy::resetEnemy() {
-	for (int r = 0; r < emaxEnemy; r++) {
-		delete enemy[r];
-		enemy[r] = nullptr;
-	}
-}
+//void Enemy::resetEnemy() {
+//	for (int r = 0; r < emaxEnemy; r++) {
+//		delete enemy[r];
+//		enemy[r] = nullptr;
+//	}
+//}
 
 bool Enemy::isEnemyThere(Player* player, int indexE) const {
 	if (player == nullptr) return false;
@@ -236,6 +216,7 @@ bool Enemy::killEnemy(Game* game) {
 	if (health <= 0) {
 		isBossDefeated();
 		calculateLoot(game);
+		delete this;
 		return true;
 	}
 	else {

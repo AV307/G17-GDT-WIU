@@ -9,6 +9,7 @@ class Game
 private:
     int currentStage;
 	int highestStage;
+    bool endGame;
     Player* plr;
 
 public:
@@ -29,6 +30,7 @@ public:
 	void pauseGame();
 
 	void getHighestStage(int currentStage);
+    bool getEndGame();
 
     void doTurn(CombatSystem combatsystem);
 };

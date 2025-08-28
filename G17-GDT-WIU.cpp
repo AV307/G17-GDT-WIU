@@ -18,11 +18,11 @@ int main()
                 game.printBriefingMenu();
             } while (proceed != '0');
             
-            while (true) {
+            while (game.getEndGame() == false) {
                 game.doTurn(CombatSystem);
             };
         }
-    } while (true);
+    } while (game.getEndGame() == false);
 
     return 0;
 };

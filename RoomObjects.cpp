@@ -648,7 +648,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[22][13] = new Object{ TELEPORTER2, 7, false, " ", ' ' };
 
             objects[22][5] = new Object{ TELEPORTER1, 8, false, " ", ' ' };
-            objects[17][2] = new Object{ TELEPORTER2, 9, false, " ", ' ' };
+            objects[17][2] = new Object{ TELEPORTER2, 8, false, " ", ' ' };
 
             objects[19][17] = new Object{ TELEPORTER1, 10, false, " ", ' ' };
             objects[19][20] = new Object{ TELEPORTER2, 10, false, " ", ' ' };
@@ -727,12 +727,13 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[17][25] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[18][24] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[18][27] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
-            objects[20][22] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
-            objects[20][20] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
-            objects[21][18] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[21][22] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[21][20] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[21][23] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[21][24] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[21][27] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[22][24] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[22][23] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
 
             for (int i = 24; i < 28; i++) {
                 objects[15][i] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
@@ -764,7 +765,9 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[21][16] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[21][19] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[21][24] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[21][21] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[7][26] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[13][23] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
 
             objects[17][22] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[18][21] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
@@ -779,6 +782,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[22][21] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[22][21] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[7][25] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[13][25] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
 
             objects[28][28] = new Object{ CHEST, -1, false, " ", 'H' };
             objects[1][28] = new Object{ CHEST, -1, false, "Rubber Duck", 'A' };
@@ -1165,6 +1169,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
                "Nothing important here don't mind the bathtub" };
             break;
         case 5:
+            objects[0][15] = new Object{ SPACE, -1, false, " ", ' ' };
             break;
         }
         break;

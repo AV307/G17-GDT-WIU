@@ -15,10 +15,10 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
-    currentStage = 3;
+    currentStage = 5;
     plr = new Player;
     stage = new Stage(this, plr);
-    stage->printStage(); //debugging code
+    stage->printStage();
 }
 
 //Ang Zhi En 252317H
@@ -108,7 +108,65 @@ void Game::doTurn(CombatSystem combatsystem)
     int inventoryIndex = plr->getInventoryIndex();
 
     Item** inventoryMenuArray = nullptr;
-    if (pauseOpen)
+    if (currentStage > 5) {
+        system("cls");
+
+        Item** artifactArray = plr->getArtifacts();
+
+        int rubberDuckyCount = 0;
+
+        for (int i = 0; i < 10; i++) {
+            if (artifactArray[i] != nullptr) {
+                if (artifactArray[i]->getName() == "Rubber Duck") {
+                    rubberDuckyCount++;
+                }
+            }
+        }
+        if (rubberDuckyCount > 2) {
+            cout << "// +---------------------------------------------------------------------------------------------------+ //" << endl;
+            cout << "// + You escaped, but something feels off... quickly, you noticed a light coming out of your backpack. + //" << endl;
+            cout << "// +                   Upon opening it, the rubber duckies emitted a blinding light.                   + //" << endl;
+            cout << "// +  When you came to, you realised you were back at the top, staring down at a collapsed dungeon...  + //" << endl;
+            cout << "// +---------------------------------------[Press '0' to continue]-------------------------------------+ //" << endl;
+            char confirm = _getch();
+
+            if (confirm == '0') {
+                cout << "// +                                                                             + //" << endl;
+                cout << "// +   #####      #####        #     #     #               #   #    ##     #     + //" << endl;
+                cout << "// +  #     #    #     #       #     #      #             #    #    # #    #     + //" << endl;
+                cout << "// +  #          #             #     #       #     #     #     #    #  #   #     + //" << endl;
+                cout << "// +  #    ###   #    ###      #     #        #   # #   #      #    #   #  #     + //" << endl;
+                cout << "// +  #     #    #     #       #     #         # #   # #       #    #    # #     + //" << endl;
+                cout << "// +   #####      #####         #####           #     #        #    #     ##     + //" << endl;
+                cout << "// +                                                                             + //" << endl;
+            }
+            else {
+                return;
+            }
+        }
+        else {
+            cout << "// +-----------------------------------------+ //" << endl;
+            cout << "// + You escaped, but something feels off... + //" << endl;
+            cout << "// +---------[Press '0' to continue]---------+ //" << endl;
+            char confirm = _getch();
+
+            if (confirm == '0') {
+                cout << "// +                                                                             + //" << endl;
+                cout << "// +   #####      #####        #     #     #               #   #    ##     #     + //" << endl;
+                cout << "// +  #     #    #     #       #     #      #             #    #    # #    #     + //" << endl;
+                cout << "// +  #          #             #     #       #     #     #     #    #  #   #     + //" << endl;
+                cout << "// +  #    ###   #    ###      #     #        #   # #   #      #    #   #  #     + //" << endl;
+                cout << "// +  #     #    #     #       #     #         # #   # #       #    #    # #     + //" << endl;
+                cout << "// +   #####      #####         #####           #     #        #    #     ##     + //" << endl;
+                cout << "// +                                                                             + //" << endl;
+            }
+            else {
+                return;
+            }
+        }
+        endGame = true;
+    }
+    else if (pauseOpen)
     {
         pauseGame();
     }
@@ -129,23 +187,6 @@ void Game::doTurn(CombatSystem combatsystem)
             break;
         default:
             break;
-        }
-        //Benjamin 250572M
-        //opens shop menu if player is not in combat and presses 'P'
-        if (!plr->getIsInCombat()) {
-            char keyPress = _getch();
-
-            switch (tolower(keyPress)) {
-            case 'p': {
-                // open the shop
-                ShopRoom shop(currentStage, 0);
-                shop.showShopMenu(plr);
-                break;
-            }
-            case 'r':
-                restartStage(currentStage);
-                break;
-            }
         }
 
         // Inventory Items
@@ -373,27 +414,6 @@ void Game::doTurn(CombatSystem combatsystem)
     if (playerDied == true) {
         restartStage(currentStage);
     }
-
-    if (plr->getCombatIsWon() == true) { // if player has beaten all 5 stages (change)
-        cout << "// +-----------------------------------------+ //" << endl;
-        cout << "// + You escaped, but something feels off... + //" << endl;
-        cout << "// +---------[Press '0' to continue]---------+ //" << endl;
-        char confirm = _getch();
-
-        if (confirm == '0') {
-            cout << "// +                                                                             + //" << endl;
-            cout << "// +   #####      #####        #     #     #               #   #    ##     #     + //" << endl;
-            cout << "// +  #     #    #     #       #     #      #             #    #    # #    #     + //" << endl;
-            cout << "// +  #          #             #     #       #     #     #     #    #  #   #     + //" << endl;
-            cout << "// +  #    ###   #    ###      #     #        #   # #   #      #    #   #  #     + //" << endl;
-            cout << "// +  #     #    #     #       #     #         # #   # #       #    #    # #     + //" << endl;
-            cout << "// +   #####      #####         #####           #     #        #    #     ##     + //" << endl;
-            cout << "// +                                                                             + //" << endl;
-        }
-        else {
-            return;
-        }
-    }
 }
 
 Entity* Game::getCurrentEnemy() {
@@ -421,6 +441,7 @@ void Game::restartStage(int currentStage)
 void Game::advanceStage() {
     currentStage++;
     delete stage;
+    stage = nullptr;
     stage = new Stage(this, plr);
 }
 
@@ -431,6 +452,11 @@ void Game::getHighestStage(int currentStage)
         highestStage = currentStage;
     }
     std::cout << "Highest Stage Reached: " << highestStage << std::endl;
+}
+
+bool Game::getEndGame()
+{
+    return endGame;
 }
 
 // Pause game

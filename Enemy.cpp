@@ -55,6 +55,7 @@ Enemy::Enemy(string type, char status) {
 			xp = enemyStats[5][i];
 			chance = enemyStats[6][i];
 			dropName = i;
+			gold = enemyStats[7][i];
 
 			CRITRate = critRate[i];
 			CRITDMG = critDMG[i];

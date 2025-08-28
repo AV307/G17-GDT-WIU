@@ -188,7 +188,7 @@ void Stage::setStageArray(int currentStage, char room1, char room2, Player* play
         break;
     case 4:
         player->setXPos(50);
-        player->setYPos(43);
+        player->setYPos(73);
         break;
     case 5:
         player->setXPos(75);
@@ -242,7 +242,7 @@ Stage::Stage(Game* game, Player* player)
     }
     else
     {
-        /*int randomRoom2 = dis(gen);
+        int randomRoom2 = dis(gen);
         switch (randomRoom2)
         {
         case 1:
@@ -257,10 +257,7 @@ Stage::Stage(Game* game, Player* player)
             rooms[2] = new BedRoom(currentStage, 2);
             room2 = 'B';
             break;
-        }*/
-
-        rooms[2] = new ShopRoom(currentStage, 2);
-        room2 = 'S';
+        }
     }
 
 
@@ -546,7 +543,7 @@ void Stage::updateStageArray(Player* player, Game* game)
         }
 
         if (type == BOSS) {
-            player->generateEnemy('S');
+            player->generateEnemy('X');
             player->setIsInCombat(true);
 
             int roomXPos = playerXPos - rooms[roomIndex]->getRoomTopLeftY();

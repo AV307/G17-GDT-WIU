@@ -4,7 +4,6 @@
 class Weapon : public Item
 {
 private:
-    int attack;
 	int critRate;      // Critical hit rate (percentage)
 	int critDamage;    // Critical hit damage (percentage of normal damage)
 public:
@@ -13,8 +12,10 @@ public:
     ~Weapon();
 
     // Optional: getters/setters if needed
-    int getAttackVal() const;
     int getCritRateVal() const;
     int getCritDamageVal() const;
+
+    void setCritRate(int val);
+    void setCritDamage(int val);
 };
 

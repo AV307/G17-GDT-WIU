@@ -145,29 +145,8 @@ void Player::doAction() {
 	if (inventoryOpen) {
 		handleInventory(input);
 	}
-	//else if (shopOpen) {
-	//	/*printShopInventory();*/
-	//}
 	else {
-		handleMovement(input);
-		//for (int m = 0; m < mainRoom::maxEnemy; m++) {
-		//	if (Enemy::getInstance().enemy[m] != nullptr) {
-		//		if (Enemy::getInstance().enemy[m]->isEnemyThere(this, m)) {
-		//			std::cout << Enemy::getInstance().enemy[m]->isEnemyThere(this, m);
-		//			currentEnemy = Enemy::getInstance().enemy[m];
-		//			isInCombat = true;
-		//		}
-		//		else {
-		//			isInCombat = false;
-		//		}
-		//	}
-		//	else if (Enemy::getInstance().enemy[m] == nullptr) {
-		//		std::cout << "YOUWYREOUR" << std::endl;
-		//	}
-		//}
-		//checkCollision(mainRoom::getEnemyList(), rooms[0]);
-		//Enemy** enemyList = room->getEnemyList();           
-		//int maxEnemy = room->getMaxEnemy();                 
+		handleMovement(input);                
 	}
 }
 
@@ -342,10 +321,8 @@ void Player::handleInventory(char inputVal)
 		if (menuIndex == 1) {
 			if (equippedWeapon != nullptr) {
 				equippedWeapon->setEquipped(false);
-				//equippedWeapon = weaponry[inventoryIndex];
-				//equippedWeapon->setEquipped(true);
 			}
-			if (armoury[inventoryIndex] != nullptr) {
+			if (weaponry[inventoryIndex] != nullptr) {
 				equippedWeapon = weaponry[inventoryIndex];
 				equippedWeapon->setEquipped(true);
 			}
@@ -353,8 +330,6 @@ void Player::handleInventory(char inputVal)
 		else if (menuIndex == 2) {
 			if (equippedArmour != nullptr) {
 				equippedArmour->setEquipped(false);
-				//equippedArmour = armoury[inventoryIndex];
-				//equippedArmour->setEquipped(true);
 			}
 			if (armoury[inventoryIndex] != nullptr) {
 				equippedArmour = armoury[inventoryIndex];
@@ -472,7 +447,12 @@ void Player::addWeapon(const std::string& Name, int attackVal, int critRate = 0,
 {
 	for (int i = 0; i < 10; i++) {
 		if (weaponry[i] == nullptr) {
-			Weapon* weapon = new Weapon(Name, attackVal, critRate, critDamage);
+			Weapon* weapon = new Weapon;
+			weapon->setName(Name);
+			weapon->setAttackVal(attackVal);
+			weapon->setDefenseVal(0);
+			weapon->setCritRate(critRate);
+			weapon->setCritDamage(critDamage);
 			weapon->setEquipped(false);
 			weaponry[i] = weapon;
 			break;

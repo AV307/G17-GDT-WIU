@@ -183,6 +183,10 @@ void Stage::setStageArray(int currentStage, char room1, char room2, Player* play
         player->setYPos(86);
         break;
     case 3:
+        player->setXPos(38);
+        player->setYPos(86);
+        break;
+    case 4:
         player->setXPos(50);
         player->setYPos(73);
         break;
@@ -434,7 +438,7 @@ void Stage::updateStageArray(Player* player, Game* game)
                             player->addArtifact(itemName);
                             break;
                         case 'I': {
-                            std::uniform_int_distribution<> localDis(1, 8);
+                            std::uniform_int_distribution<> localDis(1, 12);
                             int randomNum = localDis(gen);
 
 							switch (randomNum) {
@@ -461,6 +465,18 @@ void Stage::updateStageArray(Player* player, Game* game)
                                 break;
                             case 8:
                                 player->addConsumable("Sleep Potion", 0, 0, 0);
+                                break;
+                            case 9:
+                                player->addArmour("Iron Armour", 15);
+                                break;
+                            case 10:
+                                player->addArmour("Steel Armour", 20);
+                                break;
+                            case 11:
+                                player->addArmour("Chainmail Armour", 10);
+                                break;
+                            case 12:
+                                player->addArmour("Leather Armour", 5);
                                 break;
                             default:
                                 break;
@@ -507,7 +523,7 @@ void Stage::updateStageArray(Player* player, Game* game)
                         break;
                     }
                     case BED: {
-                        // do something
+						player->setHealth(100);
                         break;
                     }
                     }
@@ -663,7 +679,7 @@ void Stage::printStageWithFOV(Player* player, int currentStage) {
     if (roomIndex != -1) {
         RoomObjects* objects = rooms[roomIndex]->getRoomObjects();
 
-        if (currentStage != 3) {
+        if (currentStage != 4) {
             std::cout << " ------------------------------- " << "\n";
             for (int y = playerPosY - 7; y <= playerPosY + 7; y++) {
                 std::cout << '|';

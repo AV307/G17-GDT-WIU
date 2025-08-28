@@ -463,7 +463,10 @@ void Game::pauseGame() {
                 stage->printStageWithFOV(plr, currentStage);
                 plr->setPauseOpen(false);
                 return;
-            case 1: restartStage(currentStage); return;
+            case 1: 
+                restartStage(currentStage);
+                plr->setPauseOpen(false);
+                return;
             case 2: exit(0);
             }
         }

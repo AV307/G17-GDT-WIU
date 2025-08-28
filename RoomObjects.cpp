@@ -663,8 +663,8 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[6][28] = new Object{ TELEPORTER2, 13, false, " ", ' ' };
 
             objects[27][14] = new Object{ PRESSUREPLATE, 1, false, " ", ' ' };
-            objects[27][15] = new Object{ DOOR, 1, false, " ", ' ' };
-            objects[27][16] = new Object{ DOOR, 1, false, " ", ' ' };
+            objects[26][15] = new Object{ DOOR, 1, false, " ", ' ' };
+            objects[26][16] = new Object{ DOOR, 1, false, " ", ' ' };
 
             objects[28][16] = new Object{ PRESSUREPLATE, 2, false, " ", ' ' };
             objects[28][19] = new Object{ DOOR, 2, false, " ", ' ' };
@@ -673,7 +673,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[28][14] = new Object{ DOOR, 3, false, " ", ' ' };
 
             objects[24][20] = new Object{ SWITCH, 4, false, " ", ' ' };
-            objects[23][16] = new Object{ DOOR, 4, false, " ", ' ' };
+            objects[23][13] = new Object{ DOOR, 4, false, " ", ' ' };
 
             objects[25][24] = new Object{ SWITCH, 5, false, " ", ' ' };
             objects[24][25] = new Object{ DOOR, 5, false, " ", ' ' };

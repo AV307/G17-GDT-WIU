@@ -434,18 +434,218 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
                 objects[i][1] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
-            for (int i = 16; i < 24; i++) {
+            for (int i = 14; i < 24; i++) {
                 objects[i][3] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
-            for (int i = 13; i < 24; i++) {
+            for (int i = 20; i < 24; i++) {
                 objects[i][8] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
-            for (int i = 16; i < 28; i++) {
-                objects[i][12] = new Object{ WALL, -1, false, " ", ' ' };
+            for (int i = 21; i < 24; i++) {
+                objects[i][6] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
+            for (int i = 21; i < 24; i++) {
+                objects[i][4] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 16; i < 28; i++) {
+                objects[i][15] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 23; i < 28; i++) {
+                objects[i][19] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 23; i < 28; i++) {
+                objects[i][16] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            objects[28][21] = new Object{ WALL, -1, false, " ", ' ' };
+            objects[28][25] = new Object{ WALL, -1, false, " ", ' ' };
+
+            for (int i = 23; i < 28; i++) {
+                objects[i][28] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 8; i < 17; i++) {
+                objects[i][21] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 8; i < 17; i++) {
+                objects[i][8] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 7; i < 11; i++) {
+                objects[i][22] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 13; i < 17; i++) {
+                objects[i][22] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 8; i++) {
+                objects[i][27] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 10; i < 13; i++) {
+                objects[i][11] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            objects[11][12] = new Object{ WALL, -1, false, " ", ' ' };
+
+            for (int i = 10; i < 13; i++) {
+                objects[i][13] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 10; i < 13; i++) {
+                objects[i][15] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 24; i < 27; i++) {
+                objects[i][23] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 24; i < 27; i++) {
+                objects[i][25] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            objects[10][17] = new Object{ WALL, -1, false, " ", ' ' };
+            objects[10][19] = new Object{ WALL, -1, false, " ", ' ' };
+            objects[11][20] = new Object{ WALL, -1, false, " ", ' ' };
+
+            objects[21][13] = new Object{ WALL, -1, false, " ", ' ' };
+            objects[22][14] = new Object{ WALL, -1, false, " ", ' ' };
+
+			// HORIZONTAL WALLS
+
+            for (int i = 0; i < 30; i++) {
+                objects[23][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 8; i < 30; i++) {
+                objects[16][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 0; i < 5; i++) {
+                objects[16][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 3; i < 9; i++) {
+                objects[14][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 3; i < 7; i++) {
+                objects[21][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 8; i < 22; i++) {
+                objects[8][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 22; i < 30; i++) {
+                objects[7][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 22; i < 26; i++) {
+                objects[9][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 22; i < 27; i++) {
+                objects[13][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 17; i < 20; i++) {
+                objects[12][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 25; i < 30; i++) {
+                objects[27][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            objects[26][20] = new Object{ WALL, -1, false, " ", ' ' };
+
+            objects[9][10] = new Object{ WALL, -1, false, " ", ' ' };
+            objects[10][10] = new Object{ WALL, -1, false, " ", ' ' };
+            objects[10][9] = new Object{ WALL, -1, false, " ", ' ' };
+
+            // OBJECTS
+
+            objects[25][21] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+
+            objects[24][21] = new Object{ TELEPORTER1, 1, false, " ", ' ' };
+            objects[25][27] = new Object{ TELEPORTER2, 1, false, " ", ' ' };
+
+            objects[24][22] = new Object{ TELEPORTER1, 2, false, " ", ' ' };
+            objects[25][26] = new Object{ TELEPORTER2, 2, false, " ", ' ' };
+            objects[26][27] = new Object{ TELEPORTER2, 2, false, " ", ' ' };
+
+            objects[25][22] = new Object{ TELEPORTER1, 3, false, " ", ' ' };
+            objects[27][21] = new Object{ TELEPORTER2, 3, false, " ", ' ' };
+
+            objects[27][24] = new Object{ TELEPORTER1, 4, false, " ", ' ' };
+            objects[24][27] = new Object{ TELEPORTER2, 4, false, " ", ' ' };
+
+            objects[24][26] = new Object{ TELEPORTER1, 5, false, " ", ' ' };
+            objects[25][28] = new Object{ TELEPORTER2, 5, false, " ", ' ' };
+
+            objects[24][24] = new Object{ TELEPORTER1, 6, false, " ", ' ' };
+            objects[26][24] = new Object{ TELEPORTER2, 6, false, " ", ' ' };
+
+            objects[28][26] = new Object{ TELEPORTER1, 7, false, " ", ' ' };
+            objects[22][13] = new Object{ TELEPORTER2, 7, false, " ", ' ' };
+
+            objects[22][5] = new Object{ TELEPORTER1, 8, false, " ", ' ' };
+            objects[17][2] = new Object{ TELEPORTER2, 9, false, " ", ' ' };
+
+            objects[19][17] = new Object{ TELEPORTER1, 10, false, " ", ' ' };
+            objects[19][20] = new Object{ TELEPORTER2, 10, false, " ", ' ' };
+
+            objects[19][27] = new Object{ TELEPORTER1, 11, false, " ", ' ' };
+            objects[20][25] = new Object{ TELEPORTER2, 11, false, " ", ' ' };
+
+            objects[22][22] = new Object{ TELEPORTER1, 12, false, " ", ' ' };
+            objects[15][23] = new Object{ TELEPORTER2, 12, false, " ", ' ' };
+
+            objects[8][22] = new Object{ TELEPORTER1, 13, false, " ", ' ' };
+            objects[6][28] = new Object{ TELEPORTER2, 13, false, " ", ' ' };
+
+            objects[27][14] = new Object{ PRESSUREPLATE, 1, false, " ", ' ' };
+            objects[27][15] = new Object{ DOOR, 1, false, " ", ' ' };
+            objects[27][16] = new Object{ DOOR, 1, false, " ", ' ' };
+
+            objects[28][16] = new Object{ PRESSUREPLATE, 2, false, " ", ' ' };
+            objects[28][19] = new Object{ DOOR, 2, false, " ", ' ' };
+
+            objects[24][17] = new Object{ SWITCH, 3, false, " ", ' ' };
+            objects[28][14] = new Object{ DOOR, 3, false, " ", ' ' };
+
+            objects[24][20] = new Object{ SWITCH, 4, false, " ", ' ' };
+            objects[23][16] = new Object{ DOOR, 4, false, " ", ' ' };
+
+            objects[25][24] = new Object{ SWITCH, 5, false, " ", ' ' };
+            objects[24][25] = new Object{ DOOR, 5, false, " ", ' ' };
+
+            objects[28][24] = new Object{ SWITCH, 6, false, " ", ' ' };
+            objects[23][5] = new Object{ DOOR, 6, false, " ", ' ' };
+
+            objects[22][25] = new Object{ SWITCH, 7, false, " ", ' ' };
+            objects[3][28] = new Object{ DOOR, 7, false, " ", ' ' };
+
+            objects[14][22] = new Object{ SWITCH, 8, false, " ", ' ' };
+            objects[13][27] = new Object{ DOOR, 8, false, " ", ' ' };
+
+            objects[10][28] = new Object{ SWITCH, 9, false, " ", ' ' };
+            objects[11][23] = new Object{ DOOR, 9, false, " ", ' ' };
+
+            objects[15][2] = new Object{ SWITCH, 10, false, " ", ' ' };
+            objects[8][9] = new Object{ DOOR, 10, false, " ", ' ' };
+
+            objects[9][9] = new Object{ SWITCH, 11, false, " ", ' ' };
+            objects[2][28] = new Object{ DOOR, 11, false, " ", ' ' };
+
+            break;
         case 4:
             // VERTICAL WALLS
 

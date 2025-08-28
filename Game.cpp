@@ -15,7 +15,7 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 Game::Game()
 {
     //set to 3 or 5 to test the boss rooms
-    currentStage = 2;
+    currentStage = 3;
     plr = new Player;
     stage = new Stage(this, plr);
     stage->printStage(); //debugging code

@@ -430,6 +430,22 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             break;
         case 3:
             // VERTICAL WALLS
+            for (int i = 16; i < 24; i++) {
+                objects[i][1] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 16; i < 24; i++) {
+                objects[i][3] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 13; i < 24; i++) {
+                objects[i][8] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 16; i < 28; i++) {
+                objects[i][12] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
         case 4:
             // VERTICAL WALLS
 

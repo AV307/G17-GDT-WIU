@@ -16,7 +16,7 @@ protected:
 
     // 2 2D array to store the stats and drop respectively
     int enemyStats[7][MAX_ENEMY_TYPE] = {
-        { 90 ,100 ,110, 45, 120, 100, 50, 130 },
+        { 90 ,100 ,110, 45, 120, 100, 90, 130 },
         { 10, 10, 7, 25, 15, 10, 13, 7 },
         { 8, 6, 9, 5, 6, 4, 15, 3 },
         { 20, 25, 5, 45, 25, 20, 10, 15 },
@@ -93,6 +93,7 @@ public:
     int getListDrops(int enemyType) const;
     string getEntityDropName() const;
     int getEntityDrops() const;
+    virtual void resetEnemy();
 	//string printShopInventory() const;
 
 	virtual bool isAlive() const {

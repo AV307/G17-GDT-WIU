@@ -504,6 +504,46 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	int critPlayerDeterminant = rand() % 100 + 1;
 	int critEnemyDeterminant = rand() % 100 + 1;
 
+
+	//switch (specifiedEnemy.getEnemyStatus()) {
+
+	//case 'N': // Null
+	//	break;
+
+	//case 'B': // Beginner enemy — reduce stats
+	//	specifiedEnemy.setHealth(specifiedEnemy.getHealth() *( 75 / 100));
+	//	specifiedEnemy.setAttack(specifiedEnemy.getAttack() *( 50 / 100));
+	//	specifiedEnemy.setDefense(specifiedEnemy.getDefense() *( 60 / 100));
+	//	break;
+
+	//case 'E': // Elite enemy — no stat changes
+	//	break;
+
+	//case 'D': // Dangerous enemy — boost stats
+	//	specifiedEnemy.setHealth(specifiedEnemy.getHealth() *( 150 / 100));
+	//	specifiedEnemy.setAttack(specifiedEnemy.getAttack() *( 120 / 100));
+	//	specifiedEnemy.setDefense(specifiedEnemy.getDefense() *( 125 / 100));
+	//	break;
+
+	//case 'X': // Extreme enemy — major boost
+	//	specifiedEnemy.setHealth(specifiedEnemy.getHealth() * 200 / 100);
+	//	specifiedEnemy.setAttack(specifiedEnemy.getAttack() * 150 / 100);
+	//	specifiedEnemy.setDefense(specifiedEnemy.getDefense() * 120 / 100);
+	//	break;
+	//}
+
+
+
+
+
+
+
+
+
+
+
+
+
 	// Damage Equation
 	// Final Damage = Attack * (100 - EnemyDefense)/100
 	// Crit Damage =  (100 + CRIT DMG)% * Normal Damage
@@ -533,9 +573,10 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	}
 
 	// "Fight" Logic
+	initialHp = specifiedEnemy.getHealth();
 	if (critPlayerDeterminant > player.getCRITRate()) {
 		if (player.getHealth() > 0 && specifiedEnemy.getHealth() > 0) {
-			specifiedEnemy.setHealth(specifiedEnemy.getHealth() - (playerDamage));                                                                               // If DEF <= ATK, Entity Final Damage is given value
+            specifiedEnemy.setHealth(specifiedEnemy.getHealth() - playerDamage);                                                                               // If DEF <= ATK, Entity Final Damage is given value
 
 			if (static_cast<Enemy&>(specifiedEnemy).getSleepState() == false) {
 				if (specifiedEnemy.getHealth() > 0) {
@@ -851,17 +892,21 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 // +----------------------------------------------------------------------------------------------+ //
 bool CombatSystem::winLoseCondition(Entity& player, Entity& specifiedEnemy) {
 	if (player.getHealth() <= 0 && specifiedEnemy.getHealth() <= 0) {                                              // If Enemy HP is 0 BUT Player HP is 0
-		player.setHealth(100);                                                                                     // Use the setter method to update the player's health
+		player.setHealth(100);   
+		
+        delete &specifiedEnemy; // Ensure specifiedEnemy is a pointer to a complete object type before deletion
+
 		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
 	else if (player.getHealth() <= 0) { 
         player.setHealth(100);                                                                                     // Use the setter method to update the player's health
 		return true;                                                                                               // Boolean returns isPlayerAlive to be false, exit game
 	}
-	else if (specifiedEnemy.getHealth() == 0 && player.getHealth() > 0) {                                          // If Enemy HP is 0 but Player is Alive
+	else if (specifiedEnemy.getHealth() == 0 && player.getHealth() > 0) {   
+		specifiedEnemy.setHealth(initialHp);													// If Enemy HP is 0 but Player is Alive
 		player.setGold(player.getGold() + specifiedEnemy.getGold());
 		player.setXP(player.getXP() + specifiedEnemy.getXP());
-
+		//specifiedEnemy.resetEnemy();
 		while (player.getXP() > player.getThresholdXP()) {
 			player.setXP(player.getXP() - player.getThresholdXP());
 			player.setLvl(player.getLvl() + 1);

@@ -354,6 +354,7 @@ void Game::doTurn(CombatSystem combatsystem)
             
             system("cls");
             combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                             // Update combat screen
+            combatsystem.winLoseCondition(*plr, *plr->getCurrentEnemy());
 
             if (combatsystem.winLoseCondition(*plr, *plr->getCurrentEnemy()) == true) {                // If Player dies or both Player and Enemy die
                 plr->setIsInCombat(false);

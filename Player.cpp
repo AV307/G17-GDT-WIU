@@ -59,7 +59,7 @@ void Player::randomizeEnemyEncounter() {
 	int playerMayBeInCombat = rand() % 100 + 1;
 	cooldown++;
 
-	if (playerMayBeInCombat >= 99) {  // 1% chance to enter combat
+	if (playerMayBeInCombat >= 101) {  // 1% chance to enter combat
 		cooldown = 0;
 		this->generateEnemy();
 		this->setIsInCombat(true);

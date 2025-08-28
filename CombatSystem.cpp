@@ -38,7 +38,7 @@ void CombatSystem::setTextDialogue(std::string textUpdate) {
 
 void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 
-	for (int n = 1; n < 11; n++) {
+	for (int n = 1; n < 13; n++) {
 		if (n == 1) { // Enemy Design Line
 			for (int i = 0; i < 10; i++) { // Going By Line
 				cout << "//";
@@ -294,7 +294,7 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 				cout << "//" << endl;
 			}
 		}
-		if (n == 2 || n == 4 || n == 8 || n == 10) { // Full Lines
+		if (n == 2 || n == 4 || n == 8 || n == 10 || n == 12) { // Full Lines
 			cout << "// +";
 			for (int i = 0; i < 71; i++) {
 				cout << "-";
@@ -382,6 +382,9 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 				}
 			}
 			cout << endl;
+		}
+		if (n == 11) {
+			cout << "// + Your Level: " + to_string(player.getLvl()) + " (" + to_string(player.getXP()) + "/" + to_string(player.getThresholdXP()) + " XP)" << endl;
 		}
 	}
 	

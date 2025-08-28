@@ -44,7 +44,7 @@ Player::Player(){
 
 	CRITRate = 25;
 	CRITDMG = 1.5;
-	attack = 15;
+	attack = 25;
 
 	action = "Move";
 

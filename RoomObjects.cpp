@@ -51,6 +51,7 @@ RoomObjects::RoomObjects(bool openSide, int roomColumn, int roomWidth, int roomH
 
 RoomObjects::~RoomObjects()
 {
+
 }
 
 // Ang Zhi En 252317H

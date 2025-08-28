@@ -192,7 +192,7 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					}
 				}
 				else if (specifiedEnemy.getEntityType() == "Humanoid") {
-					for (int j = 0; j < 20; j++) {
+					for (int j = 0; j < 19; j++) {
 						cout << ' ';
 					}
 					if (i == 0) {
@@ -216,13 +216,18 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					if (i == 6) {
 						cout << R"(   |_____________|-|_____________|   )";
 					}
-					for (int j = 0; j < 20; j++) {
+					for (int j = 0; j < 19; j++) {
 						cout << ' ';
 					}
 				}
 				else if (specifiedEnemy.getEntityType() == "Ascendants") {
-					for (int j = 0; j < 25; j++) {
+					for (int j = 0; j < 31; j++) {
 						cout << ' ';
+					}
+					if (i > 5) {
+						for (int l = 0; l < 13; l++) {
+							cout << ' ';
+						}
 					}
 					if (i == 0) {
 						cout << R"(     /|\     )";
@@ -242,13 +247,18 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					if (i == 5) {
 						cout << R"(/_/ \ _ / \_\)";
 					}
-					for (int j = 0; j < 25; j++) {
+					for (int j = 0; j < 31; j++) {
 						cout << ' ';
 					}
 				}
 				else if (specifiedEnemy.getEntityType() == "Cubed") {
 					for (int j = 0; j < 27; j++) {
 						cout << ' ';
+					}
+					if (i > 7) {
+						for (int l = 0; l < 21; l++) {
+							cout << ' ';
+						}
 					}
 					if (i == 0) {
 						cout << R"(_____________________)";

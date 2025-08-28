@@ -15,14 +15,15 @@ protected:
 
 
     // 2 2D array to store the stats and drop respectively
-    int enemyStats[7][MAX_ENEMY_TYPE] = {
-        { 90 ,100 ,110, 45, 120, 100, 50, 130 },
+    int enemyStats[8][MAX_ENEMY_TYPE] = {
+        { 90 ,100 ,110, 45, 120, 100, 90, 130 },
         { 10, 10, 7, 25, 15, 10, 13, 7 },
         { 8, 6, 9, 5, 6, 4, 15, 3 },
         { 20, 25, 5, 45, 25, 20, 10, 15 },
         { 15, 15, 15, 14, 17, 15, 16, 16 },
         { 8, 9, 12, 8, 14, 7, 10, 13 },
-        { 25, 25, 50, 50, 20, 20, 10, 50 }
+        { 25, 25, 50, 50, 20, 20, 10, 50 },
+        { 15, 12, 10, 15, 15, 20, 12, 14 }
     };
 	double critRate[8] = { 0.2, 0.2, 0.1, 0.2, 0.15, 0.3, 0.15, 0.4 };
     double critDMG[8] = {1.5, 1.6, 1.5, 1.4, 1.7, 1.4, 1.6, 1.6};
@@ -93,6 +94,7 @@ public:
     int getListDrops(int enemyType) const;
     string getEntityDropName() const;
     int getEntityDrops() const;
+    virtual void resetEnemy();
 	//string printShopInventory() const;
 
 	virtual bool isAlive() const {

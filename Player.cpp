@@ -59,7 +59,7 @@ void Player::randomizeEnemyEncounter() {
 	int playerMayBeInCombat = rand() % 100 + 1;
 	cooldown++;
 
-	if (playerMayBeInCombat >= 99 - cooldown) {  // 5% chance to enter combat
+	if (playerMayBeInCombat >= 99) {  // 5% chance to enter combat
 		cooldown = 0;
 		this->generateEnemy();
 		this->setIsInCombat(true);
@@ -69,25 +69,26 @@ void Player::randomizeEnemyEncounter() {
 	}
 }
 
-void Player::generateEnemy() {  
-    const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };  
-    const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };  
-	int enemySpawnChance = rand() % 100 + 1;
-	char randomEnemyStatus = ' ';
-	if (enemySpawnChance < 50) {
-		randomEnemyStatus = 'B';
+void Player::generateEnemy() {
+		const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
+		const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };
+		int enemySpawnChance = rand() % 100 + 1;
+		char randomEnemyStatus = ' ';
+		if (enemySpawnChance < 50) {
+			randomEnemyStatus = 'B';
+		}
+		else if (enemySpawnChance < 75) {
+			randomEnemyStatus = 'E';
+		}
+		else if (enemySpawnChance < 95) {
+			randomEnemyStatus = 'D';
+		}
+		else if (enemySpawnChance < 100) {
+			randomEnemyStatus = 'X';
+		}
+		currentEnemy = new Enemy(theEnemyBank[rand() % 8], randomEnemyStatus);
 	}
-	else if (enemySpawnChance < 75) {
-		randomEnemyStatus = 'E';
-	}
-	else if (enemySpawnChance < 95) {
-		randomEnemyStatus = 'D';
-	}
-	else if (enemySpawnChance < 100) {
-		randomEnemyStatus = 'X';
-	}
-	currentEnemy = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[randomEnemyStatus]);
-}
+
 Player::~Player() {
 	for (int i = 0; i < 10; i++) {
 		delete armoury[i];

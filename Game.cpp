@@ -312,7 +312,7 @@ void Game::doTurn(CombatSystem combatsystem)
                 HPStat++;
                 AvailablePts--;
                 plr->setStatPoints(AvailablePts);
-                plr->setHealth(plr->getHealth() - 10);                                                        // Player HP + 5 for every Stat Point
+                plr->setHealth(plr->getHealth() + 5);                                                        // Player HP + 5 for every Stat Point
                 break;
             case '2':
                 ATKStat++;
@@ -450,8 +450,12 @@ void Game::restartStage(int currentStage)
     }
     cout << "// +                                                                             + //" << endl;
     cout << "// +-----------------------------------------------------------------------------+ //" << endl;
-    stage->printStageWithFOV(plr, currentStage);
-    std::cout << "Stage " << currentStage << " has been restarted." << std::endl;
+    char confirm = _getch();
+    if (confirm) {
+        system("cls");
+        stage->printStageWithFOV(plr, currentStage);
+        std::cout << "Stage " << currentStage << " has been restarted." << std::endl;
+    }
 }
 
 void Game::advanceStage() {

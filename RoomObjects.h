@@ -76,5 +76,6 @@ public:
 
 	void setObjectToggle(int xCoord, int yCoord, bool toggle);
 	void setObjectType(int xCoord, int yCoord, ObjectType type);
+	void setObject(int row, int col, Object objData);
 };
 

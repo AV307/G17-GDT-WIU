@@ -582,6 +582,10 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	if (specifiedEnemy.getHealth() < 0) {
 		specifiedEnemy.setHealth(0);
 	}
+
+	if (specifiedEnemy.getHealth() == 0) {
+		setTextDialogue("You won!");
+	}
 }
 
 

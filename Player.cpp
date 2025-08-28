@@ -89,6 +89,9 @@ void Player::doAction() {
 			inventoryOpen = false;
 		}
 	}
+	if (input == 'p') {
+		pauseOpen = true;
+	}
 	if (input == '6') {
 		if (shopOpen) {
 			shopOpen = false;
@@ -363,6 +366,16 @@ int Player::setPosition(int x, int y)
 bool Player::checkInventoryOpen()
 {
 	return inventoryOpen;
+}
+
+bool Player::checkPauseOpen()
+{
+	return pauseOpen;
+}
+
+void Player::setPauseOpen(bool pause)
+{
+	pauseOpen = pause;
 }
 
 //bool Player::checkShopOpen() const

@@ -98,6 +98,7 @@ void Game::doTurn(CombatSystem combatsystem)
 
     system("cls");
 
+    bool pauseOpen = plr->checkPauseOpen();
     bool inventoryOpen = plr->checkInventoryOpen();
     bool hasKey = plr->checkHasKey();
     bool hasHammer = plr->checkHasHammer();
@@ -106,8 +107,11 @@ void Game::doTurn(CombatSystem combatsystem)
     int inventoryIndex = plr->getInventoryIndex();
 
     Item** inventoryMenuArray = nullptr;
-
-    if (inventoryOpen == true) {
+    if (pauseOpen)
+    {
+        pauseGame();
+    }
+    else if (inventoryOpen == true) {
         std::cout << "+------------------------------------------------------+" << '\n';
         switch (menuIndex) {
         case 1:
@@ -414,7 +418,7 @@ void Game::pauseGame() {
     int choice = 0;
     char key;
 
-    while (true) {
+    while (plr->checkPauseOpen()) {
         system("cls");
 
         std::cout << "+------------------------+\n";
@@ -439,7 +443,11 @@ void Game::pauseGame() {
         else if (key == 's' || key == 'S') choice = (choice == 2) ? 0 : choice + 1;
         else if (key == 13) {
             switch (choice) {
-            case 0: return;
+            case 0:
+                system("cls");
+                stage->printStageWithFOV(plr, currentStage);
+                plr->setPauseOpen(false);
+                return;
             case 1: restartStage(currentStage); return;
             case 2: exit(0);
             }

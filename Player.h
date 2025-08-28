@@ -21,6 +21,7 @@ private:
     
     bool inventoryOpen;
     bool shopOpen;
+    bool pauseOpen;
 
     bool hasKey;
     bool hasHammer;
@@ -92,6 +93,9 @@ public:
 	int setPosition(int x, int y);
 
     bool checkInventoryOpen();
+    bool checkPauseOpen();
+
+    void setPauseOpen(bool pause);
     
     std::string getAction();
 

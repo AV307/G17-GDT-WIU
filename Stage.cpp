@@ -505,7 +505,7 @@ void Stage::updateStageArray(Player* player, Game* game)
                         break;
                     }
                     case BED: {
-                        // do something
+						player->setHealth(100);
                         break;
                     }
                     }

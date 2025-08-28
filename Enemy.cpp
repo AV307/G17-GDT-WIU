@@ -52,7 +52,7 @@ Enemy::Enemy(string type, char status) {
 			//CRITDMG = enemyStats[4][i];
 
 			enemyDrops[i] += 1;
-			baseEXP = enemyStats[5][i];
+			xp = enemyStats[5][i];
 			chance = enemyStats[6][i];
 			dropName = i;
 

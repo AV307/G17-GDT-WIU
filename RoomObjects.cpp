@@ -391,7 +391,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
 
             objects[12][25] = new Object{ CHEST, -1, false, " ", 'H' };
             objects[9][15] = new Object{ CHEST, -1, false, " ", 'K' };
-            objects[3][4] = new Object{ CHEST, -1, false, "Art2", 'A' };
+            objects[3][4] = new Object{ CHEST, -1, false, "Rubber Duck", 'A' };
 
             objects[8][7] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
             objects[13][22] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
@@ -420,13 +420,11 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
 
             objects[23][3] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 1" };
+                "Hey look, it's a one directional door, maybe like, walk through it or something" };
             objects[19][3] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 2" };
-            objects[26][8] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 3" };
+                "Hey look, it's a different direction, I'm sure you can figure this out" };
             objects[9][17] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 4" };
+                "Wow you did it, I wonder why I'm helping you" };
             break;
         case 3:
             // VERTICAL WALLS
@@ -1003,27 +1001,27 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
 
             objects[11][15] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 1" };
+                "You just interacted with a torch, ain't that funny, it lights up the area around it, duh" };
             objects[20][15] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 2" };
+                "There's a lever in a corner, go find it or something" };
             objects[22][13] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 3" };
+                "Wrong corner blawg just go up" };
             objects[22][13] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 4" };
-            objects[24][7] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 5" };
+                "Congrats you did something on your own :)" };
             objects[22][7] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 6" };
+                "Just kidding there's a plate you need to activate at the top right corner, you can't do anything on your own if I explain it before you get the chance to lol" };
+            objects[24][7] = new Object{ SIGN, -1, false, " ", ' ',
+                "The block is to your right, you feelin a lil blind aren't you" };
             objects[17][8] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 7" };
+                "If you somehow got the hammer and allat congratulations, now head straight up 40 times after teleporting back" };
             objects[25][4] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 8" };
+                "You did not have do it 40 times but good job I guess, I want a rubber ducky, oops anyway head left" };
             objects[14][11] = new Object{ SIGN, -1, false, " ", ' ',
-                "Sign 9" };
+                "Hint: Left Left Left Right Up now reverse it" };
             objects[11][25] = new Object{ SIGN, -1, false, " ", ' ',
-               "Sign 10" };
+               "It's a maze just do it" };
             objects[18][24] = new Object{ SIGN, -1, false, " ", ' ',
-               "Sign 11" };
+               "Nothing important here don't mind the bathtub" };
             break;
         case 5:
             break;

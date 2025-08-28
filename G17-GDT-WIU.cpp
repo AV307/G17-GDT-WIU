@@ -9,7 +9,7 @@ int main()
     srand(static_cast<unsigned int>(time(0)));
     Game game;
     CombatSystem CombatSystem;
-    do {
+    /*do {
         game.printStartMenu();
         char proceed = _getch();
 
@@ -22,7 +22,7 @@ int main()
                 game.doTurn(CombatSystem);
             };
         }
-    } while (true);
+    } while (true);*/
 
     return 0;
 };

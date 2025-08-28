@@ -14,6 +14,9 @@ RoomObjects::RoomObjects(bool openSide, int roomColumn, int roomWidth, int roomH
         }
     }
 
+	chosenRoomHeight = roomHeight;
+	chosenRoomWidth = roomWidth;
+
     // creates empty room with walls
     for (int i{ 0 }; i < roomHeight; i++)
     {
@@ -51,6 +54,20 @@ RoomObjects::RoomObjects(bool openSide, int roomColumn, int roomWidth, int roomH
 
 RoomObjects::~RoomObjects()
 {
+    if (objects != nullptr) {
+        for (int i = 0; i < chosenRoomHeight; i++) {
+            if (objects[i] != nullptr) {
+                for (int j = 0; j < chosenRoomWidth; j++) {
+                    delete objects[i][j];
+                    objects[i][j] = nullptr;
+                }
+                delete[] objects[i];
+                objects[i] = nullptr;
+            }
+        }
+        delete[] objects;
+        objects = nullptr;
+    }
 }
 
 // Ang Zhi En 252317H

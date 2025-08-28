@@ -58,6 +58,8 @@ class RoomObjects
 {
 private:
 	Object*** objects;
+	int chosenRoomHeight;
+	int chosenRoomWidth;
 
 
 public:

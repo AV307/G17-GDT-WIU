@@ -640,7 +640,7 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	}
 
 	if (specifiedEnemy.getHealth() == 0) {
-		setTextDialogue("You won!");
+		setTextDialogue("You won! (+" + to_string(specifiedEnemy.getGold()) + " Gold, +" + to_string(specifiedEnemy.getXP()) + " XP)");
 	}
 }
 

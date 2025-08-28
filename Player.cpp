@@ -13,6 +13,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <random>
+#include "Game.h"
 
 Player::Player(){
 	for (int i = 0; i < 10; i++) {
@@ -43,17 +44,49 @@ Player::Player(){
 
 	CRITRate = 25;
 	CRITDMG = 1.5;
-	attack = 15;
+	attack = 25;
 
 	action = "Move";
 
 	setXPos(50);
 	setYPos(25);
 }
-void Player::generateEnemy() {
-	const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
-	const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };
-	currentEnemy = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[rand() % 2]);
+
+void Player::randomizeEnemyEncounter() {
+	// Entering Combat System Check and Trigger
+	int cooldown = 0;
+
+	int playerMayBeInCombat = rand() % 100 + 1;
+	cooldown++;
+
+	if (playerMayBeInCombat >= 99 - cooldown) {  // 5% chance to enter combat
+		cooldown = 0;
+		this->generateEnemy();
+		this->setIsInCombat(true);
+	}
+	else {
+		this->setIsInCombat(false);
+	}
+}
+
+void Player::generateEnemy() {  
+    const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };  
+    const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };  
+	int enemySpawnChance = rand() % 100 + 1;
+	char randomEnemyStatus = ' ';
+	if (enemySpawnChance < 50) {
+		randomEnemyStatus = 'B';
+	}
+	else if (enemySpawnChance < 75) {
+		randomEnemyStatus = 'E';
+	}
+	else if (enemySpawnChance < 95) {
+		randomEnemyStatus = 'D';
+	}
+	else if (enemySpawnChance < 100) {
+		randomEnemyStatus = 'X';
+	}
+	currentEnemy = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[randomEnemyStatus]);
 }
 Player::~Player() {
 	for (int i = 0; i < 10; i++) {
@@ -210,15 +243,19 @@ void Player::handleMovement(char inputVal)
 	action = "Move";
 	switch (inputVal) {
 	case'w':
+		randomizeEnemyEncounter();
 		setYPos(yPosition - 1);
 		break;
 	case'a':
+		randomizeEnemyEncounter();
 		setXPos(xPosition - 1);
 		break;
 	case's':
+		randomizeEnemyEncounter();
 		setYPos(yPosition + 1);
 		break;
 	case'd':
+		randomizeEnemyEncounter();
 		setXPos(xPosition + 1);
 		break;
 	case' ':

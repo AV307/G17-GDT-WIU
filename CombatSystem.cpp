@@ -192,8 +192,13 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					}
 				}
 				else if (specifiedEnemy.getEntityType() == "Humanoid") {
-					for (int j = 0; j < 20; j++) {
+					for (int j = 0; j < 19; j++) {
 						cout << ' ';
+					}
+					if (i > 6) {
+						for (int l = 0; l < 37; l++) {
+							cout << ' ';
+						}
 					}
 					if (i == 0) {
 						cout << R"(    _____________________________    )";
@@ -216,13 +221,18 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					if (i == 6) {
 						cout << R"(   |_____________|-|_____________|   )";
 					}
-					for (int j = 0; j < 20; j++) {
+					for (int j = 0; j < 19; j++) {
 						cout << ' ';
 					}
 				}
 				else if (specifiedEnemy.getEntityType() == "Ascendants") {
-					for (int j = 0; j < 25; j++) {
+					for (int j = 0; j < 31; j++) {
 						cout << ' ';
+					}
+					if (i > 5) {
+						for (int l = 0; l < 13; l++) {
+							cout << ' ';
+						}
 					}
 					if (i == 0) {
 						cout << R"(     /|\     )";
@@ -242,13 +252,18 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					if (i == 5) {
 						cout << R"(/_/ \ _ / \_\)";
 					}
-					for (int j = 0; j < 25; j++) {
+					for (int j = 0; j < 31; j++) {
 						cout << ' ';
 					}
 				}
 				else if (specifiedEnemy.getEntityType() == "Cubed") {
 					for (int j = 0; j < 27; j++) {
 						cout << ' ';
+					}
+					if (i > 6) {
+						for (int l = 0; l < 21; l++) {
+							cout << ' ';
+						}
 					}
 					if (i == 0) {
 						cout << R"(_____________________)";
@@ -582,6 +597,10 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	if (specifiedEnemy.getHealth() < 0) {
 		specifiedEnemy.setHealth(0);
 	}
+
+	if (specifiedEnemy.getHealth() == 0) {
+		setTextDialogue("You won!");
+	}
 }
 
 
@@ -798,13 +817,13 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 		case 'y':
 			int retaliateDeterminant = rand() % 2;
 			if (retaliateDeterminant == 0) {
-				setTextDialogue("You struggled, pushing the enemy away from you, sending them against the wall! Press F, I or R to continue depending on your action");
+				setTextDialogue("You struggled, pushing the enemy away from you, sending them against the wall!");
 				player.setHealth(player.getHealth() * 9 / 10);                                                       // Player loses 10% of current HP from struggling
 				specifiedEnemy.setHealth(specifiedEnemy.getHealth() - player.getAttack() * 7 / 10);                  // Enemies receives 70% of Player's ATK
 				static_cast<Player&>(player).setIsInCombat(true);                                                    // Player stays in combat
 			}
 			else if (retaliateDeterminant == 1) {
-				setTextDialogue("The enemy grabbed you by the neck, sending you against the wall. Press F, I or R to continue depending on your action");
+				setTextDialogue("The enemy grabbed you by the neck, sending you against the wall");
 				player.setHealth(player.getHealth() * 8 / 10);                                                       // Player loses 20% of current HP from colliding
 				static_cast<Player&>(player).setIsInCombat(true);                                                    // Player stays in combat
 			}

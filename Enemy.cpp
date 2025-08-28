@@ -63,27 +63,32 @@ Enemy::Enemy(string type, char status) {
 	enemyStatus = status;
 	//Checks what status the enemy is (Basic/Elite/Deluxe/Boss)
 	//Enemy with higher status will have higher stats
-	switch (status) {
+	switch (enemyStatus) {
 
+	case 'N':
+		break;
 	case 'B':
+		health = health*static_cast<int>(75 / 100);
+		attack = attack*static_cast<int>(50 / 100);
+		defense = defense*static_cast<int>(60 / 100);
 		break;
 	case 'E':
 		dropAMTID = 0;
-		health *= static_cast<int>(150 / 100);
-		attack *= static_cast<int>(150 / 100);
-		defense *= static_cast<int>(150 / 100);
+		health = health*static_cast<int>(100 / 100);
+		attack = attack*static_cast<int>(100 / 100);
+		defense = defense*static_cast<int>(100 / 100);
 		break;
 	case 'D':
 		dropAMTID = 1;
-		health *= static_cast<int>(220 / 100);
-		attack *= static_cast<int>(175 / 100);
-		defense *= static_cast<int>(175 / 100);
+		health = health*static_cast<int>(150 / 100);
+		attack = attack*static_cast<int>(125 / 100);
+		defense = defense*static_cast<int>(125 / 100);
 		break;
 	case 'X':
 		dropAMTID = 2;
-		health *= static_cast<int>(350 / 100);
-		attack *= static_cast<int>(200 / 100);
-		defense *= static_cast<int>(250 / 100);
+		health = health*static_cast<int>(200 / 100);
+		attack = attack*static_cast<int>(150 / 100);
+		defense = defense*static_cast<int>(120 / 100);
 		break;
 	}
 

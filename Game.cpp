@@ -297,18 +297,6 @@ void Game::doTurn(CombatSystem combatsystem)
     bool playerDied = false;
     bool awaitingRunConfirm = false;
 
-    int playerMayBeInCombat = rand() % 100 + 1;
-    if (playerMayBeInCombat < 95) {                                                                    // Player has 95% chance to avoid combat
-        plr->setIsInCombat(false);
-    }
-    else {                 
-/*        const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
-        const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };  
-        currentEnemies = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[rand() % 2]);  */     
-        plr->generateEnemy();                                                                   // Player has 5% chance to enter combat
-        plr->setIsInCombat(true);
-    }
-
     if (plr->getIsInCombat()) {
         // If the player enters combat
         system("cls");
@@ -319,22 +307,24 @@ void Game::doTurn(CombatSystem combatsystem)
         while (plr->getIsInCombat()) {                                                                 // While the player remains in combat
 
             char combatKeyPress = _getch();                                                            // To receive player's input during battle
+        
 
-            if (awaitingRunConfirm) {
-                // Handle Y/N for run confirmation
-                if (combatKeyPress == 'y' || combatKeyPress == 'Y') {
-                    combatsystem.runPVE(*plr, *plr->getCurrentEnemy());
-                }
-                else {
-                    combatsystem.setTextDialogue("You snapped out of it, kept your head in the game.");
-                }
+            //if (awaitingRunConfirm) {
+            //    // Handle Y/N for run confirmation
+            //    if (combatKeyPress == 'y' || combatKeyPress == 'Y') {
+            //        combatsystem.runPVE(*plr, *plr->getCurrentEnemy());
+            //    }
+            //    else {
+            //        combatsystem.setTextDialogue("You snapped out of it, kept your head in the game.");
+            //    }
 
-                system("cls");
-                awaitingRunConfirm = false; // go back to normal combat
-                combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
-                continue;
-            }
+            //    system("cls");
+            //    awaitingRunConfirm = false; // go back to normal combat
+            //    combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
+            //    continue;
+            //}
 
+            
             switch (combatKeyPress) {
             case 'f':
                 combatsystem.fightPVE(*plr, *plr->getCurrentEnemy());                                  // Activate Fight Function if player presses F
@@ -344,18 +334,39 @@ void Game::doTurn(CombatSystem combatsystem)
                 combatsystem.itemPVE(*plr, *plr->getCurrentEnemy());                                   // Activate Item Function if player presses I
                 system("cls");
                 break;
-            case 'r':
+            case 'r': {
+
                 system("cls");
                 combatsystem.setTextDialogue("You're attempting to run, but you won't go unnoticed. Press Y/N to confirm");                       // Alerts player of their current action, also telling them there are consequences
                 combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
-                awaitingRunConfirm = true;
+                // Handle Y/N for run confirmation
+
+                char confirm = _getch();
+
+                if (confirm == 'y' || confirm == 'Y') {
+                    combatsystem.runPVE(*plr, *plr->getCurrentEnemy());
+
+                }
+                else if (confirm == 'n' || confirm == 'N') {
+                    combatsystem.setTextDialogue("You snapped out of it, kept your head in the game.");
+
+                }
+                else {
+                    continue;
+                }
+            
+
+                system("cls");
+                combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());
 
                 break;
+            }
             default:
                 system("cls");
                 combatsystem.setTextDialogue("Invalid input!");
                 break;
             }
+            
             
             system("cls");
             combatsystem.printCombatScreen(*plr, *plr->getCurrentEnemy());                             // Update combat screen
@@ -451,7 +462,10 @@ void Game::pauseGame() {
                 stage->printStageWithFOV(plr, currentStage);
                 plr->setPauseOpen(false);
                 return;
-            case 1: restartStage(currentStage); return;
+            case 1: 
+                restartStage(currentStage);
+                plr->setPauseOpen(false);
+                return;
             case 2: exit(0);
             }
         }

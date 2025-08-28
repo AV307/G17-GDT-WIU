@@ -65,7 +65,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
     case 'M': // main room
         switch (currentStage)
         {
-        case 1:
+        case 1: {
             // Walls
             for (int i = 19; i < 29; i++) {
                 setObject(i, 8, Object{ WALL, -1, false, " ", ' ' });
@@ -208,6 +208,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             setObject(6, 8, { SIGN, -1, false, " ", ' ', "Every room has an artifact, something you can collect for achievements. These artifacts will have additional challenges in order to get them." });
 
             break;
+        }
         case 2:
             // VERTICAL WALLS
 

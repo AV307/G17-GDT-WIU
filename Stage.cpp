@@ -539,6 +539,11 @@ void Stage::updateStageArray(Player* player, Game* game)
             return;
         }
 
+        if (type == BOSS) {
+
+            return;
+        }
+
         // PRESSURE PLATE CODE
         for (int y = 0; y < rooms[roomIndex]->getRoomHeight(); y++) {
             for (int x = 0; x < rooms[roomIndex]->getRoomWidth(); x++) {

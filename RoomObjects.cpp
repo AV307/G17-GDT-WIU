@@ -1180,13 +1180,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
         objects[10][10] = new Object{ SHOPKEEPER, -1, false, " ", ' ' };
         break;
     case 'F': // boss room
-        switch (currentStage)
-        {
-        case 3:
-            break;
-        case 5:
-            break;
-        }
+        objects[10][10] = new Object{ BOSS, -1, false, " ", ' ' };
         break;
     case 'P': // portal room
         objects[5][5] = new Object{ PORTAL, -1, false, " ", ' ' };

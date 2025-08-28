@@ -24,6 +24,8 @@ enum ObjectType {
 	MOVEABLEBLOCK, // for puzzles
 	BREAKABLEWALL,
 
+	BOSS,
+
 	//bed room
 	BED,
 

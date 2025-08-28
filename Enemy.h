@@ -25,7 +25,7 @@ public:
     ~Enemy();
     bool killEnemy(Game* game);
     bool isBossDefeated() const;
-    void calculateLoot(Game* game);
+    void calculateLoot();
     int calculateDropChance(int mult);
     bool isEnemyThere(Player* player, int indexE) const;
     //pair<int, int> setEnemyPos[mainRoom::maxEnemy];

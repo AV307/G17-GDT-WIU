@@ -297,18 +297,19 @@ void Game::doTurn(CombatSystem combatsystem)
     plr->checkCollision(*plr->getCurrentEnemy());
     bool playerDied = false;
     bool awaitingRunConfirm = false;
+    int cooldown = 0;
 
     int playerMayBeInCombat = rand() % 100 + 1;
-    if (playerMayBeInCombat < 95) {                                                                    // Player has 95% chance to avoid combat
-        plr->setIsInCombat(false);
-    }
-    else {                 
-/*        const string theEnemyBank[8] = { "Undead", "Animal", "Flower", "Aquatic", "Vampire", "Humanoid", "Ascendants", "Cubed" };
-        const char theEnemyStatus[4] = { 'B', 'E', 'D', 'X' };  
-        currentEnemies = new Enemy(theEnemyBank[rand() % 8], theEnemyStatus[rand() % 2]);  */     
-        plr->generateEnemy();                                                                   // Player has 5% chance to enter combat
-        plr->setIsInCombat(true);
-    }
+    cooldown++;
+
+        if (playerMayBeInCombat >= 99-cooldown) {  // 5% chance to enter combat
+            cooldown = 0;
+            plr->generateEnemy();
+            plr->setIsInCombat(true);
+        }
+        else {
+            plr->setIsInCombat(false);
+        }
 
     if (plr->getIsInCombat()) {
         // If the player enters combat

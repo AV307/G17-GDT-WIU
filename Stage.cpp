@@ -15,9 +15,11 @@
 #include <windows.h>
 
 
+Stage::Stage() {}
 //Ang Zhi En 252317H
 //set the stageArray, fill up stage area with all the rooms that are created for the currentStage
 //Incomplete
+
 void Stage::setStageArray(int currentStage, char room1, char room2, Player* player)
 {
     // initialize stageArray to spaces

@@ -229,27 +229,27 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					for (int j = 0; j < 31; j++) {
 						cout << ' ';
 					}
-					if (i > 5) {
+					if (i > 7 || i < 2) {
 						for (int l = 0; l < 13; l++) {
 							cout << ' ';
 						}
 					}
-					if (i == 0) {
+					if (i == 2) {
 						cout << R"(     /|\     )";
 					}
-					if (i == 1) {
+					if (i == 3) {
 						cout << R"(    / | \    )";
 					}
-					if (i == 2) {
+					if (i == 4) {
 						cout << R"(   /_ | _\   )";
 					}
-					if (i == 3) {
+					if (i == 5) {
 						cout << R"(  /-| 0 |-\  )";
 					}
-					if (i == 4) {
+					if (i == 6) {
 						cout << R"( /_| ___ |_\ )";
 					}
-					if (i == 5) {
+					if (i == 7) {
 						cout << R"(/_/ \ _ / \_\)";
 					}
 					for (int j = 0; j < 31; j++) {

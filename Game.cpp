@@ -381,14 +381,14 @@ void Game::doTurn(CombatSystem combatsystem)
         char confirm = _getch();
 
         if (confirm == '0') {
-            cout << "// +                                                                            + //" << endl;
-            cout << "// +   #####      #####        #     #    #               #   #    ##     #     + //" << endl;
-            cout << "// +  #     #    #     #       #     #     #             #    #    # #    #     + //" << endl;
-            cout << "// +  #          #             #     #      #     #     #     #    #  #   #     + //" << endl;
-            cout << "// +  #    ###   #    ###      #     #       #   # #   #      #    #   #  #     + //" << endl;
-            cout << "// +  #     #    #     #       #     #        # #   # #       #    #    # #     + //" << endl;
-            cout << "// +   #####      #####         #####          #     #        #    #     ##     + //" << endl;
-            cout << "// +                                                                            + //" << endl;
+            cout << "// +                                                                             + //" << endl;
+            cout << "// +   #####      #####        #     #     #               #   #    ##     #     + //" << endl;
+            cout << "// +  #     #    #     #       #     #      #             #    #    # #    #     + //" << endl;
+            cout << "// +  #          #             #     #       #     #     #     #    #  #   #     + //" << endl;
+            cout << "// +  #    ###   #    ###      #     #        #   # #   #      #    #   #  #     + //" << endl;
+            cout << "// +  #     #    #     #       #     #         # #   # #       #    #    # #     + //" << endl;
+            cout << "// +   #####      #####         #####           #     #        #    #     ##     + //" << endl;
+            cout << "// +                                                                             + //" << endl;
         }
         else {
             return;

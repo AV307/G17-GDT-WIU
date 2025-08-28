@@ -455,10 +455,10 @@ void Stage::updateStageArray(Player* player, Game* game)
                                 player->addConsumable("Strength Potion", 0, 0, 20);
                                 break;
                             case 7:
-                                player->addConsumable("Heal Potion", 20, 0, 00);
+                                player->addConsumable("Weakening Potion", 0, 0, 0);
                                 break;
                             case 8:
-                                player->addConsumable("Heal Potion", 0, 0, 20);
+                                player->addConsumable("Sleep Potion", 0, 0, 0);
                                 break;
                             default:
                                 break;

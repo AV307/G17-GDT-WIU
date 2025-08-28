@@ -1,6 +1,14 @@
 #include "Item.h"
 
 Item::Item()
+	:cost(0),
+	attack(0),
+	defense(0),
+	equipped(false),
+	name(""),
+	type(""),
+	consumable(false),
+	consumed(false)
 {
 }
 

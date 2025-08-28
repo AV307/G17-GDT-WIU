@@ -26,12 +26,12 @@ void Potion::setHealVal(int val)
 	heal = val;
 }
 
-int Potion::getAttackBuff() const
+int Potion::getAttackVal() const
 {
 	return attackBuff;
 }
 
-int Potion::getDefenseBuff() const
+int Potion::getDefenseVal() const
 {
 	return defenseBuff;
 }

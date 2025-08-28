@@ -308,7 +308,7 @@ void Player::handleInventory(char inputVal)
 				//equippedWeapon = weaponry[inventoryIndex];
 				//equippedWeapon->setEquipped(true);
 			}
-			if (armoury[inventoryIndex] != nullptr) {
+			if (weaponry[inventoryIndex] != nullptr) {
 				equippedWeapon = weaponry[inventoryIndex];
 				equippedWeapon->setEquipped(true);
 			}

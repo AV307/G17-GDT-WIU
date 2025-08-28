@@ -20,8 +20,6 @@ PortalRoom::PortalRoom(int currentStage, int roomNumber)
 
     roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'P');
     placeRoomObjects(portalRoomArray);
-
-    //add code below for setting up specific portal related parts
 }
 
 //Ang Zhi En 252317H

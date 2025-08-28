@@ -21,8 +21,6 @@ TreasureRoom::TreasureRoom(int currentStage, int roomNumber)
 
     roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'T');
     placeRoomObjects(treasureRoomArray);
-
-    //add code for setting up treasure room (chest)
 }
 
 //Ang Zhi En 252317H

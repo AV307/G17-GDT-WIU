@@ -43,7 +43,7 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
     shopInventory[8] = new Item("Key", "Key", 30);                     // price 30 gold
 
     // Set remaining shopInventory slots to nullptr to avoid undefined pointers
-    for (int i = 9; i < 20; i++) {
+    for (int i{ 9 }; i < 20; i++) {
         shopInventory[i] = nullptr;
     }
 }

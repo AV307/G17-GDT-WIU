@@ -19,11 +19,6 @@ BossRoom::BossRoom(int currentStage, int roomNumber)
 
     roomObjects->addObjects(roomWidth, roomHeight, currentStage, 'F');
     placeRoomObjects(bossRoomArray);
-
-    // boss selection will depend on whether stage 3 or 5, getting harder
-    switch (currentStage)
-    {
-    }
 }
 
 //Ang Zhi En 252317H

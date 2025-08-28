@@ -15,8 +15,8 @@ public:
 	void setDefenseVal(int val);
 	void setHealVal(int val);
 
-	int getAttackBuff() const;
-	int getDefenseBuff() const;
+	int getAttackVal() const;
+	int getDefenseVal() const;
 	int getHeal() const;
 };
 

@@ -104,6 +104,9 @@ public:
     Item** getConsumables();
     Item** getArtifacts();
 
+    void setShopOpen(bool val);
+	bool checkShopOpen() const;
+
     //void addWeapon(std::string Name, int attackVal, int critRate, int critDamage);
     void addWeapon(const std::string& Name, int attackVal, int critRate, int critDamage);
     void removeWeapon(int index);
@@ -129,7 +132,6 @@ public:
     bool checkHasHammer() const;
 
     bool checkKey() const;
-
 };
 
 

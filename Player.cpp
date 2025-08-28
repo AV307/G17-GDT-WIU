@@ -135,8 +135,6 @@ void Player::doAction() {
 		//checkCollision(mainRoom::getEnemyList(), rooms[0]);
 		//Enemy** enemyList = room->getEnemyList();           
 		//int maxEnemy = room->getMaxEnemy();                 
-
-
 	}
 }
 
@@ -418,6 +416,17 @@ Item** Player::getConsumables()
 Item** Player::getArtifacts()
 {
 	return artifacts;
+}
+
+void Player::setShopOpen(bool val)
+{
+	shopOpen = val;
+	inventoryOpen = false;
+}
+
+bool Player::checkShopOpen() const
+{
+	return shopOpen;
 }
 
 //Benjamin 250572M

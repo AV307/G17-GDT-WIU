@@ -5,12 +5,13 @@ Weapon::Weapon() : critRate(0), critDamage(0) {}
 
 //Benjamin 250572M
 //Constructor for Weapon, initializes weapon attributes
-Weapon::Weapon(const std::string& name, int atk, int critRate, int critDamage)
+Weapon::Weapon(const std::string& name, int atk, int critR, int critD)
+    : Item(name, "Weapon", 0),      // initialize base class properly
+    attack(atk),
+    critRate(critR),
+    critDamage(critD)
 {
-	this->name = name;
-	this->attack = atk;
-	this->critRate = critRate;
-	this->critDamage = critDamage;
+    // nothing else needed
 }
 
 Weapon::~Weapon()

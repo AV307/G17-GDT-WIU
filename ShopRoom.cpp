@@ -29,9 +29,13 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
     // Initialize shop items (weapons)
     // Name, Atk buff, Cr buff, Cd buff;
     shopInventory[0] = new Weapon("Sword", 10, 0, 0);
+    shopInventory[0]->setCost(50);
     shopInventory[1] = new Weapon("Mace", 10, 0, 20);
+    shopInventory[1]->setCost(50);
     shopInventory[2] = new Weapon("Scythe", 15, 0, 0);
+    shopInventory[2]->setCost(50);
     shopInventory[3] = new Weapon("Warhammer", 25, 20, 50);
+    shopInventory[3]->setCost(50);
 
     shopInventory[4] = new Item("Heal Potion", "Buff", 30);           // price 30 gold
     shopInventory[5] = new Item("Strength Potion", "Buff", 25);       // price 25 gold
@@ -40,8 +44,9 @@ ShopRoom::ShopRoom(int currentStage, int roomNumber)
     shopInventory[8] = new Item("Key", "Key", 30);                     // price 30 gold
 
     // Set remaining shopInventory slots to nullptr to avoid undefined pointers
-    for (int i = 9; i < 20; i++)
+    for (int i = 9; i < 20; i++) {
         shopInventory[i] = nullptr;
+    }
 }
 
 
@@ -79,7 +84,7 @@ char** ShopRoom::getShopRoomArray()
         string currentSelection = itemSelection[0];
         SetConsoleTextAttribute(hConsole, 7);
 
-        while (true) {
+        while (player->checkShopOpen()) {
             system("cls");  // clear console
 
             // ===== ASCII Shop Frame =====
@@ -135,7 +140,10 @@ char** ShopRoom::getShopRoomArray()
             choice = static_cast<char>(key);
             std::cout << choice << "\n";
 
-            if (choice == '0') return;
+            if (choice == '0') {
+                player->setShopOpen(false);
+                return;
+            };
             currentSelection = itemSelection[choice - 1];
             int index = choice - '1'; // Convert char '1'-'9' to index 0-8
             if (index >= 0 && index < 10 && shopInventory[index] != nullptr) {

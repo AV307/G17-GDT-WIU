@@ -209,7 +209,7 @@ Stage::Stage(Game* game, Player* player)
 
     char room1{};
     char room2{};
-    switch (randomRoom1)
+    /*switch (randomRoom1)
     {
     case 1:
         rooms[1] = new ShopRoom(currentStage, 1);
@@ -223,7 +223,9 @@ Stage::Stage(Game* game, Player* player)
         rooms[1] = new BedRoom(currentStage, 1);
         room1 = 'B';
         break;
-    }
+    }*/
+    rooms[1] = new TreasureRoom(currentStage, 1);
+    room1 = 'T';
 
     if (currentStage == 3 || currentStage == 5)
     {
@@ -279,7 +281,6 @@ Stage::~Stage()
 
 //Jayren Choi 250920U
 //Update the stage array (player positions, object changes etc.)
-//Incomplete
 void Stage::updateStageArray(Player* player, Game* game)
 { 
     int playerXPos = player->getXPos();
@@ -326,7 +327,7 @@ void Stage::updateStageArray(Player* player, Game* game)
 
             if (type == WALL || type == BLOCKONPRESSUREPLATE || (type == DOOR && toggled == false) ||
                 type == SWITCH || type == CHEST || type == BREAKABLEWALL || type == KEYDOOR ||
-                type == TORCH || type == MEGATORCH || 
+                type == TORCH || type == MEGATORCH || type == SHOPKEEPER || type == BED ||
                 stageArray[player->getYPos()][player->getXPos()] == 'X' || 
                 stageArray[player->getYPos()][player->getXPos()] == '#')
             {
@@ -399,6 +400,8 @@ void Stage::updateStageArray(Player* player, Game* game)
 
                 if (roomXPos >= 0 && roomXPos < rooms[roomIndex]->getRoomWidth() && roomYPos >= 0 && roomYPos < rooms[roomIndex]->getRoomHeight()) {
 
+                    std::string itemName = objects->getObjectItemName(roomXPos, roomYPos);
+                    char itemType = objects->getObjectItemType(roomXPos, roomYPos);
                     ObjectType interactType = objects->getObjectType(roomXPos, roomYPos);
 
                     switch (interactType) {
@@ -418,9 +421,6 @@ void Stage::updateStageArray(Player* player, Game* game)
                         break;
                     }
                     case CHEST: {
-                        std::string itemName = objects->getObjectItemName(roomXPos, roomYPos);
-                        char itemType = objects->getObjectItemType(roomXPos, roomYPos);
-
                         switch (itemType) {
                         case 'H':
                             player->setHammer(true);
@@ -431,6 +431,38 @@ void Stage::updateStageArray(Player* player, Game* game)
                         case 'A':
                             player->addArtifact(itemName);
                             break;
+                        case 'I': {
+                            std::uniform_int_distribution<> localDis(1, 8);
+                            int randomNum = localDis(gen);
+
+							switch (randomNum) {
+                            case 1:
+                                player->addWeapon("Sword", 10, 0, 0);
+                                break;
+                            case 2:
+                                player->addWeapon("Mace", 10, 0, 20);
+                                break;
+                            case 3:
+                                player->addWeapon("Scythe", 15, 0, 20);
+                                break;
+                            case 4:
+                                player->addWeapon("Warhammer", 25, 20, 50);
+                                break;
+                            case 5:
+                                player->addConsumable("Heal Potion", 0, 0, 20);
+                                break;
+                            case 6:
+                                player->addConsumable("Strength Potion", 0, 0, 20);
+                                break;
+                            case 7:
+                                player->addConsumable("Weakening Potion", 0, 0, 0);
+                                break;
+                            case 8:
+                                player->addConsumable("Sleep Potion", 0, 0, 0);
+                                break;
+                            default:
+                                break;
+                            }
                         }
                         objects->setObjectType(roomXPos, roomYPos, SPACE);
                         stageArray[yPos][xPos] = ' ';
@@ -460,6 +492,22 @@ void Stage::updateStageArray(Player* player, Game* game)
                     case SIGN:{
 						signMessage = objects->getObjectMessage(roomXPos, roomYPos);
                         break;
+                    }
+                    case SHOPKEEPER: {
+                        player->setShopOpen(true);
+
+                        Room* currentRoom = rooms[roomIndex];
+
+                        ShopRoom* shop = dynamic_cast<ShopRoom*>(currentRoom);
+                        if (shop) {
+                            shop->showShopMenu(player);
+                        }
+                        break;
+                    }
+                    case BED: {
+                        // do something
+                        break;
+                    }
                     }
                     default:
                         break;
@@ -571,15 +619,6 @@ void Stage::updateStageArray(Player* player, Game* game)
         }
     }
 }
-
-//bool Stage::checkCollision(int xPos, int yPos, int currentRoom)
-//{
-//    RoomObjects* objects = rooms[currentRoom]->getRoomObjects();
-//    if (objects->getObjectType(xPos - rooms[currentRoom]->getRoomWidth(), yPos- rooms[currentRoom]->getRoomHeight()) != WALL) {
-//        return true;
-//    }
-//    return false;
-//}
 
 //Ang Zhi En 252317H
 //Print out the stage, with the rooms inside
@@ -801,7 +840,8 @@ bool Stage::playerNearInteractable(Player* player) {
 
         ObjectType type = objects->getObjectType(roomX, roomY);
         if (type == SWITCH || type == CHEST || type == BREAKABLEWALL ||
-            type == KEYDOOR || type == TORCH || type == SIGN)
+            type == KEYDOOR || type == TORCH || type == SIGN || type == SHOPKEEPER ||
+            type == BED)
         {
             return true;
         }

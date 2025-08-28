@@ -100,6 +100,8 @@ void Game::doTurn(CombatSystem combatsystem)
 
     bool pauseOpen = plr->checkPauseOpen();
     bool inventoryOpen = plr->checkInventoryOpen();
+    bool shopOpen = plr->checkShopOpen();
+
     bool hasKey = plr->checkHasKey();
     bool hasHammer = plr->checkHasHammer();
 
@@ -235,7 +237,9 @@ void Game::doTurn(CombatSystem combatsystem)
         std::cout << "+------------+" << "+------------+" << "+------------+" << "+------------+" << '\n';
         std::cout << "+------------------------------------------------------+" << '\n';
     }
-    else {
+    else if (shopOpen == true) {
+    }
+    else{
         stage->printStageWithFOV(plr, currentStage);
     }
 

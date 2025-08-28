@@ -1030,22 +1030,22 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
 
             objects[11][15] = new Object{ SIGN, -1, false, " ", ' ',
-                "You just interacted with a torch, ain't that funny, it lights up the area around it, duh" };
+                "It's pretty dark in here, gotta interact with torches to see anything" };
             objects[20][15] = new Object{ SIGN, -1, false, " ", ' ',
                 "There's a lever in a corner, go find it or something" };
             objects[22][13] = new Object{ SIGN, -1, false, " ", ' ',
                 "Wrong corner blawg just go up" };
-            objects[22][13] = new Object{ SIGN, -1, false, " ", ' ',
+            objects[24][7] = new Object{ SIGN, -1, false, " ", ' ',
                 "Congrats you did something on your own :)" };
             objects[22][7] = new Object{ SIGN, -1, false, " ", ' ',
                 "Just kidding there's a plate you need to activate at the top right corner, you can't do anything on your own if I explain it before you get the chance to lol" };
-            objects[24][7] = new Object{ SIGN, -1, false, " ", ' ',
-                "The block is to your right, you feelin a lil blind aren't you" };
-            objects[17][8] = new Object{ SIGN, -1, false, " ", ' ',
+            objects[17][8] = new Object{SIGN, -1, false, " ", ' ',
+                "The block is to your right" };
+            objects[25][4] = new Object{SIGN, -1, false, " ", ' ',
                 "If you somehow got the hammer and allat congratulations, now head straight up 40 times after teleporting back" };
-            objects[25][4] = new Object{ SIGN, -1, false, " ", ' ',
-                "You did not have do it 40 times but good job I guess, I want a rubber ducky, oops anyway head left" };
             objects[14][11] = new Object{ SIGN, -1, false, " ", ' ',
+                "You did not have do it 40 times but good job I guess, I want a rubber ducky, oops anyway head left" };
+            objects[5][7] = new Object{ SIGN, -1, false, " ", ' ',
                 "Hint: Left Left Left Right Up now reverse it" };
             objects[11][25] = new Object{ SIGN, -1, false, " ", ' ',
                "It's a maze just do it" };

@@ -195,6 +195,11 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					for (int j = 0; j < 19; j++) {
 						cout << ' ';
 					}
+					if (i > 6) {
+						for (int l = 0; l < 37; l++) {
+							cout << ' ';
+						}
+					}
 					if (i == 0) {
 						cout << R"(    _____________________________    )";
 					}
@@ -255,7 +260,7 @@ void CombatSystem::printCombatScreen(Entity& player, Entity& specifiedEnemy) {
 					for (int j = 0; j < 27; j++) {
 						cout << ' ';
 					}
-					if (i > 7) {
+					if (i > 6) {
 						for (int l = 0; l < 21; l++) {
 							cout << ' ';
 						}

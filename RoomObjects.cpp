@@ -418,8 +418,19 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[26][28] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
 
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
+
+            objects[23][3] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 1" };
+            objects[19][3] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 2" };
+            objects[26][8] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 3" };
+            objects[9][17] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 4" };
             break;
         case 3:
+            // VERTICAL WALLS
+        case 4:
             // VERTICAL WALLS
 
             for (int i = 24; i < 29; i++) {
@@ -522,7 +533,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
                 objects[i][2] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
-			// HORIZONTAL WALLS
+            // HORIZONTAL WALLS
 
             for (int i = 0; i < 7; i++) {
                 objects[19][i] = new Object{ WALL, -1, false, " ", ' ' };
@@ -646,7 +657,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
 
             objects[23][9] = new Object{ WALL, -1, false, " ", ' ' };
 
-			// OBJECTS
+            // OBJECTS
 
             objects[3][19] = new Object{ TORCH, -1, false, " ", ' ' };
             objects[14][15] = new Object{ TORCH, -1, false, " ", ' ' };
@@ -772,9 +783,30 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[24][26] = new Object{ CHEST, -1, false, "Art3", 'A' };
             objects[28][21] = new Object{ CHEST, -1, false, "Rubber Duck", 'A' };
 
-            objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' '};
-            break;
-        case 4:
+            objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
+
+            objects[11][15] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 1" };
+            objects[20][15] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 2" };
+            objects[22][13] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 3" };
+            objects[22][13] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 4" };
+            objects[24][7] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 5" };
+            objects[22][7] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 6" };
+            objects[17][8] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 7" };
+            objects[25][4] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 8" };
+            objects[14][11] = new Object{ SIGN, -1, false, " ", ' ',
+                "Sign 9" };
+            objects[11][25] = new Object{ SIGN, -1, false, " ", ' ',
+               "Sign 10" };
+            objects[18][24] = new Object{ SIGN, -1, false, " ", ' ',
+               "Sign 11" };
             break;
         case 5:
             break;

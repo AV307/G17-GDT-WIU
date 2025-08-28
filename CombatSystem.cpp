@@ -513,22 +513,22 @@ void CombatSystem::fightPVE(Entity& player, Entity& specifiedEnemy) {
 	//case 'N': // Null
 	//	break;
 
-	//case 'B': // Beginner enemy — reduce stats
+	//case 'B': // Beginner enemy ï¿½ reduce stats
 	//	specifiedEnemy.setHealth(specifiedEnemy.getHealth() *( 75 / 100));
 	//	specifiedEnemy.setAttack(specifiedEnemy.getAttack() *( 50 / 100));
 	//	specifiedEnemy.setDefense(specifiedEnemy.getDefense() *( 60 / 100));
 	//	break;
 
-	//case 'E': // Elite enemy — no stat changes
+	//case 'E': // Elite enemy ï¿½ no stat changes
 	//	break;
 
-	//case 'D': // Dangerous enemy — boost stats
+	//case 'D': // Dangerous enemy ï¿½ boost stats
 	//	specifiedEnemy.setHealth(specifiedEnemy.getHealth() *( 150 / 100));
 	//	specifiedEnemy.setAttack(specifiedEnemy.getAttack() *( 120 / 100));
 	//	specifiedEnemy.setDefense(specifiedEnemy.getDefense() *( 125 / 100));
 	//	break;
 
-	//case 'X': // Extreme enemy — major boost
+	//case 'X': // Extreme enemy ï¿½ major boost
 	//	specifiedEnemy.setHealth(specifiedEnemy.getHealth() * 200 / 100);
 	//	specifiedEnemy.setAttack(specifiedEnemy.getAttack() * 150 / 100);
 	//	specifiedEnemy.setDefense(specifiedEnemy.getDefense() * 120 / 100);

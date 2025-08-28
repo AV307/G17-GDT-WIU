@@ -51,7 +51,6 @@ RoomObjects::RoomObjects(bool openSide, int roomColumn, int roomWidth, int roomH
 
 RoomObjects::~RoomObjects()
 {
-
 }
 
 // Ang Zhi En 252317H
@@ -65,150 +64,272 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
     case 'M': // main room
         switch (currentStage)
         {
-        case 1: {
+        case 1:
             // Walls
             for (int i = 19; i < 29; i++) {
-                setObject(i, 8, Object{ WALL, -1, false, " ", ' ' });
-            }
-            for (int i = 2; i < 8; i++) {
-                setObject(19, i, Object{ WALL, -1, false, " ", ' ' });
-            }
-            for (int i = 14; i < 19; i++) {
-                setObject(i, 3, Object{ WALL, -1, false, " ", ' ' });
-            }
-            for (int i = 1; i < 11; i++) {
-                setObject(12, i, Object{ WALL, -1, false, " ", ' ' });
-            }
-            for (int i = 13; i < 18; i++) {
-                setObject(i, 6, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[i][8] != nullptr) delete objects[i][8];
+                objects[i][8] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
-            setObject(14, 7, Object{ WALL, -1, false, " ", ' ' });
-            setObject(14, 8, Object{ WALL, -1, false, " ", ' ' });
+            for (int i = 2; i < 8; i++) {
+                if (objects[19][i] != nullptr) delete objects[19][i];
+                objects[19][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 14; i < 19; i++) {
+                if (objects[i][3] != nullptr) delete objects[i][3];
+                objects[i][3] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 1; i < 11; i++) {
+                if (objects[12][i] != nullptr) delete objects[12][i];
+                objects[12][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            for (int i = 13; i < 18; i++) {
+                if (objects[i][6] != nullptr) delete objects[i][6];
+                objects[i][6] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
+            if (objects[14][7] != nullptr) delete objects[14][7];
+            objects[14][7] = new Object{ WALL, -1, false, " ", ' ' };
+
+            if (objects[14][8] != nullptr) delete objects[14][8];
+            objects[14][8] = new Object{ WALL, -1, false, " ", ' ' };
 
             for (int i = 9; i < 20; i++) {
-                setObject(23, i, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[23][i] != nullptr) delete objects[23][i];
+                objects[23][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 0; i < 24; i++) {
-                setObject(i, 10, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[i][10] != nullptr) delete objects[i][10];
+                objects[i][10] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 4; i < 24; i++) {
-                setObject(i, 18, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[i][18] != nullptr) delete objects[i][18];
+                objects[i][18] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 23; i < 30; i++) {
-                setObject(i, 12, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[i][12] != nullptr) delete objects[i][12];
+                objects[i][12] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 9; i < 12; i++) {
-                setObject(26, i, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[26][i] != nullptr) delete objects[26][i];
+                objects[26][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 23; i < 30; i++) {
-                setObject(i, 19, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[i][19] != nullptr) delete objects[i][19];
+                objects[i][19] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 19; i < 25; i++) {
-                setObject(24, i, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[24][i] != nullptr) delete objects[24][i];
+                objects[24][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 10; i < 19; i++) {
-                setObject(18, i, Object{ WALL, -1, false, " ", ' ' });
-                setObject(4, i, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[18][i] != nullptr) delete objects[18][i];
+                objects[18][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
+            for (int i = 10; i < 19; i++) {
+                if (objects[4][i] != nullptr) delete objects[4][i];
+                objects[4][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
             for (int i = 19; i < 30; i++) {
-                setObject(16, i, Object{ WALL, -1, false, " ", ' ' });
-                setObject(14, i, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[16][i] != nullptr) delete objects[16][i];
+                objects[16][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
+            for (int i = 19; i < 30; i++) {
+                if (objects[14][i] != nullptr) delete objects[14][i];
+                objects[14][i] = new Object{ WALL, -1, false, " ", ' ' };
+            }
+
             for (int i = 0; i < 4; i++) {
-                setObject(i, 26, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[i][26] != nullptr) delete objects[i][26];
+                objects[i][26] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 26; i < 30; i++) {
-                setObject(4, i, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[4][i] != nullptr) delete objects[4][i];
+                objects[4][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 0; i < 9; i++) {
-                setObject(7, i, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[7][i] != nullptr) delete objects[7][i];
+                objects[7][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 0; i < 6; i++) {
-                setObject(10, i, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[10][i] != nullptr) delete objects[10][i];
+                objects[10][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 6; i < 13; i++) {
-                setObject(i, 21, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[i][21] != nullptr) delete objects[i][21];
+                objects[i][21] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 10; i < 15; i++) {
-                setObject(i, 24, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[i][24] != nullptr) delete objects[i][24];
+                objects[i][24] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 25; i < 27; i++) {
-                setObject(11, i, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[11][i] != nullptr) delete objects[11][i];
+                objects[11][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 12; i < 14; i++) {
-                setObject(i, 26, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[i][26] != nullptr) delete objects[i][26];
+                objects[i][26] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 22; i < 30; i++) {
-                setObject(8, i, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[8][i] != nullptr) delete objects[8][i];
+                objects[8][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
+
             for (int i = 22; i < 28; i++) {
-                setObject(6, i, Object{ WALL, -1, false, " ", ' ' });
+                if (objects[6][i] != nullptr) delete objects[6][i];
+                objects[6][i] = new Object{ WALL, -1, false, " ", ' ' };
             }
 
             // Teleporters
-            setObject(13, 7, { TELEPORTER1, 1, false, " ", ' ' });
-            setObject(24, 9, { TELEPORTER2, 1, false, " ", ' ' });
-            setObject(17, 11, { TELEPORTER1, 2, false, " ", ' ' });
+            if (objects[13][7] != nullptr) delete objects[13][7];
+            objects[13][7] = new Object{ TELEPORTER1, 1, false, " ", ' ' };
+
+            if (objects[24][9] != nullptr) delete objects[24][9];
+            objects[24][9] = new Object{ TELEPORTER2, 1, false, " ", ' ' };
+
+            if (objects[17][11] != nullptr) delete objects[17][11];
+            objects[17][11] = new Object{ TELEPORTER1, 2, false, " ", ' ' };
+
             for (int i = 11; i < 18; i++) {
                 for (int r = 8; r <= 11; r++) {
-                    setObject(r, i, { TELEPORTER2, 2, false, " ", ' ' });
+                    if (objects[r][i] != nullptr) delete objects[r][i];
+                    objects[r][i] = new Object{ TELEPORTER2, 2, false, " ", ' ' };
                 }
             }
-            for (int i = 8; i < 12; i++) setObject(i, 13, { TELEPORTER1, -1, false, " ", ' ' });
-            setObject(15, 19, { TELEPORTER1, 3, false, " ", ' ' });
-            setObject(1, 27, { TELEPORTER2, 3, false, " ", ' ' });
-            setObject(13, 25, { TELEPORTER1, 4, false, " ", ' ' });
-            setObject(17, 26, { TELEPORTER2, 4, false, " ", ' ' });
+
+            for (int i = 8; i < 12; i++) {
+                if (objects[i][13] != nullptr) delete objects[i][13];
+                objects[i][13] = new Object{ TELEPORTER1, -1, false, " ", ' ' };
+            }
+
+            if (objects[15][19] != nullptr) delete objects[15][19];
+            objects[15][19] = new Object{ TELEPORTER1, 3, false, " ", ' ' };
+
+            if (objects[1][27] != nullptr) delete objects[1][27];
+            objects[1][27] = new Object{ TELEPORTER2, 3, false, " ", ' ' };
+
+            if (objects[13][25] != nullptr) delete objects[13][25];
+            objects[13][25] = new Object{ TELEPORTER1, 4, false, " ", ' ' };
+
+            if (objects[17][26] != nullptr) delete objects[17][26];
+            objects[17][26] = new Object{ TELEPORTER2, 4, false, " ", ' ' };
 
             // Chests
-            setObject(22, 9, { CHEST, -1, false, " ", 'H' });
-            setObject(2, 1, { CHEST, -1, false, " ", 'K' });
-            setObject(11, 1, { CHEST, -1, false, "Rubber Duck", 'A' });
+            if (objects[22][9] != nullptr) delete objects[22][9];
+            objects[22][9] = new Object{ CHEST, -1, false, " ", 'H' };
+
+            if (objects[2][1] != nullptr) delete objects[2][1];
+            objects[2][1] = new Object{ CHEST, -1, false, " ", 'K' };
+
+            if (objects[11][1] != nullptr) delete objects[11][1];
+            objects[11][1] = new Object{ CHEST, -1, false, "Art", 'A' };
 
             // Breakable walls
-            setObject(24, 12, { BREAKABLEWALL, -1, false, " ", ' ' });
-            setObject(4, 14, { BREAKABLEWALL, -1, false, " ", ' ' });
-            setObject(14, 21, { BREAKABLEWALL, -1, false, " ", ' ' });
-            setObject(27, 8, { BREAKABLEWALL, -1, false, " ", ' ' });
+            if (objects[24][12] != nullptr) delete objects[24][12];
+            objects[24][12] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
+
+            if (objects[4][14] != nullptr) delete objects[4][14];
+            objects[4][14] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
+
+            if (objects[14][21] != nullptr) delete objects[14][21];
+            objects[14][21] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
+
+            if (objects[27][8] != nullptr) delete objects[27][8];
+            objects[27][8] = new Object{ BREAKABLEWALL, -1, false, " ", ' ' };
 
             // Switches
-            setObject(25, 18, { SWITCH, 1, false, " ", ' ' });
-            setObject(3, 28, { SWITCH, 3, false, " ", ' ' });
-            setObject(28, 9, { SWITCH, 5, false, " ", ' ' });
+            if (objects[25][18] != nullptr) delete objects[25][18];
+            objects[25][18] = new Object{ SWITCH, 1, false, " ", ' ' };
+
+            if (objects[3][28] != nullptr) delete objects[3][28];
+            objects[3][28] = new Object{ SWITCH, 3, false, " ", ' ' };
+
+            if (objects[28][9] != nullptr) delete objects[28][9];
+            objects[28][9] = new Object{ SWITCH, 5, false, " ", ' ' };
 
             // Doors
-            setObject(23, 15, { DOOR, 1, false, " ", ' ' });
-            setObject(18, 15, { DOOR, 2, false, " ", ' ' });
-            setObject(13, 24, { DOOR, 3, false, " ", ' ' });
-            setObject(2, 10, { DOOR, 4, false, " ", ' ' });
-            setObject(11, 5, { DOOR, 5, false, " ", ' ' });
+            if (objects[23][15] != nullptr) delete objects[23][15];
+            objects[23][15] = new Object{ DOOR, 1, false, " ", ' ' };
+
+            if (objects[18][15] != nullptr) delete objects[18][15];
+            objects[18][15] = new Object{ DOOR, 2, false, " ", ' ' };
+
+            if (objects[13][24] != nullptr) delete objects[13][24];
+            objects[13][24] = new Object{ DOOR, 3, false, " ", ' ' };
+
+            if (objects[2][10] != nullptr) delete objects[2][10];
+            objects[2][10] = new Object{ DOOR, 4, false, " ", ' ' };
+
+            if (objects[11][5] != nullptr) delete objects[11][5];
+            objects[11][5] = new Object{ DOOR, 5, false, " ", ' ' };
 
             // Pressure plates
-            setObject(19, 11, { PRESSUREPLATE, 2, false, " ", ' ' });
-            setObject(26, 20, { PRESSUREPLATE, 4, false, " ", ' ' });
+            if (objects[19][11] != nullptr) delete objects[19][11];
+            objects[19][11] = new Object{ PRESSUREPLATE, 2, false, " ", ' ' };
+
+            if (objects[26][20] != nullptr) delete objects[26][20];
+            objects[26][20] = new Object{ PRESSUREPLATE, 4, false, " ", ' ' };
 
             // Moveable blocks
             int moveBlocks[][2] = {
                 {19,16}, {25,20}, {27,20}, {28,20}, {25,21}, {26,21}, {28,21},
                 {27,22}, {26,22}, {28,22}, {26,23}, {28,23}
             };
-            for (auto& b : moveBlocks) setObject(b[0], b[1], { MOVEABLEBLOCK, -1, false, " ", ' ' });
+
+            for (auto& b : moveBlocks) {
+                if (objects[b[0]][b[1]] != nullptr) delete objects[b[0]][b[1]];
+                objects[b[0]][b[1]] = new Object{ MOVEABLEBLOCK, -1, false, " ", ' ' };
+            }
 
             // Key door
-            setObject(0, 15, { KEYDOOR, -1, false, " ", ' ' });
+            if (objects[0][15] != nullptr) delete objects[0][15];
+            objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
 
             // Signs
-            setObject(23, 4, { SIGN, -1, false, " ", ' ', "Hey! Welcome to the dungeon!" });
-            setObject(21, 15, { SIGN, -1, false, " ", ' ', "You will find these blocks laying around. Push them onto those buttons on the floor!" });
-            setObject(26, 15, { SIGN, -1, false, " ", ' ', "Levers control doors, interact with them to open and close doors!" });
-            setObject(16, 15, { SIGN, -1, false, " ", ' ', "Teleporters bring you to another location. You will have to find the right path through these teleporters. Third time's the charm!" });
-            setObject(2, 14, { SIGN, -1, false, " ", ' ', "You will need a key to open that door. Try searching the right side." });
-            setObject(27, 25, { SIGN, -1, false, " ", ' ', "You cannot push multiple blocks at a time. Good luck with this small puzzle!" });
-            setObject(6, 8, { SIGN, -1, false, " ", ' ', "Every room has an artifact, something you can collect for achievements. These artifacts will have additional challenges in order to get them." });
+            if (objects[23][4] != nullptr) delete objects[23][4];
+            objects[23][4] = new Object{ SIGN, -1, false, " ", ' ', "Hey! Welcome to the dungeon!" };
+
+            if (objects[21][15] != nullptr) delete objects[21][15];
+            objects[21][15] = new Object{ SIGN, -1, false, " ", ' ', "You will find these blocks laying around. Push them onto those buttons on the floor!" };
+
+            if (objects[26][15] != nullptr) delete objects[26][15];
+            objects[26][15] = new Object{ SIGN, -1, false, " ", ' ', "Levers control doors, interact with them to open and close doors!" };
+
+            if (objects[16][15] != nullptr) delete objects[16][15];
+            objects[16][15] = new Object{ SIGN, -1, false, " ", ' ', "Teleporters bring you to another location. You will have to find the right path through these teleporters. Third time's the charm!" };
+
+            if (objects[2][14] != nullptr) delete objects[2][14];
+            objects[2][14] = new Object{ SIGN, -1, false, " ", ' ', "You will need a key to open that door. Try searching the right side." };
+
+            if (objects[27][25] != nullptr) delete objects[27][25];
+            objects[27][25] = new Object{ SIGN, -1, false, " ", ' ', "You cannot push multiple blocks at a time. Good luck with this small puzzle!" };
+
+            if (objects[6][8] != nullptr) delete objects[6][8];
+            objects[6][8] = new Object{ SIGN, -1, false, " ", ' ', "Every room has an artifact, something you can collect for achievements. These artifacts will have additional challenges in order to get them." };
 
             break;
-        }
         case 2:
             // VERTICAL WALLS
 
@@ -612,7 +733,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[22][13] = new Object{ TELEPORTER2, 7, false, " ", ' ' };
 
             objects[22][5] = new Object{ TELEPORTER1, 8, false, " ", ' ' };
-            objects[17][2] = new Object{ TELEPORTER2, 8, false, " ", ' ' };
+            objects[17][2] = new Object{ TELEPORTER2, 9, false, " ", ' ' };
 
             objects[19][17] = new Object{ TELEPORTER1, 10, false, " ", ' ' };
             objects[19][20] = new Object{ TELEPORTER2, 10, false, " ", ' ' };
@@ -691,13 +812,12 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[17][25] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[18][24] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[18][27] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
-            objects[21][22] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
-            objects[21][20] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[20][22] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[20][20] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
+            objects[21][18] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[21][23] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[21][24] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[21][27] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
-            objects[22][24] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
-            objects[22][23] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
 
             for (int i = 24; i < 28; i++) {
                 objects[15][i] = new Object{ RIGHTDIRECTIONALDOOR, -1, false, " ", ' ' };
@@ -729,9 +849,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[21][16] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[21][19] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[21][24] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
-            objects[21][21] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[7][26] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
-            objects[13][23] = new Object{ BOTTOMDIRECTIONALDOOR, -1, false, " ", ' ' };
 
             objects[17][22] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[18][21] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
@@ -746,7 +864,6 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
             objects[22][21] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[22][21] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
             objects[7][25] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
-            objects[13][25] = new Object{ TOPDIRECTIONALDOOR, -1, false, " ", ' ' };
 
             objects[28][28] = new Object{ CHEST, -1, false, " ", 'H' };
             objects[1][28] = new Object{ CHEST, -1, false, "Rubber Duck", 'A' };
@@ -1104,7 +1221,7 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
 
             objects[28][2] = new Object{ CHEST, -1, false, " ", 'H' };
             objects[5][12] = new Object{ CHEST, -1, false, " ", 'K' };
-            objects[24][26] = new Object{ CHEST, -1, false, "Rubber Duck", 'A' };
+            objects[24][26] = new Object{ CHEST, -1, false, "Art3", 'A' };
             objects[28][21] = new Object{ CHEST, -1, false, "Rubber Duck", 'A' };
 
             objects[0][15] = new Object{ KEYDOOR, -1, false, " ", ' ' };
@@ -1133,7 +1250,6 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
                "Nothing important here don't mind the bathtub" };
             break;
         case 5:
-            objects[0][15] = new Object{ SPACE, -1, false, " ", ' ' };
             break;
         }
         break;
@@ -1144,7 +1260,13 @@ void RoomObjects::addObjects(int roomWidth, int roomHeight, int currentStage, ch
         objects[10][10] = new Object{ SHOPKEEPER, -1, false, " ", ' ' };
         break;
     case 'F': // boss room
-        objects[10][10] = new Object{ BOSS, -1, false, " ", ' ' };
+        switch (currentStage)
+        {
+        case 3:
+            break;
+        case 5:
+            break;
+        }
         break;
     case 'P': // portal room
         objects[5][5] = new Object{ PORTAL, -1, false, " ", ' ' };
@@ -1284,11 +1406,4 @@ void RoomObjects::setObjectType(int column, int row, ObjectType type)
     if (obj != nullptr) {
         obj->type = type;
     }
-}
-
-void RoomObjects::setObject(int row, int col, Object objData) {
-    if (objects[row][col] != nullptr) {
-        delete objects[row][col];
-    }
-    objects[row][col] = new Object(objData);
 }

@@ -820,6 +820,10 @@ void CombatSystem::runPVE(Entity& player, Entity& specifiedEnemy) {
 	srand(static_cast<unsigned int>(time(0)));
 	int consDeterminant = rand() % 4;                                                                                // 3 random consequences may happen + 1 off chance
 
+	if (specifiedEnemy.getEnemyStatus() == 'X') {    
+		setTextDialogue("You can't run away from a boss fight unfortunately...");																												// If Enemy is Null Type, Player can always run away without consequence
+		return;
+	}
 	if (specifiedEnemy.getEnemyStatus() != 'S') {
 		if (consDeterminant == 0) {                                                                                      // 1st consequence
 			player.setHealth(player.getHealth() * 3 / 4);                                                                // Lose 25% of current HP
